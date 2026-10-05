@@ -3,24 +3,42 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>HSFL S2</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
 <main class="app">
 
-  <!-- HERO -->
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
   <section class="hero">
-    <img src="IMG_8099.jpeg" alt="HSFL Football">
+
+    <img
+      src="IMG_8099.jpeg"
+      alt="HSFL Football"
+    >
+
   </section>
 
 
-  <!-- MATCHUPS -->
+
+  <!-- =========================
+       MATCHUPS
+  ========================== -->
+
   <section class="card">
 
     <div class="matchups-heading">
@@ -28,349 +46,180 @@
       <h1>MATCHUPS</h1>
 
       <div class="heading-pills">
-        <span>WEEK 1</span>
-        <span>UPCOMING</span>
+
+        <span id="weekPill">
+          WEEK 1
+        </span>
+
+        <span>
+          UPCOMING
+        </span>
+
       </div>
 
     </div>
 
 
+
+    <!-- MATCHUP CONTROLS -->
+
     <div class="filters">
 
-      <button>
-        <span>Week 1</span>
-        <b>⌄</b>
-      </button>
 
-      <button>
-        <span>all scores →</span>
-        <b>⌄</b>
-      </button>
+      <!-- WEEK DROPDOWN -->
+
+      <div class="week-picker">
+
+        <button
+          class="filter-button"
+          id="weekButton"
+          type="button"
+        >
+
+          <span id="selectedWeek">
+            Week 1
+          </span>
+
+          <svg
+            viewBox="0 0 24 24"
+            class="dropdown-icon"
+            aria-hidden="true"
+          >
+            <path
+              d="M6 9l6 6 6-6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+        </button>
+
+
+        <div
+          class="week-menu"
+          id="weekMenu"
+        >
+          <!-- script.js creates available weeks here -->
+        </div>
+
+      </div>
+
+
+
+      <!-- ALL SCORES -->
+
+      <a
+        href="scores.html"
+        class="filter-button all-scores-button"
+      >
+        <span>
+          all scores
+        </span>
+
+        <span class="scores-arrow">
+          →
+        </span>
+      </a>
 
     </div>
+
 
 
     <div class="red-divider"></div>
 
 
-    <div class="games">
 
-      <!-- SARALAND VS MCKINNEY -->
-      <div class="game-row">
+    <!--
+      ALL MATCHUPS ARE GENERATED
+      BY script.js
+    -->
+
+    <div
+      class="games"
+      id="gamesContainer"
+    ></div>
+
+
+
+    <a
+      href="scores.html"
+      class="red-button"
+    >
+
+      <span>
+        VIEW ALL SCORES
+      </span>
+
+      <svg
+        viewBox="0 0 24 24"
+        class="button-arrow"
+        aria-hidden="true"
+      >
+        <path
+          d="M9 5l7 7-7 7"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
 
-        <div class="team left-team">
-
-          <div class="team-logo saraland">
-            <img src="saraland.png.PNG" alt="Saraland">
-          </div>
-
-          <span>SAR</span>
-
-        </div>
-
-
-        <div class="game-middle">
-
-          <div class="vs-box">
-            VS
-          </div>
-
-          <div class="compare">
-            COMPARE ⇄
-          </div>
-
-        </div>
-
-
-        <div class="team right-team">
-
-          <span>MCK</span>
-
-          <div class="team-logo mckinney">
-            <img src="mckinney.png.PNG" alt="McKinney">
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- IMG VS BUFORD -->
-      <div class="game-row">
-
-        <div class="team left-team">
-
-          <div class="team-logo imgacademy">
-            <img src="img.png.PNG" alt="IMG Academy">
-          </div>
-
-          <span>IMG</span>
-
-        </div>
-
-
-        <div class="game-middle">
-
-          <div class="vs-box">
-            VS
-          </div>
-
-          <div class="compare">
-            COMPARE ⇄
-          </div>
-
-        </div>
-
-
-        <div class="team right-team">
-
-          <span>BUF</span>
-
-          <div class="team-logo buford">
-            <img src="buford.png.PNG" alt="Buford">
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- AUBURN VS ST JOHN BOSCO -->
-      <div class="game-row">
-
-        <div class="team left-team">
-
-          <div class="team-logo auburn">
-            <img src="auburn.png.PNG" alt="Auburn">
-          </div>
-
-          <span>AUB</span>
-
-        </div>
-
-
-        <div class="game-middle">
-
-          <div class="vs-box">
-            VS
-          </div>
-
-          <div class="compare">
-            COMPARE ⇄
-          </div>
-
-        </div>
-
-
-        <div class="team right-team">
-
-          <span>SJB</span>
-
-          <div class="team-logo bosco">
-            <img src="bosco.png.PNG" alt="St John Bosco">
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- ST JAMES VS NORLAND -->
-      <div class="game-row">
-
-        <div class="team left-team">
-
-          <div class="team-logo stjames">
-            <img src="stjames.png.PNG" alt="St James">
-          </div>
-
-          <span>STJ</span>
-
-        </div>
-
-
-        <div class="game-middle">
-
-          <div class="vs-box">
-            VS
-          </div>
-
-          <div class="compare">
-            COMPARE ⇄
-          </div>
-
-        </div>
-
-
-        <div class="team right-team">
-
-          <span>NOR</span>
-
-          <div class="team-logo norland">
-            <img src="norland.png.PNG" alt="Norland">
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- PARKER VS ST FRANCES -->
-      <div class="game-row">
-
-        <div class="team left-team">
-
-          <div class="team-logo parker">
-            <img src="parker.png.PNG.PNG" alt="Parker">
-          </div>
-
-          <span>PAR</span>
-
-        </div>
-
-
-        <div class="game-middle">
-
-          <div class="vs-box">
-            VS
-          </div>
-
-          <div class="compare">
-            COMPARE ⇄
-          </div>
-
-        </div>
-
-
-        <div class="team right-team">
-
-          <span>SFA</span>
-
-          <div class="team-logo stfrances">
-            <img src="stfrances.png.PNG" alt="St Frances">
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- GAME OF THE WEEK -->
-      <div class="gotw">
-        ★ GAME OF THE WEEK
-      </div>
-
-
-      <!-- GUYER VS CENTENNIAL -->
-      <div class="game-row featured">
-
-        <div class="team left-team">
-
-          <div class="team-logo guyer">
-            <img src="guyer.png.PNG" alt="Denton Guyer">
-          </div>
-
-          <span>GUY</span>
-
-        </div>
-
-
-        <div class="game-middle">
-
-          <div class="vs-box">
-            VS
-          </div>
-
-          <div class="compare">
-            COMPARE ⇄
-          </div>
-
-        </div>
-
-
-        <div class="team right-team">
-
-          <span>CEN</span>
-
-          <div class="team-logo centennial">
-            <img src="centennial.png.PNG" alt="Centennial">
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- CORNER CANYON VS DUTCH FORK -->
-      <div class="game-row">
-
-        <div class="team left-team">
-
-          <div class="team-logo chargers">
-            <img src="chargers.png.PNG" alt="Corner Canyon">
-          </div>
-
-          <span>CCY</span>
-
-        </div>
-
-
-        <div class="game-middle">
-
-          <div class="vs-box">
-            VS
-          </div>
-
-          <div class="compare">
-            COMPARE ⇄
-          </div>
-
-        </div>
-
-
-        <div class="team right-team">
-
-          <span>DFK</span>
-
-          <div class="team-logo silverfoxes">
-            <img src="silverfoxes.png.PNG" alt="Dutch Fork">
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <a href="scores.html" class="red-button">
-      <span>VIEW ALL SCORES</span>
-      <b>›</b>
     </a>
 
   </section>
 
 
 
-  <!-- STAT LEADERS -->
+  <!-- =========================
+       STAT LEADERS
+  ========================== -->
+
   <section class="card">
 
     <h1 class="section-title">
       STAT LEADERS
     </h1>
 
+
     <div class="red-divider"></div>
 
 
-    <button class="big-dropdown">
-      <span>PASSING YARDS</span>
-      <b>⌄</b>
+    <button
+      class="big-dropdown"
+      type="button"
+    >
+
+      <span>
+        PASSING YARDS
+      </span>
+
+      <svg
+        viewBox="0 0 24 24"
+        class="dropdown-icon"
+        aria-hidden="true"
+      >
+        <path
+          d="M6 9l6 6 6-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+
     </button>
 
 
     <div class="empty-area">
 
-      <strong>SEASON 2</strong>
+      <strong>
+        SEASON 2
+      </strong>
 
       <span>
         Stats will appear after games are recorded.
@@ -379,16 +228,40 @@
     </div>
 
 
-    <a href="stats.html" class="red-button">
-      <span>VIEW ALL STATS</span>
-      <b>›</b>
+    <a
+      href="stats.html"
+      class="red-button"
+    >
+
+      <span>
+        VIEW ALL STATS
+      </span>
+
+      <svg
+        viewBox="0 0 24 24"
+        class="button-arrow"
+        aria-hidden="true"
+      >
+        <path
+          d="M9 5l7 7-7 7"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+
     </a>
 
   </section>
 
 
 
-  <!-- STANDINGS -->
+  <!-- =========================
+       STANDINGS
+  ========================== -->
+
   <section class="card">
 
     <h1 class="section-title">
@@ -399,35 +272,57 @@
     <div class="red-divider"></div>
 
 
-    <!-- CONFERENCE SWITCH -->
+
+    <!-- CONFERENCE DROPDOWN -->
+
     <div class="conference-picker">
 
       <button
         class="big-dropdown"
-        id="conferenceButton">
+        id="conferenceButton"
+        type="button"
+      >
 
         <span id="conferenceName">
           AMERICAN
         </span>
 
-        <b>⌄</b>
+        <svg
+          viewBox="0 0 24 24"
+          class="dropdown-icon"
+          aria-hidden="true"
+        >
+          <path
+            d="M6 9l6 6 6-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
 
       </button>
 
 
       <div
         class="conference-menu"
-        id="conferenceMenu">
+        id="conferenceMenu"
+      >
 
         <button
           class="conference-option"
-          data-conference="american">
+          data-conference="american"
+          type="button"
+        >
           AMERICAN
         </button>
 
         <button
           class="conference-option"
-          data-conference="national">
+          data-conference="national"
+          type="button"
+        >
           NATIONAL
         </button>
 
@@ -438,210 +333,167 @@
 
 
     <!-- STANDINGS TABLE -->
+
     <div class="standings-table">
 
 
       <div class="standings-header">
 
-        <span>TEAM</span>
+        <span>
+          TEAM
+        </span>
 
-        <span>W</span>
+        <span>
+          W
+        </span>
 
-        <span>L</span>
+        <span>
+          L
+        </span>
 
-        <span>PD</span>
+        <span>
+          PD
+        </span>
 
       </div>
 
 
-
-      <!-- JS CHANGES THESE TEAMS -->
       <div id="standingsBody">
-
-
-        <!-- AUBURN -->
-        <div class="standings-row">
-
-          <div class="standing-team">
-
-            <div class="standing-logo auburn">
-              <img
-                src="auburn.png.PNG"
-                alt="Auburn">
-            </div>
-
-            <strong>
-              AUBURN TIGERS
-            </strong>
-
-          </div>
-
-          <b>0</b>
-          <b>0</b>
-          <b>0</b>
-
-        </div>
-
-
-
-        <!-- PARKER -->
-        <div class="standings-row">
-
-          <div class="standing-team">
-
-            <div class="standing-logo parker">
-              <img
-                src="parker.png.PNG.PNG"
-                alt="Parker">
-            </div>
-
-            <strong>
-              PARKER THUNDERING HERD
-            </strong>
-
-          </div>
-
-          <b>0</b>
-          <b>0</b>
-          <b>0</b>
-
-        </div>
-
-
-
-        <!-- CORNER CANYON -->
-        <div class="standings-row">
-
-          <div class="standing-team">
-
-            <div class="standing-logo chargers">
-              <img
-                src="chargers.png.PNG"
-                alt="Corner Canyon">
-            </div>
-
-            <strong>
-              CORNER CANYON
-            </strong>
-
-          </div>
-
-          <b>0</b>
-          <b>0</b>
-          <b>0</b>
-
-        </div>
-
-
-
-        <!-- ST FRANCES -->
-        <div class="standings-row">
-
-          <div class="standing-team">
-
-            <div class="standing-logo stfrances">
-              <img
-                src="stfrances.png.PNG"
-                alt="St Frances">
-            </div>
-
-            <strong>
-              ST. FRANCES ACADEMY
-            </strong>
-
-          </div>
-
-          <b>0</b>
-          <b>0</b>
-          <b>0</b>
-
-        </div>
-
-
-
-        <!-- BUFORD -->
-        <div class="standings-row">
-
-          <div class="standing-team">
-
-            <div class="standing-logo buford">
-              <img
-                src="buford.png.PNG"
-                alt="Buford">
-            </div>
-
-            <strong>
-              BUFORD WOLVES
-            </strong>
-
-          </div>
-
-          <b>0</b>
-          <b>0</b>
-          <b>0</b>
-
-        </div>
-
-
-
-        <!-- ST JOHN BOSCO -->
-        <div class="standings-row">
-
-          <div class="standing-team">
-
-            <div class="standing-logo bosco">
-              <img
-                src="bosco.png.PNG"
-                alt="St John Bosco">
-            </div>
-
-            <strong>
-              ST. JOHN BOSCO
-            </strong>
-
-          </div>
-
-          <b>0</b>
-          <b>0</b>
-          <b>0</b>
-
-        </div>
-
-
+        <!-- script.js creates standings here -->
       </div>
+
 
     </div>
 
 
+
     <a
       href="standings.html"
-      class="red-button">
+      class="red-button"
+    >
 
       <span>
         VIEW FULL STANDINGS
       </span>
 
-      <b>›</b>
+      <svg
+        viewBox="0 0 24 24"
+        class="button-arrow"
+        aria-hidden="true"
+      >
+        <path
+          d="M9 5l7 7-7 7"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
 
     </a>
 
   </section>
 
+
 </main>
 
 
 
-<!-- BOTTOM NAV -->
+<!-- =========================
+     MATCHUP COMPARISON
+========================== -->
+
+<div
+  class="comparison-overlay"
+  id="comparisonOverlay"
+  aria-hidden="true"
+>
+
+  <div class="comparison-modal">
+
+
+    <button
+      class="comparison-close"
+      id="comparisonClose"
+      type="button"
+      aria-label="Close matchup comparison"
+    >
+
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          d="M6 6l12 12M18 6L6 18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.3"
+          stroke-linecap="round"
+        />
+      </svg>
+
+    </button>
+
+
+
+    <div class="comparison-title">
+      MATCHUP COMPARISON
+    </div>
+
+
+    <div
+      class="comparison-content"
+      id="comparisonContent"
+    >
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+<!-- =========================
+     BOTTOM NAV
+========================== -->
+
 <nav class="bottom-nav">
 
 
+  <!-- HOME -->
+
   <a
     href="index.html"
-    class="nav-item active">
+    class="nav-item active"
+    aria-label="Home"
+  >
 
-    <span class="nav-icon">
-      ⌂
-    </span>
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <path
+        d="M3 10.5L12 3l9 7.5"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+      <path
+        d="M5.5 9.5V21h13V9.5M9.5 21v-7h5v7"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linejoin="round"
+      />
+
+    </svg>
 
     <span class="nav-label">
       Home
@@ -650,13 +502,75 @@
   </a>
 
 
+
+  <!-- STANDINGS - TROPHY -->
+
   <a
     href="standings.html"
-    class="nav-item">
+    class="nav-item"
+    aria-label="Standings"
+  >
 
-    <span class="nav-icon">
-      ♜
-    </span>
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <!-- TROPHY CUP -->
+
+      <path
+        d="M8 4h8v4.5c0 3-1.7 5.2-4 5.2s-4-2.2-4-5.2V4z"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+      <!-- LEFT HANDLE -->
+
+      <path
+        d="M8 6H5.5v2.2c0 2 1.2 3.4 3.2 3.8"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+      <!-- RIGHT HANDLE -->
+
+      <path
+        d="M16 6h2.5v2.2c0 2-1.2 3.4-3.2 3.8"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+      <!-- STEM -->
+
+      <path
+        d="M12 14v4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+      />
+
+      <!-- BASE -->
+
+      <path
+        d="M8.5 20h7M10 18h4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+      />
+
+    </svg>
 
     <span class="nav-label">
       Standings
@@ -665,13 +579,41 @@
   </a>
 
 
+
+  <!-- SCORES -->
+
   <a
     href="scores.html"
-    class="nav-item">
+    class="nav-item"
+    aria-label="Scores"
+  >
 
-    <span class="nav-icon">
-      ▣
-    </span>
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <rect
+        x="3.5"
+        y="5"
+        width="17"
+        height="14"
+        rx="2.5"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      />
+
+      <path
+        d="M8 9h3M8 13h3M15 9h1M15 13h1"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+
+    </svg>
 
     <span class="nav-label">
       Scores
@@ -680,13 +622,30 @@
   </a>
 
 
+
+  <!-- STATS -->
+
   <a
     href="stats.html"
-    class="nav-item">
+    class="nav-item"
+    aria-label="Stats"
+  >
 
-    <span class="nav-icon">
-      ⌁
-    </span>
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <path
+        d="M5 20V13M12 20V8M19 20V4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
+      />
+
+    </svg>
 
     <span class="nav-label">
       Stats
@@ -695,11 +654,43 @@
   </a>
 
 
-  <button class="nav-item">
 
-    <span class="nav-icon">
-      •••
-    </span>
+  <!-- MORE -->
+
+  <button
+    class="nav-item"
+    type="button"
+    aria-label="More"
+  >
+
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <circle
+        cx="5"
+        cy="12"
+        r="1.5"
+        fill="currentColor"
+      />
+
+      <circle
+        cx="12"
+        cy="12"
+        r="1.5"
+        fill="currentColor"
+      />
+
+      <circle
+        cx="19"
+        cy="12"
+        r="1.5"
+        fill="currentColor"
+      />
+
+    </svg>
 
     <span class="nav-label">
       More
@@ -711,9 +702,11 @@
 </nav>
 
 
-<!-- JS -->
+
+<!-- JAVASCRIPT -->
+
 <script src="script.js"></script>
 
-</body>
 
+</body>
 </html>
