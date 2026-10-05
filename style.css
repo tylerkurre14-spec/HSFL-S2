@@ -1,3 +1,8 @@
+/* =========================
+   HSFL S2
+   FULL HOMEPAGE CSS
+========================= */
+
 * {
   box-sizing: border-box;
 }
@@ -22,9 +27,18 @@ body {
   padding-bottom: 115px;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 button,
 a {
   font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  color: inherit;
 }
 
 .app {
@@ -57,7 +71,7 @@ a {
 
 
 /* =========================
-   MAIN CARDS
+   CARDS
 ========================= */
 
 .card {
@@ -107,43 +121,6 @@ a {
 
 
 /* =========================
-   MATCHUP FILTERS
-========================= */
-
-.filters {
-  display: flex;
-  gap: 8px;
-  margin-top: 17px;
-}
-
-.filters button {
-  min-width: 125px;
-  height: 47px;
-  padding: 0 14px;
-
-  background: #fff;
-
-  border: 1px solid #d6d6d6;
-  border-radius: 11px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 14px;
-
-  color: #222;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.filters button b {
-  color: var(--red);
-  font-size: 16px;
-}
-
-
-/* =========================
    RED DIVIDER
 ========================= */
 
@@ -151,8 +128,120 @@ a {
   width: 100%;
   height: 4px;
   margin: 15px 0 16px;
-  border-radius: 99px;
+  border-radius: 999px;
   background: var(--red);
+}
+
+
+/* =========================
+   FILTERS
+========================= */
+
+.filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 17px;
+}
+
+.week-picker {
+  position: relative;
+  min-width: 0;
+}
+
+.filter-button {
+  width: 100%;
+  height: 47px;
+  padding: 0 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  background: #fff;
+  border: 1px solid #d6d6d6;
+  border-radius: 11px;
+
+  color: #222;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+.dropdown-icon {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+  color: var(--red);
+}
+
+.scores-arrow {
+  color: var(--red);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+
+/* =========================
+   WEEK MENU
+========================= */
+
+.week-menu {
+  display: none;
+
+  position: absolute;
+  top: 53px;
+  left: 0;
+
+  width: 100%;
+
+  z-index: 100;
+
+  overflow: hidden;
+
+  background: #fff;
+
+  border: 1px solid #d7d7d7;
+  border-radius: 12px;
+
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .13);
+}
+
+.week-menu.show {
+  display: block;
+}
+
+.week-option {
+  width: 100%;
+  height: 48px;
+
+  padding: 0 14px;
+
+  border: 0;
+  border-bottom: 1px solid #eee;
+
+  background: #fff;
+
+  text-align: left;
+
+  font-size: 12px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+.week-option:last-child {
+  border-bottom: 0;
+}
+
+.week-option:active {
+  background: #f3f3f3;
 }
 
 
@@ -189,6 +278,26 @@ a {
   overflow: hidden;
 }
 
+button.game-row {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: inherit;
+  color: inherit;
+  text-align: initial;
+}
+
+.clickable-game {
+  cursor: pointer;
+  transition:
+    transform .12s ease,
+    background .12s ease;
+}
+
+.clickable-game:active {
+  transform: scale(.985);
+  background: #f1f1f1;
+}
+
 
 /* =========================
    TEAMS
@@ -220,14 +329,13 @@ a {
   font-weight: 900;
 
   white-space: nowrap;
-
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 
 /* =========================
-   MATCHUP LOGO BOXES
+   LOGO BOXES
 ========================= */
 
 .team-logo {
@@ -261,8 +369,7 @@ a {
 /* =========================
    TEAM BACKGROUNDS
 
-   THESE COLORS ARE USED
-   EVERYWHERE ON THE SITE
+   SAME COLORS EVERYWHERE
 ========================= */
 
 .saraland {
@@ -317,7 +424,7 @@ a {
   background: #27323e;
 }
 
-/* DUTCH FORK / SILVER FOXES */
+/* SILVER FOXES STAYS BLACK */
 .silverfoxes {
   background: #000000;
 }
@@ -366,30 +473,6 @@ a {
 
 
 /* =========================
-   SCORES
-========================= */
-
-.game-score {
-  color: #17171b;
-
-  font-size: 26px;
-  line-height: 1;
-
-  font-weight: 900;
-
-  letter-spacing: -1px;
-
-  white-space: nowrap;
-}
-
-.game-score .dash {
-  color: #aaa;
-  padding: 0 5px;
-  font-weight: 600;
-}
-
-
-/* =========================
    GAME OF THE WEEK
 ========================= */
 
@@ -410,7 +493,7 @@ a {
 
 
 /* =========================
-   RED BUTTONS
+   MAIN RED BUTTON
 ========================= */
 
 .red-button {
@@ -436,13 +519,14 @@ a {
   font-weight: 900;
 }
 
-.red-button b {
-  font-size: 25px;
+.button-arrow {
+  width: 21px;
+  height: 21px;
 }
 
 
 /* =========================
-   DROPDOWNS
+   BIG DROPDOWN
 ========================= */
 
 .big-dropdown {
@@ -464,11 +548,13 @@ a {
 
   font-size: 12px;
   font-weight: 900;
+
+  cursor: pointer;
 }
 
 
 /* =========================
-   CONFERENCE SWITCHER
+   CONFERENCE MENU
 ========================= */
 
 .conference-picker {
@@ -486,7 +572,7 @@ a {
 
   width: 100%;
 
-  z-index: 50;
+  z-index: 100;
 
   overflow: hidden;
 
@@ -495,9 +581,7 @@ a {
   border: 1px solid #d7d7d7;
   border-radius: 12px;
 
-  box-shadow:
-    0 8px 20px
-    rgba(0, 0, 0, .12);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .13);
 }
 
 .conference-menu.show {
@@ -530,12 +614,12 @@ a {
 }
 
 .conference-option:active {
-  background: #f4f4f4;
+  background: #f3f3f3;
 }
 
 
 /* =========================
-   EMPTY STATS
+   EMPTY STAT AREA
 ========================= */
 
 .empty-area {
@@ -570,7 +654,7 @@ a {
 
 
 /* =========================
-   STANDINGS TABLE
+   STANDINGS
 ========================= */
 
 .standings-table {
@@ -658,12 +742,8 @@ a {
 }
 
 
-/* =========================
-   STANDINGS LOGOS
-
-   SAME TEAM BACKGROUND
-   AS MATCHUPS
-========================= */
+/* SAME LOGO BACKGROUNDS
+   AS MATCHUPS */
 
 .standing-logo {
   width: 52px;
@@ -694,7 +774,278 @@ a {
 
 
 /* =========================
-   BOTTOM NAVIGATION
+   MATCHUP COMPARISON MODAL
+========================= */
+
+.comparison-overlay {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  z-index: 5000;
+
+  padding: 20px;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(10, 10, 13, .62);
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.comparison-overlay.show {
+  display: flex;
+}
+
+.comparison-modal {
+  position: relative;
+
+  width: 100%;
+  max-width: 500px;
+
+  max-height: 88vh;
+
+  overflow-y: auto;
+
+  padding: 22px 16px 18px;
+
+  background: #fff;
+
+  border-radius: 22px;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+}
+
+.comparison-close {
+  position: absolute;
+
+  top: 13px;
+  right: 13px;
+
+  width: 35px;
+  height: 35px;
+
+  padding: 7px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #ddd;
+  border-radius: 50%;
+
+  background: #fff;
+
+  color: #222;
+
+  cursor: pointer;
+}
+
+.comparison-close svg {
+  width: 100%;
+  height: 100%;
+}
+
+.comparison-title {
+  padding-right: 45px;
+  margin-bottom: 22px;
+
+  font-size: 19px;
+  font-weight: 900;
+
+  letter-spacing: -.5px;
+}
+
+
+/* =========================
+   COMPARISON TEAMS
+========================= */
+
+.comparison-teams {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    42px
+    minmax(0, 1fr);
+
+  gap: 7px;
+
+  align-items: center;
+}
+
+.comparison-team {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+}
+
+.comparison-logo {
+  width: 100%;
+  max-width: 105px;
+  height: 65px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 5px;
+
+  margin-bottom: 9px;
+}
+
+.comparison-logo img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transform: scale(1.08);
+}
+
+.comparison-team strong {
+  min-height: 28px;
+
+  display: flex;
+  align-items: center;
+
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.comparison-team > span {
+  margin-top: 5px;
+
+  color: #777;
+
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.comparison-vs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--red);
+
+  font-size: 14px;
+  font-weight: 900;
+}
+
+
+/* =========================
+   COMPARISON STATS
+========================= */
+
+.comparison-stats {
+  margin-top: 20px;
+
+  overflow: hidden;
+
+  border: 1px solid #ddd;
+  border-radius: 13px;
+}
+
+.comparison-stat-row {
+  min-height: 50px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1.4fr
+    1fr;
+
+  align-items: center;
+
+  padding: 0 12px;
+
+  border-bottom: 1px solid #eee;
+}
+
+.comparison-stat-row:last-child {
+  border-bottom: 0;
+}
+
+.comparison-stat-row span {
+  text-align: center;
+
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.comparison-stat-row strong {
+  text-align: center;
+
+  color: #777;
+
+  font-size: 9px;
+  font-weight: 900;
+}
+
+
+/* =========================
+   PREDICTION
+========================= */
+
+.prediction-box {
+  margin-top: 14px;
+  padding: 17px 14px;
+
+  border-radius: 14px;
+
+  background: #fff1f3;
+
+  text-align: center;
+}
+
+.prediction-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--red);
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: .7px;
+}
+
+.prediction-box strong {
+  display: block;
+
+  color: #17171b;
+
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.prediction-box p {
+  margin: 7px 0 0;
+
+  color: #68686d;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  line-height: 1.4;
+}
+
+
+/* =========================
+   BOTTOM NAV
 ========================= */
 
 .bottom-nav {
@@ -702,11 +1053,9 @@ a {
 
   left: 50%;
 
-  bottom:
-    calc(
-      13px +
-      env(safe-area-inset-bottom)
-    );
+  bottom: calc(
+    13px + env(safe-area-inset-bottom)
+  );
 
   transform: translateX(-50%);
 
@@ -724,23 +1073,22 @@ a {
 
   padding: 5px;
 
-  background:
-    rgba(255, 255, 255, .97);
+  background: rgba(255, 255, 255, .97);
 
   border: 1px solid #ddd;
   border-radius: 999px;
 
-  box-shadow:
-    0 10px 28px
-    rgba(0, 0, 0, .16);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .16);
 }
 
 .nav-item {
+  min-width: 0;
+
   border: 0;
 
   background: transparent;
 
-  color: #5f5f65;
+  color: #66666c;
 
   text-decoration: none;
 
@@ -750,18 +1098,20 @@ a {
   align-items: center;
   justify-content: center;
 
-  gap: 3px;
+  gap: 4px;
 
-  font-weight: 800;
+  cursor: pointer;
 }
 
-.nav-icon {
-  font-size: 20px;
-  line-height: 1;
+.nav-svg {
+  width: 22px;
+  height: 22px;
 }
 
 .nav-label {
   font-size: 9px;
+  line-height: 1;
+
   font-weight: 800;
 }
 
@@ -820,14 +1170,26 @@ a {
     font-size: 7px;
   }
 
-  .game-score {
-    font-size: 22px;
-  }
-
   .standing-logo {
     width: 48px;
     height: 33px;
 
     flex-basis: 48px;
+  }
+
+  .comparison-overlay {
+    padding: 12px;
+  }
+
+  .comparison-modal {
+    padding: 20px 13px 16px;
+  }
+
+  .comparison-logo {
+    height: 58px;
+  }
+
+  .bottom-nav {
+    width: calc(100% - 20px);
   }
 }
