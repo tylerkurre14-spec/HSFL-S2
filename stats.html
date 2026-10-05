@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -21,90 +22,174 @@
     ===================================================== */
 
     .stats-page {
-      padding-top: 18px;
+      padding-top: 22px;
     }
 
 
     .stats-title {
-      margin: 0 4px 7px;
+      margin: 0 3px 24px;
 
-      font-size: 32px;
+      font-size: 31px;
       line-height: 1;
 
       font-weight: 900;
 
-      letter-spacing: -1.5px;
+      letter-spacing: -1px;
     }
 
-
-    .stats-subtitle {
-      margin: 0 4px 20px;
-
-      color: #888;
-
-      font-size: 11px;
-      font-weight: 700;
-    }
 
 
     /* =====================================================
-       CATEGORY TABS
+       CATEGORY BUTTONS
+       WRAP LIKE AFL
     ===================================================== */
 
-    .stats-tabs-wrap {
-      width: 100%;
-
-      overflow-x: auto;
-
-      padding-bottom: 4px;
-      margin-bottom: 18px;
-
-      scrollbar-width: none;
-    }
-
-
-    .stats-tabs-wrap::-webkit-scrollbar {
-      display: none;
-    }
-
-
     .stats-tabs {
-      min-width: max-content;
-
       display: flex;
+      flex-wrap: wrap;
 
       gap: 8px;
+
+      margin-bottom: 45px;
     }
 
 
     .stats-tab {
-      height: 45px;
+      min-height: 46px;
 
-      padding: 0 18px;
+      padding: 0 15px;
 
-      border: 1.5px solid #d7d7d7;
-      border-radius: 999px;
+      border: 2px solid #d9d9d9;
+      border-radius: 10px;
 
       background: #fff;
 
-      color: #26262c;
+      color: #22232a;
 
-      font-size: 11px;
+      font-family:
+        "Arial Black",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size: 12px;
       font-weight: 900;
 
+      text-transform: uppercase;
+
       cursor: pointer;
+
+      white-space: nowrap;
     }
 
 
     .stats-tab.active {
-      background: #202127;
-      border-color: #202127;
+      background: #ed1f3b;
+      border-color: #ed1f3b;
       color: #fff;
     }
 
 
+
     /* =====================================================
-       STATS CARD
+       CATEGORY TITLE
+    ===================================================== */
+
+    .category-title {
+      margin: 0 2px 20px;
+
+      color: #292a2e;
+
+      font-size: 27px;
+      line-height: 1;
+
+      font-weight: 900;
+
+      text-transform: lowercase;
+
+      letter-spacing: -.7px;
+    }
+
+
+
+    /* =====================================================
+       SEARCH
+    ===================================================== */
+
+    .stats-search-wrap {
+      position: relative;
+
+      width: 100%;
+
+      margin-bottom: 24px;
+    }
+
+
+    .stats-search-icon {
+      position: absolute;
+
+      left: 19px;
+      top: 50%;
+
+      width: 21px;
+      height: 21px;
+
+      transform: translateY(-50%);
+
+      color: #a3a9b4;
+
+      pointer-events: none;
+    }
+
+
+    .stats-search {
+      width: 100%;
+      height: 58px;
+
+      padding: 0 18px 0 51px;
+
+      border: 1.5px solid #d5d5d5;
+      border-radius: 999px;
+
+      outline: none;
+
+      background: #fff;
+
+      color: #202127;
+
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+
+    .stats-search::placeholder {
+      color: #b7b7b9;
+    }
+
+
+    .stats-search:focus {
+      border-color: #ed1f3b;
+    }
+
+
+
+    /* =====================================================
+       DIVIDER
+    ===================================================== */
+
+    .stats-divider {
+      width: 100%;
+      height: 2px;
+
+      margin-bottom: 20px;
+
+      background: #dedede;
+    }
+
+
+
+    /* =====================================================
+       TABLE CARD
     ===================================================== */
 
     .stats-card {
@@ -112,92 +197,12 @@
 
       overflow: hidden;
 
+      margin-bottom: 18px;
+
       background: #fff;
 
-      border: 1px solid #d6d6d6;
-      border-radius: 20px;
-
-      margin-bottom: 22px;
-    }
-
-
-    /* =====================================================
-       RED GRADIENT HEADER
-    ===================================================== */
-
-    .stats-card-header {
-      min-height: 66px;
-
-      padding: 0 18px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      gap: 10px;
-
-      background:
-        linear-gradient(
-          90deg,
-          #9b141f 0%,
-          #b91e2b 35%,
-          #cf2a38 70%,
-          #df3948 100%
-        );
-
-      color: #fff;
-    }
-
-
-    .stats-card-header-left {
-      min-width: 0;
-    }
-
-
-    .stats-card-header strong {
-      display: block;
-
-      font-size: 17px;
-      font-weight: 900;
-    }
-
-
-    .stats-card-header span {
-      display: block;
-
-      margin-top: 3px;
-
-      color: rgba(255,255,255,.88);
-
-      font-size: 9px;
-      font-weight: 700;
-    }
-
-
-    .stats-leader-pill {
-      flex: 0 0 auto;
-
-      padding: 6px 9px;
-
-      border-radius: 999px;
-
-      background: rgba(255,255,255,.16);
-
-      color: #fff !important;
-
-      font-size: 8px !important;
-      font-weight: 900 !important;
-
-      margin-top: 0 !important;
-    }
-
-
-    /* =====================================================
-       TABLE
-    ===================================================== */
-
-    .stats-table {
-      width: 100%;
+      border: 1px solid #d9d9d9;
+      border-radius: 17px;
     }
 
 
@@ -208,40 +213,30 @@
     }
 
 
-    /*
-       SMALL HEADER LIKE AFL
-    */
-
     .stats-table-header {
-      min-height: 43px;
+      min-height: 42px;
 
-      padding: 0 8px;
+      padding: 0 7px;
 
-      background: #fff;
+      border-bottom: 1px solid #ddd;
 
-      border-bottom: 1px solid #d7d7d7;
+      background: #f8f8f8;
 
-      color: #b8b8bc;
+      color: #aaa;
 
       font-size: 8px;
       font-weight: 900;
-
-      text-transform: uppercase;
     }
 
 
-    /*
-       SMALL COMPACT ROWS
-    */
-
     .stats-row {
-      min-height: 53px;
+      min-height: 50px;
 
-      padding: 4px 8px;
+      padding: 4px 7px;
+
+      border-bottom: 1px solid #dedede;
 
       background: #fff;
-
-      border-bottom: 1px solid #dcdcdc;
     }
 
 
@@ -250,53 +245,78 @@
     }
 
 
+
     /* =====================================================
-       TABLE GRIDS
+       GRID SIZES
     ===================================================== */
 
     .passing-grid {
       grid-template-columns:
-        32px
-        minmax(105px,1fr)
-        33px
-        33px
-        42px
-        31px
-        31px;
+        30px
+        minmax(95px, 1fr)
+        30px
+        30px
+        38px
+        28px
+        28px;
     }
 
 
     .rushing-grid {
       grid-template-columns:
-        32px
-        minmax(108px,1fr)
-        36px
-        42px
-        31px
-        38px;
+        30px
+        minmax(100px, 1fr)
+        33px
+        40px
+        29px
+        35px;
     }
 
 
-    .receiving-grid {
+    .receiving-grid,
+    .tightends-grid {
       grid-template-columns:
-        32px
-        minmax(108px,1fr)
-        36px
-        42px
-        31px
-        38px;
+        30px
+        minmax(100px, 1fr)
+        33px
+        40px
+        29px
+        35px;
     }
 
 
-    .defense-grid {
+    .center-grid {
       grid-template-columns:
-        32px
-        minmax(98px,1fr)
-        33px
-        33px
+        30px
+        minmax(120px, 1fr)
+        44px
+        44px
+        44px;
+    }
+
+
+    .defensiveends-grid,
+    .linebackers-grid,
+    .secondary-grid {
+      grid-template-columns:
+        30px
+        minmax(88px, 1fr)
+        31px
+        31px
+        34px
+        31px
+        31px;
+    }
+
+
+    .kicking-grid {
+      grid-template-columns:
+        30px
+        minmax(105px, 1fr)
         37px
-        33px
-        33px;
+        37px
+        37px
+        37px;
     }
 
 
@@ -306,13 +326,14 @@
     }
 
 
+
     /* =====================================================
-       RANK CIRCLE
+       RANK
     ===================================================== */
 
     .stats-rank {
-      width: 27px;
-      height: 27px;
+      width: 25px;
+      height: 25px;
 
       margin: 0 auto;
 
@@ -322,35 +343,21 @@
 
       border-radius: 50%;
 
-      background:
-        linear-gradient(
-          135deg,
-          #9b141f,
-          #df3948
-        );
+      background: #ed1f3b;
 
       color: #fff;
 
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 900;
     }
 
 
+
     /* =====================================================
-       PLAYER INFO
+       PLAYER
     ===================================================== */
 
     .stats-player {
-      min-width: 0;
-
-      display: flex;
-      align-items: center;
-
-      gap: 6px;
-    }
-
-
-    .stats-player-info {
       min-width: 0;
     }
 
@@ -358,9 +365,9 @@
     .stats-player-name {
       display: block;
 
-      color: #202127;
+      color: #24252a;
 
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 900;
 
       white-space: nowrap;
@@ -386,11 +393,12 @@
 
 
     .stats-number {
-      color: #202127;
+      color: #222329;
 
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 900;
     }
+
 
 
     /* =====================================================
@@ -398,68 +406,43 @@
     ===================================================== */
 
     .stats-empty {
-      min-height: 190px;
+      min-height: 120px;
 
-      padding: 25px 18px;
+      padding: 28px 15px;
 
       display: flex;
-      flex-direction: column;
-
       align-items: center;
       justify-content: center;
 
       text-align: center;
 
-      background: #fff;
+      color: #aaa;
+
+      font-size: 11px;
+      font-weight: 800;
     }
 
 
-    .stats-empty-icon {
-      width: 46px;
-      height: 46px;
 
-      margin-bottom: 11px;
+    /* =====================================================
+       INFO TEXT
+    ===================================================== */
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .stats-info {
+      margin: 18px 1px 25px;
 
-      border-radius: 50%;
-
-      background: #fff0f2;
-
-      color: #e62c47;
-    }
-
-
-    .stats-empty-icon svg {
-      width: 24px;
-      height: 24px;
-    }
-
-
-    .stats-empty strong {
-      font-size: 14px;
-      font-weight: 900;
-    }
-
-
-    .stats-empty span {
-      max-width: 250px;
-
-      margin-top: 6px;
-
-      color: #999;
+      color: #b2b2b4;
 
       font-size: 10px;
       font-weight: 700;
 
-      line-height: 1.4;
+      line-height: 1.55;
     }
 
 
+
     /* =====================================================
-       PHONE
+       MOBILE
     ===================================================== */
 
     @media (max-width: 430px) {
@@ -471,134 +454,91 @@
 
 
       .stats-title {
-        font-size: 30px;
+        font-size: 29px;
       }
 
 
-      .stats-card-header {
-        min-height: 62px;
+      .stats-tabs {
+        gap: 7px;
 
-        padding: 0 14px;
+        margin-bottom: 40px;
       }
 
 
-      .stats-card-header strong {
-        font-size: 15px;
+      .stats-tab {
+        min-height: 43px;
+
+        padding: 0 12px;
+
+        font-size: 11px;
       }
 
 
-      .stats-table-header {
-        min-height: 41px;
-
-        padding-left: 6px;
-        padding-right: 6px;
+      .category-title {
+        font-size: 25px;
       }
 
 
-      .stats-row {
-        min-height: 50px;
+      .stats-search {
+        height: 55px;
 
-        padding-left: 6px;
-        padding-right: 6px;
-      }
-
-
-      .passing-grid {
-        grid-template-columns:
-          30px
-          minmax(94px,1fr)
-          30px
-          30px
-          38px
-          28px
-          28px;
-      }
-
-
-      .rushing-grid,
-      .receiving-grid {
-        grid-template-columns:
-          30px
-          minmax(98px,1fr)
-          33px
-          39px
-          29px
-          36px;
-      }
-
-
-      .defense-grid {
-        grid-template-columns:
-          30px
-          minmax(87px,1fr)
-          30px
-          30px
-          34px
-          30px
-          30px;
-      }
-
-
-      .stats-rank {
-        width: 26px;
-        height: 26px;
-
-        font-size: 9px;
-      }
-
-
-      .stats-player-name {
-        font-size: 9px;
-      }
-
-
-      .stats-number {
-        font-size: 9px;
+        font-size: 14px;
       }
 
     }
 
 
+
     @media (max-width: 375px) {
 
-      .stats-table-header {
-        font-size: 7px;
-      }
+      .stats-tab {
+        padding: 0 10px;
 
-
-      .stats-row {
-        min-height: 48px;
+        font-size: 10px;
       }
 
 
       .passing-grid {
         grid-template-columns:
-          28px
-          minmax(84px,1fr)
+          27px
+          minmax(82px, 1fr)
           27px
           27px
           34px
-          26px
-          26px;
+          25px
+          25px;
       }
 
 
       .rushing-grid,
-      .receiving-grid {
+      .receiving-grid,
+      .tightends-grid {
         grid-template-columns:
-          28px
-          minmax(88px,1fr)
+          27px
+          minmax(86px, 1fr)
           30px
           35px
-          27px
-          33px;
+          26px
+          32px;
       }
 
 
-      .defense-grid {
+      .center-grid {
         grid-template-columns:
-          28px
-          minmax(78px,1fr)
+          27px
+          minmax(100px, 1fr)
+          37px
+          37px
+          37px;
+      }
+
+
+      .defensiveends-grid,
+      .linebackers-grid,
+      .secondary-grid {
+        grid-template-columns:
+          27px
+          minmax(76px, 1fr)
           28px
           28px
           31px
@@ -607,26 +547,14 @@
       }
 
 
-      .stats-rank {
-        width: 24px;
-        height: 24px;
-
-        font-size: 8px;
-      }
-
-
-      .stats-player-name {
-        font-size: 8px;
-      }
-
-
-      .stats-player-team {
-        font-size: 6px;
-      }
-
-
-      .stats-number {
-        font-size: 8px;
+      .kicking-grid {
+        grid-template-columns:
+          27px
+          minmax(88px, 1fr)
+          32px
+          32px
+          32px
+          32px;
       }
 
     }
@@ -642,96 +570,166 @@
 <main class="app stats-page">
 
 
-  <h1 class="stats-title">
-    Stats
-  </h1>
+  <!-- =====================================================
+       CATEGORY BUTTONS
+  ===================================================== -->
+
+  <div class="stats-tabs">
+
+    <button
+      class="stats-tab active"
+      data-category="passing"
+    >
+      Passing
+    </button>
 
 
-  <p class="stats-subtitle">
-    HSFL Season 2 player leaders
-  </p>
+    <button
+      class="stats-tab"
+      data-category="rushing"
+    >
+      Rushing
+    </button>
 
 
-
-  <!-- CATEGORY BUTTONS -->
-
-  <div class="stats-tabs-wrap">
-
-    <div class="stats-tabs">
-
-      <button
-        class="stats-tab active"
-        type="button"
-        data-category="passing"
-      >
-        Passing
-      </button>
+    <button
+      class="stats-tab"
+      data-category="receiving"
+    >
+      Receiving
+    </button>
 
 
-      <button
-        class="stats-tab"
-        type="button"
-        data-category="rushing"
-      >
-        Rushing
-      </button>
+    <button
+      class="stats-tab"
+      data-category="tightends"
+    >
+      Tight Ends
+    </button>
 
 
-      <button
-        class="stats-tab"
-        type="button"
-        data-category="receiving"
-      >
-        Receiving
-      </button>
+    <button
+      class="stats-tab"
+      data-category="center"
+    >
+      Center
+    </button>
 
 
-      <button
-        class="stats-tab"
-        type="button"
-        data-category="defense"
-      >
-        Defense
-      </button>
+    <button
+      class="stats-tab"
+      data-category="defensiveends"
+    >
+      Defensive Ends
+    </button>
 
-    </div>
+
+    <button
+      class="stats-tab"
+      data-category="linebackers"
+    >
+      Linebackers
+    </button>
+
+
+    <button
+      class="stats-tab"
+      data-category="secondary"
+    >
+      Secondary
+    </button>
+
+
+    <button
+      class="stats-tab"
+      data-category="kicking"
+    >
+      Kicking
+    </button>
 
   </div>
 
 
 
-  <!-- STATS TABLE -->
+  <!-- =====================================================
+       CATEGORY TITLE
+  ===================================================== -->
 
-  <section class="stats-card">
-
-    <div class="stats-card-header">
-
-      <div class="stats-card-header-left">
-
-        <strong id="statsCategoryTitle">
-          PASSING
-        </strong>
-
-        <span>
-          HSFL SEASON 2
-        </span>
-
-      </div>
+  <h1
+    class="category-title"
+    id="categoryTitle"
+  >
+    passing stats
+  </h1>
 
 
-      <span class="stats-leader-pill">
-        LEADERS
-      </span>
 
-    </div>
+  <!-- =====================================================
+       SEARCH
+  ===================================================== -->
+
+  <div class="stats-search-wrap">
+
+    <svg
+      class="stats-search-icon"
+      viewBox="0 0 24 24"
+    >
+
+      <circle
+        cx="11"
+        cy="11"
+        r="7"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      />
+
+      <path
+        d="M16.5 16.5L21 21"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+
+    </svg>
 
 
-    <div
-      class="stats-table"
-      id="statsTable"
-    ></div>
+    <input
+      class="stats-search"
+      id="statsSearch"
+      type="search"
+      placeholder="Search players or teams..."
+      autocomplete="off"
+    >
+
+  </div>
+
+
+
+  <div class="stats-divider"></div>
+
+
+
+  <!-- =====================================================
+       STATS TABLE
+  ===================================================== -->
+
+  <section
+    class="stats-card"
+    id="statsCard"
+  >
+
+    <div id="statsTable"></div>
 
   </section>
+
+
+
+  <div class="stats-info">
+    HSFL Season 2 statistics. Player totals will update as
+    league games are completed and official stats are entered.
+  </div>
 
 
 </main>
@@ -918,9 +916,7 @@
 <script>
 
   /* =====================================================
-     PLAYER STATS
-
-     WE ADD REAL PLAYERS HERE LATER
+     REAL PLAYER STATS GO HERE LATER
   ===================================================== */
 
   const playerStats = {
@@ -931,21 +927,31 @@
 
     receiving: [],
 
-    defense: []
+    tightends: [],
+
+    center: [],
+
+    defensiveends: [],
+
+    linebackers: [],
+
+    secondary: [],
+
+    kicking: []
 
   };
 
 
 
   /* =====================================================
-     STAT CATEGORIES
+     CATEGORY SETTINGS
   ===================================================== */
 
-  const statCategories = {
+  const categories = {
 
     passing: {
 
-      title: "PASSING",
+      title: "passing stats",
 
       grid: "passing-grid",
 
@@ -959,6 +965,14 @@
         "INT"
       ],
 
+      fields: [
+        "completions",
+        "attempts",
+        "yards",
+        "touchdowns",
+        "interceptions"
+      ],
+
       sortBy: "yards"
 
     },
@@ -966,7 +980,7 @@
 
     rushing: {
 
-      title: "RUSHING",
+      title: "rushing stats",
 
       grid: "rushing-grid",
 
@@ -979,6 +993,13 @@
         "AVG"
       ],
 
+      fields: [
+        "attempts",
+        "yards",
+        "touchdowns",
+        "average"
+      ],
+
       sortBy: "yards"
 
     },
@@ -986,7 +1007,7 @@
 
     receiving: {
 
-      title: "RECEIVING",
+      title: "receiving stats",
 
       grid: "receiving-grid",
 
@@ -999,16 +1020,75 @@
         "AVG"
       ],
 
+      fields: [
+        "receptions",
+        "yards",
+        "touchdowns",
+        "average"
+      ],
+
       sortBy: "yards"
 
     },
 
 
-    defense: {
+    tightends: {
 
-      title: "DEFENSE",
+      title: "tight ends stats",
 
-      grid: "defense-grid",
+      grid: "tightends-grid",
+
+      headers: [
+        "#",
+        "PLAYER",
+        "REC",
+        "YDS",
+        "TD",
+        "AVG"
+      ],
+
+      fields: [
+        "receptions",
+        "yards",
+        "touchdowns",
+        "average"
+      ],
+
+      sortBy: "yards"
+
+    },
+
+
+    center: {
+
+      title: "center stats",
+
+      grid: "center-grid",
+
+      headers: [
+        "#",
+        "PLAYER",
+        "GP",
+        "PTS",
+        "GRADE"
+      ],
+
+      fields: [
+        "games",
+        "points",
+        "grade"
+      ],
+
+      sortBy: "points"
+
+    },
+
+
+    defensiveends: {
+
+      title: "defensive ends stats",
+
+      grid: "defensiveends-grid",
 
       headers: [
         "#",
@@ -1020,12 +1100,116 @@
         "PBU"
       ],
 
+      fields: [
+        "tackles",
+        "tfl",
+        "sacks",
+        "interceptions",
+        "pbu"
+      ],
+
       sortBy: "tackles"
+
+    },
+
+
+    linebackers: {
+
+      title: "linebackers stats",
+
+      grid: "linebackers-grid",
+
+      headers: [
+        "#",
+        "PLAYER",
+        "TKL",
+        "TFL",
+        "SACK",
+        "INT",
+        "PBU"
+      ],
+
+      fields: [
+        "tackles",
+        "tfl",
+        "sacks",
+        "interceptions",
+        "pbu"
+      ],
+
+      sortBy: "tackles"
+
+    },
+
+
+    secondary: {
+
+      title: "secondary stats",
+
+      grid: "secondary-grid",
+
+      headers: [
+        "#",
+        "PLAYER",
+        "TKL",
+        "INT",
+        "PBU",
+        "TFL",
+        "TD"
+      ],
+
+      fields: [
+        "tackles",
+        "interceptions",
+        "pbu",
+        "tfl",
+        "touchdowns"
+      ],
+
+      sortBy: "interceptions"
+
+    },
+
+
+    kicking: {
+
+      title: "kicking stats",
+
+      grid: "kicking-grid",
+
+      headers: [
+        "#",
+        "PLAYER",
+        "FGM",
+        "FGA",
+        "XP",
+        "PTS"
+      ],
+
+      fields: [
+        "fieldGoalsMade",
+        "fieldGoalsAttempted",
+        "extraPoints",
+        "points"
+      ],
+
+      sortBy: "points"
 
     }
 
   };
 
+
+
+  let currentCategory =
+    "passing";
+
+
+
+  const categoryTitle =
+    document.getElementById(
+      "categoryTitle"
+    );
 
 
   const statsTable =
@@ -1034,13 +1218,13 @@
     );
 
 
-  const statsCategoryTitle =
+  const statsSearch =
     document.getElementById(
-      "statsCategoryTitle"
+      "statsSearch"
     );
 
 
-  const statsTabs =
+  const tabs =
     document.querySelectorAll(
       ".stats-tab"
     );
@@ -1048,60 +1232,15 @@
 
 
   /* =====================================================
-     EMPTY STATE
-  ===================================================== */
-
-  function buildEmptyState(category) {
-
-    statsTable.innerHTML = `
-
-      <div class="stats-empty">
-
-        <div class="stats-empty-icon">
-
-          <svg
-            viewBox="0 0 24 24"
-          >
-
-            <path
-              d="M5 20V13M12 20V8M19 20V4"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.2"
-              stroke-linecap="round"
-            />
-
-          </svg>
-
-        </div>
-
-
-        <strong>
-          NO ${category.title} STATS YET
-        </strong>
-
-
-        <span>
-          Player stats will appear here once
-          Season 2 games are played.
-        </span>
-
-      </div>
-
-    `;
-
-  }
-
-
-
-  /* =====================================================
      TABLE HEADER
   ===================================================== */
 
-  function createStatsHeader(category) {
+  function makeHeader(category) {
 
     const header =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
 
     header.className =
@@ -1109,18 +1248,20 @@
 
 
     category.headers.forEach(
-      label => {
+      text => {
 
-        const span =
-          document.createElement("span");
+        const item =
+          document.createElement(
+            "span"
+          );
 
 
-        span.textContent =
-          label;
+        item.textContent =
+          text;
 
 
         header.appendChild(
-          span
+          item
         );
 
       }
@@ -1137,85 +1278,34 @@
      PLAYER ROW
   ===================================================== */
 
-  function createPlayerRow(
+  function makePlayerRow(
     player,
     rank,
-    categoryName
+    category
   ) {
 
-    const category =
-      statCategories[
-        categoryName
-      ];
-
-
     const row =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
 
     row.className =
       `stats-row ${category.grid}`;
 
 
-    let numbers = [];
+    const values =
+      category.fields.map(
+        field => {
+
+          const value =
+            player[field];
 
 
-    if (categoryName === "passing") {
+          return value ?? 0;
 
-      numbers = [
-
-        player.completions,
-        player.attempts,
-        player.yards,
-        player.touchdowns,
-        player.interceptions
-
-      ];
-
-    }
-
-
-    if (categoryName === "rushing") {
-
-      numbers = [
-
-        player.attempts,
-        player.yards,
-        player.touchdowns,
-        player.average
-
-      ];
-
-    }
-
-
-    if (categoryName === "receiving") {
-
-      numbers = [
-
-        player.receptions,
-        player.yards,
-        player.touchdowns,
-        player.average
-
-      ];
-
-    }
-
-
-    if (categoryName === "defense") {
-
-      numbers = [
-
-        player.tackles,
-        player.tfl,
-        player.sacks,
-        player.interceptions,
-        player.pbu
-
-      ];
-
-    }
+        }
+      );
 
 
     row.innerHTML = `
@@ -1227,26 +1317,22 @@
 
       <div class="stats-player">
 
-        <div class="stats-player-info">
+        <span class="stats-player-name">
+          ${player.name}
+        </span>
 
-          <span class="stats-player-name">
-            ${player.name}
-          </span>
-
-          <span class="stats-player-team">
-            ${player.team}
-          </span>
-
-        </div>
+        <span class="stats-player-team">
+          ${player.team}
+        </span>
 
       </div>
 
 
-      ${numbers.map(
-        number => `
+      ${values.map(
+        value => `
 
           <span class="stats-number">
-            ${number}
+            ${value}
           </span>
 
         `
@@ -1269,23 +1355,21 @@
     categoryName
   ) {
 
+    currentCategory =
+      categoryName;
+
+
     const category =
-      statCategories[
+      categories[
         categoryName
       ];
 
 
-    const players =
-      [...playerStats[
-        categoryName
-      ]];
-
-
-    statsCategoryTitle.textContent =
+    categoryTitle.textContent =
       category.title;
 
 
-    statsTabs.forEach(
+    tabs.forEach(
       tab => {
 
         tab.classList.toggle(
@@ -1298,29 +1382,111 @@
     );
 
 
-    if (players.length === 0) {
+    renderPlayers();
 
-      buildEmptyState(
-        category
-      );
+  }
+
+
+
+  /* =====================================================
+     RENDER PLAYERS
+  ===================================================== */
+
+  function renderPlayers() {
+
+    const category =
+      categories[
+        currentCategory
+      ];
+
+
+    let players =
+      [
+        ...playerStats[
+          currentCategory
+        ]
+      ];
+
+
+    const search =
+      statsSearch.value
+        .trim()
+        .toLowerCase();
+
+
+    if (search) {
+
+      players =
+        players.filter(
+          player => {
+
+            const playerName =
+              String(
+                player.name || ""
+              ).toLowerCase();
+
+
+            const teamName =
+              String(
+                player.team || ""
+              ).toLowerCase();
+
+
+            return (
+              playerName.includes(
+                search
+              ) ||
+              teamName.includes(
+                search
+              )
+            );
+
+          }
+        );
+
+    }
+
+
+    players.sort(
+      (a, b) => {
+
+        return (
+          Number(
+            b[category.sortBy] || 0
+          ) -
+          Number(
+            a[category.sortBy] || 0
+          )
+        );
+
+      }
+    );
+
+
+    statsTable.innerHTML =
+      "";
+
+
+    if (
+      players.length === 0
+    ) {
+
+      statsTable.innerHTML = `
+
+        <div class="stats-empty">
+          No ${category.title} available yet.
+        </div>
+
+      `;
+
 
       return;
 
     }
 
 
-    players.sort(
-      (a, b) =>
-        b[category.sortBy] -
-        a[category.sortBy]
-    );
-
-
-    statsTable.innerHTML = "";
-
-
     statsTable.appendChild(
-      createStatsHeader(
+      makeHeader(
         category
       )
     );
@@ -1330,10 +1496,10 @@
       (player, index) => {
 
         statsTable.appendChild(
-          createPlayerRow(
+          makePlayerRow(
             player,
             index + 1,
-            categoryName
+            category
           )
         );
 
@@ -1345,15 +1511,19 @@
 
 
   /* =====================================================
-     TAB BUTTONS
+     CATEGORY BUTTONS
   ===================================================== */
 
-  statsTabs.forEach(
+  tabs.forEach(
     tab => {
 
       tab.addEventListener(
         "click",
         () => {
+
+          statsSearch.value =
+            "";
+
 
           loadCategory(
             tab.dataset.category
@@ -1363,6 +1533,17 @@
       );
 
     }
+  );
+
+
+
+  /* =====================================================
+     SEARCH
+  ===================================================== */
+
+  statsSearch.addEventListener(
+    "input",
+    renderPlayers
   );
 
 
@@ -1379,4 +1560,5 @@
 
 
 </body>
+
 </html>
