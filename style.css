@@ -1,7 +1,7 @@
-/* =========================
-   HSFL S2
-   FULL HOMEPAGE CSS
-========================= */
+/* =========================================================
+   HSFL S2 - COMPLETE SITE CSS
+   HOMEPAGE + FULL STANDINGS
+========================================================= */
 
 * {
   box-sizing: border-box;
@@ -9,10 +9,11 @@
 
 :root {
   --red: #e62c47;
-  --dark: #17171b;
+  --dark: #19191f;
+  --navy: #2d3b60;
   --gray: #777;
   --border: #d9d9d9;
-  --page: #f6f6f6;
+  --page: #f7f7f7;
 }
 
 html {
@@ -49,9 +50,9 @@ button {
 }
 
 
-/* =========================
-   HERO
-========================= */
+/* =========================================================
+   HOMEPAGE HERO
+========================================================= */
 
 .hero {
   width: 100%;
@@ -70,9 +71,9 @@ button {
 }
 
 
-/* =========================
-   CARDS
-========================= */
+/* =========================================================
+   HOMEPAGE CARDS
+========================================================= */
 
 .card {
   width: 100%;
@@ -81,13 +82,13 @@ button {
   border-radius: 23px;
   padding: 20px 16px;
   margin-bottom: 18px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, .025);
+  box-shadow: 0 2px 5px rgba(0,0,0,.025);
 }
 
 
-/* =========================
+/* =========================================================
    HEADINGS
-========================= */
+========================================================= */
 
 .matchups-heading {
   display: flex;
@@ -120,9 +121,9 @@ button {
 }
 
 
-/* =========================
+/* =========================================================
    RED DIVIDER
-========================= */
+========================================================= */
 
 .red-divider {
   width: 100%;
@@ -133,9 +134,9 @@ button {
 }
 
 
-/* =========================
-   FILTERS
-========================= */
+/* =========================================================
+   HOMEPAGE FILTERS
+========================================================= */
 
 .filters {
   display: grid;
@@ -170,7 +171,6 @@ button {
   font-weight: 800;
 
   text-decoration: none;
-
   cursor: pointer;
 }
 
@@ -188,9 +188,9 @@ button {
 }
 
 
-/* =========================
+/* =========================================================
    WEEK MENU
-========================= */
+========================================================= */
 
 .week-menu {
   display: none;
@@ -200,17 +200,15 @@ button {
   left: 0;
 
   width: 100%;
-
   z-index: 100;
 
   overflow: hidden;
 
   background: #fff;
-
   border: 1px solid #d7d7d7;
   border-radius: 12px;
 
-  box-shadow: 0 8px 22px rgba(0, 0, 0, .13);
+  box-shadow: 0 8px 22px rgba(0,0,0,.13);
 }
 
 .week-menu.show {
@@ -220,7 +218,6 @@ button {
 .week-option {
   width: 100%;
   height: 48px;
-
   padding: 0 14px;
 
   border: 0;
@@ -245,9 +242,9 @@ button {
 }
 
 
-/* =========================
-   GAMES
-========================= */
+/* =========================================================
+   HOMEPAGE GAMES
+========================================================= */
 
 .games {
   display: flex;
@@ -260,11 +257,10 @@ button {
   height: 76px;
 
   display: grid;
-
   grid-template-columns:
-    minmax(0, 1fr)
+    minmax(0,1fr)
     82px
-    minmax(0, 1fr);
+    minmax(0,1fr);
 
   align-items: center;
 
@@ -288,6 +284,7 @@ button.game-row {
 
 .clickable-game {
   cursor: pointer;
+
   transition:
     transform .12s ease,
     background .12s ease;
@@ -299,9 +296,9 @@ button.game-row {
 }
 
 
-/* =========================
-   TEAMS
-========================= */
+/* =========================================================
+   MATCHUP TEAMS
+========================================================= */
 
 .team {
   min-width: 0;
@@ -334,9 +331,9 @@ button.game-row {
 }
 
 
-/* =========================
-   LOGO BOXES
-========================= */
+/* =========================================================
+   MATCHUP LOGOS
+========================================================= */
 
 .team-logo {
   width: 66px;
@@ -366,11 +363,10 @@ button.game-row {
 }
 
 
-/* =========================
-   TEAM BACKGROUNDS
-
-   SAME COLORS EVERYWHERE
-========================= */
+/* =========================================================
+   TEAM COLORS
+   SAME COLORS ACROSS ENTIRE WEBSITE
+========================================================= */
 
 .saraland {
   background: #b41529;
@@ -424,15 +420,14 @@ button.game-row {
   background: #27323e;
 }
 
-/* SILVER FOXES STAYS BLACK */
 .silverfoxes {
   background: #000000;
 }
 
 
-/* =========================
+/* =========================================================
    VS / COMPARE
-========================= */
+========================================================= */
 
 .game-middle {
   min-width: 0;
@@ -456,7 +451,6 @@ button.game-row {
 
   font-size: 14px;
   line-height: 1;
-
   font-weight: 900;
 }
 
@@ -472,9 +466,9 @@ button.game-row {
 }
 
 
-/* =========================
-   GAME OF THE WEEK
-========================= */
+/* =========================================================
+   GAME OF WEEK
+========================================================= */
 
 .gotw {
   margin: 4px 0 -3px 3px;
@@ -492,9 +486,9 @@ button.game-row {
 }
 
 
-/* =========================
-   MAIN RED BUTTON
-========================= */
+/* =========================================================
+   RED BUTTON
+========================================================= */
 
 .red-button {
   width: 100%;
@@ -510,7 +504,6 @@ button.game-row {
   border-radius: 12px;
 
   background: var(--red);
-
   color: #fff;
 
   text-decoration: none;
@@ -525,9 +518,9 @@ button.game-row {
 }
 
 
-/* =========================
-   BIG DROPDOWN
-========================= */
+/* =========================================================
+   DROPDOWN
+========================================================= */
 
 .big-dropdown {
   width: 100%;
@@ -553,9 +546,9 @@ button.game-row {
 }
 
 
-/* =========================
-   CONFERENCE MENU
-========================= */
+/* =========================================================
+   CONFERENCE DROPDOWN
+========================================================= */
 
 .conference-picker {
   position: relative;
@@ -566,12 +559,10 @@ button.game-row {
   display: none;
 
   position: absolute;
-
   top: 55px;
   left: 0;
 
   width: 100%;
-
   z-index: 100;
 
   overflow: hidden;
@@ -581,7 +572,7 @@ button.game-row {
   border: 1px solid #d7d7d7;
   border-radius: 12px;
 
-  box-shadow: 0 8px 22px rgba(0, 0, 0, .13);
+  box-shadow: 0 8px 22px rgba(0,0,0,.13);
 }
 
 .conference-menu.show {
@@ -613,14 +604,10 @@ button.game-row {
   border-bottom: 0;
 }
 
-.conference-option:active {
-  background: #f3f3f3;
-}
 
-
-/* =========================
-   EMPTY STAT AREA
-========================= */
+/* =========================================================
+   EMPTY STATS
+========================================================= */
 
 .empty-area {
   min-height: 115px;
@@ -646,16 +633,14 @@ button.game-row {
 
 .empty-area span {
   margin-top: 5px;
-
   color: #888;
-
   font-size: 10px;
 }
 
 
-/* =========================
-   STANDINGS
-========================= */
+/* =========================================================
+   HOMEPAGE STANDINGS
+========================================================= */
 
 .standings-table {
   margin-top: 13px;
@@ -671,7 +656,7 @@ button.game-row {
   display: grid;
 
   grid-template-columns:
-    minmax(0, 1fr)
+    minmax(0,1fr)
     34px
     34px
     34px;
@@ -708,15 +693,9 @@ button.game-row {
 
 .standings-row > b {
   text-align: center;
-
   font-size: 12px;
   font-weight: 900;
 }
-
-
-/* =========================
-   STANDING TEAM
-========================= */
 
 .standing-team {
   min-width: 0;
@@ -736,14 +715,9 @@ button.game-row {
   font-weight: 900;
 
   white-space: nowrap;
-
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-
-/* SAME LOGO BACKGROUNDS
-   AS MATCHUPS */
 
 .standing-logo {
   width: 52px;
@@ -773,9 +747,9 @@ button.game-row {
 }
 
 
-/* =========================
-   MATCHUP COMPARISON MODAL
-========================= */
+/* =========================================================
+   MATCHUP COMPARISON
+========================================================= */
 
 .comparison-overlay {
   display: none;
@@ -790,7 +764,7 @@ button.game-row {
   align-items: center;
   justify-content: center;
 
-  background: rgba(10, 10, 13, .62);
+  background: rgba(10,10,13,.62);
 
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -805,7 +779,6 @@ button.game-row {
 
   width: 100%;
   max-width: 500px;
-
   max-height: 88vh;
 
   overflow-y: auto;
@@ -816,7 +789,7 @@ button.game-row {
 
   border-radius: 22px;
 
-  box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
 }
 
 .comparison-close {
@@ -839,8 +812,6 @@ button.game-row {
 
   background: #fff;
 
-  color: #222;
-
   cursor: pointer;
 }
 
@@ -859,18 +830,13 @@ button.game-row {
   letter-spacing: -.5px;
 }
 
-
-/* =========================
-   COMPARISON TEAMS
-========================= */
-
 .comparison-teams {
   display: grid;
 
   grid-template-columns:
-    minmax(0, 1fr)
+    minmax(0,1fr)
     42px
-    minmax(0, 1fr);
+    minmax(0,1fr);
 
   gap: 7px;
 
@@ -933,20 +899,13 @@ button.game-row {
 }
 
 .comparison-vs {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   color: var(--red);
+
+  text-align: center;
 
   font-size: 14px;
   font-weight: 900;
 }
-
-
-/* =========================
-   COMPARISON STATS
-========================= */
 
 .comparison-stats {
   margin-top: 20px;
@@ -994,11 +953,6 @@ button.game-row {
   font-weight: 900;
 }
 
-
-/* =========================
-   PREDICTION
-========================= */
-
 .prediction-box {
   margin-top: 14px;
   padding: 17px 14px;
@@ -1026,8 +980,6 @@ button.game-row {
 .prediction-box strong {
   display: block;
 
-  color: #17171b;
-
   font-size: 17px;
   font-weight: 900;
 }
@@ -1044,18 +996,449 @@ button.game-row {
 }
 
 
-/* =========================
-   BOTTOM NAV
-========================= */
+/* =========================================================
+   FULL STANDINGS PAGE
+========================================================= */
+
+.standings-page {
+  padding-top: 18px;
+}
+
+.standings-page-title {
+  margin: 0 4px 16px;
+
+  font-size: 32px;
+  line-height: 1;
+
+  font-weight: 900;
+
+  letter-spacing: -1.5px;
+}
+
+
+/* =========================================================
+   TOP STANDINGS / PLAYOFF TABS
+========================================================= */
+
+.standings-top-tabs {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 5px;
+
+  padding: 6px;
+
+  margin-bottom: 28px;
+
+  background: #fff;
+
+  border: 1px solid #d8d8d8;
+  border-radius: 999px;
+}
+
+.standings-top-tab {
+  min-height: 54px;
+
+  padding: 0 14px;
+
+  border: 0;
+  border-radius: 999px;
+
+  background: transparent;
+
+  color: #777;
+
+  font-size: 14px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+.standings-top-tab.active {
+  background: var(--red);
+  color: #fff;
+}
+
+
+/* =========================================================
+   BOTH / AMERICAN / NATIONAL
+========================================================= */
+
+.conference-tabs {
+  display: flex;
+
+  gap: 10px;
+
+  margin-bottom: 25px;
+}
+
+.conference-tab {
+  min-width: 90px;
+  height: 54px;
+
+  padding: 0 18px;
+
+  border: 1.5px solid #d7d7d7;
+  border-radius: 999px;
+
+  background: #fff;
+
+  color: #303036;
+
+  font-size: 14px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+.conference-tab.active {
+  border-color: #202127;
+
+  background: #202127;
+
+  color: #fff;
+}
+
+
+/* =========================================================
+   FULL CONFERENCE CARD
+========================================================= */
+
+.full-conference-card {
+  width: 100%;
+
+  margin-bottom: 24px;
+
+  overflow: hidden;
+
+  background: #fff;
+
+  border: 1px solid #d6d6d6;
+  border-radius: 22px;
+
+  box-shadow: 0 2px 5px rgba(0,0,0,.03);
+}
+
+.full-conference-card[hidden] {
+  display: none;
+}
+
+
+/* =========================================================
+   CONFERENCE HEADER
+========================================================= */
+
+.conference-card-title {
+  min-height: 84px;
+
+  padding: 0 27px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  background: var(--navy);
+
+  color: #fff;
+}
+
+.conference-card-title strong {
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.conference-card-title span {
+  color: #f1f2f6;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  letter-spacing: .6px;
+}
+
+
+/* =========================================================
+   FULL STANDINGS HEADER
+========================================================= */
+
+.full-standing-header {
+  min-height: 65px;
+
+  display: grid;
+
+  grid-template-columns:
+    56px
+    minmax(0,1fr)
+    48px
+    48px
+    55px;
+
+  align-items: center;
+
+  padding: 0 14px;
+
+  background: #fff;
+
+  border-bottom: 1px solid #d8d8d8;
+
+  color: #bcbcc0;
+
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.full-standing-header span:first-child {
+  text-align: center;
+}
+
+.full-standing-header span:nth-child(n+3) {
+  text-align: center;
+}
+
+
+/* =========================================================
+   FULL STANDINGS ROW
+========================================================= */
+
+.full-standing-row {
+  min-height: 74px;
+
+  display: grid;
+
+  grid-template-columns:
+    56px
+    minmax(0,1fr)
+    48px
+    48px
+    55px;
+
+  align-items: center;
+
+  padding: 0 14px;
+
+  background: #fff;
+
+  border-bottom: 1px solid #dedede;
+}
+
+.full-standing-row:last-child {
+  border-bottom: 0;
+}
+
+.full-standing-row > b {
+  text-align: center;
+
+  font-size: 15px;
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   RANK CIRCLE
+========================================================= */
+
+.standing-rank {
+  width: 42px;
+  height: 42px;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #202127;
+
+  color: #fff;
+
+  font-size: 15px;
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   FULL STANDING TEAM
+========================================================= */
+
+.full-standing-team {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+}
+
+.full-standing-team strong {
+  min-width: 0;
+
+  color: #202127;
+
+  font-size: 14px;
+  font-weight: 900;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   FULL STANDING LOGOS
+========================================================= */
+
+.full-standing-logo {
+  width: 68px;
+  height: 43px;
+
+  flex: 0 0 68px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 1px;
+}
+
+.full-standing-logo img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transform: scale(1.08);
+}
+
+
+/* =========================================================
+   PLAYOFF PAGE
+========================================================= */
+
+.playoff-section[hidden] {
+  display: none;
+}
+
+.playoff-heading {
+  margin-bottom: 22px;
+}
+
+.playoff-small-title {
+  color: var(--red);
+
+  font-size: 10px;
+  font-weight: 900;
+
+  letter-spacing: 1px;
+}
+
+.playoff-heading h1 {
+  margin: 6px 0;
+
+  font-size: 30px;
+  line-height: 1;
+
+  font-weight: 900;
+
+  letter-spacing: -1px;
+}
+
+.playoff-heading p {
+  margin: 9px 0 0;
+
+  color: #777;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.playoff-conference {
+  overflow: hidden;
+
+  margin-bottom: 18px;
+
+  background: #fff;
+
+  border: 1px solid #d7d7d7;
+  border-radius: 20px;
+}
+
+.playoff-conference-title {
+  padding: 19px 20px;
+
+  background: var(--navy);
+
+  color: #fff;
+
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.playoff-placeholder {
+  min-height: 185px;
+
+  padding: 25px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.playoff-placeholder-icon {
+  width: 47px;
+  height: 47px;
+
+  margin-bottom: 10px;
+
+  color: var(--red);
+}
+
+.playoff-placeholder-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.playoff-placeholder strong {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.playoff-placeholder span {
+  margin-top: 5px;
+
+  color: #999;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   BOTTOM NAVIGATION
+========================================================= */
 
 .bottom-nav {
   position: fixed;
 
   left: 50%;
 
-  bottom: calc(
-    13px + env(safe-area-inset-bottom)
-  );
+  bottom:
+    calc(
+      13px +
+      env(safe-area-inset-bottom)
+    );
 
   transform: translateX(-50%);
 
@@ -1067,18 +1450,16 @@ button.game-row {
   z-index: 1000;
 
   display: grid;
-
-  grid-template-columns:
-    repeat(5, 1fr);
+  grid-template-columns: repeat(5,1fr);
 
   padding: 5px;
 
-  background: rgba(255, 255, 255, .97);
+  background: rgba(255,255,255,.97);
 
   border: 1px solid #ddd;
   border-radius: 999px;
 
-  box-shadow: 0 10px 28px rgba(0, 0, 0, .16);
+  box-shadow: 0 10px 28px rgba(0,0,0,.16);
 }
 
 .nav-item {
@@ -1120,9 +1501,109 @@ button.game-row {
 }
 
 
-/* =========================
-   SMALL PHONES
-========================= */
+/* =========================================================
+   PHONE LAYOUT
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .standings-page {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .standings-page-title {
+    margin-top: 5px;
+    font-size: 30px;
+  }
+
+  .conference-tabs {
+    gap: 8px;
+  }
+
+  .conference-tab {
+    min-width: 0;
+    flex: 1;
+
+    height: 51px;
+
+    padding: 0 10px;
+
+    font-size: 12px;
+  }
+
+  .conference-card-title {
+    min-height: 72px;
+
+    padding: 0 18px;
+
+    gap: 11px;
+  }
+
+  .conference-card-title strong {
+    font-size: 16px;
+  }
+
+  .conference-card-title span {
+    font-size: 13px;
+  }
+
+  .full-standing-header,
+  .full-standing-row {
+    grid-template-columns:
+      45px
+      minmax(0,1fr)
+      34px
+      34px
+      42px;
+
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .full-standing-header {
+    min-height: 57px;
+  }
+
+  .full-standing-row {
+    min-height: 68px;
+  }
+
+  .standing-rank {
+    width: 36px;
+    height: 36px;
+
+    font-size: 13px;
+  }
+
+  .full-standing-team {
+    gap: 8px;
+  }
+
+  .full-standing-logo {
+    width: 55px;
+    height: 36px;
+
+    flex-basis: 55px;
+  }
+
+  .full-standing-team strong {
+    font-size: 11px;
+  }
+
+  .full-standing-row > b {
+    font-size: 13px;
+  }
+
+  .full-standing-header {
+    font-size: 10px;
+  }
+}
+
+
+/* =========================================================
+   EXTRA SMALL PHONES
+========================================================= */
 
 @media (max-width: 390px) {
 
@@ -1138,9 +1619,9 @@ button.game-row {
     height: 72px;
 
     grid-template-columns:
-      minmax(0, 1fr)
+      minmax(0,1fr)
       76px
-      minmax(0, 1fr);
+      minmax(0,1fr);
 
     padding: 7px 8px;
   }
@@ -1162,7 +1643,6 @@ button.game-row {
 
   .vs-box {
     padding: 6px 9px;
-
     font-size: 13px;
   }
 
@@ -1191,5 +1671,59 @@ button.game-row {
 
   .bottom-nav {
     width: calc(100% - 20px);
+  }
+
+  .standings-top-tab {
+    min-height: 50px;
+    font-size: 12px;
+  }
+
+  .conference-card-title {
+    padding: 0 14px;
+  }
+
+  .conference-card-title strong {
+    font-size: 15px;
+  }
+
+  .conference-card-title span {
+    font-size: 11px;
+  }
+
+  .full-standing-header,
+  .full-standing-row {
+    grid-template-columns:
+      39px
+      minmax(0,1fr)
+      30px
+      30px
+      37px;
+
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .standing-rank {
+    width: 32px;
+    height: 32px;
+  }
+
+  .full-standing-logo {
+    width: 48px;
+    height: 32px;
+
+    flex-basis: 48px;
+  }
+
+  .full-standing-team {
+    gap: 6px;
+  }
+
+  .full-standing-team strong {
+    font-size: 10px;
+  }
+
+  .full-standing-row > b {
+    font-size: 12px;
   }
 }
