@@ -1,6 +1,6 @@
 /* =========================================================
    HSFL S2 - COMPLETE SITE CSS
-   HOMEPAGE + FULL STANDINGS
+   HOMEPAGE + STANDINGS + PLAYOFF PICTURE
 ========================================================= */
 
 * {
@@ -14,6 +14,11 @@
   --gray: #777;
   --border: #d9d9d9;
   --page: #f7f7f7;
+
+  /* PLAYOFF COLORS */
+  --top-green: #2fad74;
+  --wildcard-gold: #d8a800;
+  --hunt-gray: #a8a8a8;
 }
 
 html {
@@ -194,11 +199,9 @@ button {
 
 .week-menu {
   display: none;
-
   position: absolute;
   top: 53px;
   left: 0;
-
   width: 100%;
   z-index: 100;
 
@@ -284,7 +287,6 @@ button.game-row {
 
 .clickable-game {
   cursor: pointer;
-
   transition:
     transform .12s ease,
     background .12s ease;
@@ -302,10 +304,8 @@ button.game-row {
 
 .team {
   min-width: 0;
-
   display: flex;
   align-items: center;
-
   gap: 8px;
 }
 
@@ -319,12 +319,9 @@ button.game-row {
 
 .team > span {
   min-width: 0;
-
   color: #1c1c20;
-
   font-size: 13px;
   font-weight: 900;
-
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -346,26 +343,21 @@ button.game-row {
   justify-content: center;
 
   overflow: hidden;
-
   border-radius: 2px;
 }
 
 .team-logo img {
   display: block;
-
   width: 100%;
   height: 100%;
-
   object-fit: cover;
   object-position: center;
-
   transform: scale(1.08);
 }
 
 
 /* =========================================================
    TEAM COLORS
-   SAME COLORS ACROSS ENTIRE WEBSITE
 ========================================================= */
 
 .saraland {
@@ -519,7 +511,7 @@ button.game-row {
 
 
 /* =========================================================
-   DROPDOWN
+   DROPDOWNS
 ========================================================= */
 
 .big-dropdown {
@@ -536,7 +528,6 @@ button.game-row {
   border-radius: 12px;
 
   background: #fff;
-
   color: #222;
 
   font-size: 12px;
@@ -544,11 +535,6 @@ button.game-row {
 
   cursor: pointer;
 }
-
-
-/* =========================================================
-   CONFERENCE DROPDOWN
-========================================================= */
 
 .conference-picker {
   position: relative;
@@ -606,7 +592,7 @@ button.game-row {
 
 
 /* =========================================================
-   EMPTY STATS
+   EMPTY AREAS
 ========================================================= */
 
 .empty-area {
@@ -1017,7 +1003,7 @@ button.game-row {
 
 
 /* =========================================================
-   TOP STANDINGS / PLAYOFF TABS
+   STANDINGS / PLAYOFF PICTURE TABS
 ========================================================= */
 
 .standings-top-tabs {
@@ -1127,7 +1113,7 @@ button.game-row {
 
 
 /* =========================================================
-   CONFERENCE HEADER
+   CONFERENCE TITLE
 ========================================================= */
 
 .conference-card-title {
@@ -1161,7 +1147,7 @@ button.game-row {
 
 
 /* =========================================================
-   FULL STANDINGS HEADER
+   TABLE HEADER
 ========================================================= */
 
 .full-standing-header {
@@ -1200,7 +1186,49 @@ button.game-row {
 
 
 /* =========================================================
-   FULL STANDINGS ROW
+   PLAYOFF ZONE LABELS
+========================================================= */
+
+.standings-zone {
+  min-height: 34px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 17px;
+
+  color: #fff;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  letter-spacing: .8px;
+}
+
+
+/* TOP 2 */
+
+.standings-zone.top-zone {
+  background: var(--top-green);
+}
+
+
+/* WILD CARD */
+
+.standings-zone.wildcard-zone {
+  background: var(--wildcard-gold);
+}
+
+
+/* IN THE HUNT */
+
+.standings-zone.hunt-zone {
+  background: var(--hunt-gray);
+}
+
+
+/* =========================================================
+   STANDINGS ROWS
 ========================================================= */
 
 .full-standing-row {
@@ -1237,7 +1265,7 @@ button.game-row {
 
 
 /* =========================================================
-   RANK CIRCLE
+   RANK CIRCLES
 ========================================================= */
 
 .standing-rank {
@@ -1252,8 +1280,6 @@ button.game-row {
 
   border-radius: 50%;
 
-  background: #202127;
-
   color: #fff;
 
   font-size: 15px;
@@ -1261,8 +1287,29 @@ button.game-row {
 }
 
 
+/* TOP 2 RANK */
+
+.standing-rank.rank-top {
+  background: var(--top-green);
+}
+
+
+/* WILD CARD RANK */
+
+.standing-rank.rank-wildcard {
+  background: var(--wildcard-gold);
+}
+
+
+/* IN THE HUNT RANK */
+
+.standing-rank.rank-hunt {
+  background: var(--hunt-gray);
+}
+
+
 /* =========================================================
-   FULL STANDING TEAM
+   FULL TEAM
 ========================================================= */
 
 .full-standing-team {
@@ -1289,7 +1336,7 @@ button.game-row {
 
 
 /* =========================================================
-   FULL STANDING LOGOS
+   FULL TEAM LOGOS
 ========================================================= */
 
 .full-standing-logo {
@@ -1321,7 +1368,7 @@ button.game-row {
 
 
 /* =========================================================
-   PLAYOFF PAGE
+   PLAYOFF PICTURE
 ========================================================= */
 
 .playoff-section[hidden] {
@@ -1361,72 +1408,9 @@ button.game-row {
   line-height: 1.5;
 }
 
-.playoff-conference {
-  overflow: hidden;
-
-  margin-bottom: 18px;
-
-  background: #fff;
-
-  border: 1px solid #d7d7d7;
-  border-radius: 20px;
-}
-
-.playoff-conference-title {
-  padding: 19px 20px;
-
-  background: var(--navy);
-
-  color: #fff;
-
-  font-size: 17px;
-  font-weight: 900;
-}
-
-.playoff-placeholder {
-  min-height: 185px;
-
-  padding: 25px;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-}
-
-.playoff-placeholder-icon {
-  width: 47px;
-  height: 47px;
-
-  margin-bottom: 10px;
-
-  color: var(--red);
-}
-
-.playoff-placeholder-icon svg {
-  width: 100%;
-  height: 100%;
-}
-
-.playoff-placeholder strong {
-  font-size: 14px;
-  font-weight: 900;
-}
-
-.playoff-placeholder span {
-  margin-top: 5px;
-
-  color: #999;
-
-  font-size: 11px;
-}
-
 
 /* =========================================================
-   BOTTOM NAVIGATION
+   BOTTOM NAV
 ========================================================= */
 
 .bottom-nav {
@@ -1502,7 +1486,7 @@ button.game-row {
 
 
 /* =========================================================
-   PHONE LAYOUT
+   PHONE
 ========================================================= */
 
 @media (max-width: 600px) {
@@ -1597,6 +1581,14 @@ button.game-row {
 
   .full-standing-header {
     font-size: 10px;
+  }
+
+  .standings-zone {
+    min-height: 31px;
+
+    padding: 0 13px;
+
+    font-size: 9px;
   }
 }
 
@@ -1725,5 +1717,10 @@ button.game-row {
 
   .full-standing-row > b {
     font-size: 12px;
+  }
+
+  .standings-zone {
+    min-height: 29px;
+    font-size: 8px;
   }
 }
