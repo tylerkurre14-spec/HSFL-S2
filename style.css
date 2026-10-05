@@ -1,13 +1,1133 @@
 /* =========================================================
-   CONFERENCE TITLE BARS
+   HSFL S2 - COMPLETE SITE CSS
+   HOMEPAGE + STANDINGS + PLAYOFF PICTURE
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --red: #e62c47;
+  --dark: #19191f;
+  --navy: #2d3b60;
+  --gray: #777;
+  --border: #d9d9d9;
+  --page: #f7f7f7;
+
+  /* PLAYOFF COLORS */
+  --top-green: #2fad74;
+  --wildcard-gold: #d8a800;
+  --hunt-gray: #a8a8a8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--page);
+  color: var(--dark);
+  padding-bottom: 115px;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+button,
+a {
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  color: inherit;
+}
+
+.app {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 14px;
+}
+
+
+/* =========================================================
+   HOMEPAGE HERO
+========================================================= */
+
+.hero {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 22px;
+  margin-bottom: 18px;
+  background: #ddd;
+}
+
+.hero img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* =========================================================
+   HOMEPAGE CARDS
+========================================================= */
+
+.card {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #d8d8d8;
+  border-radius: 23px;
+  padding: 20px 16px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 5px rgba(0,0,0,.025);
+}
+
+
+/* =========================================================
+   HEADINGS
+========================================================= */
+
+.matchups-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.matchups-heading h1,
+.section-title {
+  margin: 0;
+  font-size: 25px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.heading-pills {
+  display: flex;
+  gap: 7px;
+}
+
+.heading-pills span {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #ffe1e6;
+  color: var(--red);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   RED DIVIDER
+========================================================= */
+
+.red-divider {
+  width: 100%;
+  height: 4px;
+  margin: 15px 0 16px;
+  border-radius: 999px;
+  background: var(--red);
+}
+
+
+/* =========================================================
+   HOMEPAGE FILTERS
+========================================================= */
+
+.filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 17px;
+}
+
+.week-picker {
+  position: relative;
+  min-width: 0;
+}
+
+.filter-button {
+  width: 100%;
+  height: 47px;
+  padding: 0 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  background: #fff;
+  border: 1px solid #d6d6d6;
+  border-radius: 11px;
+
+  color: #222;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dropdown-icon {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+  color: var(--red);
+}
+
+.scores-arrow {
+  color: var(--red);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   WEEK MENU
+========================================================= */
+
+.week-menu {
+  display: none;
+  position: absolute;
+  top: 53px;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
+  overflow: hidden;
+
+  background: #fff;
+  border: 1px solid #d7d7d7;
+  border-radius: 12px;
+
+  box-shadow: 0 8px 22px rgba(0,0,0,.13);
+}
+
+.week-menu.show {
+  display: block;
+}
+
+.week-option {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+
+  border: 0;
+  border-bottom: 1px solid #eee;
+
+  background: #fff;
+
+  text-align: left;
+
+  font-size: 12px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+.week-option:last-child {
+  border-bottom: 0;
+}
+
+.week-option:active {
+  background: #f3f3f3;
+}
+
+
+/* =========================================================
+   HOMEPAGE GAMES
+========================================================= */
+
+.games {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.game-row {
+  width: 100%;
+  height: 76px;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0,1fr)
+    82px
+    minmax(0,1fr);
+
+  align-items: center;
+
+  padding: 8px 10px;
+
+  background: #fafafa;
+
+  border: 1px solid #d7d7d7;
+  border-radius: 13px;
+
+  overflow: hidden;
+}
+
+button.game-row {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: inherit;
+  color: inherit;
+  text-align: initial;
+}
+
+.clickable-game {
+  cursor: pointer;
+  transition:
+    transform .12s ease,
+    background .12s ease;
+}
+
+.clickable-game:active {
+  transform: scale(.985);
+  background: #f1f1f1;
+}
+
+
+/* =========================================================
+   MATCHUP TEAMS
+========================================================= */
+
+.team {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.left-team {
+  justify-content: flex-start;
+}
+
+.right-team {
+  justify-content: flex-end;
+}
+
+.team > span {
+  min-width: 0;
+  color: #1c1c20;
+  font-size: 13px;
+  font-weight: 900;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   MATCHUP LOGOS
+========================================================= */
+
+.team-logo {
+  width: 66px;
+  height: 42px;
+
+  flex: 0 0 66px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.team-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.08);
+}
+
+
+/* =========================================================
+   TEAM COLORS
+========================================================= */
+
+.saraland {
+  background: #b41529;
+}
+
+.mckinney {
+  background: #173f78;
+}
+
+.imgacademy {
+  background: #087bc1;
+}
+
+.buford {
+  background: #147747;
+}
+
+.auburn {
+  background: #123f76;
+}
+
+.bosco {
+  background: #142d54;
+}
+
+.stjames {
+  background: #17365f;
+}
+
+.norland {
+  background: #7c1026;
+}
+
+.parker {
+  background: #151515;
+}
+
+.stfrances {
+  background: #542772;
+}
+
+.guyer {
+  background: #552a72;
+}
+
+.centennial {
+  background: #262626;
+}
+
+.chargers {
+  background: #27323e;
+}
+
+.silverfoxes {
+  background: #000000;
+}
+
+
+/* =========================================================
+   VS / COMPARE
+========================================================= */
+
+.game-middle {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.vs-box {
+  padding: 6px 10px;
+
+  background: #fff;
+
+  border: 2px solid var(--red);
+  border-radius: 8px;
+
+  color: var(--red);
+
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.compare {
+  margin-top: 5px;
+
+  color: var(--red);
+
+  font-size: 8px;
+  font-weight: 900;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   GAME OF WEEK
+========================================================= */
+
+.gotw {
+  margin: 4px 0 -3px 3px;
+
+  color: var(--red);
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: .5px;
+}
+
+.featured {
+  border: 2px solid var(--red);
+}
+
+
+/* =========================================================
+   RED BUTTON
+========================================================= */
+
+.red-button {
+  width: 100%;
+  min-height: 51px;
+
+  margin-top: 16px;
+  padding: 0 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-radius: 12px;
+
+  background: var(--red);
+  color: #fff;
+
+  text-decoration: none;
+
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.button-arrow {
+  width: 21px;
+  height: 21px;
+}
+
+
+/* =========================================================
+   DROPDOWNS
+========================================================= */
+
+.big-dropdown {
+  width: 100%;
+  height: 50px;
+
+  padding: 0 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid #d7d7d7;
+  border-radius: 12px;
+
+  background: #fff;
+  color: #222;
+
+  font-size: 12px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+.conference-picker {
+  position: relative;
+  width: 100%;
+}
+
+.conference-menu {
+  display: none;
+
+  position: absolute;
+  top: 55px;
+  left: 0;
+
+  width: 100%;
+  z-index: 100;
+
+  overflow: hidden;
+
+  background: #fff;
+
+  border: 1px solid #d7d7d7;
+  border-radius: 12px;
+
+  box-shadow: 0 8px 22px rgba(0,0,0,.13);
+}
+
+.conference-menu.show {
+  display: block;
+}
+
+.conference-option {
+  width: 100%;
+  height: 50px;
+
+  padding: 0 15px;
+
+  border: 0;
+  border-bottom: 1px solid #eee;
+
+  background: #fff;
+
+  color: #222;
+
+  text-align: left;
+
+  font-size: 12px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+.conference-option:last-child {
+  border-bottom: 0;
+}
+
+
+/* =========================================================
+   EMPTY AREAS
+========================================================= */
+
+.empty-area {
+  min-height: 115px;
+
+  margin-top: 13px;
+  padding: 15px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  border: 1px solid #ddd;
+  border-radius: 14px;
+}
+
+.empty-area strong {
+  font-size: 14px;
+}
+
+.empty-area span {
+  margin-top: 5px;
+  color: #888;
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   HOMEPAGE STANDINGS
+========================================================= */
+
+.standings-table {
+  margin-top: 13px;
+
+  overflow: hidden;
+
+  border: 1px solid #d9d9d9;
+  border-radius: 14px;
+}
+
+.standings-header,
+.standings-row {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    34px
+    34px
+    34px;
+
+  align-items: center;
+}
+
+.standings-header {
+  min-height: 44px;
+
+  padding: 0 10px;
+
+  background: #f5f5f5;
+
+  color: #777;
+
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.standings-header span:not(:first-child) {
+  text-align: center;
+}
+
+.standings-row {
+  min-height: 65px;
+
+  padding: 6px 10px;
+
+  border-top: 1px solid #e3e3e3;
+
+  background: #fff;
+}
+
+.standings-row > b {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.standing-team {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.standing-team strong {
+  min-width: 0;
+
+  color: #1c1c20;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.standing-logo {
+  width: 52px;
+  height: 35px;
+
+  flex: 0 0 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 2px;
+}
+
+.standing-logo img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transform: scale(1.08);
+}
+
+
+/* =========================================================
+   MATCHUP COMPARISON
+========================================================= */
+
+.comparison-overlay {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  z-index: 5000;
+
+  padding: 20px;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(10,10,13,.62);
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.comparison-overlay.show {
+  display: flex;
+}
+
+.comparison-modal {
+  position: relative;
+
+  width: 100%;
+  max-width: 500px;
+  max-height: 88vh;
+
+  overflow-y: auto;
+
+  padding: 22px 16px 18px;
+
+  background: #fff;
+
+  border-radius: 22px;
+
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+
+.comparison-close {
+  position: absolute;
+
+  top: 13px;
+  right: 13px;
+
+  width: 35px;
+  height: 35px;
+
+  padding: 7px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #ddd;
+  border-radius: 50%;
+
+  background: #fff;
+
+  cursor: pointer;
+}
+
+.comparison-close svg {
+  width: 100%;
+  height: 100%;
+}
+
+.comparison-title {
+  padding-right: 45px;
+  margin-bottom: 22px;
+
+  font-size: 19px;
+  font-weight: 900;
+
+  letter-spacing: -.5px;
+}
+
+.comparison-teams {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    42px
+    minmax(0,1fr);
+
+  gap: 7px;
+
+  align-items: center;
+}
+
+.comparison-team {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+}
+
+.comparison-logo {
+  width: 100%;
+  max-width: 105px;
+  height: 65px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 5px;
+
+  margin-bottom: 9px;
+}
+
+.comparison-logo img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transform: scale(1.08);
+}
+
+.comparison-team strong {
+  min-height: 28px;
+
+  display: flex;
+  align-items: center;
+
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.comparison-team > span {
+  margin-top: 5px;
+
+  color: #777;
+
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.comparison-vs {
+  color: var(--red);
+
+  text-align: center;
+
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.comparison-stats {
+  margin-top: 20px;
+
+  overflow: hidden;
+
+  border: 1px solid #ddd;
+  border-radius: 13px;
+}
+
+.comparison-stat-row {
+  min-height: 50px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1.4fr
+    1fr;
+
+  align-items: center;
+
+  padding: 0 12px;
+
+  border-bottom: 1px solid #eee;
+}
+
+.comparison-stat-row:last-child {
+  border-bottom: 0;
+}
+
+.comparison-stat-row span {
+  text-align: center;
+
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.comparison-stat-row strong {
+  text-align: center;
+
+  color: #777;
+
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.prediction-box {
+  margin-top: 14px;
+  padding: 17px 14px;
+
+  border-radius: 14px;
+
+  background: #fff1f3;
+
+  text-align: center;
+}
+
+.prediction-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--red);
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: .7px;
+}
+
+.prediction-box strong {
+  display: block;
+
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.prediction-box p {
+  margin: 7px 0 0;
+
+  color: #68686d;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   FULL STANDINGS PAGE
+========================================================= */
+
+.standings-page {
+  padding-top: 18px;
+}
+
+.standings-page-title {
+  margin: 0 4px 16px;
+
+  font-size: 32px;
+  line-height: 1;
+
+  font-weight: 900;
+
+  letter-spacing: -1.5px;
+}
+
+
+/* =========================================================
+   STANDINGS / PLAYOFF PICTURE TABS
+========================================================= */
+
+.standings-top-tabs {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 5px;
+
+  padding: 6px;
+
+  margin-bottom: 28px;
+
+  background: #fff;
+
+  border: 1px solid #d8d8d8;
+  border-radius: 999px;
+}
+
+.standings-top-tab {
+  min-height: 54px;
+
+  padding: 0 14px;
+
+  border: 0;
+  border-radius: 999px;
+
+  background: transparent;
+
+  color: #777;
+
+  font-size: 14px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+.standings-top-tab.active {
+  background: var(--red);
+  color: #fff;
+}
+
+
+/* =========================================================
+   BOTH / AMERICAN / NATIONAL
+========================================================= */
+
+.conference-tabs {
+  display: flex;
+
+  gap: 10px;
+
+  margin-bottom: 25px;
+}
+
+.conference-tab {
+  min-width: 90px;
+  height: 54px;
+
+  padding: 0 18px;
+
+  border: 1.5px solid #d7d7d7;
+  border-radius: 999px;
+
+  background: #fff;
+
+  color: #303036;
+
+  font-size: 14px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+.conference-tab.active {
+  border-color: #202127;
+
+  background: #202127;
+
+  color: #fff;
+}
+
+
+/* =========================================================
+   FULL CONFERENCE CARD
+========================================================= */
+
+.full-conference-card {
+  width: 100%;
+
+  margin-bottom: 24px;
+
+  overflow: hidden;
+
+  background: #fff;
+
+  border: 1px solid #d6d6d6;
+  border-radius: 22px;
+
+  box-shadow: 0 2px 5px rgba(0,0,0,.03);
+}
+
+.full-conference-card[hidden] {
+  display: none;
+}
+
+
+/* =========================================================
+   CONFERENCE TITLE
 ========================================================= */
 
 .conference-card-title {
   min-height: 84px;
+
   padding: 0 27px;
+
   display: flex;
   align-items: center;
+
   gap: 15px;
+
+  background: var(--navy);
+
   color: #fff;
 }
 
@@ -17,28 +1137,611 @@
 }
 
 .conference-card-title span {
-  color: #f3f3f3;
+  color: #f1f2f6;
+
   font-size: 16px;
+  font-weight: 500;
+
+  letter-spacing: .6px;
 }
 
-/* AFC = red like screenshot */
-.conference-card-title.afc-header {
-  background: linear-gradient(
-    90deg,
-    #9b141f 0%,
-    #b91e2b 35%,
-    #cf2a38 70%,
-    #df3948 100%
-  );
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.full-standing-header {
+  min-height: 65px;
+
+  display: grid;
+
+  grid-template-columns:
+    56px
+    minmax(0,1fr)
+    48px
+    48px
+    55px;
+
+  align-items: center;
+
+  padding: 0 14px;
+
+  background: #fff;
+
+  border-bottom: 1px solid #d8d8d8;
+
+  color: #bcbcc0;
+
+  font-size: 12px;
+  font-weight: 900;
 }
 
-/* NFC = blue like AFL screenshot */
-.conference-card-title.nfc-header {
-  background: linear-gradient(
-    90deg,
-    #24345f 0%,
-    #304271 35%,
-    #3c4f82 70%,
-    #465a8f 100%
-  );
+.full-standing-header span:first-child {
+  text-align: center;
+}
+
+.full-standing-header span:nth-child(n+3) {
+  text-align: center;
+}
+
+
+/* =========================================================
+   PLAYOFF ZONE LABELS
+   BIGGER / BOLDER LIKE AFL
+========================================================= */
+
+.standings-zone {
+  min-height: 42px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 20px;
+
+  color: #fff;
+
+  font-family:
+    "Arial Rounded MT Bold",
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 13px;
+  font-weight: 900;
+
+  letter-spacing: 1.1px;
+
+  text-transform: uppercase;
+
+  border-top: 1px solid rgba(0,0,0,.04);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+
+
+/* TOP 2 */
+
+.standings-zone.top-zone {
+  background: var(--top-green);
+}
+
+
+/* WILD CARD */
+
+.standings-zone.wildcard-zone {
+  background: var(--wildcard-gold);
+}
+
+
+/* IN THE HUNT */
+
+.standings-zone.hunt-zone {
+  background: var(--hunt-gray);
+}
+
+
+/* =========================================================
+   STANDINGS ROWS
+========================================================= */
+
+.full-standing-row {
+  min-height: 74px;
+
+  display: grid;
+
+  grid-template-columns:
+    56px
+    minmax(0,1fr)
+    48px
+    48px
+    55px;
+
+  align-items: center;
+
+  padding: 0 14px;
+
+  background: #fff;
+
+  border-bottom: 1px solid #dedede;
+}
+
+.full-standing-row:last-child {
+  border-bottom: 0;
+}
+
+.full-standing-row > b {
+  text-align: center;
+
+  font-size: 15px;
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   RANK CIRCLES
+========================================================= */
+
+.standing-rank {
+  width: 42px;
+  height: 42px;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #fff;
+
+  font-size: 15px;
+  font-weight: 900;
+}
+
+
+/* TOP 2 RANK */
+
+.standing-rank.rank-top {
+  background: var(--top-green);
+}
+
+
+/* WILD CARD RANK */
+
+.standing-rank.rank-wildcard {
+  background: var(--wildcard-gold);
+}
+
+
+/* IN THE HUNT RANK */
+
+.standing-rank.rank-hunt {
+  background: var(--hunt-gray);
+}
+
+
+/* =========================================================
+   FULL TEAM
+========================================================= */
+
+.full-standing-team {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+}
+
+.full-standing-team strong {
+  min-width: 0;
+
+  color: #202127;
+
+  font-size: 14px;
+  font-weight: 900;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   FULL TEAM LOGOS
+========================================================= */
+
+.full-standing-logo {
+  width: 68px;
+  height: 43px;
+
+  flex: 0 0 68px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 1px;
+}
+
+.full-standing-logo img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transform: scale(1.08);
+}
+
+
+/* =========================================================
+   PLAYOFF PICTURE
+========================================================= */
+
+.playoff-section[hidden] {
+  display: none;
+}
+
+.playoff-heading {
+  margin-bottom: 22px;
+}
+
+.playoff-small-title {
+  color: var(--red);
+
+  font-size: 10px;
+  font-weight: 900;
+
+  letter-spacing: 1px;
+}
+
+.playoff-heading h1 {
+  margin: 6px 0;
+
+  font-size: 30px;
+  line-height: 1;
+
+  font-weight: 900;
+
+  letter-spacing: -1px;
+}
+
+.playoff-heading p {
+  margin: 9px 0 0;
+
+  color: #777;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   BOTTOM NAV
+========================================================= */
+
+.bottom-nav {
+  position: fixed;
+
+  left: 50%;
+
+  bottom:
+    calc(
+      13px +
+      env(safe-area-inset-bottom)
+    );
+
+  transform: translateX(-50%);
+
+  width: calc(100% - 30px);
+  max-width: 540px;
+
+  height: 70px;
+
+  z-index: 1000;
+
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+
+  padding: 5px;
+
+  background: rgba(255,255,255,.97);
+
+  border: 1px solid #ddd;
+  border-radius: 999px;
+
+  box-shadow: 0 10px 28px rgba(0,0,0,.16);
+}
+
+.nav-item {
+  min-width: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #66666c;
+
+  text-decoration: none;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  cursor: pointer;
+}
+
+.nav-svg {
+  width: 22px;
+  height: 22px;
+}
+
+.nav-label {
+  font-size: 9px;
+  line-height: 1;
+
+  font-weight: 800;
+}
+
+.nav-item.active {
+  color: var(--red);
+}
+
+
+/* =========================================================
+   PHONE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .standings-page {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .standings-page-title {
+    margin-top: 5px;
+    font-size: 30px;
+  }
+
+  .conference-tabs {
+    gap: 8px;
+  }
+
+  .conference-tab {
+    min-width: 0;
+    flex: 1;
+
+    height: 51px;
+
+    padding: 0 10px;
+
+    font-size: 12px;
+  }
+
+  .conference-card-title {
+    min-height: 72px;
+
+    padding: 0 18px;
+
+    gap: 11px;
+  }
+
+  .conference-card-title strong {
+    font-size: 16px;
+  }
+
+  .conference-card-title span {
+    font-size: 13px;
+  }
+
+  .full-standing-header,
+  .full-standing-row {
+    grid-template-columns:
+      45px
+      minmax(0,1fr)
+      34px
+      34px
+      42px;
+
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .full-standing-header {
+    min-height: 57px;
+  }
+
+  .full-standing-row {
+    min-height: 68px;
+  }
+
+  .standing-rank {
+    width: 36px;
+    height: 36px;
+
+    font-size: 13px;
+  }
+
+  .full-standing-team {
+    gap: 8px;
+  }
+
+  .full-standing-logo {
+    width: 55px;
+    height: 36px;
+
+    flex-basis: 55px;
+  }
+
+  .full-standing-team strong {
+    font-size: 11px;
+  }
+
+  .full-standing-row > b {
+    font-size: 13px;
+  }
+
+  .full-standing-header {
+    font-size: 10px;
+  }
+
+  .standings-zone {
+    min-height: 40px;
+
+    padding: 0 16px;
+
+    font-size: 12px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+  }
+}
+
+
+/* =========================================================
+   EXTRA SMALL PHONES
+========================================================= */
+
+@media (max-width: 390px) {
+
+  .app {
+    padding: 10px;
+  }
+
+  .card {
+    padding: 18px 12px;
+  }
+
+  .game-row {
+    height: 72px;
+
+    grid-template-columns:
+      minmax(0,1fr)
+      76px
+      minmax(0,1fr);
+
+    padding: 7px 8px;
+  }
+
+  .team {
+    gap: 6px;
+  }
+
+  .team-logo {
+    width: 57px;
+    height: 38px;
+
+    flex-basis: 57px;
+  }
+
+  .team > span {
+    font-size: 11px;
+  }
+
+  .vs-box {
+    padding: 6px 9px;
+    font-size: 13px;
+  }
+
+  .compare {
+    font-size: 7px;
+  }
+
+  .standing-logo {
+    width: 48px;
+    height: 33px;
+
+    flex-basis: 48px;
+  }
+
+  .comparison-overlay {
+    padding: 12px;
+  }
+
+  .comparison-modal {
+    padding: 20px 13px 16px;
+  }
+
+  .comparison-logo {
+    height: 58px;
+  }
+
+  .bottom-nav {
+    width: calc(100% - 20px);
+  }
+
+  .standings-top-tab {
+    min-height: 50px;
+    font-size: 12px;
+  }
+
+  .conference-card-title {
+    padding: 0 14px;
+  }
+
+  .conference-card-title strong {
+    font-size: 15px;
+  }
+
+  .conference-card-title span {
+    font-size: 11px;
+  }
+
+  .full-standing-header,
+  .full-standing-row {
+    grid-template-columns:
+      39px
+      minmax(0,1fr)
+      30px
+      30px
+      37px;
+
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .standing-rank {
+    width: 32px;
+    height: 32px;
+  }
+
+  .full-standing-logo {
+    width: 48px;
+    height: 32px;
+
+    flex-basis: 48px;
+  }
+
+  .full-standing-team {
+    gap: 6px;
+  }
+
+  .full-standing-team strong {
+    font-size: 10px;
+  }
+
+  .full-standing-row > b {
+    font-size: 12px;
+  }
+
+  .standings-zone {
+    min-height: 38px;
+
+    padding: 0 14px;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: .9px;
+  }
 }
