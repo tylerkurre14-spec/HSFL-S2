@@ -3,7 +3,6 @@
 
 <head>
   <meta charset="UTF-8">
-
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
@@ -19,20 +18,14 @@
 
 <main class="app standings-page">
 
-
-  <!-- =========================
-       PAGE TITLE
-  ========================== -->
+  <!-- PAGE TITLE -->
 
   <div class="standings-page-title">
     Standings
   </div>
 
 
-
-  <!-- =========================
-       TOP SECTION TABS
-  ========================== -->
+  <!-- TOP TABS -->
 
   <div class="standings-top-tabs">
 
@@ -55,18 +48,16 @@
   </div>
 
 
-
-  <!-- =========================
-       STANDINGS SECTION
-  ========================== -->
+  <!-- ========================================
+       STANDINGS
+  ========================================= -->
 
   <section
     class="full-standings-section"
     id="fullStandingsSection"
   >
 
-
-    <!-- CONFERENCE BUTTONS -->
+    <!-- CONFERENCE FILTER -->
 
     <div class="conference-tabs">
 
@@ -97,10 +88,7 @@
     </div>
 
 
-
-    <!-- =========================
-         AMERICAN
-    ========================== -->
+    <!-- AMERICAN -->
 
     <div
       class="full-conference-card"
@@ -123,13 +111,9 @@
       <div class="full-standing-header">
 
         <span>#</span>
-
         <span>TEAM</span>
-
         <span>W</span>
-
         <span>L</span>
-
         <span>PD</span>
 
       </div>
@@ -143,10 +127,7 @@
     </div>
 
 
-
-    <!-- =========================
-         NATIONAL
-    ========================== -->
+    <!-- NATIONAL -->
 
     <div
       class="full-conference-card"
@@ -169,13 +150,9 @@
       <div class="full-standing-header">
 
         <span>#</span>
-
         <span>TEAM</span>
-
         <span>W</span>
-
         <span>L</span>
-
         <span>PD</span>
 
       </div>
@@ -188,14 +165,12 @@
 
     </div>
 
-
   </section>
 
 
-
-  <!-- =========================
+  <!-- ========================================
        PLAYOFF PICTURE
-  ========================== -->
+  ========================================= -->
 
   <section
     class="playoff-section"
@@ -214,142 +189,94 @@
       </h1>
 
       <p>
-        Playoff positions will appear here
-        once the season begins.
+        The top four teams from each conference
+        currently hold a playoff spot.
       </p>
 
     </div>
 
 
+    <!-- AMERICAN PLAYOFF PICTURE -->
 
-    <!-- AMERICAN PLAYOFF SIDE -->
+    <div class="full-conference-card">
 
-    <div class="playoff-conference">
-
-      <div class="playoff-conference-title">
-        AMERICAN
-      </div>
-
-      <div class="playoff-placeholder">
-
-        <div class="playoff-placeholder-icon">
-
-          <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-
-            <path
-              d="M8 4h8v4.5c0 3-1.7 5.2-4 5.2s-4-2.2-4-5.2V4z"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.9"
-            />
-
-            <path
-              d="M8 6H5.5v2.2c0 2 1.2 3.4 3.2 3.8M16 6h2.5v2.2c0 2-1.2 3.4-3.2 3.8"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.9"
-              stroke-linecap="round"
-            />
-
-            <path
-              d="M12 14v4M8.5 20h7M10 18h4"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.9"
-              stroke-linecap="round"
-            />
-
-          </svg>
-
-        </div>
+      <div class="conference-card-title">
 
         <strong>
-          PLAYOFF RACE
+          AMERICAN
         </strong>
 
         <span>
-          Waiting for season results
+          PLAYOFF PICTURE
         </span>
 
       </div>
 
+
+      <div class="full-standing-header">
+
+        <span>#</span>
+        <span>TEAM</span>
+        <span>W</span>
+        <span>L</span>
+        <span>PD</span>
+
+      </div>
+
+
+      <div
+        class="full-standing-body"
+        id="americanPlayoffBody"
+      ></div>
+
     </div>
 
 
+    <!-- NATIONAL PLAYOFF PICTURE -->
 
-    <!-- NATIONAL PLAYOFF SIDE -->
+    <div class="full-conference-card">
 
-    <div class="playoff-conference">
-
-      <div class="playoff-conference-title">
-        NATIONAL
-      </div>
-
-      <div class="playoff-placeholder">
-
-        <div class="playoff-placeholder-icon">
-
-          <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-
-            <path
-              d="M8 4h8v4.5c0 3-1.7 5.2-4 5.2s-4-2.2-4-5.2V4z"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.9"
-            />
-
-            <path
-              d="M8 6H5.5v2.2c0 2 1.2 3.4 3.2 3.8M16 6h2.5v2.2c0 2-1.2 3.4-3.2 3.8"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.9"
-              stroke-linecap="round"
-            />
-
-            <path
-              d="M12 14v4M8.5 20h7M10 18h4"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.9"
-              stroke-linecap="round"
-            />
-
-          </svg>
-
-        </div>
+      <div class="conference-card-title">
 
         <strong>
-          PLAYOFF RACE
+          NATIONAL
         </strong>
 
         <span>
-          Waiting for season results
+          PLAYOFF PICTURE
         </span>
 
       </div>
 
-    </div>
 
+      <div class="full-standing-header">
+
+        <span>#</span>
+        <span>TEAM</span>
+        <span>W</span>
+        <span>L</span>
+        <span>PD</span>
+
+      </div>
+
+
+      <div
+        class="full-standing-body"
+        id="nationalPlayoffBody"
+      ></div>
+
+    </div>
 
   </section>
-
 
 </main>
 
 
-
-<!-- =========================
-     BOTTOM NAVIGATION
-========================== -->
+<!-- ========================================
+     BOTTOM NAV
+========================================= -->
 
 <nav class="bottom-nav">
-
 
   <!-- HOME -->
 
@@ -389,7 +316,6 @@
     </span>
 
   </a>
-
 
 
   <!-- STANDINGS -->
@@ -448,7 +374,6 @@
   </a>
 
 
-
   <!-- SCORES -->
 
   <a
@@ -491,7 +416,6 @@
   </a>
 
 
-
   <!-- STATS -->
 
   <a
@@ -523,7 +447,6 @@
   </a>
 
 
-
   <!-- MORE -->
 
   <button
@@ -538,26 +461,9 @@
       aria-hidden="true"
     >
 
-      <circle
-        cx="5"
-        cy="12"
-        r="1.5"
-        fill="currentColor"
-      />
-
-      <circle
-        cx="12"
-        cy="12"
-        r="1.5"
-        fill="currentColor"
-      />
-
-      <circle
-        cx="19"
-        cy="12"
-        r="1.5"
-        fill="currentColor"
-      />
+      <circle cx="5" cy="12" r="1.5" fill="currentColor"/>
+      <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+      <circle cx="19" cy="12" r="1.5" fill="currentColor"/>
 
     </svg>
 
@@ -567,18 +473,14 @@
 
   </button>
 
-
 </nav>
 
 
-
-<!-- =========================
-     STANDINGS JAVASCRIPT
-========================== -->
-
 <script>
 
-  /* TEAM DATA */
+  /* =========================================
+     TEAM DATA
+  ========================================= */
 
   const standingsTeams = {
 
@@ -693,6 +595,10 @@
   };
 
 
+  /* =========================================
+     CONFERENCES
+  ========================================= */
+
   const americanTeams = [
     "auburn",
     "parker",
@@ -713,8 +619,9 @@
   ];
 
 
-
-  /* FORMAT PD */
+  /* =========================================
+     FORMAT POINT DIFFERENTIAL
+  ========================================= */
 
   function formatPD(number) {
 
@@ -726,85 +633,324 @@
   }
 
 
+  /* =========================================
+     RANK TEAMS
 
-  /* BUILD ONE CONFERENCE */
+     1. WINS
+     2. LOSSES
+     3. POINT DIFFERENTIAL
+  ========================================= */
 
-  function buildStandings(teamIDs, containerID) {
+  function rankTeams(teamIDs) {
 
-    const container =
-      document.getElementById(containerID);
+    return [...teamIDs].sort((a, b) => {
 
-    container.innerHTML = "";
+      const teamA = standingsTeams[a];
+      const teamB = standingsTeams[b];
 
+      if (teamB.wins !== teamA.wins) {
+        return teamB.wins - teamA.wins;
+      }
 
-    teamIDs.forEach((teamID, index) => {
+      if (teamA.losses !== teamB.losses) {
+        return teamA.losses - teamB.losses;
+      }
 
-      const team =
-        standingsTeams[teamID];
+      if (teamB.pd !== teamA.pd) {
+        return teamB.pd - teamA.pd;
+      }
 
+      /*
+        If everything is tied,
+        keep the original league order.
+      */
 
-      const row =
-        document.createElement("div");
-
-
-      row.className =
-        "full-standing-row";
-
-
-      row.innerHTML = `
-
-        <div class="standing-rank">
-          ${index + 1}
-        </div>
-
-
-        <div class="full-standing-team">
-
-          <div
-            class="full-standing-logo ${team.className}"
-          >
-
-            <img
-              src="${team.logo}"
-              alt="${team.name}"
-            >
-
-          </div>
-
-
-          <strong>
-            ${team.name}
-          </strong>
-
-        </div>
-
-
-        <b>
-          ${team.wins}
-        </b>
-
-
-        <b>
-          ${team.losses}
-        </b>
-
-
-        <b>
-          ${formatPD(team.pd)}
-        </b>
-
-      `;
-
-
-      container.appendChild(row);
+      return (
+        teamIDs.indexOf(a) -
+        teamIDs.indexOf(b)
+      );
 
     });
 
   }
 
 
+  /* =========================================
+     CREATE SECTION LABEL
+  ========================================= */
 
-  /* BUILD TABLES */
+  function createSectionLabel(type, text) {
+
+    const label =
+      document.createElement("div");
+
+    label.className =
+      `standings-zone ${type}`;
+
+    label.textContent = text;
+
+    return label;
+  }
+
+
+  /* =========================================
+     CREATE TEAM ROW
+  ========================================= */
+
+  function createTeamRow(
+    teamID,
+    rank,
+    zone
+  ) {
+
+    const team =
+      standingsTeams[teamID];
+
+
+    const row =
+      document.createElement("div");
+
+
+    row.className =
+      "full-standing-row";
+
+
+    row.innerHTML = `
+
+      <div
+        class="standing-rank ${zone}"
+      >
+        ${rank}
+      </div>
+
+
+      <div class="full-standing-team">
+
+        <div
+          class="full-standing-logo ${team.className}"
+        >
+
+          <img
+            src="${team.logo}"
+            alt="${team.name}"
+          >
+
+        </div>
+
+
+        <strong>
+          ${team.name}
+        </strong>
+
+      </div>
+
+
+      <b>
+        ${team.wins}
+      </b>
+
+
+      <b>
+        ${team.losses}
+      </b>
+
+
+      <b>
+        ${formatPD(team.pd)}
+      </b>
+
+    `;
+
+
+    return row;
+
+  }
+
+
+  /* =========================================
+     BUILD FULL STANDINGS
+
+     #1-2 TOP 2
+     #3-4 WILD CARD
+     #5-6 IN THE HUNT
+  ========================================= */
+
+  function buildStandings(
+    teamIDs,
+    containerID
+  ) {
+
+    const container =
+      document.getElementById(
+        containerID
+      );
+
+
+    container.innerHTML = "";
+
+
+    const rankedTeams =
+      rankTeams(teamIDs);
+
+
+    rankedTeams.forEach(
+      (teamID, index) => {
+
+        const rank =
+          index + 1;
+
+
+        /* TOP 2 LABEL */
+
+        if (rank === 1) {
+
+          container.appendChild(
+            createSectionLabel(
+              "top-zone",
+              "TOP 2"
+            )
+          );
+
+        }
+
+
+        /* WILD CARD LABEL */
+
+        if (rank === 3) {
+
+          container.appendChild(
+            createSectionLabel(
+              "wildcard-zone",
+              "WILD CARD"
+            )
+          );
+
+        }
+
+
+        /* IN THE HUNT LABEL */
+
+        if (rank === 5) {
+
+          container.appendChild(
+            createSectionLabel(
+              "hunt-zone",
+              "IN THE HUNT"
+            )
+          );
+
+        }
+
+
+        let zone;
+
+
+        if (rank <= 2) {
+          zone = "rank-top";
+        }
+
+        else if (rank <= 4) {
+          zone = "rank-wildcard";
+        }
+
+        else {
+          zone = "rank-hunt";
+        }
+
+
+        container.appendChild(
+          createTeamRow(
+            teamID,
+            rank,
+            zone
+          )
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =========================================
+     BUILD PLAYOFF PICTURE
+
+     ONLY TOP 4
+  ========================================= */
+
+  function buildPlayoffPicture(
+    teamIDs,
+    containerID
+  ) {
+
+    const container =
+      document.getElementById(
+        containerID
+      );
+
+
+    container.innerHTML = "";
+
+
+    const rankedTeams =
+      rankTeams(teamIDs)
+        .slice(0, 4);
+
+
+    rankedTeams.forEach(
+      (teamID, index) => {
+
+        const rank =
+          index + 1;
+
+
+        if (rank === 1) {
+
+          container.appendChild(
+            createSectionLabel(
+              "top-zone",
+              "TOP 2"
+            )
+          );
+
+        }
+
+
+        if (rank === 3) {
+
+          container.appendChild(
+            createSectionLabel(
+              "wildcard-zone",
+              "WILD CARD"
+            )
+          );
+
+        }
+
+
+        const zone =
+          rank <= 2
+            ? "rank-top"
+            : "rank-wildcard";
+
+
+        container.appendChild(
+          createTeamRow(
+            teamID,
+            rank,
+            zone
+          )
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =========================================
+     BUILD EVERYTHING
+  ========================================= */
 
   buildStandings(
     americanTeams,
@@ -818,8 +964,21 @@
   );
 
 
+  buildPlayoffPicture(
+    americanTeams,
+    "americanPlayoffBody"
+  );
 
-  /* BOTH / AMERICAN / NATIONAL */
+
+  buildPlayoffPicture(
+    nationalTeams,
+    "nationalPlayoffBody"
+  );
+
+
+  /* =========================================
+     CONFERENCE FILTERS
+  ========================================= */
 
   const conferenceTabs =
     document.querySelectorAll(
@@ -845,12 +1004,20 @@
       "click",
       () => {
 
-        conferenceTabs.forEach(button => {
-          button.classList.remove("active");
-        });
+        conferenceTabs.forEach(
+          button => {
+
+            button.classList.remove(
+              "active"
+            );
+
+          }
+        );
 
 
-        tab.classList.add("active");
+        tab.classList.add(
+          "active"
+        );
 
 
         const view =
@@ -859,27 +1026,33 @@
 
         if (view === "both") {
 
-          americanStandings.hidden = false;
+          americanStandings.hidden =
+            false;
 
-          nationalStandings.hidden = false;
+          nationalStandings.hidden =
+            false;
 
         }
 
 
         if (view === "american") {
 
-          americanStandings.hidden = false;
+          americanStandings.hidden =
+            false;
 
-          nationalStandings.hidden = true;
+          nationalStandings.hidden =
+            true;
 
         }
 
 
         if (view === "national") {
 
-          americanStandings.hidden = true;
+          americanStandings.hidden =
+            true;
 
-          nationalStandings.hidden = false;
+          nationalStandings.hidden =
+            false;
 
         }
 
@@ -889,8 +1062,9 @@
   });
 
 
-
-  /* STANDINGS / PLAYOFF PICTURE */
+  /* =========================================
+     STANDINGS / PLAYOFF PICTURE
+  ========================================= */
 
   const topTabs =
     document.querySelectorAll(
@@ -916,12 +1090,20 @@
       "click",
       () => {
 
-        topTabs.forEach(button => {
-          button.classList.remove("active");
-        });
+        topTabs.forEach(
+          button => {
+
+            button.classList.remove(
+              "active"
+            );
+
+          }
+        );
 
 
-        tab.classList.add("active");
+        tab.classList.add(
+          "active"
+        );
 
 
         if (
@@ -929,9 +1111,11 @@
           "standings"
         ) {
 
-          standingsSection.hidden = false;
+          standingsSection.hidden =
+            false;
 
-          playoffSection.hidden = true;
+          playoffSection.hidden =
+            true;
 
         }
 
@@ -941,9 +1125,11 @@
           "playoffs"
         ) {
 
-          standingsSection.hidden = true;
+          standingsSection.hidden =
+            true;
 
-          playoffSection.hidden = false;
+          playoffSection.hidden =
+            false;
 
         }
 
