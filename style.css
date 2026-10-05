@@ -15,7 +15,6 @@
   --border: #d9d9d9;
   --page: #f7f7f7;
 
-  /* PLAYOFF COLORS */
   --top-green: #2fad74;
   --wildcard-gold: #d8a800;
   --hunt-gray: #a8a8a8;
@@ -240,10 +239,6 @@ button {
   border-bottom: 0;
 }
 
-.week-option:active {
-  background: #f3f3f3;
-}
-
 
 /* =========================================================
    HOMEPAGE GAMES
@@ -287,14 +282,10 @@ button.game-row {
 
 .clickable-game {
   cursor: pointer;
-  transition:
-    transform .12s ease,
-    background .12s ease;
 }
 
 .clickable-game:active {
   transform: scale(.985);
-  background: #f1f1f1;
 }
 
 
@@ -329,13 +320,12 @@ button.game-row {
 
 
 /* =========================================================
-   MATCHUP LOGOS
+   TEAM LOGOS
 ========================================================= */
 
 .team-logo {
   width: 66px;
   height: 42px;
-
   flex: 0 0 66px;
 
   display: flex;
@@ -347,11 +337,9 @@ button.game-row {
 }
 
 .team-logo img {
-  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
   transform: scale(1.08);
 }
 
@@ -413,12 +401,12 @@ button.game-row {
 }
 
 .silverfoxes {
-  background: #000000;
+  background: #000;
 }
 
 
 /* =========================================================
-   VS / COMPARE
+   VS
 ========================================================= */
 
 .game-middle {
@@ -442,19 +430,14 @@ button.game-row {
   color: var(--red);
 
   font-size: 14px;
-  line-height: 1;
   font-weight: 900;
 }
 
 .compare {
   margin-top: 5px;
-
   color: var(--red);
-
   font-size: 8px;
   font-weight: 900;
-
-  white-space: nowrap;
 }
 
 
@@ -464,13 +447,9 @@ button.game-row {
 
 .gotw {
   margin: 4px 0 -3px 3px;
-
   color: var(--red);
-
   font-size: 9px;
   font-weight: 900;
-
-  letter-spacing: .5px;
 }
 
 .featured {
@@ -479,7 +458,7 @@ button.game-row {
 
 
 /* =========================================================
-   RED BUTTON
+   BUTTONS
 ========================================================= */
 
 .red-button {
@@ -528,12 +507,9 @@ button.game-row {
   border-radius: 12px;
 
   background: #fff;
-  color: #222;
 
   font-size: 12px;
   font-weight: 900;
-
-  cursor: pointer;
 }
 
 .conference-picker {
@@ -576,51 +552,10 @@ button.game-row {
 
   background: #fff;
 
-  color: #222;
-
   text-align: left;
 
   font-size: 12px;
   font-weight: 900;
-
-  cursor: pointer;
-}
-
-.conference-option:last-child {
-  border-bottom: 0;
-}
-
-
-/* =========================================================
-   EMPTY AREAS
-========================================================= */
-
-.empty-area {
-  min-height: 115px;
-
-  margin-top: 13px;
-  padding: 15px;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-
-  border: 1px solid #ddd;
-  border-radius: 14px;
-}
-
-.empty-area strong {
-  font-size: 14px;
-}
-
-.empty-area span {
-  margin-top: 5px;
-  color: #888;
-  font-size: 10px;
 }
 
 
@@ -630,9 +565,7 @@ button.game-row {
 
 .standings-table {
   margin-top: 13px;
-
   overflow: hidden;
-
   border: 1px solid #d9d9d9;
   border-radius: 14px;
 }
@@ -652,13 +585,9 @@ button.game-row {
 
 .standings-header {
   min-height: 44px;
-
   padding: 0 10px;
-
   background: #f5f5f5;
-
   color: #777;
-
   font-size: 9px;
   font-weight: 900;
 }
@@ -669,11 +598,8 @@ button.game-row {
 
 .standings-row {
   min-height: 65px;
-
   padding: 6px 10px;
-
   border-top: 1px solid #e3e3e3;
-
   background: #fff;
 }
 
@@ -695,8 +621,6 @@ button.game-row {
 .standing-team strong {
   min-width: 0;
 
-  color: #1c1c20;
-
   font-size: 10px;
   font-weight: 900;
 
@@ -716,269 +640,13 @@ button.game-row {
   justify-content: center;
 
   overflow: hidden;
-
-  border-radius: 2px;
 }
 
 .standing-logo img {
-  display: block;
-
   width: 100%;
   height: 100%;
-
   object-fit: cover;
-  object-position: center;
-
   transform: scale(1.08);
-}
-
-
-/* =========================================================
-   MATCHUP COMPARISON
-========================================================= */
-
-.comparison-overlay {
-  display: none;
-
-  position: fixed;
-  inset: 0;
-
-  z-index: 5000;
-
-  padding: 20px;
-
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(10,10,13,.62);
-
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-
-.comparison-overlay.show {
-  display: flex;
-}
-
-.comparison-modal {
-  position: relative;
-
-  width: 100%;
-  max-width: 500px;
-  max-height: 88vh;
-
-  overflow-y: auto;
-
-  padding: 22px 16px 18px;
-
-  background: #fff;
-
-  border-radius: 22px;
-
-  box-shadow: 0 20px 60px rgba(0,0,0,.25);
-}
-
-.comparison-close {
-  position: absolute;
-
-  top: 13px;
-  right: 13px;
-
-  width: 35px;
-  height: 35px;
-
-  padding: 7px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid #ddd;
-  border-radius: 50%;
-
-  background: #fff;
-
-  cursor: pointer;
-}
-
-.comparison-close svg {
-  width: 100%;
-  height: 100%;
-}
-
-.comparison-title {
-  padding-right: 45px;
-  margin-bottom: 22px;
-
-  font-size: 19px;
-  font-weight: 900;
-
-  letter-spacing: -.5px;
-}
-
-.comparison-teams {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0,1fr)
-    42px
-    minmax(0,1fr);
-
-  gap: 7px;
-
-  align-items: center;
-}
-
-.comparison-team {
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-
-  text-align: center;
-}
-
-.comparison-logo {
-  width: 100%;
-  max-width: 105px;
-  height: 65px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-
-  border-radius: 5px;
-
-  margin-bottom: 9px;
-}
-
-.comparison-logo img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-
-  transform: scale(1.08);
-}
-
-.comparison-team strong {
-  min-height: 28px;
-
-  display: flex;
-  align-items: center;
-
-  font-size: 10px;
-  font-weight: 900;
-}
-
-.comparison-team > span {
-  margin-top: 5px;
-
-  color: #777;
-
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.comparison-vs {
-  color: var(--red);
-
-  text-align: center;
-
-  font-size: 14px;
-  font-weight: 900;
-}
-
-.comparison-stats {
-  margin-top: 20px;
-
-  overflow: hidden;
-
-  border: 1px solid #ddd;
-  border-radius: 13px;
-}
-
-.comparison-stat-row {
-  min-height: 50px;
-
-  display: grid;
-
-  grid-template-columns:
-    1fr
-    1.4fr
-    1fr;
-
-  align-items: center;
-
-  padding: 0 12px;
-
-  border-bottom: 1px solid #eee;
-}
-
-.comparison-stat-row:last-child {
-  border-bottom: 0;
-}
-
-.comparison-stat-row span {
-  text-align: center;
-
-  font-size: 13px;
-  font-weight: 900;
-}
-
-.comparison-stat-row strong {
-  text-align: center;
-
-  color: #777;
-
-  font-size: 9px;
-  font-weight: 900;
-}
-
-.prediction-box {
-  margin-top: 14px;
-  padding: 17px 14px;
-
-  border-radius: 14px;
-
-  background: #fff1f3;
-
-  text-align: center;
-}
-
-.prediction-label {
-  display: block;
-
-  margin-bottom: 8px;
-
-  color: var(--red);
-
-  font-size: 9px;
-  font-weight: 900;
-
-  letter-spacing: .7px;
-}
-
-.prediction-box strong {
-  display: block;
-
-  font-size: 17px;
-  font-weight: 900;
-}
-
-.prediction-box p {
-  margin: 7px 0 0;
-
-  color: #68686d;
-
-  font-size: 11px;
-  font-weight: 700;
-
-  line-height: 1.4;
 }
 
 
@@ -1003,7 +671,7 @@ button.game-row {
 
 
 /* =========================================================
-   STANDINGS / PLAYOFF PICTURE TABS
+   STANDINGS TOP TABS
 ========================================================= */
 
 .standings-top-tabs {
@@ -1015,7 +683,6 @@ button.game-row {
   gap: 5px;
 
   padding: 6px;
-
   margin-bottom: 28px;
 
   background: #fff;
@@ -1027,8 +694,6 @@ button.game-row {
 .standings-top-tab {
   min-height: 54px;
 
-  padding: 0 14px;
-
   border: 0;
   border-radius: 999px;
 
@@ -1038,8 +703,6 @@ button.game-row {
 
   font-size: 14px;
   font-weight: 900;
-
-  cursor: pointer;
 }
 
 .standings-top-tab.active {
@@ -1049,14 +712,12 @@ button.game-row {
 
 
 /* =========================================================
-   BOTH / AMERICAN / NATIONAL
+   CONFERENCE FILTERS
 ========================================================= */
 
 .conference-tabs {
   display: flex;
-
   gap: 10px;
-
   margin-bottom: 25px;
 }
 
@@ -1075,21 +736,17 @@ button.game-row {
 
   font-size: 14px;
   font-weight: 900;
-
-  cursor: pointer;
 }
 
 .conference-tab.active {
   border-color: #202127;
-
   background: #202127;
-
   color: #fff;
 }
 
 
 /* =========================================================
-   FULL CONFERENCE CARD
+   CONFERENCE CARD
 ========================================================= */
 
 .full-conference-card {
@@ -1103,8 +760,6 @@ button.game-row {
 
   border: 1px solid #d6d6d6;
   border-radius: 22px;
-
-  box-shadow: 0 2px 5px rgba(0,0,0,.03);
 }
 
 .full-conference-card[hidden] {
@@ -1138,16 +793,12 @@ button.game-row {
 
 .conference-card-title span {
   color: #f1f2f6;
-
   font-size: 16px;
-  font-weight: 500;
-
-  letter-spacing: .6px;
 }
 
 
 /* =========================================================
-   TABLE HEADER
+   STANDINGS TABLE HEADER
 ========================================================= */
 
 .full-standing-header {
@@ -1186,41 +837,58 @@ button.game-row {
 
 
 /* =========================================================
-   PLAYOFF ZONE LABELS
+   TOP 2 / WILD CARD / IN THE HUNT
+
+   MUCH BIGGER + BOLDER
 ========================================================= */
 
 .standings-zone {
-  min-height: 34px;
+  width: 100%;
+  min-height: 48px;
 
   display: flex;
   align-items: center;
 
-  padding: 0 17px;
+  padding: 0 22px;
 
   color: #fff;
 
-  font-size: 10px;
+  font-family:
+    "Arial Black",
+    "Arial Rounded MT Bold",
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 16px;
+  line-height: 1;
+
   font-weight: 900;
 
-  letter-spacing: .8px;
+  letter-spacing: .4px;
+
+  text-transform: uppercase;
+
+  border-top: 1px solid rgba(0,0,0,.08);
+  border-bottom: 1px solid rgba(0,0,0,.08);
 }
 
 
-/* TOP 2 */
+/* GREEN TOP 2 */
 
 .standings-zone.top-zone {
   background: var(--top-green);
 }
 
 
-/* WILD CARD */
+/* GOLD WILD CARD */
 
 .standings-zone.wildcard-zone {
   background: var(--wildcard-gold);
 }
 
 
-/* IN THE HUNT */
+/* GRAY IN THE HUNT */
 
 .standings-zone.hunt-zone {
   background: var(--hunt-gray);
@@ -1282,26 +950,19 @@ button.game-row {
 
   color: #fff;
 
+  font-family: "Arial Black", Arial, sans-serif;
+
   font-size: 15px;
   font-weight: 900;
 }
-
-
-/* TOP 2 RANK */
 
 .standing-rank.rank-top {
   background: var(--top-green);
 }
 
-
-/* WILD CARD RANK */
-
 .standing-rank.rank-wildcard {
   background: var(--wildcard-gold);
 }
-
-
-/* IN THE HUNT RANK */
 
 .standing-rank.rank-hunt {
   background: var(--hunt-gray);
@@ -1309,7 +970,7 @@ button.game-row {
 
 
 /* =========================================================
-   FULL TEAM
+   TEAM INFO
 ========================================================= */
 
 .full-standing-team {
@@ -1334,11 +995,6 @@ button.game-row {
   text-overflow: ellipsis;
 }
 
-
-/* =========================================================
-   FULL TEAM LOGOS
-========================================================= */
-
 .full-standing-logo {
   width: 68px;
   height: 43px;
@@ -1350,18 +1006,13 @@ button.game-row {
   justify-content: center;
 
   overflow: hidden;
-
-  border-radius: 1px;
 }
 
 .full-standing-logo img {
-  display: block;
-
   width: 100%;
   height: 100%;
 
   object-fit: cover;
-  object-position: center;
 
   transform: scale(1.08);
 }
@@ -1392,11 +1043,7 @@ button.game-row {
   margin: 6px 0;
 
   font-size: 30px;
-  line-height: 1;
-
   font-weight: 900;
-
-  letter-spacing: -1px;
 }
 
 .playoff-heading p {
@@ -1410,7 +1057,132 @@ button.game-row {
 
 
 /* =========================================================
-   BOTTOM NAV
+   MATCHUP COMPARISON
+========================================================= */
+
+.comparison-overlay {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  z-index: 5000;
+
+  padding: 20px;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(10,10,13,.62);
+}
+
+.comparison-overlay.show {
+  display: flex;
+}
+
+.comparison-modal {
+  position: relative;
+
+  width: 100%;
+  max-width: 500px;
+
+  padding: 22px 16px 18px;
+
+  background: #fff;
+
+  border-radius: 22px;
+}
+
+.comparison-close {
+  position: absolute;
+
+  top: 13px;
+  right: 13px;
+
+  width: 35px;
+  height: 35px;
+
+  border: 1px solid #ddd;
+  border-radius: 50%;
+
+  background: #fff;
+}
+
+.comparison-title {
+  padding-right: 45px;
+  margin-bottom: 22px;
+
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.comparison-teams {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    42px
+    minmax(0,1fr);
+
+  align-items: center;
+
+  gap: 7px;
+}
+
+.comparison-team {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+}
+
+.comparison-logo {
+  width: 100%;
+  max-width: 105px;
+  height: 65px;
+
+  overflow: hidden;
+
+  margin-bottom: 9px;
+}
+
+.comparison-logo img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.comparison-team strong {
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.comparison-team > span {
+  margin-top: 5px;
+
+  color: #777;
+
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.comparison-vs {
+  color: var(--red);
+
+  text-align: center;
+
+  font-size: 14px;
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   BOTTOM NAVIGATION
 ========================================================= */
 
 .bottom-nav {
@@ -1464,8 +1236,6 @@ button.game-row {
   justify-content: center;
 
   gap: 4px;
-
-  cursor: pointer;
 }
 
 .nav-svg {
@@ -1475,8 +1245,6 @@ button.game-row {
 
 .nav-label {
   font-size: 9px;
-  line-height: 1;
-
   font-weight: 800;
 }
 
@@ -1520,8 +1288,6 @@ button.game-row {
     min-height: 72px;
 
     padding: 0 18px;
-
-    gap: 11px;
   }
 
   .conference-card-title strong {
@@ -1579,16 +1345,24 @@ button.game-row {
     font-size: 13px;
   }
 
-  .full-standing-header {
-    font-size: 10px;
-  }
+  /* MUCH BIGGER ON PHONE TOO */
 
   .standings-zone {
-    min-height: 31px;
+    min-height: 46px;
 
-    padding: 0 13px;
+    padding: 0 18px;
 
-    font-size: 9px;
+    font-family:
+      "Arial Black",
+      "Arial Rounded MT Bold",
+      Arial,
+      sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 900;
+
+    letter-spacing: .3px;
   }
 }
 
@@ -1618,10 +1392,6 @@ button.game-row {
     padding: 7px 8px;
   }
 
-  .team {
-    gap: 6px;
-  }
-
   .team-logo {
     width: 57px;
     height: 38px;
@@ -1631,34 +1401,6 @@ button.game-row {
 
   .team > span {
     font-size: 11px;
-  }
-
-  .vs-box {
-    padding: 6px 9px;
-    font-size: 13px;
-  }
-
-  .compare {
-    font-size: 7px;
-  }
-
-  .standing-logo {
-    width: 48px;
-    height: 33px;
-
-    flex-basis: 48px;
-  }
-
-  .comparison-overlay {
-    padding: 12px;
-  }
-
-  .comparison-modal {
-    padding: 20px 13px 16px;
-  }
-
-  .comparison-logo {
-    height: 58px;
   }
 
   .bottom-nav {
@@ -1719,8 +1461,17 @@ button.game-row {
     font-size: 12px;
   }
 
+  /* STILL BIG ON SMALL IPHONES */
+
   .standings-zone {
-    min-height: 29px;
-    font-size: 8px;
+    min-height: 44px;
+
+    padding: 0 16px;
+
+    font-size: 14px;
+
+    font-weight: 900;
+
+    letter-spacing: .2px;
   }
 }
