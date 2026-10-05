@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Standings | HSFL S2</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+<main class="app standings-page">
+
+
+  <!-- =========================
+       PAGE TITLE
+  ========================== -->
+
+  <div class="standings-page-title">
+    Standings
+  </div>
+
+
+
+  <!-- =========================
+       TOP SECTION TABS
+  ========================== -->
+
+  <div class="standings-top-tabs">
+
+    <button
+      class="standings-top-tab active"
+      type="button"
+      data-section="standings"
+    >
+      Standings
+    </button>
+
+    <button
+      class="standings-top-tab"
+      type="button"
+      data-section="playoffs"
+    >
+      Playoff Picture
+    </button>
+
+  </div>
+
+
+
+  <!-- =========================
+       STANDINGS SECTION
+  ========================== -->
+
+  <section
+    class="full-standings-section"
+    id="fullStandingsSection"
+  >
+
+
+    <!-- CONFERENCE BUTTONS -->
+
+    <div class="conference-tabs">
+
+      <button
+        class="conference-tab active"
+        type="button"
+        data-view="both"
+      >
+        BOTH
+      </button>
+
+      <button
+        class="conference-tab"
+        type="button"
+        data-view="american"
+      >
+        AMERICAN
+      </button>
+
+      <button
+        class="conference-tab"
+        type="button"
+        data-view="national"
+      >
+        NATIONAL
+      </button>
+
+    </div>
+
+
+
+    <!-- =========================
+         AMERICAN
+    ========================== -->
+
+    <div
+      class="full-conference-card"
+      id="americanStandings"
+    >
+
+      <div class="conference-card-title">
+
+        <strong>
+          AMERICAN
+        </strong>
+
+        <span>
+          OVERALL STANDINGS
+        </span>
+
+      </div>
+
+
+      <div class="full-standing-header">
+
+        <span>#</span>
+
+        <span>TEAM</span>
+
+        <span>W</span>
+
+        <span>L</span>
+
+        <span>PD</span>
+
+      </div>
+
+
+      <div
+        class="full-standing-body"
+        id="americanStandingsBody"
+      ></div>
+
+    </div>
+
+
+
+    <!-- =========================
+         NATIONAL
+    ========================== -->
+
+    <div
+      class="full-conference-card"
+      id="nationalStandings"
+    >
+
+      <div class="conference-card-title">
+
+        <strong>
+          NATIONAL
+        </strong>
+
+        <span>
+          OVERALL STANDINGS
+        </span>
+
+      </div>
+
+
+      <div class="full-standing-header">
+
+        <span>#</span>
+
+        <span>TEAM</span>
+
+        <span>W</span>
+
+        <span>L</span>
+
+        <span>PD</span>
+
+      </div>
+
+
+      <div
+        class="full-standing-body"
+        id="nationalStandingsBody"
+      ></div>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- =========================
+       PLAYOFF PICTURE
+  ========================== -->
+
+  <section
+    class="playoff-section"
+    id="playoffSection"
+    hidden
+  >
+
+    <div class="playoff-heading">
+
+      <span class="playoff-small-title">
+        HSFL SEASON 2
+      </span>
+
+      <h1>
+        PLAYOFF PICTURE
+      </h1>
+
+      <p>
+        Playoff positions will appear here
+        once the season begins.
+      </p>
+
+    </div>
+
+
+
+    <!-- AMERICAN PLAYOFF SIDE -->
+
+    <div class="playoff-conference">
+
+      <div class="playoff-conference-title">
+        AMERICAN
+      </div>
+
+      <div class="playoff-placeholder">
+
+        <div class="playoff-placeholder-icon">
+
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <path
+              d="M8 4h8v4.5c0 3-1.7 5.2-4 5.2s-4-2.2-4-5.2V4z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.9"
+            />
+
+            <path
+              d="M8 6H5.5v2.2c0 2 1.2 3.4 3.2 3.8M16 6h2.5v2.2c0 2-1.2 3.4-3.2 3.8"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.9"
+              stroke-linecap="round"
+            />
+
+            <path
+              d="M12 14v4M8.5 20h7M10 18h4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.9"
+              stroke-linecap="round"
+            />
+
+          </svg>
+
+        </div>
+
+        <strong>
+          PLAYOFF RACE
+        </strong>
+
+        <span>
+          Waiting for season results
+        </span>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- NATIONAL PLAYOFF SIDE -->
+
+    <div class="playoff-conference">
+
+      <div class="playoff-conference-title">
+        NATIONAL
+      </div>
+
+      <div class="playoff-placeholder">
+
+        <div class="playoff-placeholder-icon">
+
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <path
+              d="M8 4h8v4.5c0 3-1.7 5.2-4 5.2s-4-2.2-4-5.2V4z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.9"
+            />
+
+            <path
+              d="M8 6H5.5v2.2c0 2 1.2 3.4 3.2 3.8M16 6h2.5v2.2c0 2-1.2 3.4-3.2 3.8"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.9"
+              stroke-linecap="round"
+            />
+
+            <path
+              d="M12 14v4M8.5 20h7M10 18h4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.9"
+              stroke-linecap="round"
+            />
+
+          </svg>
+
+        </div>
+
+        <strong>
+          PLAYOFF RACE
+        </strong>
+
+        <span>
+          Waiting for season results
+        </span>
+
+      </div>
+
+    </div>
+
+
+  </section>
+
+
+</main>
+
+
+
+<!-- =========================
+     BOTTOM NAVIGATION
+========================== -->
+
+<nav class="bottom-nav">
+
+
+  <!-- HOME -->
+
+  <a
+    href="index.html"
+    class="nav-item"
+    aria-label="Home"
+  >
+
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <path
+        d="M3 10.5L12 3l9 7.5"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+      <path
+        d="M5.5 9.5V21h13V9.5M9.5 21v-7h5v7"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linejoin="round"
+      />
+
+    </svg>
+
+    <span class="nav-label">
+      Home
+    </span>
+
+  </a>
+
+
+
+  <!-- STANDINGS -->
+
+  <a
+    href="standings.html"
+    class="nav-item active"
+    aria-label="Standings"
+  >
+
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <path
+        d="M8 4h8v4.5c0 3-1.7 5.2-4 5.2s-4-2.2-4-5.2V4z"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+      <path
+        d="M8 6H5.5v2.2c0 2 1.2 3.4 3.2 3.8"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+      />
+
+      <path
+        d="M16 6h2.5v2.2c0 2-1.2 3.4-3.2 3.8"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+      />
+
+      <path
+        d="M12 14v4M8.5 20h7M10 18h4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+      />
+
+    </svg>
+
+    <span class="nav-label">
+      Standings
+    </span>
+
+  </a>
+
+
+
+  <!-- SCORES -->
+
+  <a
+    href="scores.html"
+    class="nav-item"
+    aria-label="Scores"
+  >
+
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <rect
+        x="3.5"
+        y="5"
+        width="17"
+        height="14"
+        rx="2.5"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      />
+
+      <path
+        d="M8 9h3M8 13h3M15 9h1M15 13h1"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+
+    </svg>
+
+    <span class="nav-label">
+      Scores
+    </span>
+
+  </a>
+
+
+
+  <!-- STATS -->
+
+  <a
+    href="stats.html"
+    class="nav-item"
+    aria-label="Stats"
+  >
+
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <path
+        d="M5 20V13M12 20V8M19 20V4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
+      />
+
+    </svg>
+
+    <span class="nav-label">
+      Stats
+    </span>
+
+  </a>
+
+
+
+  <!-- MORE -->
+
+  <button
+    class="nav-item"
+    type="button"
+    aria-label="More"
+  >
+
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <circle
+        cx="5"
+        cy="12"
+        r="1.5"
+        fill="currentColor"
+      />
+
+      <circle
+        cx="12"
+        cy="12"
+        r="1.5"
+        fill="currentColor"
+      />
+
+      <circle
+        cx="19"
+        cy="12"
+        r="1.5"
+        fill="currentColor"
+      />
+
+    </svg>
+
+    <span class="nav-label">
+      More
+    </span>
+
+  </button>
+
+
+</nav>
+
+
+
+<!-- =========================
+     STANDINGS JAVASCRIPT
+========================== -->
+
+<script>
+
+  /* TEAM DATA */
+
+  const standingsTeams = {
+
+    auburn: {
+      name: "AUBURN TIGERS",
+      logo: "auburn.png.PNG",
+      className: "auburn",
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    parker: {
+      name: "PARKER THUNDERING HERD",
+      logo: "parker.png.PNG.PNG",
+      className: "parker",
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    cornercanyon: {
+      name: "CORNER CANYON",
+      logo: "chargers.png.PNG",
+      className: "chargers",
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    stfrances: {
+      name: "ST. FRANCES ACADEMY",
+      logo: "stfrances.png.PNG",
+      className: "stfrances",
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    buford: {
+      name: "BUFORD WOLVES",
+      logo: "buford.png.PNG",
+      className: "buford",
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    bosco: {
+      name: "ST. JOHN BOSCO",
+      logo: "bosco.png.PNG",
+      className: "bosco",
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    centennial: {
+      name: "CENTENNIAL HUSKIES",
+      logo: "centennial.png.PNG",
+      className: "centennial",
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    img: {
+      name: "IMG ACADEMY",
+      logo: "img.png.PNG",
+      className: "imgacademy",
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    norland: {
+      name: "NORLAND VIKINGS",
+      logo: "norland.png.PNG",
+      className: "norland",
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    saraland: {
+      name: "SARALAND SPARTANS",
+      logo: "saraland.png.PNG",
+      className: "saraland",
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    mckinney: {
+      name: "MCKINNEY LIONS",
+      logo: "mckinney.png.PNG",
+      className: "mckinney",
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    guyer: {
+      name: "DENTON GUYER WILDCATS",
+      logo: "guyer.png.PNG",
+      className: "guyer",
+      wins: 0,
+      losses: 0,
+      pd: 0
+    }
+
+  };
+
+
+  const americanTeams = [
+    "auburn",
+    "parker",
+    "cornercanyon",
+    "stfrances",
+    "buford",
+    "bosco"
+  ];
+
+
+  const nationalTeams = [
+    "centennial",
+    "img",
+    "norland",
+    "saraland",
+    "mckinney",
+    "guyer"
+  ];
+
+
+
+  /* FORMAT PD */
+
+  function formatPD(number) {
+
+    if (number > 0) {
+      return "+" + number;
+    }
+
+    return number;
+  }
+
+
+
+  /* BUILD ONE CONFERENCE */
+
+  function buildStandings(teamIDs, containerID) {
+
+    const container =
+      document.getElementById(containerID);
+
+    container.innerHTML = "";
+
+
+    teamIDs.forEach((teamID, index) => {
+
+      const team =
+        standingsTeams[teamID];
+
+
+      const row =
+        document.createElement("div");
+
+
+      row.className =
+        "full-standing-row";
+
+
+      row.innerHTML = `
+
+        <div class="standing-rank">
+          ${index + 1}
+        </div>
+
+
+        <div class="full-standing-team">
+
+          <div
+            class="full-standing-logo ${team.className}"
+          >
+
+            <img
+              src="${team.logo}"
+              alt="${team.name}"
+            >
+
+          </div>
+
+
+          <strong>
+            ${team.name}
+          </strong>
+
+        </div>
+
+
+        <b>
+          ${team.wins}
+        </b>
+
+
+        <b>
+          ${team.losses}
+        </b>
+
+
+        <b>
+          ${formatPD(team.pd)}
+        </b>
+
+      `;
+
+
+      container.appendChild(row);
+
+    });
+
+  }
+
+
+
+  /* BUILD TABLES */
+
+  buildStandings(
+    americanTeams,
+    "americanStandingsBody"
+  );
+
+
+  buildStandings(
+    nationalTeams,
+    "nationalStandingsBody"
+  );
+
+
+
+  /* BOTH / AMERICAN / NATIONAL */
+
+  const conferenceTabs =
+    document.querySelectorAll(
+      ".conference-tab"
+    );
+
+
+  const americanStandings =
+    document.getElementById(
+      "americanStandings"
+    );
+
+
+  const nationalStandings =
+    document.getElementById(
+      "nationalStandings"
+    );
+
+
+  conferenceTabs.forEach(tab => {
+
+    tab.addEventListener(
+      "click",
+      () => {
+
+        conferenceTabs.forEach(button => {
+          button.classList.remove("active");
+        });
+
+
+        tab.classList.add("active");
+
+
+        const view =
+          tab.dataset.view;
+
+
+        if (view === "both") {
+
+          americanStandings.hidden = false;
+
+          nationalStandings.hidden = false;
+
+        }
+
+
+        if (view === "american") {
+
+          americanStandings.hidden = false;
+
+          nationalStandings.hidden = true;
+
+        }
+
+
+        if (view === "national") {
+
+          americanStandings.hidden = true;
+
+          nationalStandings.hidden = false;
+
+        }
+
+      }
+    );
+
+  });
+
+
+
+  /* STANDINGS / PLAYOFF PICTURE */
+
+  const topTabs =
+    document.querySelectorAll(
+      ".standings-top-tab"
+    );
+
+
+  const standingsSection =
+    document.getElementById(
+      "fullStandingsSection"
+    );
+
+
+  const playoffSection =
+    document.getElementById(
+      "playoffSection"
+    );
+
+
+  topTabs.forEach(tab => {
+
+    tab.addEventListener(
+      "click",
+      () => {
+
+        topTabs.forEach(button => {
+          button.classList.remove("active");
+        });
+
+
+        tab.classList.add("active");
+
+
+        if (
+          tab.dataset.section ===
+          "standings"
+        ) {
+
+          standingsSection.hidden = false;
+
+          playoffSection.hidden = true;
+
+        }
+
+
+        if (
+          tab.dataset.section ===
+          "playoffs"
+        ) {
+
+          standingsSection.hidden = true;
+
+          playoffSection.hidden = false;
+
+        }
+
+      }
+    );
+
+  });
+
+</script>
+
+
+</body>
+</html>
