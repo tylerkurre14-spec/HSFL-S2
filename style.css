@@ -1,7 +1,3 @@
-/* =========================
-   HSFL S2 - HOME
-   ========================= */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,14 +6,11 @@
 
 :root {
   --red: #e3263f;
-  --red-dark: #c91f35;
-  --red-light: #fff0f2;
-
-  --black: #171717;
+  --dark: #171717;
   --gray: #777;
-  --light-gray: #f4f4f4;
-  --border: #dddddd;
-  --white: #ffffff;
+  --page: #f5f5f5;
+  --border: #dedede;
+  --white: #fff;
 }
 
 html {
@@ -26,469 +19,498 @@ html {
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: var(--light-gray);
-  color: var(--black);
-
-  padding-bottom: 125px;
-
-  -webkit-font-smoothing: antialiased;
+  background: var(--page);
+  color: var(--dark);
+  padding-bottom: 120px;
 }
-
-
-/* =========================
-   MAIN APP
-   ========================= */
 
 .app {
   width: 100%;
   max-width: 720px;
-  margin: 0 auto;
-  padding: 18px;
+  margin: auto;
+  padding: 14px;
 }
 
 
-/* =========================
-   HERO PLAYER IMAGE
-   ========================= */
+/* ================= HERO ================= */
 
 .hero {
   width: 100%;
   aspect-ratio: 16 / 9;
-  overflow: hidden;
-
   border-radius: 22px;
+  overflow: hidden;
+  margin-bottom: 18px;
   background: #111;
-
-  margin-bottom: 22px;
-
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .hero img {
   width: 100%;
   height: 100%;
-
-  display: block;
   object-fit: cover;
-  object-position: center;
+  display: block;
 }
 
 
-/* =========================
-   MAIN AFL STYLE CARDS
-   ========================= */
+/* ================= CARDS ================= */
 
 .card {
-  background: var(--white);
-
+  background: white;
   border: 1px solid var(--border);
   border-radius: 22px;
-
-  padding: 22px 18px;
-
-  margin-bottom: 22px;
-
-  box-shadow:
-    0 2px 5px rgba(0, 0, 0, 0.03);
-}
-
-
-/* =========================
-   CARD HEADINGS
-   ========================= */
-
-.card-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.card-title h2 {
-  font-size: 24px;
-  line-height: 1;
-  font-weight: 900;
-
-  letter-spacing: -0.7px;
-  color: var(--black);
-}
-
-
-/* RED DIVIDER */
-
-.red-line {
-  width: 100%;
-  height: 4px;
-
-  background: var(--red);
-
-  border-radius: 100px;
-
-  margin-top: 16px;
+  padding: 20px 16px;
   margin-bottom: 18px;
 }
 
+.card-title h2,
+.matchup-header h2 {
+  font-size: 23px;
+  font-weight: 900;
+  letter-spacing: -0.6px;
+}
 
-/* =========================
-   WEEK SELECTOR
-   ========================= */
-
-.week-row {
+.matchup-header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+}
 
+.season-label {
+  display: block;
+  color: #888;
+  font-size: 9px;
+  font-weight: 800;
+  margin-top: 5px;
+  letter-spacing: 0.8px;
+}
+
+.week-pill {
+  background: #ffe9ed;
+  color: var(--red);
+  border-radius: 999px;
+  padding: 8px 13px;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.red-line {
+  height: 4px;
+  width: 100%;
+  background: var(--red);
+  border-radius: 20px;
+  margin: 16px 0 18px;
+}
+
+
+/* ================= WEEK ================= */
+
+.week-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 17px;
 }
 
-.arrow {
-  width: 43px;
-  height: 43px;
-
+.week-arrow {
+  width: 42px;
+  height: 42px;
   border-radius: 12px;
-  border: 1px solid var(--border);
-
+  border: 1px solid #ddd;
   background: white;
-
-  font-size: 27px;
-  color: var(--black);
-
-  cursor: pointer;
+  font-size: 26px;
 }
 
-.week-info {
+.week-center {
   text-align: center;
-
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
 
-.week-info strong {
-  font-size: 16px;
+.week-center strong {
+  font-size: 15px;
   font-weight: 900;
 }
 
-.week-info span {
-  font-size: 11px;
-  color: var(--gray);
-  font-weight: 700;
-
-  letter-spacing: 0.5px;
+.week-center span {
+  font-size: 9px;
+  color: #888;
+  font-weight: 800;
 }
 
 
-/* =========================
-   MATCHUPS
-   ========================= */
+/* ================= GAMES ================= */
 
 .games {
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: 12px;
 }
 
 .game {
-  min-height: 92px;
-
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr 90px 1fr;
+  grid-template-columns: 1fr 58px 1fr;
+  min-height: 105px;
 
-  align-items: center;
-
-  border: 1px solid var(--border);
+  border: 1px solid #d9d9d9;
   border-radius: 17px;
+  overflow: hidden;
 
-  padding: 12px 10px;
-
-  background: white;
+  background: #fff;
 }
+
+
+/* TEAM SIDES */
 
 .team {
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 6px;
-
   min-width: 0;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 12px 8px;
 }
 
-.team-logo {
-  width: 39px;
-  height: 39px;
-
-  border-radius: 50%;
-
-  background: #f1f1f1;
-  border: 1px solid #dedede;
+.team-left {
+  justify-content: flex-start;
 }
 
-.team span {
-  font-size: 11px;
+.team-right {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+
+/* LOGOS */
+
+.team img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
+
+  filter: drop-shadow(0 3px 3px rgba(0,0,0,.25));
+}
+
+.team div {
+  min-width: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.team small {
+  display: block;
+  font-size: 7px;
   font-weight: 900;
-
-  text-align: center;
+  opacity: .75;
+  margin-bottom: 2px;
 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  width: 100%;
 }
 
+.team strong {
+  display: block;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1.05;
+
+  white-space: normal;
+}
+
+
+/* ================= CENTER VS ================= */
+
 .game-middle {
+  position: relative;
+  z-index: 5;
+
+  background: white;
+
   display: flex;
   flex-direction: column;
-
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
   gap: 6px;
 }
 
-.game-middle strong {
-  min-width: 46px;
+.game-middle::before,
+.game-middle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #eee;
+}
 
-  text-align: center;
+.game-middle::before {
+  left: 0;
+}
 
-  padding: 6px 9px;
+.game-middle::after {
+  right: 0;
+}
 
-  border: 2px solid var(--red);
-  border-radius: 9px;
-
+.vs {
   color: var(--red);
+  border: 2px solid var(--red);
+  border-radius: 8px;
 
-  font-size: 13px;
-  font-weight: 900;
-}
+  padding: 6px 8px;
 
-.game-middle span {
-  font-size: 8px;
-
-  font-weight: 800;
-
-  color: #999;
-
-  letter-spacing: 0.3px;
-}
-
-
-/* =========================
-   DROPDOWN
-   ========================= */
-
-.dropdown {
-  width: 100%;
-  height: 47px;
-
-  background: white;
-
-  border: 1px solid var(--border);
-  border-radius: 12px;
-
-  padding: 0 15px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  font-size: 12px;
-  font-weight: 900;
-
-  color: var(--black);
-
-  margin-bottom: 15px;
-}
-
-
-/* =========================
-   STAT LEADERS
-   ========================= */
-
-.leader-table {
-  width: 100%;
-
-  border: 1px solid var(--border);
-  border-radius: 15px;
-
-  overflow: hidden;
-
-  margin-bottom: 16px;
-}
-
-.table-head {
-  display: grid;
-  grid-template-columns: 1fr 70px 65px;
-
-  padding: 11px 13px;
-
-  background: #f6f6f6;
-
-  border-bottom: 1px solid var(--border);
-}
-
-.table-head span {
-  font-size: 9px;
-  font-weight: 900;
-
-  color: #777;
-
-  letter-spacing: 0.4px;
-}
-
-.table-head span:nth-child(2),
-.table-head span:nth-child(3) {
-  text-align: center;
-}
-
-.empty-leaders {
-  min-height: 120px;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 7px;
-
-  text-align: center;
-}
-
-.empty-leaders strong {
-  font-size: 16px;
-  font-weight: 900;
-}
-
-.empty-leaders span {
-  font-size: 12px;
-  color: #888;
-}
-
-
-/* =========================
-   STANDINGS
-   ========================= */
-
-.standings-table {
-  border: 1px solid var(--border);
-  border-radius: 15px;
-
-  overflow: hidden;
-
-  margin-bottom: 16px;
-}
-
-.standings-head,
-.standing-row {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    35px
-    35px
-    45px;
-
-  align-items: center;
-}
-
-.standings-head {
-  min-height: 38px;
-
-  padding: 0 12px;
-
-  background: #f6f6f6;
-
-  border-bottom: 1px solid var(--border);
-}
-
-.standings-head span {
-  font-size: 9px;
-  font-weight: 900;
-
-  color: #777;
-}
-
-.standings-head span:not(:first-child) {
-  text-align: center;
-}
-
-.standing-row {
-  min-height: 57px;
-
-  padding: 0 12px;
-
-  border-bottom: 1px solid #eeeeee;
-}
-
-.standing-row:last-child {
-  border-bottom: none;
-}
-
-.standing-row strong {
   font-size: 11px;
   font-weight: 900;
-
-  padding-right: 5px;
 }
 
-.standing-row span {
-  text-align: center;
-
-  font-size: 12px;
-  font-weight: 800;
+.game-middle small {
+  font-size: 6px;
+  color: #999;
+  font-weight: 900;
 }
 
 
-/* =========================
-   RED BUTTONS
-   ========================= */
+/* =================================
+   TEAM COLOR BACKGROUNDS
+   ================================= */
+
+
+/* SARALAND */
+
+.saraland-bg {
+  color: white;
+  background:
+    linear-gradient(110deg, #79000c 0%, #bd0019 65%, #e3263f 100%);
+}
+
+
+/* MCKINNEY */
+
+.mckinney-bg {
+  color: white;
+  background:
+    linear-gradient(110deg, #132d59 0%, #174c8c 65%, #d5a51d 140%);
+}
+
+
+/* IMG */
+
+.img-bg {
+  color: white;
+  background:
+    linear-gradient(110deg, #041b38 0%, #064b86 65%, #078bd1 120%);
+}
+
+
+/* BUFORD */
+
+.buford-bg {
+  color: white;
+  background:
+    linear-gradient(110deg, #09281d 0%, #086039 70%, #13a260 120%);
+}
+
+
+/* AUBURN */
+
+.auburn-bg {
+  color: white;
+  background:
+    linear-gradient(110deg, #051b38 0%, #0c3767 70%, #185b9d 120%);
+}
+
+
+/* BOSCO */
+
+.bosco-bg {
+  color: white;
+  background:
+    linear-gradient(110deg, #071c3e 0%, #173b70 70%, #d5b253 150%);
+}
+
+
+/* ST JAMES */
+
+.stjames-bg {
+  color: white;
+  background:
+    linear-gradient(110deg, #08182f 0%, #163b70 70%, #d6dce5 150%);
+}
+
+
+/* NORLAND */
+
+.norland-bg {
+  color: white;
+  background:
+    linear-gradient(110deg, #36000d 0%, #7b1229 70%, #c69b37 140%);
+}
+
+
+/* PARKER */
+
+.parker-bg {
+  color: white;
+  background:
+    linear-gradient(110deg, #171717 0%, #292929 65%, #8b6a17 140%);
+}
+
+
+/* ST FRANCES */
+
+.stfrances-bg {
+  color: white;
+  background:
+    linear-gradient(110deg, #131313 0%, #292929 70%, #d2a52c 140%);
+}
+
+
+/* GUYER */
+
+.guyer-bg {
+  color: white;
+  background:
+    linear-gradient(110deg, #32124c 0%, #672c8a 70%, #9d67c4 120%);
+}
+
+
+/* CENTENNIAL */
+
+.centennial-bg {
+  color: white;
+  background:
+    linear-gradient(110deg, #101010 0%, #323232 70%, #777 130%);
+}
+
+
+/* CORNER CANYON */
+
+.chargers-bg {
+  color: white;
+  background:
+    linear-gradient(110deg, #062450 0%, #0759a4 70%, #f0c52d 145%);
+}
+
+
+/* DUTCH FORK */
+
+.silverfoxes-bg {
+  color: white;
+  background:
+    linear-gradient(110deg, #1a1d21 0%, #555c65 70%, #c9cdd1 140%);
+}
+
+
+/* ================= GOTW ================= */
+
+.gotw-label {
+  margin-top: 7px;
+  margin-bottom: -4px;
+
+  font-size: 9px;
+  font-weight: 900;
+
+  color: var(--red);
+  letter-spacing: .7px;
+}
+
+.game-of-week {
+  border: 2px solid var(--red);
+
+  box-shadow:
+    0 5px 16px rgba(227, 38, 63, .13);
+}
+
+
+/* ================= BUTTONS ================= */
 
 .red-button {
   width: 100%;
   min-height: 48px;
 
-  background: var(--red);
-
-  border-radius: 12px;
+  margin-top: 17px;
+  padding: 0 17px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 17px;
-
+  background: var(--red);
   color: white;
+
+  border-radius: 12px;
 
   text-decoration: none;
 
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 900;
-
-  letter-spacing: 0.4px;
-
-  margin-top: 16px;
-
-  transition: 0.15s ease;
 }
 
 .red-button span {
-  font-size: 22px;
-  line-height: 1;
-}
-
-.red-button:active {
-  transform: scale(0.985);
-  background: var(--red-dark);
+  font-size: 21px;
 }
 
 
-/* =========================
-   BOTTOM AFL STYLE NAV
-   ========================= */
+/* ================= DROPDOWN ================= */
+
+.dropdown {
+  width: 100%;
+  height: 47px;
+
+  padding: 0 15px;
+
+  border: 1px solid #ddd;
+  border-radius: 12px;
+
+  background: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: 10px;
+  font-weight: 900;
+}
+
+
+/* ================= EMPTY SECTIONS ================= */
+
+.empty-section {
+  min-height: 130px;
+
+  margin-top: 13px;
+
+  border: 1px solid #e1e1e1;
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 20px;
+}
+
+.empty-section strong {
+  font-size: 15px;
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.empty-section span {
+  color: #888;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+
+/* ================= BOTTOM NAV ================= */
 
 .bottom-nav {
   position: fixed;
@@ -498,198 +520,70 @@ body {
 
   bottom: calc(14px + env(safe-area-inset-bottom));
 
-  z-index: 1000;
-
-  width: calc(100% - 34px);
+  width: calc(100% - 28px);
   max-width: 550px;
-
   height: 72px;
 
-  background: rgba(255, 255, 255, 0.97);
+  z-index: 1000;
 
-  border: 1px solid #dedede;
+  background: rgba(255,255,255,.97);
+
+  border: 1px solid #ddd;
   border-radius: 999px;
 
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5,1fr);
 
-  align-items: center;
+  padding: 5px 7px;
 
-  padding: 5px 8px;
-
-  box-shadow:
-    0 10px 35px rgba(0, 0, 0, 0.17);
+  box-shadow: 0 10px 30px rgba(0,0,0,.16);
 }
 
 .nav-item {
-  height: 58px;
+  border: 0;
+  background: transparent;
 
-  position: relative;
+  text-decoration: none;
+
+  color: #777;
 
   display: flex;
   flex-direction: column;
 
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
   gap: 4px;
 
-  border: none;
-  background: transparent;
-
-  color: #777;
-
-  text-decoration: none;
-
   font-family: Arial, Helvetica, sans-serif;
-
-  cursor: pointer;
 }
 
 .nav-icon {
-  height: 27px;
-  min-width: 27px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 23px;
-  line-height: 1;
-
-  position: relative;
-  z-index: 2;
+  font-size: 21px;
+  font-weight: 900;
 }
 
 .nav-item > span:last-child {
-  font-size: 8px;
+  font-size: 7px;
   font-weight: 900;
-
-  position: relative;
-  z-index: 2;
 }
-
-
-/* ACTIVE HOME BUTTON */
 
 .nav-item.active {
   color: var(--red);
 }
 
 .nav-item.active .nav-icon {
-  width: 38px;
-  height: 38px;
+  width: 37px;
+  height: 37px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: white;
 
   border-radius: 50%;
 
-  background: white;
+  margin-top: -13px;
 
-  box-shadow:
-    0 3px 13px rgba(0, 0, 0, 0.14);
-
-  margin-top: -14px;
-}
-
-
-/* =========================
-   MORE MENU
-   ========================= */
-
-.more-menu {
-  display: none;
-
-  position: fixed;
-
-  right: 22px;
-  bottom: calc(98px + env(safe-area-inset-bottom));
-
-  width: 190px;
-
-  background: white;
-
-  border: 1px solid var(--border);
-  border-radius: 17px;
-
-  padding: 8px;
-
-  z-index: 999;
-
-  box-shadow:
-    0 12px 35px rgba(0, 0, 0, 0.16);
-}
-
-.more-menu a {
-  display: block;
-
-  padding: 14px 12px;
-
-  border-radius: 10px;
-
-  color: var(--black);
-
-  text-decoration: none;
-
-  font-size: 11px;
-  font-weight: 900;
-}
-
-.more-menu a:active {
-  background: #f3f3f3;
-}
-
-
-/* =========================
-   PHONE ADJUSTMENTS
-   ========================= */
-
-@media (max-width: 480px) {
-
-  .app {
-    padding: 14px;
-  }
-
-  .hero {
-    border-radius: 20px;
-    margin-bottom: 18px;
-  }
-
-  .card {
-    border-radius: 20px;
-
-    padding: 20px 16px;
-
-    margin-bottom: 18px;
-  }
-
-  .card-title h2 {
-    font-size: 22px;
-  }
-
-  .game {
-    grid-template-columns: 1fr 76px 1fr;
-  }
-
-  .bottom-nav {
-    width: calc(100% - 28px);
-  }
-}
-
-
-/* =========================
-   DESKTOP
-   ========================= */
-
-@media (min-width: 800px) {
-
-  .app {
-    padding-top: 28px;
-  }
-
-  .hero {
-    border-radius: 25px;
-  }
-
-  .card {
-    padding: 27px;
-  }
-}
+  box-shadow: 
