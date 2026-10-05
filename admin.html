@@ -2,12 +2,18 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>HSFL Admin</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <style>
 
@@ -27,9 +33,9 @@
 
   --text: #202127;
   --muted: #8c8d93;
-  --dark: #1f2026;
 
-  --green: #299457;
+  --dark: #1f2026;
+  --green: #28945a;
 }
 
 body {
@@ -59,12 +65,13 @@ button {
 }
 
 
-/* ========================================
+/* ==========================================
    LOGIN
-======================================== */
+========================================== */
 
 .admin-lock {
   position: fixed;
+
   inset: 0;
 
   z-index: 99999;
@@ -78,9 +85,9 @@ button {
   background:
     linear-gradient(
       145deg,
-      #15161b 0%,
-      #22232a 50%,
-      #111216 100%
+      #15161b,
+      #22232a,
+      #111216
     );
 }
 
@@ -90,9 +97,9 @@ button {
 
   overflow: hidden;
 
-  border-radius: 26px;
-
   background: #fff;
+
+  border-radius: 26px;
 
   box-shadow:
     0 25px 70px
@@ -100,7 +107,7 @@ button {
 }
 
 .lock-top {
-  padding: 27px 21px;
+  padding: 28px 22px;
 
   color: white;
 
@@ -117,7 +124,7 @@ button {
   width: 48px;
   height: 48px;
 
-  margin-bottom: 18px;
+  margin-bottom: 17px;
 
   display: flex;
   align-items: center;
@@ -125,13 +132,13 @@ button {
 
   border-radius: 14px;
 
-  background: rgba(255,255,255,.17);
+  background: rgba(255,255,255,.16);
 
   font-size: 18px;
   font-weight: 900;
 }
 
-.lock-top small {
+.lock-top span {
   display: block;
 
   margin-bottom: 5px;
@@ -156,28 +163,20 @@ button {
 .lock-top p {
   margin: 8px 0 0;
 
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
 
-  line-height: 1.45;
+  line-height: 1.5;
 
   opacity: .85;
 }
 
 .lock-body {
-  padding: 19px;
-}
-
-.login-pane {
-  display: block;
-}
-
-.login-pane.hidden {
-  display: none;
+  padding: 20px;
 }
 
 .lock-field {
-  margin-bottom: 10px;
+  margin-bottom: 11px;
 }
 
 .lock-field label {
@@ -185,7 +184,7 @@ button {
 
   margin: 0 0 6px 2px;
 
-  color: #65666b;
+  color: #666;
 
   font-size: 8px;
   font-weight: 900;
@@ -195,17 +194,17 @@ button {
 
 .lock-field input {
   width: 100%;
-  height: 50px;
+  height: 51px;
 
-  padding: 0 13px;
-
-  border: 1.5px solid #d8d8db;
-  border-radius: 12px;
+  padding: 0 14px;
 
   outline: none;
 
+  border: 1.5px solid #d9d9dc;
+  border-radius: 12px;
+
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 850;
 }
 
 .lock-field input:focus {
@@ -214,9 +213,9 @@ button {
 
 .lock-button {
   width: 100%;
-  height: 49px;
+  height: 50px;
 
-  margin-top: 5px;
+  margin-top: 4px;
 
   border: 0;
   border-radius: 12px;
@@ -228,7 +227,7 @@ button {
   font-weight: 900;
 }
 
-.lock-secondary {
+.lock-site-button {
   width: 100%;
   height: 44px;
 
@@ -238,50 +237,35 @@ button {
   border-radius: 12px;
 
   background: #eeeeef;
-  color: #28292e;
+  color: #292a30;
 
   font-size: 9px;
   font-weight: 900;
 }
 
-.lock-message {
+.lock-error {
   min-height: 18px;
 
   margin-top: 10px;
 
+  color: #c42036;
+
   text-align: center;
 
-  color: #be2035;
-
   font-size: 9px;
-  font-weight: 800;
+  font-weight: 850;
 
   line-height: 1.4;
 }
 
-.bootstrap-note {
-  padding: 11px;
 
-  margin-bottom: 12px;
-
-  border-radius: 11px;
-
-  background: #fff0f2;
-  color: #a31c30;
-
-  font-size: 9px;
-  font-weight: 800;
-
-  line-height: 1.5;
-}
-
-
-/* ========================================
+/* ==========================================
    LOADING
-======================================== */
+========================================== */
 
 .loading-overlay {
   position: fixed;
+
   inset: 0;
 
   z-index: 99998;
@@ -290,7 +274,7 @@ button {
   align-items: center;
   justify-content: center;
 
-  background: rgba(244,245,247,.88);
+  background: rgba(244,245,247,.9);
 }
 
 .loading-overlay.show {
@@ -298,24 +282,24 @@ button {
 }
 
 .loading-box {
-  padding: 17px 22px;
+  padding: 16px 22px;
 
-  border-radius: 16px;
+  border-radius: 15px;
 
   background: white;
 
   box-shadow:
     0 10px 30px
-    rgba(0,0,0,.12);
+    rgba(0,0,0,.14);
 
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 900;
 }
 
 
-/* ========================================
+/* ==========================================
    APP
-======================================== */
+========================================== */
 
 #adminShell {
   display: none;
@@ -331,14 +315,14 @@ button {
 }
 
 
-/* ========================================
+/* ==========================================
    HEADER
-======================================== */
+========================================== */
 
 .admin-header {
   overflow: hidden;
 
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 
   border-radius: 23px;
 
@@ -347,9 +331,9 @@ button {
   background:
     linear-gradient(
       90deg,
-      var(--red-dark) 0%,
-      var(--red-mid) 48%,
-      var(--red-light) 100%
+      var(--red-dark),
+      var(--red-mid),
+      var(--red-light)
     );
 }
 
@@ -370,7 +354,7 @@ button {
 
   margin-bottom: 4px;
 
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 900;
 
   letter-spacing: 1px;
@@ -382,15 +366,13 @@ button {
   margin: 0;
 
   font-size: 26px;
-  line-height: 1;
-
   font-weight: 900;
 
   letter-spacing: -1px;
 }
 
 .admin-header p {
-  margin: 8px 0 0;
+  margin: 7px 0 0;
 
   font-size: 10px;
   font-weight: 700;
@@ -401,9 +383,9 @@ button {
 .logout-button {
   flex: 0 0 auto;
 
-  height: 37px;
+  height: 36px;
 
-  padding: 0 12px;
+  padding: 0 11px;
 
   border: 1px solid rgba(255,255,255,.3);
   border-radius: 999px;
@@ -411,14 +393,14 @@ button {
   background: rgba(255,255,255,.13);
   color: white;
 
-  font-size: 8px;
+  font-size: 7px;
   font-weight: 900;
 }
 
 
-/* ========================================
-   LIVE INDICATOR
-======================================== */
+/* ==========================================
+   LIVE STATUS
+========================================== */
 
 .live-banner {
   margin-bottom: 12px;
@@ -430,14 +412,13 @@ button {
 
   gap: 8px;
 
-  border: 1px solid #cde8d7;
-  border-radius: 13px;
+  border: 1px solid #cce7d5;
+  border-radius: 12px;
 
   background: #edf9f1;
+  color: #27754a;
 
-  color: #267548;
-
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 900;
 }
 
@@ -449,13 +430,13 @@ button {
 
   border-radius: 50%;
 
-  background: #2ba35e;
+  background: #2ca460;
 }
 
 
-/* ========================================
+/* ==========================================
    NAV
-======================================== */
+========================================== */
 
 .admin-nav-wrap {
   width: 100%;
@@ -502,9 +483,9 @@ button {
 }
 
 
-/* ========================================
+/* ==========================================
    SECTIONS
-======================================== */
+========================================== */
 
 .admin-section {
   display: none;
@@ -541,9 +522,9 @@ button {
 }
 
 
-/* ========================================
+/* ==========================================
    CARDS
-======================================== */
+========================================== */
 
 .admin-card {
   width: 100%;
@@ -552,10 +533,10 @@ button {
 
   padding: 14px;
 
+  background: white;
+
   border: 1px solid var(--border);
   border-radius: 17px;
-
-  background: white;
 }
 
 .admin-card-title {
@@ -581,9 +562,9 @@ button {
 }
 
 
-/* ========================================
+/* ==========================================
    DASHBOARD
-======================================== */
+========================================== */
 
 .dashboard-grid {
   display: grid;
@@ -595,7 +576,7 @@ button {
 }
 
 .dashboard-stat {
-  min-height: 94px;
+  min-height: 93px;
 
   padding: 14px;
 
@@ -603,10 +584,10 @@ button {
   flex-direction: column;
   justify-content: space-between;
 
+  background: white;
+
   border: 1px solid var(--border);
   border-radius: 17px;
-
-  background: white;
 }
 
 .dashboard-stat span {
@@ -629,15 +610,15 @@ button {
 }
 
 
-/* ========================================
+/* ==========================================
    FORMS
-======================================== */
+========================================== */
 
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2,1fr);
 
-  gap: 9px;
+  gap: 8px;
 }
 
 .field {
@@ -668,10 +649,10 @@ button {
 
   padding: 0 11px;
 
+  outline: none;
+
   border: 1px solid #d6d6d9;
   border-radius: 10px;
-
-  outline: none;
 
   background: white;
   color: var(--text);
@@ -686,9 +667,9 @@ button {
 }
 
 
-/* ========================================
+/* ==========================================
    BUTTONS
-======================================== */
+========================================== */
 
 .primary-button,
 .secondary-button,
@@ -715,7 +696,7 @@ button {
 }
 
 .danger-button {
-  background: #ffe7ea;
+  background: #ffe6e9;
   color: #bd2035;
 }
 
@@ -731,19 +712,19 @@ button {
 }
 
 
-/* ========================================
-   GAME ROWS
-======================================== */
+/* ==========================================
+   GAMES
+========================================== */
 
 .game-admin-row {
   margin-bottom: 9px;
 
   overflow: hidden;
 
+  background: white;
+
   border: 1px solid var(--border);
   border-radius: 14px;
-
-  background: white;
 }
 
 .game-admin-top {
@@ -796,11 +777,12 @@ button {
 .score-team-name {
   min-width: 0;
 
+  overflow: hidden;
+
   font-size: 9px;
   font-weight: 900;
 
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 
@@ -859,9 +841,9 @@ button {
 }
 
 
-/* ========================================
+/* ==========================================
    PLAYERS
-======================================== */
+========================================== */
 
 .player-list {
   display: flex;
@@ -933,9 +915,9 @@ button {
 }
 
 
-/* ========================================
+/* ==========================================
    BULK STATS
-======================================== */
+========================================== */
 
 .bulk-toolbar {
   display: grid;
@@ -965,10 +947,10 @@ button {
 
   padding: 0 7px;
 
-  border-bottom: 1px solid #ddd;
-
   background: #f6f6f7;
   color: #8f9094;
+
+  border-bottom: 1px solid #ddd;
 
   font-size: 7px;
   font-weight: 900;
@@ -1019,19 +1001,19 @@ button {
 }
 
 
-/* ========================================
+/* ==========================================
    TEAMS
-======================================== */
+========================================== */
 
 .team-edit-row {
   margin-bottom: 8px;
 
   padding: 10px;
 
+  background: white;
+
   border: 1px solid var(--border);
   border-radius: 12px;
-
-  background: white;
 }
 
 .team-edit-name {
@@ -1070,9 +1052,9 @@ button {
 }
 
 
-/* ========================================
+/* ==========================================
    NOTICE
-======================================== */
+========================================== */
 
 .notice {
   margin-bottom: 11px;
@@ -1091,9 +1073,9 @@ button {
 }
 
 
-/* ========================================
+/* ==========================================
    TOAST
-======================================== */
+========================================== */
 
 .toast {
   position: fixed;
@@ -1133,9 +1115,9 @@ button {
 }
 
 
-/* ========================================
+/* ==========================================
    BOTTOM BAR
-======================================== */
+========================================== */
 
 .admin-bottom {
   position: fixed;
@@ -1164,10 +1146,10 @@ button {
 
   gap: 7px;
 
+  background: rgba(255,255,255,.97);
+
   border: 1px solid #ddd;
   border-radius: 999px;
-
-  background: rgba(255,255,255,.97);
 
   box-shadow:
     0 10px 30px
@@ -1193,9 +1175,9 @@ button {
 }
 
 
-/* ========================================
+/* ==========================================
    PHONE
-======================================== */
+========================================== */
 
 @media (max-width:430px) {
 
@@ -1218,19 +1200,24 @@ button {
 }
 
 </style>
+
 </head>
 
 
 <body>
 
 
-<!-- ========================================
-     LOGIN SCREEN
-======================================== -->
+<!-- ==========================================
+     SHARED ADMIN LOGIN
+========================================== -->
 
-<div class="admin-lock" id="adminLock">
+<div
+  class="admin-lock"
+  id="adminLock"
+>
 
   <div class="lock-card">
+
 
     <div class="lock-top">
 
@@ -1238,16 +1225,17 @@ button {
         H
       </div>
 
-      <small>
+      <span>
         HSFL SEASON 2
-      </small>
+      </span>
 
-      <h1 id="loginTitle">
+      <h1>
         Admin Login
       </h1>
 
-      <p id="loginDescription">
-        Sign in to the live HSFL league control panel.
+      <p>
+        Authorized HSFL staff only.
+        Sign in to manage the live league.
       </p>
 
     </div>
@@ -1256,129 +1244,60 @@ button {
     <div class="lock-body">
 
 
-      <!-- LOGIN / SIGNUP -->
+      <div class="lock-field">
 
-      <div
-        class="login-pane"
-        id="accountPane"
-      >
+        <label>
+          Username
+        </label>
 
-        <div class="lock-field">
-
-          <label>
-            Email
-          </label>
-
-          <input
-            id="adminEmail"
-            type="email"
-            autocomplete="email"
-            placeholder="your@email.com"
-          >
-
-        </div>
-
-
-        <div class="lock-field">
-
-          <label>
-            Password
-          </label>
-
-          <input
-            id="adminPassword"
-            type="password"
-            autocomplete="current-password"
-            placeholder="Password"
-          >
-
-        </div>
-
-
-        <button
-          class="lock-button"
-          id="signInButton"
-          type="button"
+        <input
+          id="adminUsername"
+          autocomplete="username"
+          value="admin2027"
         >
-          SIGN IN
-        </button>
-
-
-        <button
-          class="lock-secondary"
-          id="createAccountButton"
-          type="button"
-        >
-          CREATE FIRST ADMIN ACCOUNT
-        </button>
-
-
-        <button
-          class="lock-secondary"
-          type="button"
-          onclick="window.location.href='index.html'"
-        >
-          BACK TO WEBSITE
-        </button>
 
       </div>
 
 
+      <div class="lock-field">
 
-      <!-- FIRST ADMIN ACTIVATION -->
+        <label>
+          Password
+        </label>
 
-      <div
-        class="login-pane hidden"
-        id="bootstrapPane"
-      >
-
-        <div class="bootstrap-note">
-          Your account is signed in, but it still
-          needs permission to control HSFL.
-          Enter the one-time commissioner activation
-          code below.
-        </div>
-
-
-        <div class="lock-field">
-
-          <label>
-            One-Time Activation Code
-          </label>
-
-          <input
-            id="bootstrapCode"
-            autocomplete="off"
-            placeholder="HSFL-••••-••••"
-          >
-
-        </div>
-
-
-        <button
-          class="lock-button"
-          id="activateAdminButton"
-          type="button"
+        <input
+          id="adminPassword"
+          type="password"
+          autocomplete="current-password"
+          placeholder="Enter password"
         >
-          ACTIVATE ADMIN ACCESS
-        </button>
-
-
-        <button
-          class="lock-secondary"
-          id="bootstrapLogoutButton"
-          type="button"
-        >
-          SIGN OUT
-        </button>
 
       </div>
 
 
+      <button
+        class="lock-button"
+        id="loginButton"
+        type="button"
+      >
+        SIGN IN
+      </button>
+
+
+      <button
+        class="lock-site-button"
+        type="button"
+        onclick="window.location.href='index.html'"
+      >
+        BACK TO WEBSITE
+      </button>
+
+
       <div
-        class="lock-message"
-        id="loginMessage"
+        class="lock-error"
+        id="loginError"
       ></div>
+
 
     </div>
 
@@ -1388,9 +1307,9 @@ button {
 
 
 
-<!-- ========================================
+<!-- ==========================================
      LOADING
-======================================== -->
+========================================== -->
 
 <div
   class="loading-overlay"
@@ -1405,11 +1324,12 @@ button {
 
 
 
-<!-- ========================================
-     ADMIN APP
-======================================== -->
+<!-- ==========================================
+     ADMIN
+========================================== -->
 
 <div id="adminShell">
+
 
 <main class="admin-app">
 
@@ -1419,6 +1339,7 @@ button {
   <div class="admin-header-inner">
 
     <div class="admin-header-row">
+
 
       <div>
 
@@ -1431,7 +1352,7 @@ button {
         </h1>
 
         <p>
-          Live league management.
+          Manage the live HSFL league.
         </p>
 
       </div>
@@ -1445,6 +1366,7 @@ button {
         SIGN OUT
       </button>
 
+
     </div>
 
   </div>
@@ -1457,15 +1379,15 @@ button {
 
   <div class="live-dot"></div>
 
-  LIVE DATABASE CONNECTED — SAVED CHANGES ARE SHARED
+  LIVE DATABASE — SAVED CHANGES ARE SHARED
 
 </div>
 
 
 
-<!-- ========================================
+<!-- ==========================================
      NAV
-======================================== -->
+========================================== -->
 
 <div class="admin-nav-wrap">
 
@@ -1533,9 +1455,9 @@ button {
 
 
 
-<!-- ========================================
+<!-- ==========================================
      DASHBOARD
-======================================== -->
+========================================== -->
 
 <section
   class="admin-section active"
@@ -1611,6 +1533,7 @@ button {
 </div>
 
 
+
 <div class="admin-card">
 
   <div class="admin-card-title">
@@ -1664,9 +1587,9 @@ button {
 
 
 
-<!-- ========================================
+<!-- ==========================================
      GAMES
-======================================== -->
+========================================== -->
 
 <section
   class="admin-section"
@@ -1680,7 +1603,7 @@ button {
   </h2>
 
   <span>
-    LIVE SCORES
+    LIVE RESULTS
   </span>
 
 </div>
@@ -1715,9 +1638,9 @@ button {
 
 
 
-<!-- ========================================
+<!-- ==========================================
      PLAYERS
-======================================== -->
+========================================== -->
 
 <section
   class="admin-section"
@@ -1759,6 +1682,7 @@ button {
 
 
   <div class="form-grid">
+
 
     <div class="field">
 
@@ -1802,7 +1726,7 @@ button {
     <div class="field">
 
       <label>
-        Position / Category
+        Position
       </label>
 
       <select id="playerPosition">
@@ -1854,16 +1778,14 @@ button {
 
         <button
           class="secondary-button"
-          id="cancelPlayerEdit"
-          type="button"
+          id="clearPlayerButton"
         >
           CLEAR
         </button>
 
         <button
           class="primary-button"
-          id="addPlayerButton"
-          type="button"
+          id="savePlayerButton"
         >
           ADD PLAYER
         </button>
@@ -1872,9 +1794,11 @@ button {
 
     </div>
 
+
   </div>
 
 </div>
+
 
 
 <div class="admin-card">
@@ -1903,9 +1827,9 @@ button {
 
 
 
-<!-- ========================================
+<!-- ==========================================
      STATS
-======================================== -->
+========================================== -->
 
 <section
   class="admin-section"
@@ -1926,15 +1850,17 @@ button {
 
 
 <div class="notice">
-  Pick the game, team and category.
-  Every player on that team appears together.
-  Enter the whole team's stats and save once.
+  Pick a game, team and category.
+  Every player on that team appears together,
+  so you can enter everybody at once.
 </div>
 
 
 <div class="admin-card">
 
+
 <div class="bulk-toolbar">
+
 
   <div class="field">
 
@@ -2017,7 +1943,9 @@ button {
 
   </div>
 
+
 </div>
+
 
 
 <div class="bulk-table-wrap">
@@ -2031,6 +1959,7 @@ button {
 </table>
 
 </div>
+
 
 
 <div
@@ -2054,15 +1983,16 @@ button {
 
 </div>
 
+
 </div>
 
 </section>
 
 
 
-<!-- ========================================
+<!-- ==========================================
      TEAMS
-======================================== -->
+========================================== -->
 
 <section
   class="admin-section"
@@ -2083,9 +2013,9 @@ button {
 
 
 <div class="notice">
-  Conference changes are live. W, L and PD are optional
-  manual overrides. Leave all 3 blank to calculate the
-  team's record automatically from final scores.
+  Leave W, L and PD blank to calculate records
+  automatically from final games.
+  Enter numbers only when you want to manually override them.
 </div>
 
 
@@ -2103,9 +2033,9 @@ button {
 
 
 
-<!-- ========================================
+<!-- ==========================================
      SCHEDULE
-======================================== -->
+========================================== -->
 
 <section
   class="admin-section"
@@ -2127,7 +2057,9 @@ button {
 
 <div class="admin-card">
 
+
 <div class="form-grid">
+
 
   <div class="field">
 
@@ -2199,6 +2131,7 @@ button {
 
   </div>
 
+
 </div>
 
 </div>
@@ -2213,9 +2146,9 @@ button {
 
 
 
-<!-- ========================================
+<!-- ==========================================
      CHAMPIONS
-======================================== -->
+========================================== -->
 
 <section
   class="admin-section"
@@ -2237,6 +2170,7 @@ button {
 
 <div class="admin-card">
 
+
   <div class="admin-card-title">
 
     <strong>
@@ -2251,6 +2185,7 @@ button {
 
 
   <div class="form-grid">
+
 
     <div class="field">
 
@@ -2290,9 +2225,11 @@ button {
 
     </div>
 
+
   </div>
 
 </div>
+
 
 
 <div class="admin-card">
@@ -2321,9 +2258,9 @@ button {
 
 
 
-<!-- ========================================
+<!-- ==========================================
      SETTINGS
-======================================== -->
+========================================== -->
 
 <section
   class="admin-section"
@@ -2345,7 +2282,9 @@ button {
 
 <div class="admin-card">
 
+
 <div class="form-grid">
+
 
   <div class="field full">
 
@@ -2399,6 +2338,7 @@ button {
 
   </div>
 
+
 </div>
 
 </div>
@@ -2410,9 +2350,9 @@ button {
 
 
 
-<!-- ========================================
+<!-- ==========================================
      BOTTOM BAR
-======================================== -->
+========================================== -->
 
 <div class="admin-bottom">
 
@@ -2423,6 +2363,7 @@ button {
     VIEW WEBSITE
   </button>
 
+
   <button
     class="save-everything"
     id="saveEverythingButton"
@@ -2431,6 +2372,7 @@ button {
   </button>
 
 </div>
+
 
 </div>
 
@@ -2447,12 +2389,13 @@ button {
 
 <script>
 
-/* ========================================
-   SUPABASE
-======================================== */
+/* ==========================================
+   SUPABASE CONNECTION
+========================================== */
 
 const SUPABASE_URL =
   "https://btjpzkgblmuetsomnvpw.supabase.co";
+
 
 const SUPABASE_KEY =
   "sb_publishable_9FmVKyCrGSsBbu3LIni6eQ_U95Fl0Vj";
@@ -2466,9 +2409,26 @@ const sb =
 
 
 
-/* ========================================
+/* ==========================================
+   ADMIN SESSION
+========================================== */
+
+const ADMIN_TOKEN_KEY =
+  "hsfl_shared_admin_session_v1";
+
+
+let adminToken =
+  sessionStorage.getItem(
+    ADMIN_TOKEN_KEY
+  )
+  ||
+  "";
+
+
+
+/* ==========================================
    DATA
-======================================== */
+========================================== */
 
 let data = {
 
@@ -2606,9 +2566,9 @@ const positionLabels = {
 
 
 
-/* ========================================
+/* ==========================================
    ELEMENTS
-======================================== */
+========================================== */
 
 const adminLock =
   document.getElementById(
@@ -2628,30 +2588,20 @@ const loadingOverlay =
   );
 
 
-const loginMessage =
+const loginError =
   document.getElementById(
-    "loginMessage"
-  );
-
-
-const accountPane =
-  document.getElementById(
-    "accountPane"
-  );
-
-
-const bootstrapPane =
-  document.getElementById(
-    "bootstrapPane"
+    "loginError"
   );
 
 
 
-/* ========================================
+/* ==========================================
    HELPERS
-======================================== */
+========================================== */
 
-function showLoading(show = true) {
+function showLoading(
+  show = true
+) {
 
   loadingOverlay.classList.toggle(
     "show",
@@ -2661,7 +2611,10 @@ function showLoading(show = true) {
 }
 
 
-function showToast(message) {
+
+function showToast(
+  message
+) {
 
   const toast =
     document.getElementById(
@@ -2692,34 +2645,13 @@ function showToast(message) {
 }
 
 
-function showLoginMessage(
-  message,
-  good = false
+
+function normalizeError(
+  error
 ) {
 
-  loginMessage.textContent =
-    message;
-
-
-  loginMessage.style.color =
-    good
-      ? "#267548"
-      : "#be2035";
-
-}
-
-
-function normalizeError(error) {
-
-  if (!error) {
-    return "Something went wrong.";
-  }
-
-
   return (
-    error.message
-    ||
-    error.error_description
+    error?.message
     ||
     "Something went wrong."
   );
@@ -2728,157 +2660,24 @@ function normalizeError(error) {
 
 
 
-/* ========================================
-   AUTH
-======================================== */
-
-async function checkAdminAccess() {
-
-  const {
-    data:
-      {
-        session
-      }
-  } =
-    await sb.auth.getSession();
-
-
-  if (
-    !session
-  ) {
-
-    showAccountLogin();
-
-    return;
-
-  }
-
-
-  const {
-    data: adminRow,
-    error
-  } =
-    await sb
-      .from(
-        "hsfl_admin_users"
-      )
-      .select(
-        "user_id"
-      )
-      .eq(
-        "user_id",
-        session.user.id
-      )
-      .maybeSingle();
-
-
-  if (
-    error
-  ) {
-
-    showLoginMessage(
-      normalizeError(error)
-    );
-
-    showAccountLogin();
-
-    return;
-
-  }
-
-
-  if (
-    adminRow
-  ) {
-
-    await openAdmin();
-
-  }
-
-  else {
-
-    showBootstrap();
-
-  }
-
-}
-
-
-
-function showAccountLogin() {
-
-  adminLock.style.display =
-    "flex";
-
+function showLogin() {
 
   adminShell.style.display =
     "none";
 
 
-  accountPane.classList.remove(
-    "hidden"
-  );
-
-
-  bootstrapPane.classList.add(
-    "hidden"
-  );
-
-
-  document.getElementById(
-    "loginTitle"
-  ).textContent =
-    "Admin Login";
-
-
-  document.getElementById(
-    "loginDescription"
-  ).textContent =
-    "Sign in to the live HSFL league control panel.";
-
-}
-
-
-
-function showBootstrap() {
-
   adminLock.style.display =
     "flex";
 
 
-  adminShell.style.display =
-    "none";
-
-
-  accountPane.classList.add(
-    "hidden"
-  );
-
-
-  bootstrapPane.classList.remove(
-    "hidden"
-  );
-
-
-  document.getElementById(
-    "loginTitle"
-  ).textContent =
-    "Activate Admin";
-
-
-  document.getElementById(
-    "loginDescription"
-  ).textContent =
-    "Finish setting up the first HSFL commissioner account.";
-
-
-  showLoginMessage("");
+  loginError.textContent =
+    "";
 
 }
 
 
 
-async function openAdmin() {
+async function showAdmin() {
 
   adminLock.style.display =
     "none";
@@ -2888,316 +2687,263 @@ async function openAdmin() {
     "block";
 
 
-  showLoginMessage("");
-
-
   await loadAllData();
 
 }
 
 
 
-/* ========================================
-   SIGN IN
-======================================== */
+/* ==========================================
+   ADMIN ACTION
+========================================== */
 
-document.getElementById(
-  "signInButton"
-)
-.addEventListener(
-  "click",
-  async () => {
+async function adminAction(
+  action,
+  payload = {}
+) {
 
-    const email =
-      document.getElementById(
-        "adminEmail"
-      )
-      .value
-      .trim();
+  if (
+    !adminToken
+  ) {
 
-
-    const password =
-      document.getElementById(
-        "adminPassword"
-      )
-      .value;
-
-
-    if (
-      !email
-      ||
-      !password
-    ) {
-
-      showLoginMessage(
-        "Enter your email and password."
-      );
-
-      return;
-
-    }
-
-
-    showLoading(true);
-
-
-    const {
-      error
-    } =
-      await sb.auth
-        .signInWithPassword({
-
-          email,
-          password
-
-        });
-
-
-    showLoading(false);
-
-
-    if (
-      error
-    ) {
-
-      showLoginMessage(
-        normalizeError(error)
-      );
-
-      return;
-
-    }
-
-
-    await checkAdminAccess();
+    throw new Error(
+      "Sign in again."
+    );
 
   }
-);
 
 
+  const {
+    data: result,
+    error
+  } =
+    await sb.rpc(
+      "hsfl_admin_action",
+      {
 
-/* ========================================
-   CREATE ACCOUNT
-======================================== */
+        p_token:
+          adminToken,
 
-document.getElementById(
-  "createAccountButton"
-)
-.addEventListener(
-  "click",
-  async () => {
+        p_action:
+          action,
 
-    const email =
-      document.getElementById(
-        "adminEmail"
-      )
-      .value
-      .trim();
+        p_payload:
+          payload
 
-
-    const password =
-      document.getElementById(
-        "adminPassword"
-      )
-      .value;
-
-
-    if (
-      !email
-      ||
-      !password
-    ) {
-
-      showLoginMessage(
-        "Enter an email and password first."
-      );
-
-      return;
-
-    }
-
-
-    if (
-      password.length < 6
-    ) {
-
-      showLoginMessage(
-        "Use a password with at least 6 characters."
-      );
-
-      return;
-
-    }
-
-
-    showLoading(true);
-
-
-    const {
-      data: signUpData,
-      error
-    } =
-      await sb.auth
-        .signUp({
-
-          email,
-          password
-
-        });
-
-
-    showLoading(false);
-
-
-    if (
-      error
-    ) {
-
-      showLoginMessage(
-        normalizeError(error)
-      );
-
-      return;
-
-    }
-
-
-    if (
-      signUpData.session
-    ) {
-
-      showLoginMessage(
-        "Account created.",
-        true
-      );
-
-
-      await checkAdminAccess();
-
-    }
-
-    else {
-
-      showLoginMessage(
-        "Account created. Check your email to confirm it, then come back and sign in.",
-        true
-      );
-
-    }
-
-  }
-);
-
-
-
-/* ========================================
-   FIRST ADMIN ACTIVATION
-======================================== */
-
-document.getElementById(
-  "activateAdminButton"
-)
-.addEventListener(
-  "click",
-  async () => {
-
-    const code =
-      document.getElementById(
-        "bootstrapCode"
-      )
-      .value
-      .trim();
-
-
-    if (
-      !code
-    ) {
-
-      showLoginMessage(
-        "Enter the activation code."
-      );
-
-      return;
-
-    }
-
-
-    showLoading(true);
-
-
-    const {
-      data: claimed,
-      error
-    } =
-      await sb.rpc(
-        "hsfl_claim_first_admin",
-        {
-          bootstrap_code:
-            code
-        }
-      );
-
-
-    showLoading(false);
-
-
-    if (
-      error
-    ) {
-
-      showLoginMessage(
-        normalizeError(error)
-      );
-
-      return;
-
-    }
-
-
-    if (
-      claimed !== true
-    ) {
-
-      showLoginMessage(
-        "The first admin has already been activated."
-      );
-
-      return;
-
-    }
-
-
-    showLoginMessage(
-      "Admin activated.",
-      true
+      }
     );
 
 
-    await checkAdminAccess();
+  if (
+    error
+  ) {
+
+    const message =
+      normalizeError(
+        error
+      );
+
+
+    if (
+      message
+      .toLowerCase()
+      .includes(
+        "session expired"
+      )
+    ) {
+
+      sessionStorage.removeItem(
+        ADMIN_TOKEN_KEY
+      );
+
+
+      adminToken =
+        "";
+
+
+      showLogin();
+
+    }
+
+
+    throw error;
 
   }
-);
+
+
+  return result;
+
+}
 
 
 
-/* ========================================
-   LOGOUT
-======================================== */
+/* ==========================================
+   LOGIN
+========================================== */
 
-async function logoutAdmin() {
+async function login() {
+
+  const username =
+    document.getElementById(
+      "adminUsername"
+    )
+    .value
+    .trim();
+
+
+  const password =
+    document.getElementById(
+      "adminPassword"
+    )
+    .value;
+
+
+  if (
+    !username
+    ||
+    !password
+  ) {
+
+    loginError.textContent =
+      "Enter the username and password.";
+
+    return;
+
+  }
+
 
   showLoading(true);
 
 
-  await sb.auth.signOut();
+  const {
+    data: token,
+    error
+  } =
+    await sb.rpc(
+      "hsfl_admin_login",
+      {
+
+        p_username:
+          username,
+
+        p_password:
+          password
+
+      }
+    );
+
+
+  if (
+    error
+    ||
+    !token
+  ) {
+
+    showLoading(false);
+
+
+    loginError.textContent =
+      "Wrong username or password.";
+
+    return;
+
+  }
+
+
+  adminToken =
+    token;
+
+
+  sessionStorage.setItem(
+    ADMIN_TOKEN_KEY,
+    token
+  );
+
+
+  document.getElementById(
+    "adminPassword"
+  ).value =
+    "";
 
 
   showLoading(false);
 
 
-  showAccountLogin();
+  await showAdmin();
 
 }
+
+
+
+document.getElementById(
+  "loginButton"
+)
+.addEventListener(
+  "click",
+  login
+);
+
+
+
+document.getElementById(
+  "adminPassword"
+)
+.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      event.key ===
+      "Enter"
+    ) {
+
+      login();
+
+    }
+
+  }
+);
+
+
+
+/* ==========================================
+   LOGOUT
+========================================== */
+
+async function logout() {
+
+  const oldToken =
+    adminToken;
+
+
+  adminToken =
+    "";
+
+
+  sessionStorage.removeItem(
+    ADMIN_TOKEN_KEY
+  );
+
+
+  if (
+    oldToken
+  ) {
+
+    await sb.rpc(
+      "hsfl_admin_logout",
+      {
+        p_token:
+          oldToken
+      }
+    );
+
+  }
+
+
+  showLogin();
+
+}
+
 
 
 document.getElementById(
@@ -3205,23 +2951,14 @@ document.getElementById(
 )
 .addEventListener(
   "click",
-  logoutAdmin
-);
-
-
-document.getElementById(
-  "bootstrapLogoutButton"
-)
-.addEventListener(
-  "click",
-  logoutAdmin
+  logout
 );
 
 
 
-/* ========================================
+/* ==========================================
    LOAD DATABASE
-======================================== */
+========================================== */
 
 async function loadAllData() {
 
@@ -3247,6 +2984,7 @@ async function loadAllData() {
   ] =
     await Promise.all([
 
+
       sb
         .from(
           "hsfl_teams"
@@ -3258,6 +2996,7 @@ async function loadAllData() {
             ascending: true
           }
         ),
+
 
       sb
         .from(
@@ -3281,6 +3020,7 @@ async function loadAllData() {
           }
         ),
 
+
       sb
         .from(
           "hsfl_players"
@@ -3297,6 +3037,7 @@ async function loadAllData() {
           }
         ),
 
+
       sb
         .from(
           "hsfl_player_game_stats"
@@ -3307,11 +3048,13 @@ async function loadAllData() {
           2
         ),
 
+
       sb
         .from(
           "hsfl_team_record_overrides"
         )
         .select("*"),
+
 
       sb
         .from(
@@ -3325,6 +3068,7 @@ async function loadAllData() {
           }
         ),
 
+
       sb
         .from(
           "hsfl_settings"
@@ -3335,6 +3079,7 @@ async function loadAllData() {
           "league"
         )
         .maybeSingle()
+
 
     ]);
 
@@ -3352,15 +3097,15 @@ async function loadAllData() {
   ];
 
 
-  const bad =
+  const failed =
     results.find(
-      result =>
-        result.error
+      item =>
+        item.error
     );
 
 
   if (
-    bad
+    failed
   ) {
 
     showLoading(false);
@@ -3368,7 +3113,7 @@ async function loadAllData() {
 
     showToast(
       normalizeError(
-        bad.error
+        failed.error
       )
     );
 
@@ -3393,7 +3138,8 @@ async function loadAllData() {
 
       data.teams[
         team.slug
-      ] = team;
+      ] =
+        team;
 
     }
   );
@@ -3431,7 +3177,8 @@ async function loadAllData() {
 
       data.overrides[
         row.team_slug
-      ] = row;
+      ] =
+        row;
 
     }
   );
@@ -3466,7 +3213,8 @@ async function loadAllData() {
 
     playoffTeams:
       Number(
-        settings.playoff_teams_per_conference
+        settings
+          .playoff_teams_per_conference
         ||
         4
       )
@@ -3483,9 +3231,9 @@ async function loadAllData() {
 
 
 
-/* ========================================
+/* ==========================================
    NAVIGATION
-======================================== */
+========================================== */
 
 const navButtons =
   document.querySelectorAll(
@@ -3499,7 +3247,9 @@ const sections =
   );
 
 
-function openSection(name) {
+function openSection(
+  name
+) {
 
   navButtons.forEach(
     button => {
@@ -3535,6 +3285,7 @@ function openSection(name) {
 }
 
 
+
 navButtons.forEach(
   button => {
 
@@ -3551,6 +3302,7 @@ navButtons.forEach(
 
   }
 );
+
 
 
 document
@@ -3576,9 +3328,9 @@ document
 
 
 
-/* ========================================
-   TEAM HELPERS
-======================================== */
+/* ==========================================
+   TEAM OPTIONS
+========================================== */
 
 function getTeamOptions() {
 
@@ -3597,6 +3349,7 @@ function getTeamOptions() {
   .join("");
 
 }
+
 
 
 function refreshTeamSelectors() {
@@ -3636,9 +3389,9 @@ function refreshTeamSelectors() {
 
 
 
-/* ========================================
+/* ==========================================
    DASHBOARD
-======================================== */
+========================================== */
 
 function renderDashboard() {
 
@@ -3673,9 +3426,9 @@ function renderDashboard() {
 
 
 
-/* ========================================
+/* ==========================================
    WEEKS
-======================================== */
+========================================== */
 
 function getWeeks() {
 
@@ -3708,14 +3461,11 @@ function getWeeks() {
 }
 
 
+
 function refreshWeekSelectors() {
 
-  const weeks =
-    getWeeks();
-
-
   const html =
-    weeks
+    getWeeks()
     .map(
       week => `
 
@@ -3728,29 +3478,33 @@ function refreshWeekSelectors() {
     .join("");
 
 
-  document.getElementById(
-    "gamesWeekSelect"
-  ).innerHTML =
+  const gamesWeek =
+    document.getElementById(
+      "gamesWeekSelect"
+    );
+
+
+  const statsWeek =
+    document.getElementById(
+      "statsWeek"
+    );
+
+
+  gamesWeek.innerHTML =
     html;
 
 
-  document.getElementById(
-    "statsWeek"
-  ).innerHTML =
+  statsWeek.innerHTML =
     html;
 
 
-  document.getElementById(
-    "gamesWeekSelect"
-  ).value =
+  gamesWeek.value =
     String(
       data.settings.currentWeek
     );
 
 
-  document.getElementById(
-    "statsWeek"
-  ).value =
+  statsWeek.value =
     String(
       data.settings.currentWeek
     );
@@ -3759,9 +3513,9 @@ function refreshWeekSelectors() {
 
 
 
-/* ========================================
+/* ==========================================
    GAMES
-======================================== */
+========================================== */
 
 function renderGames() {
 
@@ -3871,6 +3625,7 @@ function renderGames() {
 
         <div class="game-admin-main">
 
+
           <div class="score-grid">
 
             <div class="score-team-name">
@@ -3908,7 +3663,9 @@ function renderGames() {
           </div>
 
 
+
           <div class="game-options">
+
 
             <select
               class="score-input"
@@ -3928,6 +3685,7 @@ function renderGames() {
                 Upcoming
               </option>
 
+
               <option
                 value="live"
                 ${
@@ -3939,6 +3697,7 @@ function renderGames() {
               >
                 Live
               </option>
+
 
               <option
                 value="final"
@@ -3952,6 +3711,7 @@ function renderGames() {
                 Final
               </option>
 
+
               <option
                 value="forfeit"
                 ${
@@ -3963,6 +3723,7 @@ function renderGames() {
               >
                 Forfeit
               </option>
+
 
               <option
                 value="cancelled"
@@ -3976,6 +3737,7 @@ function renderGames() {
                 Cancelled
               </option>
 
+
             </select>
 
 
@@ -3984,7 +3746,6 @@ function renderGames() {
               <input
                 type="checkbox"
                 data-field="featured"
-
                 ${
                   game.featured
                   ? "checked"
@@ -3996,7 +3757,9 @@ function renderGames() {
 
             </label>
 
+
           </div>
+
 
         </div>
 
@@ -4011,6 +3774,7 @@ function renderGames() {
   );
 
 }
+
 
 
 document.getElementById(
@@ -4038,86 +3802,51 @@ async function saveGames(
     of rows
   ) {
 
-    const id =
-      row.dataset.gameId;
-
-
-    const awayInput =
+    const awayValue =
       row.querySelector(
         '[data-field="away_score"]'
-      );
+      ).value;
 
 
-    const homeInput =
+    const homeValue =
       row.querySelector(
         '[data-field="home_score"]'
-      );
+      ).value;
 
 
-    const statusInput =
-      row.querySelector(
-        '[data-field="status"]'
-      );
+    await adminAction(
+      "update_game",
+      {
 
+        id:
+          row.dataset.gameId,
 
-    const featuredInput =
-      row.querySelector(
-        '[data-field="featured"]'
-      );
+        away_score:
+          awayValue === ""
+            ? null
+            : Number(
+                awayValue
+              ),
 
+        home_score:
+          homeValue === ""
+            ? null
+            : Number(
+                homeValue
+              ),
 
-    const update = {
+        status:
+          row.querySelector(
+            '[data-field="status"]'
+          ).value,
 
-      away_score:
-        awayInput.value === ""
-          ? null
-          : Number(
-              awayInput.value
-            ),
+        featured:
+          row.querySelector(
+            '[data-field="featured"]'
+          ).checked
 
-      home_score:
-        homeInput.value === ""
-          ? null
-          : Number(
-              homeInput.value
-            ),
-
-      status:
-        statusInput.value,
-
-      featured:
-        featuredInput.checked,
-
-      updated_at:
-        new Date()
-          .toISOString()
-
-    };
-
-
-    const {
-      error
-    } =
-      await sb
-        .from(
-          "hsfl_games"
-        )
-        .update(
-          update
-        )
-        .eq(
-          "id",
-          id
-        );
-
-
-    if (
-      error
-    ) {
-
-      throw error;
-
-    }
+      }
+    );
 
   }
 
@@ -4130,12 +3859,13 @@ async function saveGames(
 
 
     showToast(
-      "Game changes are live"
+      "Scores updated live"
     );
 
   }
 
 }
+
 
 
 document.getElementById(
@@ -4159,7 +3889,7 @@ document.getElementById(
 
 
       showToast(
-        "Scores updated live"
+        "Game changes are live"
       );
 
     }
@@ -4180,9 +3910,9 @@ document.getElementById(
 
 
 
-/* ========================================
+/* ==========================================
    PLAYERS
-======================================== */
+========================================== */
 
 function renderPlayers() {
 
@@ -4250,12 +3980,15 @@ function renderPlayers() {
         <div>
 
           <strong>
+
             ${
               player.display_name
               ||
               player.roblox_username
             }
+
           </strong>
+
 
           <span>
 
@@ -4276,8 +4009,6 @@ function renderPlayers() {
                 player.position
               ]
               ||
-              player.position
-              ||
               "No Position"
             }
 
@@ -4287,6 +4018,7 @@ function renderPlayers() {
 
 
         <div class="player-actions">
+
 
           <button
             class="small-action edit-player"
@@ -4302,6 +4034,7 @@ function renderPlayers() {
           >
             REMOVE
           </button>
+
 
         </div>
 
@@ -4327,7 +4060,7 @@ function renderPlayers() {
         "click",
         () => {
 
-          startPlayerEdit(
+          editPlayer(
             Number(
               button.dataset.editPlayer
             )
@@ -4374,14 +4107,10 @@ function renderPlayers() {
           }
 
 
-          const okay =
-            confirm(
-              `Remove @${player.roblox_username}?`
-            );
-
-
           if (
-            !okay
+            !confirm(
+              `Remove @${player.roblox_username}?`
+            )
           ) {
 
             return;
@@ -4389,44 +4118,38 @@ function renderPlayers() {
           }
 
 
-          showLoading(true);
+          try {
+
+            showLoading(true);
 
 
-          const {
-            error
-          } =
-            await sb
-              .from(
-                "hsfl_players"
-              )
-              .delete()
-              .eq(
-                "id",
+            await adminAction(
+              "delete_player",
+              {
                 id
-              );
+              }
+            );
 
 
-          if (
-            error
-          ) {
+            await loadAllData();
+
+
+            showToast(
+              "Player removed"
+            );
+
+          }
+
+          catch (error) {
 
             showLoading(false);
+
 
             showToast(
               normalizeError(error)
             );
 
-            return;
-
           }
-
-
-          await loadAllData();
-
-
-          showToast(
-            "Player removed"
-          );
 
         }
       );
@@ -4438,7 +4161,7 @@ function renderPlayers() {
 
 
 
-function resetPlayerForm() {
+function clearPlayerForm() {
 
   document.getElementById(
     "editingPlayerId"
@@ -4471,7 +4194,7 @@ function resetPlayerForm() {
 
 
   document.getElementById(
-    "addPlayerButton"
+    "savePlayerButton"
   ).textContent =
     "ADD PLAYER";
 
@@ -4479,7 +4202,9 @@ function resetPlayerForm() {
 
 
 
-function startPlayerEdit(id) {
+function editPlayer(
+  id
+) {
 
   const player =
     data.players.find(
@@ -4539,7 +4264,7 @@ function startPlayerEdit(id) {
 
 
   document.getElementById(
-    "addPlayerButton"
+    "savePlayerButton"
   ).textContent =
     "SAVE PLAYER";
 
@@ -4554,27 +4279,21 @@ function startPlayerEdit(id) {
 
 
 document.getElementById(
-  "cancelPlayerEdit"
+  "clearPlayerButton"
 )
 .addEventListener(
   "click",
-  resetPlayerForm
+  clearPlayerForm
 );
 
 
 
 document.getElementById(
-  "addPlayerButton"
+  "savePlayerButton"
 )
 .addEventListener(
   "click",
   async () => {
-
-    const editingId =
-      document.getElementById(
-        "editingPlayerId"
-      ).value;
-
 
     const username =
       document.getElementById(
@@ -4582,26 +4301,6 @@ document.getElementById(
       )
       .value
       .trim();
-
-
-    const displayName =
-      document.getElementById(
-        "playerDisplayName"
-      )
-      .value
-      .trim();
-
-
-    const team =
-      document.getElementById(
-        "playerTeam"
-      ).value;
-
-
-    const position =
-      document.getElementById(
-        "playerPosition"
-      ).value;
 
 
     if (
@@ -4617,93 +4316,75 @@ document.getElementById(
     }
 
 
-    showLoading(true);
+    const editingId =
+      document.getElementById(
+        "editingPlayerId"
+      ).value;
 
 
-    let error;
+    try {
+
+      showLoading(true);
 
 
-    if (
-      editingId
-    ) {
+      const payload = {
 
-      const result =
-        await sb
-          .from(
-            "hsfl_players"
+        roblox_username:
+          username,
+
+        display_name:
+          document.getElementById(
+            "playerDisplayName"
           )
-          .update({
+          .value
+          .trim(),
 
-            roblox_username:
-              username,
+        team_slug:
+          document.getElementById(
+            "playerTeam"
+          ).value,
 
-            display_name:
-              displayName
-              ||
-              null,
+        position:
+          document.getElementById(
+            "playerPosition"
+          ).value
 
-            team_slug:
-              team,
+      };
 
-            position:
-              position,
 
-            updated_at:
-              new Date()
-                .toISOString()
+      if (
+        editingId
+      ) {
 
-          })
-          .eq(
-            "id",
-            Number(
-              editingId
-            )
+        payload.id =
+          Number(
+            editingId
           );
 
-
-      error =
-        result.error;
-
-    }
-
-    else {
-
-      const result =
-        await sb
-          .from(
-            "hsfl_players"
-          )
-          .insert({
-
-            roblox_username:
-              username,
-
-            display_name:
-              displayName
-              ||
-              null,
-
-            team_slug:
-              team,
-
-            position:
-              position,
-
-            active:
-              true
-
-          });
+      }
 
 
-      error =
-        result.error;
+      await adminAction(
+        "upsert_player",
+        payload
+      );
+
+
+      clearPlayerForm();
+
+
+      await loadAllData();
+
+
+      showToast(
+        editingId
+          ? "Player updated"
+          : "Player added"
+      );
 
     }
 
-
-    if (
-      error
-    ) {
+    catch (error) {
 
       showLoading(false);
 
@@ -4712,31 +4393,16 @@ document.getElementById(
         normalizeError(error)
       );
 
-      return;
-
     }
-
-
-    resetPlayerForm();
-
-
-    await loadAllData();
-
-
-    showToast(
-      editingId
-        ? "Player updated"
-        : "Player added"
-    );
 
   }
 );
 
 
 
-/* ========================================
-   STAT ENTRY
-======================================== */
+/* ==========================================
+   STATS
+========================================== */
 
 function refreshStatsGameOptions() {
 
@@ -4841,6 +4507,7 @@ function refreshStatsTeamOptions() {
 
 
     renderBulkStats();
+
 
     return;
 
@@ -5025,9 +4692,8 @@ function renderBulkStats() {
         );
 
 
-      const stats =
-        saved
-          ?.stat_data
+      const statData =
+        saved?.stat_data
         ||
         {};
 
@@ -5047,11 +4713,13 @@ function renderBulkStats() {
         <td class="bulk-player">
 
           <strong>
+
             ${
               player.display_name
               ||
               player.roblox_username
             }
+
           </strong>
 
           <span>
@@ -5073,7 +4741,7 @@ function renderBulkStats() {
                   type="number"
                   step="any"
                   data-stat-field="${field}"
-                  value="${stats[field] ?? ""}"
+                  value="${statData[field] ?? ""}"
                 >
 
               </td>
@@ -5159,203 +4827,143 @@ document.getElementById(
 
 
 
-document.getElementById(
-  "saveBulkStats"
-)
-.addEventListener(
-  "click",
-  async () => {
+async function saveCurrentStats(
+  silent = false
+) {
 
-    const gameId =
-      document.getElementById(
-        "statsGame"
-      ).value;
+  const gameId =
+    document.getElementById(
+      "statsGame"
+    ).value;
 
 
-    const category =
-      document.getElementById(
-        "statsCategory"
-      ).value;
+  const category =
+    document.getElementById(
+      "statsCategory"
+    ).value;
+
+
+  if (
+    !gameId
+  ) {
+
+    return;
+
+  }
+
+
+  const rows =
+    document.querySelectorAll(
+      "#bulkStatsBody tr[data-player-id]"
+    );
+
+
+  for (
+    const row
+    of rows
+  ) {
+
+    const playerId =
+      Number(
+        row.dataset.playerId
+      );
+
+
+    const inputs =
+      row.querySelectorAll(
+        "[data-stat-field]"
+      );
+
+
+    let hasValue =
+      false;
+
+
+    const statData =
+      {};
+
+
+    inputs.forEach(
+      input => {
+
+        const raw =
+          input.value;
+
+
+        if (
+          raw !== ""
+        ) {
+
+          hasValue =
+            true;
+
+        }
+
+
+        statData[
+          input.dataset.statField
+        ] =
+          raw === ""
+            ? 0
+            : Number(
+                raw
+              );
+
+      }
+    );
 
 
     if (
-      !gameId
+      hasValue
     ) {
 
-      showToast(
-        "Choose a game"
-      );
+      await adminAction(
+        "upsert_stat",
+        {
 
-      return;
+          game_id:
+            gameId,
+
+          player_id:
+            playerId,
+
+          category:
+            category,
+
+          stat_data:
+            statData
+
+        }
+      );
 
     }
 
+    else {
 
-    const rows =
-      document.querySelectorAll(
-        "#bulkStatsBody tr[data-player-id]"
-      );
+      await adminAction(
+        "delete_stat",
+        {
 
+          game_id:
+            gameId,
 
-    showLoading(true);
+          player_id:
+            playerId,
 
-
-    for (
-      const row
-      of rows
-    ) {
-
-      const playerId =
-        Number(
-          row.dataset.playerId
-        );
-
-
-      const inputs =
-        row.querySelectorAll(
-          "[data-stat-field]"
-        );
-
-
-      const statData =
-        {};
-
-
-      let hasAnyValue =
-        false;
-
-
-      inputs.forEach(
-        input => {
-
-          const raw =
-            input.value;
-
-
-          if (
-            raw !== ""
-          ) {
-
-            hasAnyValue =
-              true;
-
-          }
-
-
-          statData[
-            input.dataset.statField
-          ] =
-            raw === ""
-              ? 0
-              : Number(raw);
+          category:
+            category
 
         }
       );
-
-
-      if (
-        hasAnyValue
-      ) {
-
-        const {
-          error
-        } =
-          await sb
-            .from(
-              "hsfl_player_game_stats"
-            )
-            .upsert(
-              {
-
-                season:
-                  2,
-
-                game_id:
-                  gameId,
-
-                player_id:
-                  playerId,
-
-                category:
-                  category,
-
-                stat_data:
-                  statData,
-
-                updated_at:
-                  new Date()
-                    .toISOString()
-
-              },
-              {
-
-                onConflict:
-                  "game_id,player_id,category"
-
-              }
-            );
-
-
-        if (
-          error
-        ) {
-
-          showLoading(false);
-
-
-          showToast(
-            normalizeError(error)
-          );
-
-          return;
-
-        }
-
-      }
-
-      else {
-
-        const {
-          error
-        } =
-          await sb
-            .from(
-              "hsfl_player_game_stats"
-            )
-            .delete()
-            .eq(
-              "game_id",
-              gameId
-            )
-            .eq(
-              "player_id",
-              playerId
-            )
-            .eq(
-              "category",
-              category
-            );
-
-
-        if (
-          error
-        ) {
-
-          showLoading(false);
-
-
-          showToast(
-            normalizeError(error)
-          );
-
-          return;
-
-        }
-
-      }
 
     }
 
+  }
+
+
+  if (
+    !silent
+  ) {
 
     await loadAllData();
 
@@ -5365,13 +4973,56 @@ document.getElementById(
     );
 
   }
+
+}
+
+
+
+document.getElementById(
+  "saveBulkStats"
+)
+.addEventListener(
+  "click",
+  async () => {
+
+    try {
+
+      showLoading(true);
+
+
+      await saveCurrentStats(
+        true
+      );
+
+
+      await loadAllData();
+
+
+      showToast(
+        "Player stats saved live"
+      );
+
+    }
+
+    catch (error) {
+
+      showLoading(false);
+
+
+      showToast(
+        normalizeError(error)
+      );
+
+    }
+
+  }
 );
 
 
 
-/* ========================================
+/* ==========================================
    TEAMS
-======================================== */
+========================================== */
 
 function renderTeamEditor() {
 
@@ -5422,6 +5073,7 @@ function renderTeamEditor() {
 
         <div class="team-mini-grid">
 
+
           <select data-team-field="conference">
 
             <option
@@ -5436,6 +5088,7 @@ function renderTeamEditor() {
               American
             </option>
 
+
             <option
               value="national"
               ${
@@ -5447,6 +5100,7 @@ function renderTeamEditor() {
             >
               National
             </option>
+
 
             <option
               value="other"
@@ -5486,6 +5140,7 @@ function renderTeamEditor() {
             placeholder="PD"
           >
 
+
         </div>
 
       `;
@@ -5517,7 +5172,7 @@ async function saveTeams(
     of rows
   ) {
 
-    const slug =
+    const teamSlug =
       row.dataset.teamSlug;
 
 
@@ -5527,139 +5182,78 @@ async function saveTeams(
       ).value;
 
 
-    const winsRaw =
+    const wins =
       row.querySelector(
         '[data-team-field="wins"]'
       ).value;
 
 
-    const lossesRaw =
+    const losses =
       row.querySelector(
         '[data-team-field="losses"]'
       ).value;
 
 
-    const pdRaw =
+    const pd =
       row.querySelector(
         '[data-team-field="pd"]'
       ).value;
 
 
-    const teamUpdate =
-      await sb
-        .from(
-          "hsfl_teams"
-        )
-        .update({
+    await adminAction(
+      "update_team",
+      {
 
-          conference:
-            conference
+        team_slug:
+          teamSlug,
 
-        })
-        .eq(
-          "slug",
-          slug
-        );
-
-
-    if (
-      teamUpdate.error
-    ) {
-
-      throw teamUpdate.error;
-
-    }
-
-
-    const allBlank =
-      winsRaw === ""
-      &&
-      lossesRaw === ""
-      &&
-      pdRaw === "";
-
-
-    if (
-      allBlank
-    ) {
-
-      const result =
-        await sb
-          .from(
-            "hsfl_team_record_overrides"
-          )
-          .delete()
-          .eq(
-            "team_slug",
-            slug
-          );
-
-
-      if (
-        result.error
-      ) {
-
-        throw result.error;
+        conference:
+          conference
 
       }
+    );
+
+
+    if (
+      wins === ""
+      &&
+      losses === ""
+      &&
+      pd === ""
+    ) {
+
+      await adminAction(
+        "delete_override",
+        {
+
+          team_slug:
+            teamSlug
+
+        }
+      );
 
     }
 
     else {
 
-      const result =
-        await sb
-          .from(
-            "hsfl_team_record_overrides"
-          )
-          .upsert(
-            {
+      await adminAction(
+        "upsert_override",
+        {
 
-              team_slug:
-                slug,
+          team_slug:
+            teamSlug,
 
-              wins:
-                winsRaw === ""
-                  ? null
-                  : Number(
-                      winsRaw
-                    ),
+          wins:
+            wins,
 
-              losses:
-                lossesRaw === ""
-                  ? null
-                  : Number(
-                      lossesRaw
-                    ),
+          losses:
+            losses,
 
-              pd:
-                pdRaw === ""
-                  ? null
-                  : Number(
-                      pdRaw
-                    ),
+          pd:
+            pd
 
-              updated_at:
-                new Date()
-                  .toISOString()
-
-            },
-            {
-
-              onConflict:
-                "team_slug"
-
-            }
-          );
-
-
-      if (
-        result.error
-      ) {
-
-        throw result.error;
-
-      }
+        }
+      );
 
     }
 
@@ -5674,12 +5268,13 @@ async function saveTeams(
 
 
     showToast(
-      "Standings settings updated"
+      "Team changes are live"
     );
 
   }
 
 }
+
 
 
 document.getElementById(
@@ -5724,9 +5319,9 @@ document.getElementById(
 
 
 
-/* ========================================
+/* ==========================================
    SCHEDULE
-======================================== */
+========================================== */
 
 function renderSchedule() {
 
@@ -5800,19 +5395,11 @@ function renderSchedule() {
 
             ·
 
-            ${
-              away
-                ? away.short
-                : game.away_team
-            }
+            ${away ? away.short : game.away_team}
 
             vs
 
-            ${
-              home
-                ? home.short
-                : game.home_team
-            }
+            ${home ? home.short : game.home_team}
 
           </strong>
 
@@ -5858,18 +5445,10 @@ function renderSchedule() {
         "click",
         async () => {
 
-          const id =
-            button.dataset.deleteGame;
-
-
-          const okay =
-            confirm(
-              "Delete this game?"
-            );
-
-
           if (
-            !okay
+            !confirm(
+              "Delete this game?"
+            )
           ) {
 
             return;
@@ -5877,26 +5456,32 @@ function renderSchedule() {
           }
 
 
-          showLoading(true);
+          try {
+
+            showLoading(true);
 
 
-          const {
-            error
-          } =
-            await sb
-              .from(
-                "hsfl_games"
-              )
-              .delete()
-              .eq(
-                "id",
-                id
-              );
+            await adminAction(
+              "delete_game",
+              {
+
+                id:
+                  button.dataset.deleteGame
+
+              }
+            );
 
 
-          if (
-            error
-          ) {
+            await loadAllData();
+
+
+            showToast(
+              "Game deleted"
+            );
+
+          }
+
+          catch (error) {
 
             showLoading(false);
 
@@ -5905,17 +5490,7 @@ function renderSchedule() {
               normalizeError(error)
             );
 
-            return;
-
           }
-
-
-          await loadAllData();
-
-
-          showToast(
-            "Game deleted"
-          );
 
         }
       );
@@ -5956,15 +5531,9 @@ document.getElementById(
       ).value;
 
 
-    const featured =
-      document.getElementById(
-        "scheduleFeatured"
-      ).value ===
-      "true";
-
-
     if (
-      away === home
+      away ===
+      home
     ) {
 
       showToast(
@@ -5976,20 +5545,14 @@ document.getElementById(
     }
 
 
-    showLoading(true);
+    try {
+
+      showLoading(true);
 
 
-    const {
-      error
-    } =
-      await sb
-        .from(
-          "hsfl_games"
-        )
-        .insert({
-
-          season:
-            2,
+      await adminAction(
+        "add_game",
+        {
 
           week:
             week,
@@ -6000,24 +5563,26 @@ document.getElementById(
           home_team:
             home,
 
-          away_score:
-            null,
-
-          home_score:
-            null,
-
-          status:
-            "upcoming",
-
           featured:
-            featured
+            document.getElementById(
+              "scheduleFeatured"
+            ).value ===
+            "true"
 
-        });
+        }
+      );
 
 
-    if (
-      error
-    ) {
+      await loadAllData();
+
+
+      showToast(
+        `Week ${week} game added`
+      );
+
+    }
+
+    catch (error) {
 
       showLoading(false);
 
@@ -6026,26 +5591,16 @@ document.getElementById(
         normalizeError(error)
       );
 
-      return;
-
     }
-
-
-    await loadAllData();
-
-
-    showToast(
-      `Week ${week} game added`
-    );
 
   }
 );
 
 
 
-/* ========================================
+/* ==========================================
    CHAMPIONS
-======================================== */
+========================================== */
 
 function renderChampions() {
 
@@ -6162,14 +5717,10 @@ function renderChampions() {
             );
 
 
-          const okay =
-            confirm(
-              `Delete Season ${season} champion?`
-            );
-
-
           if (
-            !okay
+            !confirm(
+              `Delete Season ${season} champion?`
+            )
           ) {
 
             return;
@@ -6177,26 +5728,29 @@ function renderChampions() {
           }
 
 
-          showLoading(true);
+          try {
+
+            showLoading(true);
 
 
-          const {
-            error
-          } =
-            await sb
-              .from(
-                "hsfl_champions"
-              )
-              .delete()
-              .eq(
-                "season",
+            await adminAction(
+              "delete_champion",
+              {
                 season
-              );
+              }
+            );
 
 
-          if (
-            error
-          ) {
+            await loadAllData();
+
+
+            showToast(
+              "Champion removed"
+            );
+
+          }
+
+          catch (error) {
 
             showLoading(false);
 
@@ -6205,17 +5759,7 @@ function renderChampions() {
               normalizeError(error)
             );
 
-            return;
-
           }
-
-
-          await loadAllData();
-
-
-          showToast(
-            "Champion removed"
-          );
 
         }
       );
@@ -6242,7 +5786,7 @@ document.getElementById(
       );
 
 
-    const team =
+    const teamSlug =
       document.getElementById(
         "championTeam"
       ).value;
@@ -6251,7 +5795,7 @@ document.getElementById(
     if (
       !season
       ||
-      !team
+      !teamSlug
     ) {
 
       showToast(
@@ -6263,38 +5807,35 @@ document.getElementById(
     }
 
 
-    showLoading(true);
+    try {
+
+      showLoading(true);
 
 
-    const {
-      error
-    } =
-      await sb
-        .from(
-          "hsfl_champions"
-        )
-        .upsert(
-          {
+      await adminAction(
+        "upsert_champion",
+        {
 
-            season:
-              season,
+          season:
+            season,
 
-            team_slug:
-              team
+          team_slug:
+            teamSlug
 
-          },
-          {
-
-            onConflict:
-              "season"
-
-          }
-        );
+        }
+      );
 
 
-    if (
-      error
-    ) {
+      await loadAllData();
+
+
+      showToast(
+        `Season ${season} champion saved`
+      );
+
+    }
+
+    catch (error) {
 
       showLoading(false);
 
@@ -6303,26 +5844,16 @@ document.getElementById(
         normalizeError(error)
       );
 
-      return;
-
     }
-
-
-    await loadAllData();
-
-
-    showToast(
-      `Season ${season} champion saved`
-    );
 
   }
 );
 
 
 
-/* ========================================
+/* ==========================================
    SETTINGS
-======================================== */
+========================================== */
 
 function renderSettings() {
 
@@ -6351,86 +5882,39 @@ async function saveSettings(
   silent = false
 ) {
 
-  const leagueName =
-    document.getElementById(
-      "settingLeagueName"
-    )
-    .value
-    .trim()
-    ||
-    "HSFL Season 2";
+  await adminAction(
+    "save_settings",
+    {
 
+      name:
+        document.getElementById(
+          "settingLeagueName"
+        )
+        .value
+        .trim()
+        ||
+        "HSFL Season 2",
 
-  const currentWeek =
-    Number(
-      document.getElementById(
-        "settingCurrentWeek"
-      ).value
-      ||
-      1
-    );
+      current_week:
+        Number(
+          document.getElementById(
+            "settingCurrentWeek"
+          ).value
+          ||
+          1
+        ),
 
+      playoff_teams_per_conference:
+        Number(
+          document.getElementById(
+            "settingPlayoffTeams"
+          ).value
+          ||
+          4
+        )
 
-  const playoffTeams =
-    Number(
-      document.getElementById(
-        "settingPlayoffTeams"
-      ).value
-      ||
-      4
-    );
-
-
-  const {
-    error
-  } =
-    await sb
-      .from(
-        "hsfl_settings"
-      )
-      .upsert(
-        {
-
-          key:
-            "league",
-
-          value: {
-
-            name:
-              leagueName,
-
-            season:
-              2,
-
-            current_week:
-              currentWeek,
-
-            playoff_teams_per_conference:
-              playoffTeams
-
-          },
-
-          updated_at:
-            new Date()
-              .toISOString()
-
-        },
-        {
-
-          onConflict:
-            "key"
-
-        }
-      );
-
-
-  if (
-    error
-  ) {
-
-    throw error;
-
-  }
+    }
+  );
 
 
   if (
@@ -6441,12 +5925,13 @@ async function saveSettings(
 
 
     showToast(
-      "League settings updated"
+      "Settings are live"
     );
 
   }
 
 }
+
 
 
 document.getElementById(
@@ -6470,7 +5955,7 @@ document.getElementById(
 
 
       showToast(
-        "Settings are live"
+        "League settings updated"
       );
 
     }
@@ -6491,9 +5976,9 @@ document.getElementById(
 
 
 
-/* ========================================
+/* ==========================================
    SAVE EVERYTHING
-======================================== */
+========================================== */
 
 document.getElementById(
   "saveEverythingButton"
@@ -6513,6 +5998,11 @@ document.getElementById(
 
 
       await saveTeams(
+        true
+      );
+
+
+      await saveCurrentStats(
         true
       );
 
@@ -6547,9 +6037,9 @@ document.getElementById(
 
 
 
-/* ========================================
+/* ==========================================
    REFRESH
-======================================== */
+========================================== */
 
 function refreshEverything() {
 
@@ -6567,9 +6057,9 @@ function refreshEverything() {
 
   renderSchedule();
 
-  renderSettings();
-
   renderChampions();
+
+  renderSettings();
 
   refreshStatsGameOptions();
 
@@ -6577,13 +6067,78 @@ function refreshEverything() {
 
 
 
-/* ========================================
+/* ==========================================
    START
-======================================== */
+========================================== */
 
-checkAdminAccess();
+async function startAdmin() {
+
+  if (
+    !adminToken
+  ) {
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  showLoading(true);
+
+
+  const {
+    error
+  } =
+    await sb.rpc(
+      "hsfl_admin_action",
+      {
+
+        p_token:
+          adminToken,
+
+        p_action:
+          "ping",
+
+        p_payload:
+          {}
+
+      }
+    );
+
+
+  showLoading(false);
+
+
+  if (
+    error
+  ) {
+
+    adminToken =
+      "";
+
+
+    sessionStorage.removeItem(
+      ADMIN_TOKEN_KEY
+    );
+
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  await showAdmin();
+
+}
+
+
+startAdmin();
 
 </script>
+
 
 </body>
 </html>
