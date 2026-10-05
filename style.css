@@ -786,3 +786,65 @@ a {
     font-size: 22px;
   }
 }
+/* CONFERENCE SWITCHER */
+
+.conference-picker {
+  position: relative;
+}
+
+.conference-menu {
+  display: none;
+
+  position: absolute;
+
+  top: 55px;
+  left: 0;
+
+  width: 100%;
+
+  z-index: 50;
+
+  overflow: hidden;
+
+  background: white;
+
+  border: 1px solid #d7d7d7;
+  border-radius: 12px;
+
+  box-shadow:
+    0 8px 20px
+    rgba(0, 0, 0, .12);
+}
+
+.conference-menu.show {
+  display: block;
+}
+
+.conference-option {
+  width: 100%;
+  height: 50px;
+
+  padding: 0 15px;
+
+  border: 0;
+  border-bottom: 1px solid #eee;
+
+  background: white;
+
+  text-align: left;
+
+  font-size: 12px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+.conference-option:last-child {
+  border-bottom: 0;
+}
+
+.conference-option:active {
+  background: #f4f4f4;
+}
+
+
