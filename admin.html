@@ -2,1794 +2,2044 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<title>HSFL Admin</title>
 
-  <title>HSFL Admin</title>
+<style>
 
-  <style>
+* {
+  box-sizing: border-box;
+}
 
-    * {
-      box-sizing: border-box;
-    }
+:root {
+  --red: #e62c47;
+  --red-dark: #9b141f;
+  --red-mid: #bd2130;
+  --red-light: #df3948;
 
-    :root {
-      --red: #e62c47;
-      --red-dark: #9b141f;
-      --red-mid: #bd2130;
-      --red-light: #df3948;
+  --page: #f4f5f7;
+  --card: #ffffff;
+  --border: #dddddf;
 
-      --page: #f4f5f7;
-      --card: #ffffff;
-      --border: #dddddf;
+  --text: #202127;
+  --muted: #8c8d93;
 
-      --text: #202127;
-      --muted: #8c8d93;
+  --dark: #1f2026;
+}
 
-      --dark: #1f2026;
-      --success: #2f9d63;
-      --warning: #c58d25;
-    }
+body {
+  margin: 0;
 
-    html {
-      scroll-behavior: smooth;
-    }
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
 
-    body {
-      margin: 0;
+  background: var(--page);
+  color: var(--text);
 
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
+  padding-bottom: 100px;
+}
 
-      background: var(--page);
-      color: var(--text);
+button,
+input,
+select {
+  font-family: inherit;
+}
 
-      padding-bottom: 100px;
-    }
+button {
+  cursor: pointer;
+}
 
-    button,
-    input,
-    select {
-      font-family: inherit;
-    }
 
-    button {
-      cursor: pointer;
-    }
+/* =====================================================
+   ADMIN LOCK SCREEN
+===================================================== */
 
+.admin-lock {
+  position: fixed;
 
-    /* =====================================================
-       APP
-    ===================================================== */
+  inset: 0;
 
-    .admin-app {
-      width: 100%;
-      max-width: 900px;
+  z-index: 99999;
 
-      margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-      padding: 14px;
-    }
+  padding: 20px;
 
+  background:
+    linear-gradient(
+      145deg,
+      #15161b 0%,
+      #22232a 50%,
+      #111216 100%
+    );
+}
 
-    /* =====================================================
-       HEADER
-    ===================================================== */
+.lock-card {
+  width: 100%;
+  max-width: 390px;
 
-    .admin-header {
-      overflow: hidden;
+  overflow: hidden;
 
-      margin-bottom: 15px;
+  background: #fff;
 
-      border-radius: 23px;
+  border-radius: 26px;
 
-      color: #fff;
+  box-shadow:
+    0 25px 70px
+    rgba(0,0,0,.4);
+}
 
-      background:
-        linear-gradient(
-          90deg,
-          var(--red-dark) 0%,
-          var(--red-mid) 48%,
-          var(--red-light) 100%
-        );
-    }
+.lock-top {
+  padding: 28px 22px;
 
-    .admin-header-inner {
-      padding: 22px 18px;
-    }
+  background:
+    linear-gradient(
+      90deg,
+      var(--red-dark),
+      var(--red-mid),
+      var(--red-light)
+    );
 
-    .admin-kicker {
-      display: block;
+  color: #fff;
+}
 
-      margin-bottom: 4px;
+.lock-logo {
+  width: 46px;
+  height: 46px;
 
-      font-size: 9px;
-      font-weight: 900;
+  margin-bottom: 18px;
 
-      letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-      opacity: .8;
-    }
+  border-radius: 14px;
 
-    .admin-header h1 {
-      margin: 0;
+  background: rgba(255,255,255,.16);
 
-      font-size: 27px;
-      line-height: 1;
+  font-size: 18px;
+  font-weight: 900;
+}
 
-      font-weight: 900;
-      letter-spacing: -1px;
-    }
+.lock-top span {
+  display: block;
 
-    .admin-header p {
-      margin: 8px 0 0;
+  margin-bottom: 5px;
 
-      font-size: 11px;
-      font-weight: 700;
+  font-size: 9px;
+  font-weight: 900;
 
-      opacity: .86;
-    }
+  letter-spacing: 1px;
 
+  opacity: .8;
+}
 
-    /* =====================================================
-       TOP NAV
-    ===================================================== */
+.lock-top h1 {
+  margin: 0;
 
-    .admin-nav-wrap {
-      width: 100%;
+  font-size: 27px;
+  font-weight: 900;
 
-      overflow-x: auto;
+  letter-spacing: -1px;
+}
 
-      margin-bottom: 16px;
+.lock-top p {
+  margin: 8px 0 0;
 
-      scrollbar-width: none;
-    }
+  font-size: 11px;
+  font-weight: 700;
 
-    .admin-nav-wrap::-webkit-scrollbar {
-      display: none;
-    }
+  line-height: 1.45;
 
-    .admin-nav {
-      min-width: max-content;
+  opacity: .85;
+}
 
-      display: flex;
+.lock-body {
+  padding: 20px;
+}
 
-      gap: 7px;
-    }
+.lock-field {
+  margin-bottom: 12px;
+}
 
-    .admin-nav-button {
-      height: 43px;
+.lock-field label {
+  display: block;
 
-      padding: 0 15px;
+  margin: 0 0 6px 2px;
 
-      border: 1px solid var(--border);
-      border-radius: 999px;
+  color: #666;
 
-      background: #fff;
-      color: var(--text);
+  font-size: 9px;
+  font-weight: 900;
 
-      font-size: 10px;
-      font-weight: 900;
-    }
+  text-transform: uppercase;
+}
 
-    .admin-nav-button.active {
-      background: var(--dark);
-      border-color: var(--dark);
-      color: #fff;
-    }
+.lock-field input {
+  width: 100%;
+  height: 53px;
 
+  padding: 0 15px;
 
-    /* =====================================================
-       SECTIONS
-    ===================================================== */
+  border: 1.5px solid #d9d9dc;
+  border-radius: 13px;
 
-    .admin-section {
-      display: none;
-    }
+  outline: none;
 
-    .admin-section.active {
-      display: block;
-    }
+  font-size: 18px;
+  font-weight: 900;
 
-    .section-heading {
-      margin: 5px 3px 13px;
+  letter-spacing: 5px;
 
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
+  text-align: center;
+}
 
-      gap: 10px;
-    }
+.lock-field input:focus {
+  border-color: var(--red);
+}
 
-    .section-heading h2 {
-      margin: 0;
+.lock-button {
+  width: 100%;
+  height: 51px;
 
-      font-size: 23px;
-      font-weight: 900;
+  margin-top: 5px;
 
-      letter-spacing: -.8px;
-    }
+  border: 0;
+  border-radius: 13px;
 
-    .section-heading span {
-      color: var(--muted);
+  background: var(--red);
+  color: #fff;
 
-      font-size: 9px;
-      font-weight: 800;
-    }
+  font-size: 11px;
+  font-weight: 900;
+}
 
+.lock-site-button {
+  width: 100%;
+  height: 46px;
 
-    /* =====================================================
-       CARDS
-    ===================================================== */
+  margin-top: 8px;
 
-    .admin-card {
-      width: 100%;
+  border: 0;
+  border-radius: 13px;
 
-      margin-bottom: 13px;
+  background: #efeff1;
+  color: #292a30;
 
-      padding: 15px;
+  font-size: 10px;
+  font-weight: 900;
+}
 
-      background: #fff;
+.lock-error {
+  min-height: 17px;
 
-      border: 1px solid var(--border);
-      border-radius: 18px;
-    }
+  margin-top: 9px;
 
-    .admin-card-title {
-      margin-bottom: 12px;
+  color: #d51f38;
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+  text-align: center;
 
-      gap: 8px;
-    }
+  font-size: 9px;
+  font-weight: 900;
+}
 
-    .admin-card-title strong {
-      font-size: 13px;
-      font-weight: 900;
-    }
 
-    .admin-card-title span {
-      color: var(--muted);
+/* =====================================================
+   APP
+===================================================== */
 
-      font-size: 9px;
-      font-weight: 700;
-    }
+#adminShell {
+  display: none;
+}
 
+.admin-app {
+  width: 100%;
+  max-width: 900px;
 
-    /* =====================================================
-       DASHBOARD
-    ===================================================== */
+  margin: 0 auto;
 
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+  padding: 14px;
+}
 
-      gap: 10px;
 
-      margin-bottom: 13px;
-    }
+/* =====================================================
+   HEADER
+===================================================== */
 
-    .dashboard-stat {
-      min-height: 100px;
+.admin-header {
+  overflow: hidden;
 
-      padding: 15px;
+  margin-bottom: 15px;
 
-      display: flex;
-      flex-direction: column;
+  border-radius: 23px;
 
-      justify-content: space-between;
+  color: #fff;
 
-      background: #fff;
+  background:
+    linear-gradient(
+      90deg,
+      var(--red-dark) 0%,
+      var(--red-mid) 48%,
+      var(--red-light) 100%
+    );
+}
 
-      border: 1px solid var(--border);
-      border-radius: 18px;
-    }
+.admin-header-inner {
+  padding: 22px 18px;
+}
 
-    .dashboard-stat span {
-      color: var(--muted);
+.admin-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 
-      font-size: 9px;
-      font-weight: 900;
-    }
+  gap: 15px;
+}
 
-    .dashboard-stat strong {
-      font-size: 28px;
-      line-height: 1;
+.admin-kicker {
+  display: block;
 
-      font-weight: 900;
-    }
+  margin-bottom: 4px;
 
-    .quick-actions {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+  font-size: 9px;
+  font-weight: 900;
 
-      gap: 9px;
-    }
+  letter-spacing: 1px;
 
+  opacity: .8;
+}
 
-    /* =====================================================
-       FORMS
-    ===================================================== */
+.admin-header h1 {
+  margin: 0;
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+  font-size: 27px;
+  line-height: 1;
 
-      gap: 9px;
-    }
+  font-weight: 900;
+  letter-spacing: -1px;
+}
 
-    .form-grid.one {
-      grid-template-columns: 1fr;
-    }
+.admin-header p {
+  margin: 8px 0 0;
 
-    .field {
-      min-width: 0;
-    }
+  font-size: 11px;
+  font-weight: 700;
 
-    .field.full {
-      grid-column: 1 / -1;
-    }
+  opacity: .86;
+}
 
-    .field label {
-      display: block;
+.logout-button {
+  flex: 0 0 auto;
 
-      margin: 0 0 5px 2px;
+  height: 37px;
 
-      color: #55575c;
+  padding: 0 12px;
 
-      font-size: 8px;
-      font-weight: 900;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 999px;
 
-      text-transform: uppercase;
+  background: rgba(255,255,255,.13);
+  color: #fff;
 
-      letter-spacing: .4px;
-    }
+  font-size: 8px;
+  font-weight: 900;
+}
 
-    .field input,
-    .field select {
-      width: 100%;
-      height: 45px;
 
-      padding: 0 12px;
+/* =====================================================
+   NAV
+===================================================== */
 
-      border: 1px solid #d6d6d8;
-      border-radius: 11px;
+.admin-nav-wrap {
+  width: 100%;
 
-      outline: none;
+  overflow-x: auto;
 
-      background: #fff;
+  margin-bottom: 16px;
 
-      color: var(--text);
+  scrollbar-width: none;
+}
 
-      font-size: 11px;
-      font-weight: 800;
-    }
+.admin-nav-wrap::-webkit-scrollbar {
+  display: none;
+}
 
-    .field input:focus,
-    .field select:focus {
-      border-color: var(--red);
-    }
+.admin-nav {
+  min-width: max-content;
 
+  display: flex;
 
-    /* =====================================================
-       BUTTONS
-    ===================================================== */
+  gap: 7px;
+}
 
-    .primary-button,
-    .secondary-button,
-    .danger-button {
-      min-height: 45px;
+.admin-nav-button {
+  height: 43px;
 
-      padding: 0 14px;
+  padding: 0 15px;
 
-      border: 0;
-      border-radius: 11px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
 
-      font-size: 10px;
-      font-weight: 900;
-    }
+  background: #fff;
+  color: var(--text);
 
-    .primary-button {
-      background: var(--red);
-      color: #fff;
-    }
+  font-size: 10px;
+  font-weight: 900;
+}
 
-    .secondary-button {
-      background: #f0f0f2;
-      color: var(--text);
-    }
+.admin-nav-button.active {
+  background: var(--dark);
+  border-color: var(--dark);
+  color: #fff;
+}
 
-    .danger-button {
-      background: #ffe7ea;
-      color: #c81f36;
-    }
 
-    .full-button {
-      width: 100%;
-    }
+/* =====================================================
+   SECTIONS
+===================================================== */
 
+.admin-section {
+  display: none;
+}
 
-    /* =====================================================
-       GAMES
-    ===================================================== */
+.admin-section.active {
+  display: block;
+}
 
-    .game-admin-row {
-      margin-bottom: 10px;
+.section-heading {
+  margin: 5px 3px 13px;
 
-      overflow: hidden;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
 
-      border: 1px solid var(--border);
-      border-radius: 15px;
+  gap: 10px;
+}
 
-      background: #fff;
-    }
+.section-heading h2 {
+  margin: 0;
 
-    .game-admin-top {
-      min-height: 48px;
+  font-size: 23px;
+  font-weight: 900;
 
-      padding: 0 12px;
+  letter-spacing: -.8px;
+}
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+.section-heading span {
+  color: var(--muted);
 
-      gap: 8px;
+  font-size: 9px;
+  font-weight: 800;
+}
 
-      background: #f8f8f9;
 
-      border-bottom: 1px solid #e2e2e3;
-    }
+/* =====================================================
+   CARDS
+===================================================== */
 
-    .game-admin-top strong {
-      font-size: 10px;
-      font-weight: 900;
-    }
+.admin-card {
+  width: 100%;
 
-    .game-admin-top span {
-      color: var(--muted);
+  margin-bottom: 13px;
 
-      font-size: 8px;
-      font-weight: 900;
-    }
+  padding: 15px;
 
-    .game-admin-main {
-      padding: 11px;
-    }
+  background: #fff;
 
-    .score-grid {
-      display: grid;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+}
 
-      grid-template-columns:
-        minmax(0, 1fr)
-        62px
-        34px
-        62px
-        minmax(0, 1fr);
+.admin-card-title {
+  margin-bottom: 12px;
 
-      align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-      gap: 6px;
-    }
+  gap: 8px;
+}
 
-    .score-team-name {
-      min-width: 0;
+.admin-card-title strong {
+  font-size: 13px;
+  font-weight: 900;
+}
 
-      font-size: 9px;
-      font-weight: 900;
+.admin-card-title span {
+  color: var(--muted);
 
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+  font-size: 9px;
+  font-weight: 700;
+}
 
-    .score-team-name.right {
-      text-align: right;
-    }
 
-    .score-input {
-      width: 100%;
-      height: 41px;
+/* =====================================================
+   DASHBOARD
+===================================================== */
 
-      text-align: center;
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 
-      border: 1px solid #d6d6d8;
-      border-radius: 10px;
+  gap: 10px;
 
-      font-size: 15px;
-      font-weight: 900;
-    }
+  margin-bottom: 13px;
+}
 
-    .score-vs {
-      text-align: center;
+.dashboard-stat {
+  min-height: 95px;
 
-      color: var(--red);
+  padding: 15px;
 
-      font-size: 9px;
-      font-weight: 900;
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-    .game-options {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+  background: #fff;
 
-      gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+}
 
-      margin-top: 10px;
-    }
+.dashboard-stat span {
+  color: var(--muted);
 
-    .checkbox-line {
-      min-height: 42px;
+  font-size: 9px;
+  font-weight: 900;
+}
 
-      padding: 0 10px;
+.dashboard-stat strong {
+  font-size: 27px;
+  font-weight: 900;
+}
 
-      display: flex;
-      align-items: center;
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 
-      gap: 8px;
+  gap: 9px;
+}
 
-      border: 1px solid var(--border);
-      border-radius: 10px;
 
-      font-size: 9px;
-      font-weight: 900;
-    }
+/* =====================================================
+   FORMS
+===================================================== */
 
-    .checkbox-line input {
-      width: 17px;
-      height: 17px;
-    }
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 
+  gap: 9px;
+}
 
-    /* =====================================================
-       PLAYERS
-    ===================================================== */
+.field {
+  min-width: 0;
+}
 
-    .player-list {
-      display: flex;
-      flex-direction: column;
+.field.full {
+  grid-column: 1 / -1;
+}
 
-      gap: 7px;
-    }
+.field label {
+  display: block;
 
-    .player-row {
-      min-height: 55px;
+  margin: 0 0 5px 2px;
 
-      padding: 8px 10px;
+  color: #55575c;
 
-      display: grid;
-      grid-template-columns:
-        minmax(0, 1fr)
-        auto;
+  font-size: 8px;
+  font-weight: 900;
 
-      align-items: center;
+  text-transform: uppercase;
+}
 
-      gap: 8px;
+.field input,
+.field select {
+  width: 100%;
+  height: 45px;
 
-      border: 1px solid var(--border);
-      border-radius: 12px;
-    }
+  padding: 0 12px;
 
-    .player-row strong {
-      display: block;
+  border: 1px solid #d6d6d8;
+  border-radius: 11px;
 
-      font-size: 10px;
-      font-weight: 900;
-    }
+  outline: none;
 
-    .player-row span {
-      display: block;
+  background: #fff;
 
-      margin-top: 2px;
+  color: var(--text);
 
-      color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+}
 
-      font-size: 8px;
-      font-weight: 700;
-    }
+.field input:focus,
+.field select:focus {
+  border-color: var(--red);
+}
 
-    .small-remove {
-      min-height: 34px;
 
-      padding: 0 10px;
+/* =====================================================
+   BUTTONS
+===================================================== */
 
-      border: 0;
-      border-radius: 9px;
+.primary-button,
+.secondary-button,
+.danger-button {
+  min-height: 45px;
 
-      background: #ffe6e9;
-      color: #c11e33;
+  padding: 0 14px;
 
-      font-size: 8px;
-      font-weight: 900;
-    }
+  border: 0;
+  border-radius: 11px;
 
+  font-size: 10px;
+  font-weight: 900;
+}
 
-    /* =====================================================
-       BULK STATS
-    ===================================================== */
+.primary-button {
+  background: var(--red);
+  color: #fff;
+}
 
-    .bulk-toolbar {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+.secondary-button {
+  background: #f0f0f2;
+  color: var(--text);
+}
 
-      gap: 8px;
+.danger-button {
+  background: #ffe7ea;
+  color: #c81f36;
+}
 
-      margin-bottom: 11px;
-    }
+.full-button {
+  width: 100%;
+}
 
-    .bulk-toolbar .field:last-child {
-      grid-column: 1 / -1;
-    }
 
-    .bulk-table-wrap {
-      overflow-x: auto;
+/* =====================================================
+   GAME ROWS
+===================================================== */
 
-      border: 1px solid var(--border);
-      border-radius: 13px;
+.game-admin-row {
+  margin-bottom: 10px;
 
-      background: #fff;
-    }
+  overflow: hidden;
 
-    .bulk-table {
-      min-width: 700px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
 
-      width: 100%;
+  background: #fff;
+}
 
-      border-collapse: collapse;
-    }
+.game-admin-top {
+  min-height: 47px;
 
-    .bulk-table th {
-      height: 42px;
+  padding: 0 12px;
 
-      padding: 0 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-      background: #f6f6f7;
+  gap: 8px;
 
-      color: #8f9094;
+  background: #f8f8f9;
 
-      border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #e2e2e3;
+}
 
-      text-align: center;
+.game-admin-top strong {
+  font-size: 10px;
+  font-weight: 900;
+}
 
-      font-size: 8px;
-      font-weight: 900;
-    }
+.game-admin-top span {
+  color: var(--muted);
 
-    .bulk-table th:first-child {
-      text-align: left;
-    }
+  font-size: 8px;
+  font-weight: 900;
+}
 
-    .bulk-table td {
-      height: 48px;
+.game-admin-main {
+  padding: 11px;
+}
 
-      padding: 4px 6px;
+.score-grid {
+  display: grid;
 
-      border-bottom: 1px solid #e3e3e3;
+  grid-template-columns:
+    minmax(0, 1fr)
+    62px
+    34px
+    62px
+    minmax(0, 1fr);
 
-      text-align: center;
-    }
+  align-items: center;
 
-    .bulk-table tr:last-child td {
-      border-bottom: 0;
-    }
+  gap: 6px;
+}
 
-    .bulk-player {
-      text-align: left !important;
-    }
+.score-team-name {
+  min-width: 0;
 
-    .bulk-player strong {
-      display: block;
+  font-size: 9px;
+  font-weight: 900;
 
-      font-size: 9px;
-      font-weight: 900;
-    }
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-    .bulk-player span {
-      display: block;
+.score-team-name.right {
+  text-align: right;
+}
 
-      margin-top: 2px;
+.score-input {
+  width: 100%;
+  height: 41px;
 
-      color: var(--muted);
+  text-align: center;
 
-      font-size: 7px;
-      font-weight: 700;
-    }
+  border: 1px solid #d6d6d8;
+  border-radius: 10px;
 
-    .bulk-number-input {
-      width: 50px;
-      height: 34px;
+  font-size: 14px;
+  font-weight: 900;
+}
 
-      text-align: center;
+.score-vs {
+  text-align: center;
 
-      border: 1px solid #d7d7d9;
-      border-radius: 8px;
+  color: var(--red);
 
-      font-size: 10px;
-      font-weight: 900;
-    }
+  font-size: 9px;
+  font-weight: 900;
+}
 
-    .stats-save-bar {
-      margin-top: 10px;
+.game-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+  gap: 8px;
 
-      gap: 8px;
-    }
+  margin-top: 10px;
+}
 
+.checkbox-line {
+  min-height: 42px;
 
-    /* =====================================================
-       TEAMS
-    ===================================================== */
+  padding: 0 10px;
 
-    .team-edit-row {
-      margin-bottom: 8px;
+  display: flex;
+  align-items: center;
 
-      padding: 10px;
+  gap: 8px;
 
-      border: 1px solid var(--border);
-      border-radius: 13px;
-    }
+  border: 1px solid var(--border);
+  border-radius: 10px;
 
-    .team-edit-name {
-      margin-bottom: 8px;
+  font-size: 9px;
+  font-weight: 900;
+}
 
-      font-size: 10px;
-      font-weight: 900;
-    }
 
-    .team-mini-grid {
-      display: grid;
-      grid-template-columns: 1fr 70px 70px 70px;
+/* =====================================================
+   PLAYER LIST
+===================================================== */
 
-      gap: 6px;
-    }
+.player-list {
+  display: flex;
+  flex-direction: column;
 
-    .team-mini-grid input,
-    .team-mini-grid select {
-      width: 100%;
-      height: 38px;
+  gap: 7px;
+}
 
-      padding: 0 8px;
+.player-row {
+  min-height: 55px;
 
-      border: 1px solid #d8d8da;
-      border-radius: 9px;
+  padding: 8px 10px;
 
-      font-size: 9px;
-      font-weight: 800;
-    }
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
 
+  align-items: center;
 
-    /* =====================================================
-       NOTICE
-    ===================================================== */
+  gap: 8px;
 
-    .notice {
-      margin-bottom: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
 
-      padding: 12px;
+.player-row strong {
+  display: block;
 
-      border-radius: 12px;
+  font-size: 10px;
+  font-weight: 900;
+}
 
-      background: #fff1f3;
-      color: #a42033;
+.player-row span {
+  display: block;
 
-      font-size: 9px;
-      font-weight: 800;
+  margin-top: 2px;
 
-      line-height: 1.45;
-    }
+  color: var(--muted);
 
+  font-size: 8px;
+  font-weight: 700;
+}
 
-    /* =====================================================
-       TOAST
-    ===================================================== */
+.small-remove {
+  min-height: 34px;
 
-    .toast {
-      position: fixed;
+  padding: 0 10px;
 
-      left: 50%;
-      bottom: 95px;
+  border: 0;
+  border-radius: 9px;
 
-      transform: translateX(-50%) translateY(30px);
+  background: #ffe6e9;
+  color: #c11e33;
 
-      z-index: 9999;
+  font-size: 8px;
+  font-weight: 900;
+}
 
-      padding: 11px 15px;
 
-      border-radius: 999px;
+/* =====================================================
+   BULK STAT ENTRY
+===================================================== */
 
-      background: #202127;
-      color: #fff;
+.bulk-toolbar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
-      font-size: 9px;
-      font-weight: 900;
+  gap: 8px;
 
-      opacity: 0;
-      pointer-events: none;
+  margin-bottom: 11px;
+}
 
-      transition: .2s ease;
-    }
+.bulk-table-wrap {
+  overflow-x: auto;
 
-    .toast.show {
-      opacity: 1;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+}
 
-      transform:
-        translateX(-50%)
-        translateY(0);
-    }
+.bulk-table {
+  min-width: 700px;
 
+  width: 100%;
 
-    /* =====================================================
-       BOTTOM SAVE NAV
-    ===================================================== */
+  border-collapse: collapse;
+}
 
-    .admin-bottom {
-      position: fixed;
+.bulk-table th {
+  height: 41px;
 
-      left: 50%;
+  padding: 0 7px;
 
-      bottom:
-        calc(
-          12px +
-          env(safe-area-inset-bottom)
-        );
+  background: #f6f6f7;
 
-      transform: translateX(-50%);
+  color: #8f9094;
 
-      width: calc(100% - 24px);
-      max-width: 560px;
+  border-bottom: 1px solid #ddd;
 
-      min-height: 64px;
+  font-size: 8px;
+  font-weight: 900;
+}
 
-      z-index: 1000;
+.bulk-table th:first-child {
+  text-align: left;
+}
 
-      padding: 7px;
+.bulk-table td {
+  height: 48px;
 
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+  padding: 4px 6px;
 
-      gap: 7px;
+  border-bottom: 1px solid #e3e3e3;
 
-      background: rgba(255,255,255,.97);
+  text-align: center;
+}
 
-      border: 1px solid #ddd;
-      border-radius: 999px;
+.bulk-player {
+  text-align: left !important;
+}
 
-      box-shadow:
-        0 10px 30px
-        rgba(0,0,0,.15);
-    }
+.bulk-player strong {
+  display: block;
 
-    .admin-bottom button {
-      border: 0;
-      border-radius: 999px;
+  font-size: 9px;
+  font-weight: 900;
+}
 
-      font-size: 9px;
-      font-weight: 900;
-    }
+.bulk-player span {
+  color: var(--muted);
 
-    .admin-bottom .save-everything {
-      background: var(--red);
-      color: #fff;
-    }
+  font-size: 7px;
+}
 
-    .admin-bottom .go-site {
-      background: #ededee;
-      color: #24252a;
-    }
+.bulk-number-input {
+  width: 50px;
+  height: 34px;
 
+  text-align: center;
 
-    /* =====================================================
-       PHONE
-    ===================================================== */
+  border: 1px solid #d7d7d9;
+  border-radius: 8px;
 
-    @media (max-width: 430px) {
+  font-size: 10px;
+  font-weight: 900;
+}
 
-      .admin-app {
-        padding: 10px;
-      }
+.stats-save-bar {
+  margin-top: 10px;
 
-      .admin-header h1 {
-        font-size: 25px;
-      }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
-      .dashboard-stat {
-        min-height: 90px;
-      }
+  gap: 8px;
+}
 
-      .dashboard-stat strong {
-        font-size: 25px;
-      }
 
-      .section-heading h2 {
-        font-size: 21px;
-      }
+/* =====================================================
+   TEAM EDITOR
+===================================================== */
 
-      .team-mini-grid {
-        grid-template-columns:
-          minmax(0,1fr)
-          55px
-          55px
-          55px;
-      }
+.team-edit-row {
+  margin-bottom: 8px;
 
-    }
+  padding: 10px;
 
-  </style>
+  border: 1px solid var(--border);
+  border-radius: 13px;
+}
 
+.team-edit-name {
+  margin-bottom: 8px;
+
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.team-mini-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    60px
+    60px
+    60px;
+
+  gap: 6px;
+}
+
+.team-mini-grid input,
+.team-mini-grid select {
+  width: 100%;
+  height: 38px;
+
+  padding: 0 7px;
+
+  border: 1px solid #d8d8da;
+  border-radius: 9px;
+
+  font-size: 9px;
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   NOTICE
+===================================================== */
+
+.notice {
+  margin-bottom: 12px;
+
+  padding: 12px;
+
+  border-radius: 12px;
+
+  background: #fff1f3;
+  color: #a42033;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  line-height: 1.45;
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast {
+  position: fixed;
+
+  left: 50%;
+  bottom: 95px;
+
+  transform:
+    translateX(-50%)
+    translateY(30px);
+
+  z-index: 9999;
+
+  padding: 11px 15px;
+
+  border-radius: 999px;
+
+  background: #202127;
+  color: #fff;
+
+  font-size: 9px;
+  font-weight: 900;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: .2s;
+}
+
+.toast.show {
+  opacity: 1;
+
+  transform:
+    translateX(-50%)
+    translateY(0);
+}
+
+
+/* =====================================================
+   BOTTOM BAR
+===================================================== */
+
+.admin-bottom {
+  position: fixed;
+
+  left: 50%;
+
+  bottom:
+    calc(
+      12px +
+      env(safe-area-inset-bottom)
+    );
+
+  transform: translateX(-50%);
+
+  width: calc(100% - 24px);
+  max-width: 560px;
+
+  min-height: 64px;
+
+  z-index: 1000;
+
+  padding: 7px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 7px;
+
+  background: rgba(255,255,255,.97);
+
+  border: 1px solid #ddd;
+  border-radius: 999px;
+
+  box-shadow:
+    0 10px 30px
+    rgba(0,0,0,.15);
+}
+
+.admin-bottom button {
+  border: 0;
+  border-radius: 999px;
+
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.go-site {
+  background: #ededee;
+  color: #24252a;
+}
+
+.save-everything {
+  background: var(--red);
+  color: #fff;
+}
+
+
+/* =====================================================
+   PHONE
+===================================================== */
+
+@media (max-width: 430px) {
+
+  .admin-app {
+    padding: 10px;
+  }
+
+  .admin-header h1 {
+    font-size: 24px;
+  }
+
+  .team-mini-grid {
+    grid-template-columns:
+      minmax(0,1fr)
+      52px
+      52px
+      52px;
+  }
+
+}
+
+</style>
 </head>
 
 
 <body>
 
 
-<main class="admin-app">
+<!-- =====================================================
+     ADMIN LOGIN
+===================================================== -->
 
+<div
+  class="admin-lock"
+  id="adminLock"
+>
 
-  <!-- =====================================================
-       HEADER
-  ===================================================== -->
+  <div class="lock-card">
 
-  <header class="admin-header">
+    <div class="lock-top">
 
-    <div class="admin-header-inner">
+      <div class="lock-logo">
+        H
+      </div>
 
-      <span class="admin-kicker">
+      <span>
         HSFL SEASON 2
       </span>
 
-      <h1>
-        League Control Panel
+      <h1 id="lockTitle">
+        Admin Access
       </h1>
 
-      <p>
-        Manage the entire league from one place.
+      <p id="lockDescription">
+        Enter your admin PIN to manage the league.
       </p>
 
     </div>
 
-  </header>
 
+    <div class="lock-body">
 
+      <div class="lock-field">
 
-  <!-- =====================================================
-       NAVIGATION
-  ===================================================== -->
+        <label id="pinLabel">
+          Admin PIN
+        </label>
 
-  <div class="admin-nav-wrap">
-
-    <nav class="admin-nav">
-
-      <button
-        class="admin-nav-button active"
-        data-section="dashboard"
-      >
-        Dashboard
-      </button>
-
-      <button
-        class="admin-nav-button"
-        data-section="games"
-      >
-        Games
-      </button>
-
-      <button
-        class="admin-nav-button"
-        data-section="players"
-      >
-        Players
-      </button>
-
-      <button
-        class="admin-nav-button"
-        data-section="stats"
-      >
-        Stat Entry
-      </button>
-
-      <button
-        class="admin-nav-button"
-        data-section="teams"
-      >
-        Teams
-      </button>
-
-      <button
-        class="admin-nav-button"
-        data-section="schedule"
-      >
-        Schedule
-      </button>
-
-      <button
-        class="admin-nav-button"
-        data-section="settings"
-      >
-        Settings
-      </button>
-
-    </nav>
-
-  </div>
-
-
-
-  <!-- =====================================================
-       DASHBOARD
-  ===================================================== -->
-
-  <section
-    class="admin-section active"
-    id="section-dashboard"
-  >
-
-    <div class="section-heading">
-
-      <h2>
-        Dashboard
-      </h2>
-
-      <span>
-        LEAGUE OVERVIEW
-      </span>
-
-    </div>
-
-
-    <div class="dashboard-grid">
-
-      <div class="dashboard-stat">
-
-        <span>
-          CURRENT WEEK
-        </span>
-
-        <strong id="dashboardWeek">
-          1
-        </strong>
-
-      </div>
-
-
-      <div class="dashboard-stat">
-
-        <span>
-          PLAYERS
-        </span>
-
-        <strong id="dashboardPlayers">
-          0
-        </strong>
-
-      </div>
-
-
-      <div class="dashboard-stat">
-
-        <span>
-          GAMES
-        </span>
-
-        <strong id="dashboardGames">
-          0
-        </strong>
-
-      </div>
-
-
-      <div class="dashboard-stat">
-
-        <span>
-          FINAL GAMES
-        </span>
-
-        <strong id="dashboardFinals">
-          0
-        </strong>
-
-      </div>
-
-    </div>
-
-
-    <div class="admin-card">
-
-      <div class="admin-card-title">
-
-        <strong>
-          Quick Actions
-        </strong>
-
-        <span>
-          FAST ACCESS
-        </span>
-
-      </div>
-
-
-      <div class="quick-actions">
-
-        <button
-          class="primary-button"
-          data-open-section="games"
+        <input
+          id="adminPin"
+          type="password"
+          inputmode="numeric"
+          maxlength="8"
+          placeholder="••••"
         >
-          Enter Scores
-        </button>
-
-        <button
-          class="secondary-button"
-          data-open-section="players"
-        >
-          Add Player
-        </button>
-
-        <button
-          class="secondary-button"
-          data-open-section="stats"
-        >
-          Enter Stats
-        </button>
-
-        <button
-          class="secondary-button"
-          data-open-section="schedule"
-        >
-          Add Game
-        </button>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =====================================================
-       GAMES
-  ===================================================== -->
-
-  <section
-    class="admin-section"
-    id="section-games"
-  >
-
-    <div class="section-heading">
-
-      <h2>
-        Games & Scores
-      </h2>
-
-      <span>
-        UPDATE RESULTS
-      </span>
-
-    </div>
-
-
-    <div class="admin-card">
-
-      <div class="form-grid one">
-
-        <div class="field">
-
-          <label>
-            Week
-          </label>
-
-          <select id="gamesWeekSelect"></select>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div id="gameAdminList"></div>
-
-
-    <button
-      class="primary-button full-button"
-      id="saveGamesButton"
-    >
-      SAVE ALL GAME CHANGES
-    </button>
-
-  </section>
-
-
-
-  <!-- =====================================================
-       PLAYERS
-  ===================================================== -->
-
-  <section
-    class="admin-section"
-    id="section-players"
-  >
-
-    <div class="section-heading">
-
-      <h2>
-        Players
-      </h2>
-
-      <span>
-        ROSTER MANAGEMENT
-      </span>
-
-    </div>
-
-
-    <div class="admin-card">
-
-      <div class="admin-card-title">
-
-        <strong>
-          Add Player
-        </strong>
-
-        <span>
-          NEW PLAYER
-        </span>
-
-      </div>
-
-
-      <div class="form-grid">
-
-        <div class="field">
-
-          <label>
-            Roblox Username
-          </label>
-
-          <input
-            id="playerUsername"
-            placeholder="username"
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Display Name
-          </label>
-
-          <input
-            id="playerDisplayName"
-            placeholder="display name"
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Team
-          </label>
-
-          <select id="playerTeam"></select>
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Position
-          </label>
-
-          <select id="playerPosition">
-
-            <option>Passing</option>
-            <option>Rushing</option>
-            <option>Receiving</option>
-            <option>Tight Ends</option>
-            <option>Center</option>
-            <option>Defensive Ends</option>
-            <option>Linebackers</option>
-            <option>Secondary</option>
-            <option>Kicking</option>
-
-          </select>
-
-        </div>
-
-
-        <div class="field full">
-
-          <button
-            class="primary-button full-button"
-            id="addPlayerButton"
-          >
-            ADD PLAYER
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="admin-card">
-
-      <div class="admin-card-title">
-
-        <strong>
-          League Players
-        </strong>
-
-        <span id="playerCountLabel">
-          0 PLAYERS
-        </span>
 
       </div>
 
 
       <div
-        class="player-list"
-        id="playerList"
+        class="lock-field"
+        id="confirmPinWrap"
+        style="display:none;"
+      >
+
+        <label>
+          Confirm PIN
+        </label>
+
+        <input
+          id="confirmAdminPin"
+          type="password"
+          inputmode="numeric"
+          maxlength="8"
+          placeholder="••••"
+        >
+
+      </div>
+
+
+      <button
+        class="lock-button"
+        id="unlockButton"
+        type="button"
+      >
+        UNLOCK ADMIN
+      </button>
+
+
+      <button
+        class="lock-site-button"
+        type="button"
+        onclick="window.location.href='index.html'"
+      >
+        BACK TO WEBSITE
+      </button>
+
+
+      <div
+        class="lock-error"
+        id="lockError"
       ></div>
 
     </div>
 
-  </section>
+  </div>
+
+</div>
 
 
 
-  <!-- =====================================================
-       BULK STAT ENTRY
-  ===================================================== -->
+<!-- =====================================================
+     ADMIN SHELL
+===================================================== -->
 
-  <section
-    class="admin-section"
-    id="section-stats"
+<div id="adminShell">
+
+
+<main class="admin-app">
+
+
+<header class="admin-header">
+
+  <div class="admin-header-inner">
+
+    <div class="admin-header-row">
+
+      <div>
+
+        <span class="admin-kicker">
+          HSFL SEASON 2
+        </span>
+
+        <h1>
+          League Control Panel
+        </h1>
+
+        <p>
+          Manage the entire league from one place.
+        </p>
+
+      </div>
+
+
+      <button
+        class="logout-button"
+        id="logoutButton"
+        type="button"
+      >
+        LOCK
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+
+<!-- NAV -->
+
+<div class="admin-nav-wrap">
+
+<nav class="admin-nav">
+
+  <button
+    class="admin-nav-button active"
+    data-section="dashboard"
   >
+    Dashboard
+  </button>
 
-    <div class="section-heading">
-
-      <h2>
-        Stat Entry
-      </h2>
-
-      <span>
-        BULK ENTRY
-      </span>
-
-    </div>
-
-
-    <div class="notice">
-      Pick a game, team, and stat category. Every player
-      on that team appears together so you can enter the
-      whole game at once.
-    </div>
-
-
-    <div class="admin-card">
-
-      <div class="bulk-toolbar">
-
-        <div class="field">
-
-          <label>
-            Week
-          </label>
-
-          <select id="statsWeek"></select>
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Game
-          </label>
-
-          <select id="statsGame"></select>
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Team
-          </label>
-
-          <select id="statsTeam"></select>
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Category
-          </label>
-
-          <select id="statsCategory">
-
-            <option value="passing">
-              Passing
-            </option>
-
-            <option value="rushing">
-              Rushing
-            </option>
-
-            <option value="receiving">
-              Receiving
-            </option>
-
-            <option value="tightends">
-              Tight Ends
-            </option>
-
-            <option value="center">
-              Center
-            </option>
-
-            <option value="defensiveends">
-              Defensive Ends
-            </option>
-
-            <option value="linebackers">
-              Linebackers
-            </option>
-
-            <option value="secondary">
-              Secondary
-            </option>
-
-            <option value="kicking">
-              Kicking
-            </option>
-
-          </select>
-
-        </div>
-
-      </div>
-
-
-      <div class="bulk-table-wrap">
-
-        <table class="bulk-table">
-
-          <thead id="bulkStatsHead"></thead>
-
-          <tbody id="bulkStatsBody"></tbody>
-
-        </table>
-
-      </div>
-
-
-      <div class="stats-save-bar">
-
-        <button
-          class="secondary-button"
-          id="clearStatInputs"
-        >
-          CLEAR
-        </button>
-
-        <button
-          class="primary-button"
-          id="saveBulkStats"
-        >
-          SAVE ALL STATS
-        </button>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =====================================================
-       TEAMS
-  ===================================================== -->
-
-  <section
-    class="admin-section"
-    id="section-teams"
+  <button
+    class="admin-nav-button"
+    data-section="games"
   >
+    Games
+  </button>
 
-    <div class="section-heading">
+  <button
+    class="admin-nav-button"
+    data-section="players"
+  >
+    Players
+  </button>
 
-      <h2>
-        Teams
-      </h2>
+  <button
+    class="admin-nav-button"
+    data-section="stats"
+  >
+    Stat Entry
+  </button>
 
-      <span>
-        RECORD OVERRIDES
-      </span>
+  <button
+    class="admin-nav-button"
+    data-section="teams"
+  >
+    Teams
+  </button>
+
+  <button
+    class="admin-nav-button"
+    data-section="schedule"
+  >
+    Schedule
+  </button>
+
+  <button
+    class="admin-nav-button"
+    data-section="settings"
+  >
+    Settings
+  </button>
+
+</nav>
+
+</div>
+
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<section
+  class="admin-section active"
+  id="section-dashboard"
+>
+
+<div class="section-heading">
+
+  <h2>
+    Dashboard
+  </h2>
+
+  <span>
+    LEAGUE OVERVIEW
+  </span>
+
+</div>
+
+
+<div class="dashboard-grid">
+
+  <div class="dashboard-stat">
+
+    <span>
+      CURRENT WEEK
+    </span>
+
+    <strong id="dashboardWeek">
+      1
+    </strong>
+
+  </div>
+
+
+  <div class="dashboard-stat">
+
+    <span>
+      PLAYERS
+    </span>
+
+    <strong id="dashboardPlayers">
+      0
+    </strong>
+
+  </div>
+
+
+  <div class="dashboard-stat">
+
+    <span>
+      GAMES
+    </span>
+
+    <strong id="dashboardGames">
+      0
+    </strong>
+
+  </div>
+
+
+  <div class="dashboard-stat">
+
+    <span>
+      FINAL GAMES
+    </span>
+
+    <strong id="dashboardFinals">
+      0
+    </strong>
+
+  </div>
+
+</div>
+
+
+<div class="admin-card">
+
+  <div class="admin-card-title">
+
+    <strong>
+      Quick Actions
+    </strong>
+
+    <span>
+      FAST ACCESS
+    </span>
+
+  </div>
+
+
+  <div class="quick-actions">
+
+    <button
+      class="primary-button"
+      data-open-section="games"
+    >
+      Enter Scores
+    </button>
+
+    <button
+      class="secondary-button"
+      data-open-section="players"
+    >
+      Add Player
+    </button>
+
+    <button
+      class="secondary-button"
+      data-open-section="stats"
+    >
+      Enter Stats
+    </button>
+
+    <button
+      class="secondary-button"
+      data-open-section="schedule"
+    >
+      Add Game
+    </button>
+
+  </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     GAMES
+===================================================== -->
+
+<section
+  class="admin-section"
+  id="section-games"
+>
+
+<div class="section-heading">
+
+  <h2>
+    Games & Scores
+  </h2>
+
+  <span>
+    UPDATE RESULTS
+  </span>
+
+</div>
+
+
+<div class="admin-card">
+
+  <div class="field">
+
+    <label>
+      Week
+    </label>
+
+    <select id="gamesWeekSelect"></select>
+
+  </div>
+
+</div>
+
+
+<div id="gameAdminList"></div>
+
+
+<button
+  class="primary-button full-button"
+  id="saveGamesButton"
+>
+  SAVE ALL GAME CHANGES
+</button>
+
+</section>
+
+
+
+<!-- =====================================================
+     PLAYERS
+===================================================== -->
+
+<section
+  class="admin-section"
+  id="section-players"
+>
+
+<div class="section-heading">
+
+  <h2>
+    Players
+  </h2>
+
+  <span>
+    ROSTER MANAGEMENT
+  </span>
+
+</div>
+
+
+<div class="admin-card">
+
+  <div class="admin-card-title">
+
+    <strong>
+      Add Player
+    </strong>
+
+    <span>
+      NEW PLAYER
+    </span>
+
+  </div>
+
+
+  <div class="form-grid">
+
+    <div class="field">
+
+      <label>
+        Roblox Username
+      </label>
+
+      <input
+        id="playerUsername"
+        placeholder="username"
+      >
 
     </div>
 
 
-    <div class="notice">
-      Game scores can calculate standings later. These fields
-      are manual overrides if you ever need to fix something.
+    <div class="field">
+
+      <label>
+        Display Name
+      </label>
+
+      <input
+        id="playerDisplayName"
+        placeholder="display name"
+      >
+
     </div>
 
 
-    <div id="teamEditor"></div>
+    <div class="field">
 
+      <label>
+        Team
+      </label>
+
+      <select id="playerTeam"></select>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        Position
+      </label>
+
+      <select id="playerPosition">
+
+        <option>Passing</option>
+        <option>Rushing</option>
+        <option>Receiving</option>
+        <option>Tight Ends</option>
+        <option>Center</option>
+        <option>Defensive Ends</option>
+        <option>Linebackers</option>
+        <option>Secondary</option>
+        <option>Kicking</option>
+
+      </select>
+
+    </div>
+
+
+    <div class="field full">
+
+      <button
+        class="primary-button full-button"
+        id="addPlayerButton"
+      >
+        ADD PLAYER
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="admin-card">
+
+  <div class="admin-card-title">
+
+    <strong>
+      League Players
+    </strong>
+
+    <span id="playerCountLabel">
+      0 PLAYERS
+    </span>
+
+  </div>
+
+  <div
+    class="player-list"
+    id="playerList"
+  ></div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
+<section
+  class="admin-section"
+  id="section-stats"
+>
+
+<div class="section-heading">
+
+  <h2>
+    Stat Entry
+  </h2>
+
+  <span>
+    BULK ENTRY
+  </span>
+
+</div>
+
+
+<div class="notice">
+  Pick the game, team, and stat category.
+  Every player on that team appears together
+  so you can enter everybody at once.
+</div>
+
+
+<div class="admin-card">
+
+<div class="bulk-toolbar">
+
+  <div class="field">
+
+    <label>
+      Week
+    </label>
+
+    <select id="statsWeek"></select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Game
+    </label>
+
+    <select id="statsGame"></select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Team
+    </label>
+
+    <select id="statsTeam"></select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Category
+    </label>
+
+    <select id="statsCategory">
+
+      <option value="passing">
+        Passing
+      </option>
+
+      <option value="rushing">
+        Rushing
+      </option>
+
+      <option value="receiving">
+        Receiving
+      </option>
+
+      <option value="tightends">
+        Tight Ends
+      </option>
+
+      <option value="center">
+        Center
+      </option>
+
+      <option value="defensiveends">
+        Defensive Ends
+      </option>
+
+      <option value="linebackers">
+        Linebackers
+      </option>
+
+      <option value="secondary">
+        Secondary
+      </option>
+
+      <option value="kicking">
+        Kicking
+      </option>
+
+    </select>
+
+  </div>
+
+</div>
+
+
+<div class="bulk-table-wrap">
+
+<table class="bulk-table">
+
+  <thead id="bulkStatsHead"></thead>
+
+  <tbody id="bulkStatsBody"></tbody>
+
+</table>
+
+</div>
+
+
+<div class="stats-save-bar">
+
+  <button
+    class="secondary-button"
+    id="clearStatInputs"
+  >
+    CLEAR
+  </button>
+
+  <button
+    class="primary-button"
+    id="saveBulkStats"
+  >
+    SAVE ALL STATS
+  </button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     TEAMS
+===================================================== -->
+
+<section
+  class="admin-section"
+  id="section-teams"
+>
+
+<div class="section-heading">
+
+  <h2>
+    Teams
+  </h2>
+
+  <span>
+    RECORD OVERRIDES
+  </span>
+
+</div>
+
+
+<div class="notice">
+  You can manually change W, L, PD and conferences here.
+</div>
+
+
+<div id="teamEditor"></div>
+
+
+<button
+  class="primary-button full-button"
+  id="saveTeamsButton"
+>
+  SAVE TEAM CHANGES
+</button>
+
+</section>
+
+
+
+<!-- =====================================================
+     SCHEDULE
+===================================================== -->
+
+<section
+  class="admin-section"
+  id="section-schedule"
+>
+
+<div class="section-heading">
+
+  <h2>
+    Schedule
+  </h2>
+
+  <span>
+    ADD MATCHUPS
+  </span>
+
+</div>
+
+
+<div class="admin-card">
+
+<div class="form-grid">
+
+  <div class="field">
+
+    <label>
+      Week
+    </label>
+
+    <input
+      id="scheduleWeek"
+      type="number"
+      min="1"
+      value="1"
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Game of Week
+    </label>
+
+    <select id="scheduleFeatured">
+
+      <option value="false">
+        No
+      </option>
+
+      <option value="true">
+        Yes
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Away Team
+    </label>
+
+    <select id="scheduleAway"></select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Home Team
+    </label>
+
+    <select id="scheduleHome"></select>
+
+  </div>
+
+
+  <div class="field full">
 
     <button
       class="primary-button full-button"
-      id="saveTeamsButton"
+      id="addGameButton"
     >
-      SAVE TEAM CHANGES
+      ADD GAME
     </button>
 
-  </section>
+  </div>
 
+</div>
 
+</div>
 
-  <!-- =====================================================
-       SCHEDULE
-  ===================================================== -->
 
-  <section
-    class="admin-section"
-    id="section-schedule"
-  >
+<div
+  class="admin-card"
+  id="scheduleList"
+></div>
 
-    <div class="section-heading">
+</section>
 
-      <h2>
-        Schedule
-      </h2>
 
-      <span>
-        ADD MATCHUPS
-      </span>
 
-    </div>
+<!-- =====================================================
+     SETTINGS
+===================================================== -->
 
+<section
+  class="admin-section"
+  id="section-settings"
+>
 
-    <div class="admin-card">
+<div class="section-heading">
 
-      <div class="form-grid">
+  <h2>
+    Settings
+  </h2>
 
-        <div class="field">
+  <span>
+    LEAGUE SETTINGS
+  </span>
 
-          <label>
-            Week
-          </label>
+</div>
 
-          <input
-            id="scheduleWeek"
-            type="number"
-            min="1"
-            value="1"
-          >
 
-        </div>
+<div class="admin-card">
 
+<div class="form-grid">
 
-        <div class="field">
+  <div class="field full">
 
-          <label>
-            Game of Week
-          </label>
+    <label>
+      League Name
+    </label>
 
-          <select id="scheduleFeatured">
+    <input id="settingLeagueName">
 
-            <option value="false">
-              No
-            </option>
+  </div>
 
-            <option value="true">
-              Yes
-            </option>
 
-          </select>
+  <div class="field">
 
-        </div>
+    <label>
+      Current Week
+    </label>
 
+    <input
+      id="settingCurrentWeek"
+      type="number"
+      min="1"
+    >
 
-        <div class="field">
+  </div>
 
-          <label>
-            Away Team
-          </label>
 
-          <select id="scheduleAway"></select>
+  <div class="field">
 
-        </div>
+    <label>
+      Playoff Teams / Conference
+    </label>
 
+    <input
+      id="settingPlayoffTeams"
+      type="number"
+      min="1"
+    >
 
-        <div class="field">
+  </div>
 
-          <label>
-            Home Team
-          </label>
 
-          <select id="scheduleHome"></select>
+  <div class="field full">
 
-        </div>
+    <button
+      class="primary-button full-button"
+      id="saveSettingsButton"
+    >
+      SAVE SETTINGS
+    </button>
 
+  </div>
 
-        <div class="field full">
+</div>
 
-          <button
-            class="primary-button full-button"
-            id="addGameButton"
-          >
-            ADD GAME
-          </button>
+</div>
 
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div
-      class="admin-card"
-      id="scheduleList"
-    ></div>
-
-  </section>
-
-
-
-  <!-- =====================================================
-       SETTINGS
-  ===================================================== -->
-
-  <section
-    class="admin-section"
-    id="section-settings"
-  >
-
-    <div class="section-heading">
-
-      <h2>
-        Settings
-      </h2>
-
-      <span>
-        LEAGUE SETTINGS
-      </span>
-
-    </div>
-
-
-    <div class="admin-card">
-
-      <div class="form-grid">
-
-        <div class="field full">
-
-          <label>
-            League Name
-          </label>
-
-          <input
-            id="settingLeagueName"
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Current Week
-          </label>
-
-          <input
-            id="settingCurrentWeek"
-            type="number"
-            min="1"
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Playoff Teams / Conference
-          </label>
-
-          <input
-            id="settingPlayoffTeams"
-            type="number"
-            min="1"
-          >
-
-        </div>
-
-
-        <div class="field full">
-
-          <button
-            class="primary-button full-button"
-            id="saveSettingsButton"
-          >
-            SAVE SETTINGS
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="admin-card">
-
-      <div class="admin-card-title">
-
-        <strong>
-          Data Backup
-        </strong>
-
-        <span>
-          SAFETY
-        </span>
-
-      </div>
-
-
-      <div class="form-grid">
-
-        <button
-          class="secondary-button"
-          id="exportDataButton"
-        >
-          EXPORT DATA
-        </button>
-
-        <button
-          class="danger-button"
-          id="resetDataButton"
-        >
-          RESET ADMIN DATA
-        </button>
-
-      </div>
-
-    </div>
-
-  </section>
+</section>
 
 
 </main>
 
 
-
-<!-- =====================================================
-     BOTTOM BAR
-===================================================== -->
 
 <div class="admin-bottom">
 
@@ -1810,6 +2060,9 @@
 </div>
 
 
+</div>
+
+
 
 <div
   class="toast"
@@ -1822,1305 +2075,1817 @@
 
 <script>
 
-  /* =====================================================
-     TEAM DATA
-  ===================================================== */
+/* =====================================================
+   ADMIN PIN SYSTEM
+===================================================== */
 
-  const defaultTeams = {
+const pinStorageKey =
+  "hsfl_admin_pin_hash_v1";
 
-    auburn: {
-      name: "Auburn Tigers",
-      short: "AUB",
-      conference: "American",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
+const unlockedStorageKey =
+  "hsfl_admin_unlocked_v1";
 
-    parker: {
-      name: "Parker Thundering Herd",
-      short: "PAR",
-      conference: "American",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
 
-    cornercanyon: {
-      name: "Corner Canyon Chargers",
-      short: "CCY",
-      conference: "American",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
+async function hashPin(pin) {
 
-    stfrances: {
-      name: "St. Frances Academy",
-      short: "SFA",
-      conference: "American",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
+  const bytes =
+    new TextEncoder()
+      .encode(pin);
 
-    buford: {
-      name: "Buford Wolves",
-      short: "BUF",
-      conference: "American",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
-
-    bosco: {
-      name: "St. John Bosco Braves",
-      short: "SJB",
-      conference: "American",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
-
-    centennial: {
-      name: "Centennial Huskies",
-      short: "CEN",
-      conference: "National",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
-
-    img: {
-      name: "IMG Academy",
-      short: "IMG",
-      conference: "National",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
-
-    norland: {
-      name: "Norland Vikings",
-      short: "NOR",
-      conference: "National",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
-
-    saraland: {
-      name: "Saraland Spartans",
-      short: "SAR",
-      conference: "National",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
-
-    mckinney: {
-      name: "McKinney Lions",
-      short: "MCK",
-      conference: "National",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
-
-    guyer: {
-      name: "Denton Guyer Wildcats",
-      short: "GUY",
-      conference: "National",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
-
-    stjames: {
-      name: "St. James Academy Strivers",
-      short: "STJ",
-      conference: "Other",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
-
-    dutchfork: {
-      name: "Dutch Fork Silver Foxes",
-      short: "DFK",
-      conference: "Other",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    }
-
-  };
-
-
-
-  const defaultGames = [
-
-    {
-      id: "w1g1",
-      week: 1,
-      away: "saraland",
-      home: "mckinney",
-      awayScore: "",
-      homeScore: "",
-      status: "upcoming",
-      featured: false
-    },
-
-    {
-      id: "w1g2",
-      week: 1,
-      away: "img",
-      home: "buford",
-      awayScore: "",
-      homeScore: "",
-      status: "upcoming",
-      featured: false
-    },
-
-    {
-      id: "w1g3",
-      week: 1,
-      away: "auburn",
-      home: "bosco",
-      awayScore: "",
-      homeScore: "",
-      status: "upcoming",
-      featured: false
-    },
-
-    {
-      id: "w1g4",
-      week: 1,
-      away: "stjames",
-      home: "norland",
-      awayScore: "",
-      homeScore: "",
-      status: "upcoming",
-      featured: false
-    },
-
-    {
-      id: "w1g5",
-      week: 1,
-      away: "parker",
-      home: "stfrances",
-      awayScore: "",
-      homeScore: "",
-      status: "upcoming",
-      featured: false
-    },
-
-    {
-      id: "w1g6",
-      week: 1,
-      away: "guyer",
-      home: "centennial",
-      awayScore: "",
-      homeScore: "",
-      status: "upcoming",
-      featured: true
-    },
-
-    {
-      id: "w1g7",
-      week: 1,
-      away: "cornercanyon",
-      home: "dutchfork",
-      awayScore: "",
-      homeScore: "",
-      status: "upcoming",
-      featured: false
-    }
-
-  ];
-
-
-
-  /* =====================================================
-     STAT FIELDS
-  ===================================================== */
-
-  const statFields = {
-
-    passing: [
-      "CMP",
-      "ATT",
-      "YDS",
-      "TD",
-      "INT"
-    ],
-
-    rushing: [
-      "ATT",
-      "YDS",
-      "TD",
-      "AVG"
-    ],
-
-    receiving: [
-      "REC",
-      "YDS",
-      "TD",
-      "AVG"
-    ],
-
-    tightends: [
-      "REC",
-      "YDS",
-      "TD",
-      "AVG"
-    ],
-
-    center: [
-      "GP",
-      "PTS",
-      "GRADE"
-    ],
-
-    defensiveends: [
-      "TKL",
-      "TFL",
-      "SACK",
-      "INT",
-      "PBU"
-    ],
-
-    linebackers: [
-      "TKL",
-      "TFL",
-      "SACK",
-      "INT",
-      "PBU"
-    ],
-
-    secondary: [
-      "TKL",
-      "INT",
-      "PBU",
-      "TFL",
-      "TD"
-    ],
-
-    kicking: [
-      "FGM",
-      "FGA",
-      "XP",
-      "PTS"
-    ]
-
-  };
-
-
-
-  /* =====================================================
-     DATA
-  ===================================================== */
-
-  const storageKey =
-    "hsfl_admin_data_v1";
-
-
-  let data =
-    loadData();
-
-
-
-  function defaultData() {
-
-    return {
-
-      settings: {
-        leagueName: "HSFL Season 2",
-        currentWeek: 1,
-        playoffTeams: 4
-      },
-
-      teams:
-        JSON.parse(
-          JSON.stringify(
-            defaultTeams
-          )
-        ),
-
-      players: [],
-
-      games:
-        JSON.parse(
-          JSON.stringify(
-            defaultGames
-          )
-        ),
-
-      playerGameStats: {}
-
-    };
-
-  }
-
-
-
-  function loadData() {
-
-    try {
-
-      const saved =
-        localStorage.getItem(
-          storageKey
-        );
-
-
-      if (saved) {
-
-        return JSON.parse(
-          saved
-        );
-
-      }
-
-    }
-
-    catch (error) {
-
-      console.log(error);
-
-    }
-
-
-    return defaultData();
-
-  }
-
-
-
-  function saveData(
-    message = "Saved"
-  ) {
-
-    localStorage.setItem(
-      storageKey,
-      JSON.stringify(data)
+  const hash =
+    await crypto.subtle.digest(
+      "SHA-256",
+      bytes
     );
 
+  return Array.from(
+    new Uint8Array(hash)
+  )
+  .map(
+    byte =>
+      byte
+        .toString(16)
+        .padStart(2,"0")
+  )
+  .join("");
 
-    refreshEverything();
-
-
-    showToast(message);
-
-  }
-
-
-
-  /* =====================================================
-     TOAST
-  ===================================================== */
-
-  function showToast(message) {
-
-    const toast =
-      document.getElementById(
-        "toast"
-      );
+}
 
 
-    toast.textContent =
-      message;
+function hasAdminPin() {
 
-
-    toast.classList.add(
-      "show"
-    );
-
-
-    setTimeout(
-      () => {
-
-        toast.classList.remove(
-          "show"
-        );
-
-      },
-      1600
-    );
-
-  }
-
-
-
-  /* =====================================================
-     NAVIGATION
-  ===================================================== */
-
-  const navButtons =
-    document.querySelectorAll(
-      ".admin-nav-button"
-    );
-
-
-  const sections =
-    document.querySelectorAll(
-      ".admin-section"
-    );
-
-
-  function openSection(name) {
-
-    navButtons.forEach(
-      button => {
-
-        button.classList.toggle(
-          "active",
-          button.dataset.section === name
-        );
-
-      }
-    );
-
-
-    sections.forEach(
-      section => {
-
-        section.classList.toggle(
-          "active",
-          section.id ===
-          `section-${name}`
-        );
-
-      }
-    );
-
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  }
-
-
-
-  navButtons.forEach(
-    button => {
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          openSection(
-            button.dataset.section
-          );
-
-        }
-      );
-
-    }
+  return Boolean(
+    localStorage.getItem(
+      pinStorageKey
+    )
   );
 
+}
 
 
-  document
-    .querySelectorAll(
-      "[data-open-section]"
-    )
-    .forEach(
-      button => {
+function showAdmin() {
 
-        button.addEventListener(
-          "click",
-          () => {
+  document.getElementById(
+    "adminLock"
+  ).style.display =
+    "none";
 
-            openSection(
-              button.dataset.openSection
-            );
+  document.getElementById(
+    "adminShell"
+  ).style.display =
+    "block";
 
-          }
-        );
+  sessionStorage.setItem(
+    unlockedStorageKey,
+    "yes"
+  );
 
-      }
+  refreshEverything();
+
+}
+
+
+function showLock() {
+
+  document.getElementById(
+    "adminShell"
+  ).style.display =
+    "none";
+
+  document.getElementById(
+    "adminLock"
+  ).style.display =
+    "flex";
+
+}
+
+
+function setupLockScreen() {
+
+  const setupMode =
+    !hasAdminPin();
+
+
+  const title =
+    document.getElementById(
+      "lockTitle"
+    );
+
+  const description =
+    document.getElementById(
+      "lockDescription"
+    );
+
+  const confirmWrap =
+    document.getElementById(
+      "confirmPinWrap"
+    );
+
+  const button =
+    document.getElementById(
+      "unlockButton"
     );
 
 
+  if (setupMode) {
 
-  /* =====================================================
-     TEAM OPTIONS
-  ===================================================== */
+    title.textContent =
+      "Create Admin PIN";
 
-  function getTeamOptions() {
+    description.textContent =
+      "Choose a PIN for your private HSFL control panel.";
 
-    return Object.entries(
-      data.teams
-    )
-    .map(
-      ([id, team]) => {
+    confirmWrap.style.display =
+      "block";
 
-        return `
-          <option value="${id}">
-            ${team.name}
-          </option>
-        `;
-
-      }
-    )
-    .join("");
+    button.textContent =
+      "CREATE ADMIN PIN";
 
   }
 
+  else {
 
+    title.textContent =
+      "Admin Access";
 
-  function refreshTeamSelectors() {
+    description.textContent =
+      "Enter your PIN to manage HSFL Season 2.";
 
-    const html =
-      getTeamOptions();
+    confirmWrap.style.display =
+      "none";
 
-
-    [
-      "playerTeam",
-      "scheduleAway",
-      "scheduleHome"
-    ]
-    .forEach(
-      id => {
-
-        const element =
-          document.getElementById(
-            id
-          );
-
-
-        element.innerHTML =
-          html;
-
-      }
-    );
+    button.textContent =
+      "UNLOCK ADMIN";
 
   }
 
+}
 
 
-  /* =====================================================
-     DASHBOARD
-  ===================================================== */
+document.getElementById(
+  "unlockButton"
+)
+.addEventListener(
+  "click",
+  async () => {
 
-  function renderDashboard() {
-
-    document.getElementById(
-      "dashboardWeek"
-    ).textContent =
-      data.settings.currentWeek;
-
-
-    document.getElementById(
-      "dashboardPlayers"
-    ).textContent =
-      data.players.length;
-
-
-    document.getElementById(
-      "dashboardGames"
-    ).textContent =
-      data.games.length;
-
-
-    document.getElementById(
-      "dashboardFinals"
-    ).textContent =
-      data.games.filter(
-        game =>
-          game.status === "final"
-      ).length;
-
-  }
-
-
-
-  /* =====================================================
-     WEEK OPTIONS
-  ===================================================== */
-
-  function getWeeks() {
-
-    const weeks =
-      data.games.map(
-        game => Number(game.week)
-      );
-
-
-    weeks.push(
-      Number(
-        data.settings.currentWeek
-      )
-    );
-
-
-    return [
-      ...new Set(weeks)
-    ]
-    .sort(
-      (a,b) => a-b
-    );
-
-  }
-
-
-
-  function refreshWeekSelectors() {
-
-    const weeks =
-      getWeeks();
-
-
-    const html =
-      weeks.map(
-        week => `
-          <option value="${week}">
-            Week ${week}
-          </option>
-        `
-      )
-      .join("");
-
-
-    document.getElementById(
-      "gamesWeekSelect"
-    ).innerHTML =
-      html;
-
-
-    document.getElementById(
-      "statsWeek"
-    ).innerHTML =
-      html;
-
-
-    document.getElementById(
-      "gamesWeekSelect"
-    ).value =
-      String(
-        data.settings.currentWeek
-      );
-
-
-    document.getElementById(
-      "statsWeek"
-    ).value =
-      String(
-        data.settings.currentWeek
-      );
-
-  }
-
-
-
-  /* =====================================================
-     GAMES
-  ===================================================== */
-
-  function renderGames() {
-
-    const week =
-      Number(
-        document.getElementById(
-          "gamesWeekSelect"
-        ).value
-        ||
-        data.settings.currentWeek
-      );
-
-
-    const games =
-      data.games.filter(
-        game =>
-          Number(game.week) === week
-      );
-
-
-    const container =
+    const pin =
       document.getElementById(
-        "gameAdminList"
+        "adminPin"
+      ).value.trim();
+
+    const confirmPin =
+      document.getElementById(
+        "confirmAdminPin"
+      ).value.trim();
+
+    const error =
+      document.getElementById(
+        "lockError"
       );
 
 
-    container.innerHTML =
+    error.textContent =
       "";
 
 
-    if (!games.length) {
+    if (
+      pin.length < 4
+    ) {
 
-      container.innerHTML = `
-        <div class="admin-card">
-          No games for this week.
-        </div>
-      `;
+      error.textContent =
+        "Use at least 4 numbers.";
 
       return;
 
     }
 
 
-    games.forEach(
-      game => {
-
-        const away =
-          data.teams[
-            game.away
-          ];
-
-
-        const home =
-          data.teams[
-            game.home
-          ];
-
-
-        const row =
-          document.createElement(
-            "div"
-          );
-
-
-        row.className =
-          "game-admin-row";
-
-
-        row.innerHTML = `
-
-          <div class="game-admin-top">
-
-            <strong>
-              ${away.name}
-              vs
-              ${home.name}
-            </strong>
-
-            <span>
-              WEEK ${game.week}
-            </span>
-
-          </div>
-
-
-          <div class="game-admin-main">
-
-            <div class="score-grid">
-
-              <div class="score-team-name">
-                ${away.short}
-              </div>
-
-              <input
-                class="score-input"
-                type="number"
-                min="0"
-                data-game="${game.id}"
-                data-field="awayScore"
-                value="${game.awayScore}"
-              >
-
-              <div class="score-vs">
-                VS
-              </div>
-
-              <input
-                class="score-input"
-                type="number"
-                min="0"
-                data-game="${game.id}"
-                data-field="homeScore"
-                value="${game.homeScore}"
-              >
-
-              <div class="score-team-name right">
-                ${home.short}
-              </div>
-
-            </div>
-
-
-            <div class="game-options">
-
-              <select
-                data-game="${game.id}"
-                data-field="status"
-                class="score-input"
-                style="
-                  width:100%;
-                  font-size:9px;
-                "
-              >
-
-                <option
-                  value="upcoming"
-                  ${
-                    game.status ===
-                    "upcoming"
-                    ? "selected"
-                    : ""
-                  }
-                >
-                  Upcoming
-                </option>
-
-                <option
-                  value="final"
-                  ${
-                    game.status ===
-                    "final"
-                    ? "selected"
-                    : ""
-                  }
-                >
-                  Final
-                </option>
-
-              </select>
-
-
-              <label class="checkbox-line">
-
-                <input
-                  type="checkbox"
-                  data-game="${game.id}"
-                  data-field="featured"
-                  ${
-                    game.featured
-                    ? "checked"
-                    : ""
-                  }
-                >
-
-                Game of Week
-
-              </label>
-
-            </div>
-
-          </div>
-
-        `;
-
-
-        container.appendChild(
-          row
-        );
-
-      }
-    );
-
-  }
-
-
-
-  document.getElementById(
-    "gamesWeekSelect"
-  )
-  .addEventListener(
-    "change",
-    renderGames
-  );
-
-
-
-  document.getElementById(
-    "saveGamesButton"
-  )
-  .addEventListener(
-    "click",
-    () => {
-
-      document
-        .querySelectorAll(
-          "[data-game][data-field]"
-        )
-        .forEach(
-          input => {
-
-            const game =
-              data.games.find(
-                item =>
-                  item.id ===
-                  input.dataset.game
-              );
-
-
-            if (!game) {
-              return;
-            }
-
-
-            const field =
-              input.dataset.field;
-
-
-            if (
-              input.type ===
-              "checkbox"
-            ) {
-
-              game[field] =
-                input.checked;
-
-            }
-
-            else {
-
-              game[field] =
-                input.value;
-
-            }
-
-          }
-        );
-
-
-      saveData(
-        "Game changes saved"
-      );
-
-    }
-  );
-
-
-
-  /* =====================================================
-     PLAYERS
-  ===================================================== */
-
-  function renderPlayers() {
-
-    const container =
-      document.getElementById(
-        "playerList"
-      );
-
-
-    container.innerHTML =
-      "";
-
-
-    document.getElementById(
-      "playerCountLabel"
-    ).textContent =
-      `${data.players.length} PLAYERS`;
-
-
-    if (!data.players.length) {
-
-      container.innerHTML = `
-        <div
-          style="
-            color:#999;
-            font-size:9px;
-            font-weight:800;
-            padding:12px 2px;
-          "
-        >
-          No players added yet.
-        </div>
-      `;
-
-      return;
-
-    }
-
-
-    data.players.forEach(
-      player => {
-
-        const team =
-          data.teams[
-            player.teamId
-          ];
-
-
-        const row =
-          document.createElement(
-            "div"
-          );
-
-
-        row.className =
-          "player-row";
-
-
-        row.innerHTML = `
-
-          <div>
-
-            <strong>
-              ${player.displayName || player.username}
-            </strong>
-
-            <span>
-              @${player.username}
-              ·
-              ${team ? team.short : "NO TEAM"}
-              ·
-              ${player.position}
-            </span>
-
-          </div>
-
-
-          <button
-            class="small-remove"
-            data-remove-player="${player.id}"
-          >
-            REMOVE
-          </button>
-
-        `;
-
-
-        container.appendChild(
-          row
-        );
-
-      }
-    );
-
-
-    document
-      .querySelectorAll(
-        "[data-remove-player]"
-      )
-      .forEach(
-        button => {
-
-          button.addEventListener(
-            "click",
-            () => {
-
-              data.players =
-                data.players.filter(
-                  player =>
-                    player.id !==
-                    button.dataset.removePlayer
-                );
-
-
-              saveData(
-                "Player removed"
-              );
-
-            }
-          );
-
-        }
-      );
-
-  }
-
-
-
-  document.getElementById(
-    "addPlayerButton"
-  )
-  .addEventListener(
-    "click",
-    () => {
-
-      const username =
-        document.getElementById(
-          "playerUsername"
-        ).value.trim();
-
-
-      const displayName =
-        document.getElementById(
-          "playerDisplayName"
-        ).value.trim();
-
-
-      const teamId =
-        document.getElementById(
-          "playerTeam"
-        ).value;
-
-
-      const position =
-        document.getElementById(
-          "playerPosition"
-        ).value;
-
-
-      if (!username) {
-
-        showToast(
-          "Enter a username"
-        );
+    if (!hasAdminPin()) {
+
+      if (
+        pin !==
+        confirmPin
+      ) {
+
+        error.textContent =
+          "The PINs do not match.";
 
         return;
 
       }
 
 
-      data.players.push({
-
-        id:
-          "p_" +
-          Date.now(),
-
-        username,
-
-        displayName,
-
-        teamId,
-
-        position
-
-      });
+      const hashed =
+        await hashPin(pin);
 
 
-      document.getElementById(
-        "playerUsername"
-      ).value =
-        "";
-
-
-      document.getElementById(
-        "playerDisplayName"
-      ).value =
-        "";
-
-
-      saveData(
-        "Player added"
-      );
-
-    }
-  );
-
-
-
-  /* =====================================================
-     STAT ENTRY
-  ===================================================== */
-
-  function refreshStatsGameOptions() {
-
-    const week =
-      Number(
-        document.getElementById(
-          "statsWeek"
-        ).value
+      localStorage.setItem(
+        pinStorageKey,
+        hashed
       );
 
 
-    const games =
-      data.games.filter(
-        game =>
-          Number(game.week) === week
-      );
-
-
-    const select =
-      document.getElementById(
-        "statsGame"
-      );
-
-
-    select.innerHTML =
-      games.map(
-        game => {
-
-          const away =
-            data.teams[
-              game.away
-            ];
-
-
-          const home =
-            data.teams[
-              game.home
-            ];
-
-
-          return `
-            <option value="${game.id}">
-              ${away.short}
-              vs
-              ${home.short}
-            </option>
-          `;
-
-        }
-      ).join("");
-
-
-    refreshStatsTeamOptions();
-
-  }
-
-
-
-  function refreshStatsTeamOptions() {
-
-    const gameId =
-      document.getElementById(
-        "statsGame"
-      ).value;
-
-
-    const game =
-      data.games.find(
-        item =>
-          item.id === gameId
-      );
-
-
-    const select =
-      document.getElementById(
-        "statsTeam"
-      );
-
-
-    if (!game) {
-
-      select.innerHTML =
-        "";
-
-      renderBulkStats();
+      showAdmin();
 
       return;
 
     }
 
 
-    select.innerHTML = `
-
-      <option value="${game.away}">
-        ${data.teams[game.away].name}
-      </option>
-
-      <option value="${game.home}">
-        ${data.teams[game.home].name}
-      </option>
-
-    `;
+    const enteredHash =
+      await hashPin(pin);
 
 
-    renderBulkStats();
+    const savedHash =
+      localStorage.getItem(
+        pinStorageKey
+      );
+
+
+    if (
+      enteredHash !==
+      savedHash
+    ) {
+
+      error.textContent =
+        "Wrong PIN.";
+
+      return;
+
+    }
+
+
+    showAdmin();
+
+  }
+);
+
+
+document.getElementById(
+  "adminPin"
+)
+.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      event.key ===
+      "Enter"
+    ) {
+
+      document.getElementById(
+        "unlockButton"
+      ).click();
+
+    }
+
+  }
+);
+
+
+document.getElementById(
+  "logoutButton"
+)
+.addEventListener(
+  "click",
+  () => {
+
+    sessionStorage.removeItem(
+      unlockedStorageKey
+    );
+
+    document.getElementById(
+      "adminPin"
+    ).value =
+      "";
+
+    showLock();
+
+    setupLockScreen();
+
+  }
+);
+
+
+
+/* =====================================================
+   TEAMS
+===================================================== */
+
+const defaultTeams = {
+
+  auburn: {
+    name: "Auburn Tigers",
+    short: "AUB",
+    conference: "American",
+    wins: 0,
+    losses: 0,
+    pd: 0
+  },
+
+  parker: {
+    name: "Parker Thundering Herd",
+    short: "PAR",
+    conference: "American",
+    wins: 0,
+    losses: 0,
+    pd: 0
+  },
+
+  cornercanyon: {
+    name: "Corner Canyon Chargers",
+    short: "CCY",
+    conference: "American",
+    wins: 0,
+    losses: 0,
+    pd: 0
+  },
+
+  stfrances: {
+    name: "St. Frances Academy",
+    short: "SFA",
+    conference: "American",
+    wins: 0,
+    losses: 0,
+    pd: 0
+  },
+
+  buford: {
+    name: "Buford Wolves",
+    short: "BUF",
+    conference: "American",
+    wins: 0,
+    losses: 0,
+    pd: 0
+  },
+
+  bosco: {
+    name: "St. John Bosco Braves",
+    short: "SJB",
+    conference: "American",
+    wins: 0,
+    losses: 0,
+    pd: 0
+  },
+
+  centennial: {
+    name: "Centennial Huskies",
+    short: "CEN",
+    conference: "National",
+    wins: 0,
+    losses: 0,
+    pd: 0
+  },
+
+  img: {
+    name: "IMG Academy",
+    short: "IMG",
+    conference: "National",
+    wins: 0,
+    losses: 0,
+    pd: 0
+  },
+
+  norland: {
+    name: "Norland Vikings",
+    short: "NOR",
+    conference: "National",
+    wins: 0,
+    losses: 0,
+    pd: 0
+  },
+
+  saraland: {
+    name: "Saraland Spartans",
+    short: "SAR",
+    conference: "National",
+    wins: 0,
+    losses: 0,
+    pd: 0
+  },
+
+  mckinney: {
+    name: "McKinney Lions",
+    short: "MCK",
+    conference: "National",
+    wins: 0,
+    losses: 0,
+    pd: 0
+  },
+
+  guyer: {
+    name: "Denton Guyer Wildcats",
+    short: "GUY",
+    conference: "National",
+    wins: 0,
+    losses: 0,
+    pd: 0
+  },
+
+  stjames: {
+    name: "St. James Academy Strivers",
+    short: "STJ",
+    conference: "Other",
+    wins: 0,
+    losses: 0,
+    pd: 0
+  },
+
+  dutchfork: {
+    name: "Dutch Fork Silver Foxes",
+    short: "DFK",
+    conference: "Other",
+    wins: 0,
+    losses: 0,
+    pd: 0
+  }
+
+};
+
+
+
+/* =====================================================
+   WEEK 1 GAMES
+===================================================== */
+
+const defaultGames = [
+
+  {
+    id: "w1g1",
+    week: 1,
+    away: "saraland",
+    home: "mckinney",
+    awayScore: "",
+    homeScore: "",
+    status: "upcoming",
+    featured: false
+  },
+
+  {
+    id: "w1g2",
+    week: 1,
+    away: "img",
+    home: "buford",
+    awayScore: "",
+    homeScore: "",
+    status: "upcoming",
+    featured: false
+  },
+
+  {
+    id: "w1g3",
+    week: 1,
+    away: "auburn",
+    home: "bosco",
+    awayScore: "",
+    homeScore: "",
+    status: "upcoming",
+    featured: false
+  },
+
+  {
+    id: "w1g4",
+    week: 1,
+    away: "stjames",
+    home: "norland",
+    awayScore: "",
+    homeScore: "",
+    status: "upcoming",
+    featured: false
+  },
+
+  {
+    id: "w1g5",
+    week: 1,
+    away: "parker",
+    home: "stfrances",
+    awayScore: "",
+    homeScore: "",
+    status: "upcoming",
+    featured: false
+  },
+
+  {
+    id: "w1g6",
+    week: 1,
+    away: "guyer",
+    home: "centennial",
+    awayScore: "",
+    homeScore: "",
+    status: "upcoming",
+    featured: true
+  },
+
+  {
+    id: "w1g7",
+    week: 1,
+    away: "cornercanyon",
+    home: "dutchfork",
+    awayScore: "",
+    homeScore: "",
+    status: "upcoming",
+    featured: false
+  }
+
+];
+
+
+
+/* =====================================================
+   STAT CATEGORIES
+===================================================== */
+
+const statFields = {
+
+  passing: [
+    "CMP",
+    "ATT",
+    "YDS",
+    "TD",
+    "INT"
+  ],
+
+  rushing: [
+    "ATT",
+    "YDS",
+    "TD",
+    "AVG"
+  ],
+
+  receiving: [
+    "REC",
+    "YDS",
+    "TD",
+    "AVG"
+  ],
+
+  tightends: [
+    "REC",
+    "YDS",
+    "TD",
+    "AVG"
+  ],
+
+  center: [
+    "GP",
+    "PTS",
+    "GRADE"
+  ],
+
+  defensiveends: [
+    "TKL",
+    "TFL",
+    "SACK",
+    "INT",
+    "PBU"
+  ],
+
+  linebackers: [
+    "TKL",
+    "TFL",
+    "SACK",
+    "INT",
+    "PBU"
+  ],
+
+  secondary: [
+    "TKL",
+    "INT",
+    "PBU",
+    "TFL",
+    "TD"
+  ],
+
+  kicking: [
+    "FGM",
+    "FGA",
+    "XP",
+    "PTS"
+  ]
+
+};
+
+
+
+/* =====================================================
+   ADMIN DATA STORAGE
+===================================================== */
+
+const storageKey =
+  "hsfl_admin_data_v1";
+
+
+function defaultData() {
+
+  return {
+
+    settings: {
+
+      leagueName:
+        "HSFL Season 2",
+
+      currentWeek:
+        1,
+
+      playoffTeams:
+        4
+
+    },
+
+    teams:
+      JSON.parse(
+        JSON.stringify(
+          defaultTeams
+        )
+      ),
+
+    players: [],
+
+    games:
+      JSON.parse(
+        JSON.stringify(
+          defaultGames
+        )
+      ),
+
+    playerGameStats: {}
+
+  };
+
+}
+
+
+function loadData() {
+
+  try {
+
+    const saved =
+      localStorage.getItem(
+        storageKey
+      );
+
+
+    if (saved) {
+
+      return JSON.parse(
+        saved
+      );
+
+    }
+
+  }
+
+  catch (error) {
+
+    console.log(error);
 
   }
 
 
+  return defaultData();
 
-  function renderBulkStats() {
+}
+
+
+let data =
+  loadData();
+
+
+
+function saveData(
+  message = "Saved"
+) {
+
+  localStorage.setItem(
+    storageKey,
+    JSON.stringify(data)
+  );
+
+
+  refreshEverything();
+
+  showToast(message);
+
+}
+
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(message) {
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+
+  toast.textContent =
+    message;
+
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  setTimeout(
+    () => {
+
+      toast.classList.remove(
+        "show"
+      );
+
+    },
+    1500
+  );
+
+}
+
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+const navButtons =
+  document.querySelectorAll(
+    ".admin-nav-button"
+  );
+
+
+const sections =
+  document.querySelectorAll(
+    ".admin-section"
+  );
+
+
+function openSection(name) {
+
+  navButtons.forEach(
+    button => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.section ===
+        name
+      );
+
+    }
+  );
+
+
+  sections.forEach(
+    section => {
+
+      section.classList.toggle(
+        "active",
+        section.id ===
+        `section-${name}`
+      );
+
+    }
+  );
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+navButtons.forEach(
+  button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        openSection(
+          button.dataset.section
+        );
+
+      }
+    );
+
+  }
+);
+
+
+document
+.querySelectorAll(
+  "[data-open-section]"
+)
+.forEach(
+  button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        openSection(
+          button.dataset.openSection
+        );
+
+      }
+    );
+
+  }
+);
+
+
+
+/* =====================================================
+   TEAM OPTIONS
+===================================================== */
+
+function getTeamOptions() {
+
+  return Object.entries(
+    data.teams
+  )
+  .map(
+    ([id,team]) => `
+
+      <option value="${id}">
+        ${team.name}
+      </option>
+
+    `
+  )
+  .join("");
+
+}
+
+
+function refreshTeamSelectors() {
+
+  const html =
+    getTeamOptions();
+
+
+  [
+    "playerTeam",
+    "scheduleAway",
+    "scheduleHome"
+  ]
+  .forEach(
+    id => {
+
+      document.getElementById(
+        id
+      ).innerHTML =
+        html;
+
+    }
+  );
+
+}
+
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function renderDashboard() {
+
+  document.getElementById(
+    "dashboardWeek"
+  ).textContent =
+    data.settings.currentWeek;
+
+
+  document.getElementById(
+    "dashboardPlayers"
+  ).textContent =
+    data.players.length;
+
+
+  document.getElementById(
+    "dashboardGames"
+  ).textContent =
+    data.games.length;
+
+
+  document.getElementById(
+    "dashboardFinals"
+  ).textContent =
+    data.games.filter(
+      game =>
+        game.status ===
+        "final"
+    ).length;
+
+}
+
+
+
+/* =====================================================
+   WEEKS
+===================================================== */
+
+function getWeeks() {
+
+  const weeks =
+    data.games.map(
+      game =>
+        Number(game.week)
+    );
+
+
+  weeks.push(
+    Number(
+      data.settings.currentWeek
+    )
+  );
+
+
+  return [
+    ...new Set(weeks)
+  ]
+  .sort(
+    (a,b) =>
+      a-b
+  );
+
+}
+
+
+function refreshWeekSelectors() {
+
+  const html =
+    getWeeks()
+    .map(
+      week => `
+
+        <option value="${week}">
+          Week ${week}
+        </option>
+
+      `
+    )
+    .join("");
+
+
+  document.getElementById(
+    "gamesWeekSelect"
+  ).innerHTML =
+    html;
+
+
+  document.getElementById(
+    "statsWeek"
+  ).innerHTML =
+    html;
+
+
+  document.getElementById(
+    "gamesWeekSelect"
+  ).value =
+    String(
+      data.settings.currentWeek
+    );
+
+
+  document.getElementById(
+    "statsWeek"
+  ).value =
+    String(
+      data.settings.currentWeek
+    );
+
+}
+
+
+
+/* =====================================================
+   GAMES
+===================================================== */
+
+function renderGames() {
+
+  const select =
+    document.getElementById(
+      "gamesWeekSelect"
+    );
+
+
+  const week =
+    Number(
+      select.value ||
+      data.settings.currentWeek
+    );
+
+
+  const games =
+    data.games.filter(
+      game =>
+        Number(game.week) ===
+        week
+    );
+
+
+  const container =
+    document.getElementById(
+      "gameAdminList"
+    );
+
+
+  container.innerHTML =
+    "";
+
+
+  if (!games.length) {
+
+    container.innerHTML = `
+
+      <div class="admin-card">
+        No games for this week.
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  games.forEach(
+    game => {
+
+      const away =
+        data.teams[
+          game.away
+        ];
+
+
+      const home =
+        data.teams[
+          game.home
+        ];
+
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+
+      row.className =
+        "game-admin-row";
+
+
+      row.innerHTML = `
+
+        <div class="game-admin-top">
+
+          <strong>
+            ${away.name}
+            vs
+            ${home.name}
+          </strong>
+
+          <span>
+            WEEK ${game.week}
+          </span>
+
+        </div>
+
+
+        <div class="game-admin-main">
+
+          <div class="score-grid">
+
+            <div class="score-team-name">
+              ${away.short}
+            </div>
+
+
+            <input
+              class="score-input"
+              type="number"
+              min="0"
+              data-game="${game.id}"
+              data-field="awayScore"
+              value="${game.awayScore}"
+            >
+
+
+            <div class="score-vs">
+              VS
+            </div>
+
+
+            <input
+              class="score-input"
+              type="number"
+              min="0"
+              data-game="${game.id}"
+              data-field="homeScore"
+              value="${game.homeScore}"
+            >
+
+
+            <div class="score-team-name right">
+              ${home.short}
+            </div>
+
+          </div>
+
+
+          <div class="game-options">
+
+            <select
+              data-game="${game.id}"
+              data-field="status"
+              class="score-input"
+              style="font-size:9px;"
+            >
+
+              <option
+                value="upcoming"
+                ${
+                  game.status ===
+                  "upcoming"
+                  ? "selected"
+                  : ""
+                }
+              >
+                Upcoming
+              </option>
+
+              <option
+                value="final"
+                ${
+                  game.status ===
+                  "final"
+                  ? "selected"
+                  : ""
+                }
+              >
+                Final
+              </option>
+
+            </select>
+
+
+            <label class="checkbox-line">
+
+              <input
+                type="checkbox"
+                data-game="${game.id}"
+                data-field="featured"
+
+                ${
+                  game.featured
+                  ? "checked"
+                  : ""
+                }
+              >
+
+              Game of Week
+
+            </label>
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      container.appendChild(
+        row
+      );
+
+    }
+  );
+
+}
+
+
+document.getElementById(
+  "gamesWeekSelect"
+)
+.addEventListener(
+  "change",
+  renderGames
+);
+
+
+
+document.getElementById(
+  "saveGamesButton"
+)
+.addEventListener(
+  "click",
+  () => {
+
+    document
+    .querySelectorAll(
+      "[data-game][data-field]"
+    )
+    .forEach(
+      input => {
+
+        const game =
+          data.games.find(
+            item =>
+              item.id ===
+              input.dataset.game
+          );
+
+
+        if (!game) {
+          return;
+        }
+
+
+        const field =
+          input.dataset.field;
+
+
+        if (
+          input.type ===
+          "checkbox"
+        ) {
+
+          game[field] =
+            input.checked;
+
+        }
+
+        else {
+
+          game[field] =
+            input.value;
+
+        }
+
+      }
+    );
+
+
+    saveData(
+      "Game changes saved"
+    );
+
+  }
+);
+
+
+
+/* =====================================================
+   PLAYERS
+===================================================== */
+
+function renderPlayers() {
+
+  const container =
+    document.getElementById(
+      "playerList"
+    );
+
+
+  container.innerHTML =
+    "";
+
+
+  document.getElementById(
+    "playerCountLabel"
+  ).textContent =
+    `${data.players.length} PLAYERS`;
+
+
+  if (!data.players.length) {
+
+    container.innerHTML = `
+
+      <div
+        style="
+          color:#999;
+          font-size:9px;
+          font-weight:800;
+          padding:12px 2px;
+        "
+      >
+        No players added yet.
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  data.players.forEach(
+    player => {
+
+      const team =
+        data.teams[
+          player.teamId
+        ];
+
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+
+      row.className =
+        "player-row";
+
+
+      row.innerHTML = `
+
+        <div>
+
+          <strong>
+            ${player.displayName || player.username}
+          </strong>
+
+          <span>
+            @${player.username}
+            ·
+            ${team ? team.short : "NO TEAM"}
+            ·
+            ${player.position}
+          </span>
+
+        </div>
+
+
+        <button
+          class="small-remove"
+          data-remove-player="${player.id}"
+        >
+          REMOVE
+        </button>
+
+      `;
+
+
+      container.appendChild(
+        row
+      );
+
+    }
+  );
+
+
+  document
+  .querySelectorAll(
+    "[data-remove-player]"
+  )
+  .forEach(
+    button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          data.players =
+            data.players.filter(
+              player =>
+                player.id !==
+                button.dataset.removePlayer
+            );
+
+
+          saveData(
+            "Player removed"
+          );
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+
+document.getElementById(
+  "addPlayerButton"
+)
+.addEventListener(
+  "click",
+  () => {
+
+    const username =
+      document.getElementById(
+        "playerUsername"
+      ).value.trim();
+
+
+    if (!username) {
+
+      showToast(
+        "Enter a username"
+      );
+
+      return;
+
+    }
+
+
+    data.players.push({
+
+      id:
+        "p_" +
+        Date.now(),
+
+      username,
+
+      displayName:
+        document.getElementById(
+          "playerDisplayName"
+        ).value.trim(),
+
+      teamId:
+        document.getElementById(
+          "playerTeam"
+        ).value,
+
+      position:
+        document.getElementById(
+          "playerPosition"
+        ).value
+
+    });
+
+
+    document.getElementById(
+      "playerUsername"
+    ).value =
+      "";
+
+
+    document.getElementById(
+      "playerDisplayName"
+    ).value =
+      "";
+
+
+    saveData(
+      "Player added"
+    );
+
+  }
+);
+
+
+
+/* =====================================================
+   STAT ENTRY
+===================================================== */
+
+function refreshStatsGameOptions() {
+
+  const week =
+    Number(
+      document.getElementById(
+        "statsWeek"
+      ).value
+    );
+
+
+  const games =
+    data.games.filter(
+      game =>
+        Number(game.week) ===
+        week
+    );
+
+
+  document.getElementById(
+    "statsGame"
+  ).innerHTML =
+    games.map(
+      game => `
+
+        <option value="${game.id}">
+          ${data.teams[game.away].short}
+          vs
+          ${data.teams[game.home].short}
+        </option>
+
+      `
+    )
+    .join("");
+
+
+  refreshStatsTeamOptions();
+
+}
+
+
+
+function refreshStatsTeamOptions() {
+
+  const gameId =
+    document.getElementById(
+      "statsGame"
+    ).value;
+
+
+  const game =
+    data.games.find(
+      item =>
+        item.id ===
+        gameId
+    );
+
+
+  const select =
+    document.getElementById(
+      "statsTeam"
+    );
+
+
+  if (!game) {
+
+    select.innerHTML =
+      "";
+
+    renderBulkStats();
+
+    return;
+
+  }
+
+
+  select.innerHTML = `
+
+    <option value="${game.away}">
+      ${data.teams[game.away].name}
+    </option>
+
+    <option value="${game.home}">
+      ${data.teams[game.home].name}
+    </option>
+
+  `;
+
+
+  renderBulkStats();
+
+}
+
+
+
+function renderBulkStats() {
+
+  const gameId =
+    document.getElementById(
+      "statsGame"
+    ).value;
+
+
+  const teamId =
+    document.getElementById(
+      "statsTeam"
+    ).value;
+
+
+  const category =
+    document.getElementById(
+      "statsCategory"
+    ).value;
+
+
+  const fields =
+    statFields[
+      category
+    ];
+
+
+  const players =
+    data.players.filter(
+      player =>
+        player.teamId ===
+        teamId
+    );
+
+
+  const head =
+    document.getElementById(
+      "bulkStatsHead"
+    );
+
+
+  const body =
+    document.getElementById(
+      "bulkStatsBody"
+    );
+
+
+  head.innerHTML = `
+
+    <tr>
+
+      <th>
+        PLAYER
+      </th>
+
+      ${
+        fields.map(
+          field => `
+            <th>${field}</th>
+          `
+        )
+        .join("")
+      }
+
+    </tr>
+
+  `;
+
+
+  body.innerHTML =
+    "";
+
+
+  if (!players.length) {
+
+    body.innerHTML = `
+
+      <tr>
+
+        <td
+          colspan="${fields.length + 1}"
+          style="
+            height:80px;
+            color:#999;
+            font-size:9px;
+            font-weight:800;
+          "
+        >
+          Add players to this team first.
+        </td>
+
+      </tr>
+
+    `;
+
+    return;
+
+  }
+
+
+  players.forEach(
+    player => {
+
+      const key =
+        `${gameId}_${player.id}_${category}`;
+
+
+      const saved =
+        data.playerGameStats[
+          key
+        ]
+        ||
+        {};
+
+
+      const row =
+        document.createElement(
+          "tr"
+        );
+
+
+      row.innerHTML = `
+
+        <td class="bulk-player">
+
+          <strong>
+            ${player.displayName || player.username}
+          </strong>
+
+          <span>
+            @${player.username}
+          </span>
+
+        </td>
+
+
+        ${
+          fields.map(
+            field => `
+
+              <td>
+
+                <input
+                  class="bulk-number-input"
+                  type="number"
+                  step="any"
+                  data-stat-player="${player.id}"
+                  data-stat-field="${field}"
+                  value="${saved[field] ?? ""}"
+                >
+
+              </td>
+
+            `
+          )
+          .join("")
+        }
+
+      `;
+
+
+      body.appendChild(
+        row
+      );
+
+    }
+  );
+
+}
+
+
+
+document.getElementById(
+  "statsWeek"
+)
+.addEventListener(
+  "change",
+  refreshStatsGameOptions
+);
+
+
+document.getElementById(
+  "statsGame"
+)
+.addEventListener(
+  "change",
+  refreshStatsTeamOptions
+);
+
+
+document.getElementById(
+  "statsTeam"
+)
+.addEventListener(
+  "change",
+  renderBulkStats
+);
+
+
+document.getElementById(
+  "statsCategory"
+)
+.addEventListener(
+  "change",
+  renderBulkStats
+);
+
+
+
+document.getElementById(
+  "clearStatInputs"
+)
+.addEventListener(
+  "click",
+  () => {
+
+    document
+    .querySelectorAll(
+      ".bulk-number-input"
+    )
+    .forEach(
+      input => {
+
+        input.value =
+          "";
+
+      }
+    );
+
+  }
+);
+
+
+
+document.getElementById(
+  "saveBulkStats"
+)
+.addEventListener(
+  "click",
+  () => {
 
     const gameId =
       document.getElementById(
         "statsGame"
-      ).value;
-
-
-    const teamId =
-      document.getElementById(
-        "statsTeam"
       ).value;
 
 
@@ -3130,870 +3895,570 @@
       ).value;
 
 
-    const fields =
-      statFields[
-        category
-      ];
+    document
+    .querySelectorAll(
+      "[data-stat-player]"
+    )
+    .forEach(
+      input => {
+
+        const key =
+          `${gameId}_${input.dataset.statPlayer}_${category}`;
 
 
-    const players =
-      data.players.filter(
-        player =>
-          player.teamId === teamId
-      );
+        if (
+          !data.playerGameStats[
+            key
+          ]
+        ) {
 
+          data.playerGameStats[
+            key
+          ] = {};
 
-    const head =
-      document.getElementById(
-        "bulkStatsHead"
-      );
-
-
-    const body =
-      document.getElementById(
-        "bulkStatsBody"
-      );
-
-
-    head.innerHTML = `
-
-      <tr>
-
-        <th>
-          PLAYER
-        </th>
-
-        ${
-          fields.map(
-            field => `
-              <th>
-                ${field}
-              </th>
-            `
-          ).join("")
         }
 
-      </tr>
 
-    `;
+        data.playerGameStats[
+          key
+        ][
+          input.dataset.statField
+        ] =
+          input.value === ""
+          ? 0
+          : Number(input.value);
+
+      }
+    );
 
 
-    body.innerHTML =
-      "";
+    saveData(
+      "All player stats saved"
+    );
+
+  }
+);
 
 
-    if (!players.length) {
 
-      body.innerHTML = `
+/* =====================================================
+   TEAMS
+===================================================== */
 
-        <tr>
+function renderTeamEditor() {
 
-          <td
-            colspan="${fields.length + 1}"
-            style="
-              height:80px;
-              color:#999;
-              font-size:9px;
-              font-weight:800;
-            "
+  const container =
+    document.getElementById(
+      "teamEditor"
+    );
+
+
+  container.innerHTML =
+    "";
+
+
+  Object.entries(
+    data.teams
+  )
+  .forEach(
+    ([id,team]) => {
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+
+      row.className =
+        "team-edit-row";
+
+
+      row.innerHTML = `
+
+        <div class="team-edit-name">
+          ${team.name}
+        </div>
+
+
+        <div class="team-mini-grid">
+
+          <select
+            data-team-id="${id}"
+            data-team-field="conference"
           >
-            Add players to this team first.
-          </td>
 
-        </tr>
+            <option
+              ${
+                team.conference ===
+                "American"
+                ? "selected"
+                : ""
+              }
+            >
+              American
+            </option>
+
+            <option
+              ${
+                team.conference ===
+                "National"
+                ? "selected"
+                : ""
+              }
+            >
+              National
+            </option>
+
+            <option
+              ${
+                team.conference ===
+                "Other"
+                ? "selected"
+                : ""
+              }
+            >
+              Other
+            </option>
+
+          </select>
+
+
+          <input
+            type="number"
+            data-team-id="${id}"
+            data-team-field="wins"
+            value="${team.wins}"
+            placeholder="W"
+          >
+
+
+          <input
+            type="number"
+            data-team-id="${id}"
+            data-team-field="losses"
+            value="${team.losses}"
+            placeholder="L"
+          >
+
+
+          <input
+            type="number"
+            data-team-id="${id}"
+            data-team-field="pd"
+            value="${team.pd}"
+            placeholder="PD"
+          >
+
+        </div>
 
       `;
+
+
+      container.appendChild(
+        row
+      );
+
+    }
+  );
+
+}
+
+
+
+document.getElementById(
+  "saveTeamsButton"
+)
+.addEventListener(
+  "click",
+  () => {
+
+    document
+    .querySelectorAll(
+      "[data-team-id]"
+    )
+    .forEach(
+      input => {
+
+        const team =
+          data.teams[
+            input.dataset.teamId
+          ];
+
+
+        const field =
+          input.dataset.teamField;
+
+
+        team[field] =
+          field ===
+          "conference"
+
+          ? input.value
+
+          : Number(
+              input.value || 0
+            );
+
+      }
+    );
+
+
+    saveData(
+      "Team changes saved"
+    );
+
+  }
+);
+
+
+
+/* =====================================================
+   SCHEDULE
+===================================================== */
+
+function renderSchedule() {
+
+  const container =
+    document.getElementById(
+      "scheduleList"
+    );
+
+
+  const games =
+    [...data.games]
+    .sort(
+      (a,b) =>
+        Number(a.week) -
+        Number(b.week)
+    );
+
+
+  container.innerHTML = `
+
+    <div class="admin-card-title">
+
+      <strong>
+        All Games
+      </strong>
+
+      <span>
+        ${games.length} GAMES
+      </span>
+
+    </div>
+
+  `;
+
+
+  games.forEach(
+    game => {
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+
+      row.className =
+        "player-row";
+
+
+      row.innerHTML = `
+
+        <div>
+
+          <strong>
+            Week ${game.week}
+            ·
+            ${data.teams[game.away].short}
+            vs
+            ${data.teams[game.home].short}
+          </strong>
+
+          <span>
+            ${
+              game.featured
+              ? "GAME OF THE WEEK"
+              : game.status.toUpperCase()
+            }
+          </span>
+
+        </div>
+
+
+        <button
+          class="small-remove"
+          data-delete-game="${game.id}"
+        >
+          DELETE
+        </button>
+
+      `;
+
+
+      container.appendChild(
+        row
+      );
+
+    }
+  );
+
+
+  document
+  .querySelectorAll(
+    "[data-delete-game]"
+  )
+  .forEach(
+    button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          data.games =
+            data.games.filter(
+              game =>
+                game.id !==
+                button.dataset.deleteGame
+            );
+
+
+          saveData(
+            "Game deleted"
+          );
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+
+document.getElementById(
+  "addGameButton"
+)
+.addEventListener(
+  "click",
+  () => {
+
+    const week =
+      Number(
+        document.getElementById(
+          "scheduleWeek"
+        ).value
+      );
+
+
+    const away =
+      document.getElementById(
+        "scheduleAway"
+      ).value;
+
+
+    const home =
+      document.getElementById(
+        "scheduleHome"
+      ).value;
+
+
+    if (
+      away ===
+      home
+    ) {
+
+      showToast(
+        "Choose two different teams"
+      );
 
       return;
 
     }
 
 
-    players.forEach(
-      player => {
+    data.games.push({
 
-        const saved =
-          data.playerGameStats[
-            `${gameId}_${player.id}_${category}`
-          ]
-          ||
-          {};
+      id:
+        "game_" +
+        Date.now(),
 
+      week,
 
-        const row =
-          document.createElement(
-            "tr"
-          );
+      away,
 
+      home,
 
-        row.innerHTML = `
+      awayScore: "",
 
-          <td class="bulk-player">
+      homeScore: "",
 
-            <strong>
-              ${player.displayName || player.username}
-            </strong>
+      status:
+        "upcoming",
 
-            <span>
-              @${player.username}
-            </span>
-
-          </td>
-
-
-          ${
-            fields.map(
-              field => {
-
-                return `
-
-                  <td>
-
-                    <input
-                      class="bulk-number-input"
-                      type="number"
-                      step="any"
-                      data-stat-player="${player.id}"
-                      data-stat-field="${field}"
-                      value="${saved[field] ?? ""}"
-                    >
-
-                  </td>
-
-                `;
-
-              }
-            ).join("")
-          }
-
-        `;
-
-
-        body.appendChild(
-          row
-        );
-
-      }
-    );
-
-  }
-
-
-
-  document.getElementById(
-    "statsWeek"
-  )
-  .addEventListener(
-    "change",
-    refreshStatsGameOptions
-  );
-
-
-  document.getElementById(
-    "statsGame"
-  )
-  .addEventListener(
-    "change",
-    refreshStatsTeamOptions
-  );
-
-
-  document.getElementById(
-    "statsTeam"
-  )
-  .addEventListener(
-    "change",
-    renderBulkStats
-  );
-
-
-  document.getElementById(
-    "statsCategory"
-  )
-  .addEventListener(
-    "change",
-    renderBulkStats
-  );
-
-
-
-  document.getElementById(
-    "clearStatInputs"
-  )
-  .addEventListener(
-    "click",
-    () => {
-
-      document
-        .querySelectorAll(
-          ".bulk-number-input"
-        )
-        .forEach(
-          input => {
-
-            input.value =
-              "";
-
-          }
-        );
-
-    }
-  );
-
-
-
-  document.getElementById(
-    "saveBulkStats"
-  )
-  .addEventListener(
-    "click",
-    () => {
-
-      const gameId =
-        document.getElementById(
-          "statsGame"
-        ).value;
-
-
-      const category =
-        document.getElementById(
-          "statsCategory"
-        ).value;
-
-
-      document
-        .querySelectorAll(
-          "[data-stat-player]"
-        )
-        .forEach(
-          input => {
-
-            const playerId =
-              input.dataset.statPlayer;
-
-
-            const field =
-              input.dataset.statField;
-
-
-            const key =
-              `${gameId}_${playerId}_${category}`;
-
-
-            if (
-              !data.playerGameStats[
-                key
-              ]
-            ) {
-
-              data.playerGameStats[
-                key
-              ] = {};
-
-            }
-
-
-            data.playerGameStats[
-              key
-            ][field] =
-              input.value === ""
-              ? 0
-              : Number(
-                  input.value
-                );
-
-          }
-        );
-
-
-      saveData(
-        "All player stats saved"
-      );
-
-    }
-  );
-
-
-
-  /* =====================================================
-     TEAM EDITOR
-  ===================================================== */
-
-  function renderTeamEditor() {
-
-    const container =
-      document.getElementById(
-        "teamEditor"
-      );
-
-
-    container.innerHTML =
-      "";
-
-
-    Object.entries(
-      data.teams
-    )
-    .forEach(
-      ([id, team]) => {
-
-        const row =
-          document.createElement(
-            "div"
-          );
-
-
-        row.className =
-          "team-edit-row";
-
-
-        row.innerHTML = `
-
-          <div class="team-edit-name">
-            ${team.name}
-          </div>
-
-
-          <div class="team-mini-grid">
-
-            <select
-              data-team-id="${id}"
-              data-team-field="conference"
-            >
-
-              <option
-                ${
-                  team.conference ===
-                  "American"
-                  ? "selected"
-                  : ""
-                }
-              >
-                American
-              </option>
-
-              <option
-                ${
-                  team.conference ===
-                  "National"
-                  ? "selected"
-                  : ""
-                }
-              >
-                National
-              </option>
-
-              <option
-                ${
-                  team.conference ===
-                  "Other"
-                  ? "selected"
-                  : ""
-                }
-              >
-                Other
-              </option>
-
-            </select>
-
-
-            <input
-              type="number"
-              data-team-id="${id}"
-              data-team-field="wins"
-              value="${team.wins}"
-              placeholder="W"
-            >
-
-
-            <input
-              type="number"
-              data-team-id="${id}"
-              data-team-field="losses"
-              value="${team.losses}"
-              placeholder="L"
-            >
-
-
-            <input
-              type="number"
-              data-team-id="${id}"
-              data-team-field="pd"
-              value="${team.pd}"
-              placeholder="PD"
-            >
-
-          </div>
-
-        `;
-
-
-        container.appendChild(
-          row
-        );
-
-      }
-    );
-
-  }
-
-
-
-  document.getElementById(
-    "saveTeamsButton"
-  )
-  .addEventListener(
-    "click",
-    () => {
-
-      document
-        .querySelectorAll(
-          "[data-team-id]"
-        )
-        .forEach(
-          input => {
-
-            const team =
-              data.teams[
-                input.dataset.teamId
-              ];
-
-
-            const field =
-              input.dataset.teamField;
-
-
-            if (
-              field ===
-              "conference"
-            ) {
-
-              team[field] =
-                input.value;
-
-            }
-
-            else {
-
-              team[field] =
-                Number(
-                  input.value || 0
-                );
-
-            }
-
-          }
-        );
-
-
-      saveData(
-        "Team changes saved"
-      );
-
-    }
-  );
-
-
-
-  /* =====================================================
-     SCHEDULE
-  ===================================================== */
-
-  function renderSchedule() {
-
-    const container =
-      document.getElementById(
-        "scheduleList"
-      );
-
-
-    const games =
-      [...data.games]
-      .sort(
-        (a,b) =>
-          Number(a.week) -
-          Number(b.week)
-      );
-
-
-    container.innerHTML = `
-
-      <div class="admin-card-title">
-
-        <strong>
-          All Games
-        </strong>
-
-        <span>
-          ${games.length} GAMES
-        </span>
-
-      </div>
-
-    `;
-
-
-    games.forEach(
-      game => {
-
-        const away =
-          data.teams[
-            game.away
-          ];
-
-
-        const home =
-          data.teams[
-            game.home
-          ];
-
-
-        const row =
-          document.createElement(
-            "div"
-          );
-
-
-        row.className =
-          "player-row";
-
-
-        row.innerHTML = `
-
-          <div>
-
-            <strong>
-              Week ${game.week} ·
-              ${away.short}
-              vs
-              ${home.short}
-            </strong>
-
-            <span>
-              ${
-                game.featured
-                ? "GAME OF THE WEEK"
-                : game.status.toUpperCase()
-              }
-            </span>
-
-          </div>
-
-
-          <button
-            class="small-remove"
-            data-delete-game="${game.id}"
-          >
-            DELETE
-          </button>
-
-        `;
-
-
-        container.appendChild(
-          row
-        );
-
-      }
-    );
-
-
-    document
-      .querySelectorAll(
-        "[data-delete-game]"
-      )
-      .forEach(
-        button => {
-
-          button.addEventListener(
-            "click",
-            () => {
-
-              data.games =
-                data.games.filter(
-                  game =>
-                    game.id !==
-                    button.dataset.deleteGame
-                );
-
-
-              saveData(
-                "Game deleted"
-              );
-
-            }
-          );
-
-        }
-      );
-
-  }
-
-
-
-  document.getElementById(
-    "addGameButton"
-  )
-  .addEventListener(
-    "click",
-    () => {
-
-      const week =
-        Number(
-          document.getElementById(
-            "scheduleWeek"
-          ).value
-        );
-
-
-      const away =
-        document.getElementById(
-          "scheduleAway"
-        ).value;
-
-
-      const home =
-        document.getElementById(
-          "scheduleHome"
-        ).value;
-
-
-      const featured =
+      featured:
         document.getElementById(
           "scheduleFeatured"
         ).value ===
-        "true";
+        "true"
+
+    });
 
 
-      if (away === home) {
-
-        showToast(
-          "Choose two different teams"
-        );
-
-        return;
-
-      }
-
-
-      data.games.push({
-
-        id:
-          "game_" +
-          Date.now(),
-
-        week,
-
-        away,
-
-        home,
-
-        awayScore: "",
-
-        homeScore: "",
-
-        status: "upcoming",
-
-        featured
-
-      });
-
-
-      saveData(
-        "Game added"
-      );
-
-    }
-  );
-
-
-
-  /* =====================================================
-     SETTINGS
-  ===================================================== */
-
-  function renderSettings() {
-
-    document.getElementById(
-      "settingLeagueName"
-    ).value =
-      data.settings.leagueName;
-
-
-    document.getElementById(
-      "settingCurrentWeek"
-    ).value =
-      data.settings.currentWeek;
-
-
-    document.getElementById(
-      "settingPlayoffTeams"
-    ).value =
-      data.settings.playoffTeams;
+    saveData(
+      "Game added"
+    );
 
   }
+);
 
+
+
+/* =====================================================
+   SETTINGS
+===================================================== */
+
+function renderSettings() {
+
+  document.getElementById(
+    "settingLeagueName"
+  ).value =
+    data.settings.leagueName;
 
 
   document.getElementById(
-    "saveSettingsButton"
-  )
-  .addEventListener(
-    "click",
-    () => {
+    "settingCurrentWeek"
+  ).value =
+    data.settings.currentWeek;
 
-      data.settings.leagueName =
+
+  document.getElementById(
+    "settingPlayoffTeams"
+  ).value =
+    data.settings.playoffTeams;
+
+}
+
+
+
+document.getElementById(
+  "saveSettingsButton"
+)
+.addEventListener(
+  "click",
+  () => {
+
+    data.settings.leagueName =
+      document.getElementById(
+        "settingLeagueName"
+      ).value.trim();
+
+
+    data.settings.currentWeek =
+      Number(
         document.getElementById(
-          "settingLeagueName"
-        ).value.trim();
-
-
-      data.settings.currentWeek =
-        Number(
-          document.getElementById(
-            "settingCurrentWeek"
-          ).value
-          || 1
-        );
-
-
-      data.settings.playoffTeams =
-        Number(
-          document.getElementById(
-            "settingPlayoffTeams"
-          ).value
-          || 4
-        );
-
-
-      saveData(
-        "Settings saved"
+          "settingCurrentWeek"
+        ).value
+        ||
+        1
       );
 
-    }
-  );
 
-
-
-  /* =====================================================
-     EXPORT / RESET
-  ===================================================== */
-
-  document.getElementById(
-    "exportDataButton"
-  )
-  .addEventListener(
-    "click",
-    () => {
-
-      const text =
-        JSON.stringify(
-          data,
-          null,
-          2
-        );
-
-
-      navigator.clipboard
-        .writeText(text)
-        .then(
-          () => {
-
-            showToast(
-              "Data copied"
-            );
-
-          }
-        );
-
-    }
-  );
-
-
-
-  document.getElementById(
-    "resetDataButton"
-  )
-  .addEventListener(
-    "click",
-    () => {
-
-      const confirmed =
-        confirm(
-          "Reset all admin data?"
-        );
-
-
-      if (!confirmed) {
-        return;
-      }
-
-
-      data =
-        defaultData();
-
-
-      saveData(
-        "Admin data reset"
+    data.settings.playoffTeams =
+      Number(
+        document.getElementById(
+          "settingPlayoffTeams"
+        ).value
+        ||
+        4
       );
 
-    }
-  );
 
-
-
-  document.getElementById(
-    "saveEverythingButton"
-  )
-  .addEventListener(
-    "click",
-    () => {
-
-      saveData(
-        "Everything saved"
-      );
-
-    }
-  );
-
-
-
-  /* =====================================================
-     REFRESH
-  ===================================================== */
-
-  function refreshEverything() {
-
-    refreshTeamSelectors();
-
-    refreshWeekSelectors();
-
-    renderDashboard();
-
-    renderPlayers();
-
-    renderGames();
-
-    renderTeamEditor();
-
-    renderSchedule();
-
-    renderSettings();
-
-    refreshStatsGameOptions();
+    saveData(
+      "Settings saved"
+    );
 
   }
+);
 
 
 
-  /* =====================================================
-     START
-  ===================================================== */
+/* =====================================================
+   SAVE ALL
+===================================================== */
 
-  refreshEverything();
+document.getElementById(
+  "saveEverythingButton"
+)
+.addEventListener(
+  "click",
+  () => {
+
+    saveData(
+      "Everything saved"
+    );
+
+  }
+);
+
+
+
+/* =====================================================
+   REFRESH
+===================================================== */
+
+function refreshEverything() {
+
+  refreshTeamSelectors();
+
+  refreshWeekSelectors();
+
+  renderDashboard();
+
+  renderPlayers();
+
+  renderGames();
+
+  renderTeamEditor();
+
+  renderSchedule();
+
+  renderSettings();
+
+  refreshStatsGameOptions();
+
+}
+
+
+
+/* =====================================================
+   START ADMIN
+===================================================== */
+
+setupLockScreen();
+
+
+if (
+  sessionStorage.getItem(
+    unlockedStorageKey
+  ) ===
+  "yes"
+  &&
+  hasAdminPin()
+) {
+
+  showAdmin();
+
+}
+
+else {
+
+  showLock();
+
+}
 
 </script>
-
 
 </body>
 </html>
