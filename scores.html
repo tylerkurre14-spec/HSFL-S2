@@ -1,1 +1,2302 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Scores | HSFL S2</title>
+
+  <link rel="stylesheet" href="style.css">
+
+
+  <style>
+
+    /* =====================================================
+       SCORES PAGE
+    ===================================================== */
+
+    .scores-page {
+      padding-top: 18px;
+    }
+
+
+    .scores-title {
+      margin: 0 4px 7px;
+
+      font-size: 32px;
+      line-height: 1;
+
+      font-weight: 900;
+
+      letter-spacing: -1.5px;
+    }
+
+
+    .scores-subtitle {
+      margin: 0 4px 22px;
+
+      color: #888;
+
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+
+    /* =====================================================
+       WEEK SELECTOR
+    ===================================================== */
+
+    .scores-week-area {
+      position: relative;
+
+      margin-bottom: 22px;
+    }
+
+
+    .scores-week-button {
+      width: 100%;
+      height: 58px;
+
+      padding: 0 18px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      background: #fff;
+
+      border: 1px solid #d6d6d6;
+      border-radius: 17px;
+
+      color: #202127;
+
+      font-size: 14px;
+      font-weight: 900;
+
+      cursor: pointer;
+    }
+
+
+    .scores-week-button svg {
+      width: 19px;
+      height: 19px;
+
+      color: #e62c47;
+    }
+
+
+    .scores-week-menu {
+      display: none;
+
+      position: absolute;
+
+      top: 65px;
+      left: 0;
+
+      width: 100%;
+
+      z-index: 300;
+
+      overflow: hidden;
+
+      background: #fff;
+
+      border: 1px solid #d7d7d7;
+      border-radius: 16px;
+
+      box-shadow: 0 10px 28px rgba(0,0,0,.14);
+    }
+
+
+    .scores-week-menu.show {
+      display: block;
+    }
+
+
+    .scores-week-option {
+      width: 100%;
+      height: 54px;
+
+      padding: 0 18px;
+
+      border: 0;
+      border-bottom: 1px solid #ededed;
+
+      background: #fff;
+
+      color: #202127;
+
+      text-align: left;
+
+      font-size: 13px;
+      font-weight: 900;
+
+      cursor: pointer;
+    }
+
+
+    .scores-week-option:last-child {
+      border-bottom: 0;
+    }
+
+
+    .scores-week-option.active {
+      color: #e62c47;
+      background: #fff3f5;
+    }
+
+
+    /* =====================================================
+       WEEK HEADER
+    ===================================================== */
+
+    .scores-week-header {
+      margin-bottom: 13px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+
+    .scores-week-header h2 {
+      margin: 0;
+
+      font-size: 22px;
+      font-weight: 900;
+
+      letter-spacing: -.7px;
+    }
+
+
+    .scores-week-pill {
+      padding: 7px 11px;
+
+      border-radius: 999px;
+
+      background: #ffe3e7;
+
+      color: #e62c47;
+
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+
+    /* =====================================================
+       SCORE CARDS
+    ===================================================== */
+
+    .scores-games {
+      display: flex;
+      flex-direction: column;
+
+      gap: 12px;
+    }
+
+
+    .score-card {
+      width: 100%;
+
+      padding: 0;
+
+      overflow: hidden;
+
+      background: #fff;
+
+      border: 1px solid #d8d8d8;
+      border-radius: 19px;
+
+      cursor: pointer;
+    }
+
+
+    .score-card:active {
+      transform: scale(.99);
+    }
+
+
+    .score-card-gotw {
+      border: 2px solid #e62c47;
+    }
+
+
+    .score-gotw-label {
+      padding: 8px 14px;
+
+      background: #e62c47;
+
+      color: #fff;
+
+      font-size: 9px;
+      font-weight: 900;
+
+      letter-spacing: .7px;
+    }
+
+
+    .score-card-content {
+      min-height: 96px;
+
+      display: grid;
+
+      grid-template-columns:
+        minmax(0,1fr)
+        78px
+        minmax(0,1fr);
+
+      align-items: center;
+
+      padding: 14px 12px;
+    }
+
+
+    /* =====================================================
+       SCORE TEAMS
+    ===================================================== */
+
+    .score-team {
+      min-width: 0;
+
+      display: flex;
+      align-items: center;
+
+      gap: 9px;
+    }
+
+
+    .score-team-away {
+      justify-content: flex-start;
+    }
+
+
+    .score-team-home {
+      justify-content: flex-end;
+
+      text-align: right;
+    }
+
+
+    .score-logo {
+      width: 65px;
+      height: 43px;
+
+      flex: 0 0 65px;
+
+      overflow: hidden;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 2px;
+    }
+
+
+    .score-logo img {
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+      object-position: center;
+
+      transform: scale(1.08);
+    }
+
+
+    .score-team-info {
+      min-width: 0;
+    }
+
+
+    .score-team-name {
+      display: block;
+
+      color: #202127;
+
+      font-size: 11px;
+      font-weight: 900;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    .score-team-record {
+      display: block;
+
+      margin-top: 4px;
+
+      color: #999;
+
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+
+    /* =====================================================
+       CENTER SCORE
+    ===================================================== */
+
+    .score-middle {
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+    }
+
+
+    .score-status {
+      margin-bottom: 5px;
+
+      color: #999;
+
+      font-size: 8px;
+      font-weight: 900;
+
+      letter-spacing: .6px;
+    }
+
+
+    .score-display {
+      color: #202127;
+
+      font-size: 22px;
+      line-height: 1;
+
+      font-weight: 900;
+
+      letter-spacing: -.5px;
+    }
+
+
+    .score-display.upcoming {
+      padding: 6px 9px;
+
+      border: 2px solid #e62c47;
+      border-radius: 8px;
+
+      color: #e62c47;
+
+      font-size: 13px;
+    }
+
+
+    .score-compare {
+      margin-top: 6px;
+
+      color: #e62c47;
+
+      font-size: 8px;
+      font-weight: 900;
+    }
+
+
+    /* =====================================================
+       EMPTY WEEK
+    ===================================================== */
+
+    .scores-empty {
+      min-height: 180px;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 30px 20px;
+
+      background: #fff;
+
+      border: 1px solid #d8d8d8;
+      border-radius: 20px;
+
+      text-align: center;
+    }
+
+
+    .scores-empty strong {
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+
+    .scores-empty span {
+      margin-top: 7px;
+
+      color: #999;
+
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+
+    /* =====================================================
+       COMPARISON MODAL
+    ===================================================== */
+
+    .score-modal-overlay {
+      display: none;
+
+      position: fixed;
+      inset: 0;
+
+      z-index: 5000;
+
+      padding: 18px;
+
+      align-items: center;
+      justify-content: center;
+
+      background: rgba(10,10,13,.65);
+
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+
+    .score-modal-overlay.show {
+      display: flex;
+    }
+
+
+    .score-modal {
+      position: relative;
+
+      width: 100%;
+      max-width: 470px;
+
+      max-height: 88vh;
+
+      overflow-y: auto;
+
+      padding: 24px 16px 18px;
+
+      background: #fff;
+
+      border-radius: 24px;
+
+      box-shadow: 0 20px 60px rgba(0,0,0,.28);
+    }
+
+
+    .score-modal-close {
+      position: absolute;
+
+      top: 13px;
+      right: 13px;
+
+      width: 36px;
+      height: 36px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 8px;
+
+      border: 1px solid #ddd;
+      border-radius: 50%;
+
+      background: #fff;
+
+      cursor: pointer;
+    }
+
+
+    .score-modal-close svg {
+      width: 100%;
+      height: 100%;
+    }
+
+
+    .score-modal-title {
+      margin-bottom: 23px;
+
+      padding-right: 45px;
+
+      font-size: 20px;
+      font-weight: 900;
+
+      letter-spacing: -.6px;
+    }
+
+
+    .score-modal-teams {
+      display: grid;
+
+      grid-template-columns:
+        minmax(0,1fr)
+        45px
+        minmax(0,1fr);
+
+      align-items: center;
+
+      gap: 8px;
+    }
+
+
+    .score-modal-team {
+      min-width: 0;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+
+      text-align: center;
+    }
+
+
+    .score-modal-logo {
+      width: 100%;
+      max-width: 105px;
+      height: 66px;
+
+      overflow: hidden;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 9px;
+    }
+
+
+    .score-modal-logo img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      transform: scale(1.08);
+    }
+
+
+    .score-modal-team strong {
+      min-height: 30px;
+
+      display: flex;
+      align-items: center;
+
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+
+    .score-modal-team span {
+      margin-top: 5px;
+
+      color: #888;
+
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+
+    .score-modal-vs {
+      color: #e62c47;
+
+      text-align: center;
+
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+
+    .score-modal-table {
+      margin-top: 21px;
+
+      overflow: hidden;
+
+      border: 1px solid #ddd;
+      border-radius: 14px;
+    }
+
+
+    .score-modal-stat {
+      min-height: 51px;
+
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1.3fr
+        1fr;
+
+      align-items: center;
+
+      padding: 0 12px;
+
+      border-bottom: 1px solid #eee;
+    }
+
+
+    .score-modal-stat:last-child {
+      border-bottom: 0;
+    }
+
+
+    .score-modal-stat span {
+      text-align: center;
+
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+
+    .score-modal-stat strong {
+      color: #888;
+
+      text-align: center;
+
+      font-size: 9px;
+      font-weight: 900;
+    }
+
+
+    .score-prediction {
+      margin-top: 14px;
+
+      padding: 17px;
+
+      background: #fff1f3;
+
+      border-radius: 14px;
+
+      text-align: center;
+    }
+
+
+    .score-prediction-label {
+      display: block;
+
+      margin-bottom: 7px;
+
+      color: #e62c47;
+
+      font-size: 9px;
+      font-weight: 900;
+
+      letter-spacing: .7px;
+    }
+
+
+    .score-prediction strong {
+      display: block;
+
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+
+    .score-prediction p {
+      margin: 6px 0 0;
+
+      color: #777;
+
+      font-size: 10px;
+      font-weight: 700;
+
+      line-height: 1.4;
+    }
+
+
+    /* =====================================================
+       PHONE
+    ===================================================== */
+
+    @media (max-width: 430px) {
+
+      .scores-page {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+
+      .scores-title {
+        font-size: 30px;
+      }
+
+
+      .score-card-content {
+        grid-template-columns:
+          minmax(0,1fr)
+          68px
+          minmax(0,1fr);
+
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
+
+      .score-logo {
+        width: 54px;
+        height: 36px;
+
+        flex-basis: 54px;
+      }
+
+
+      .score-team {
+        gap: 6px;
+      }
+
+
+      .score-team-name {
+        font-size: 10px;
+      }
+
+
+      .score-display {
+        font-size: 20px;
+      }
+
+    }
+
+
+    @media (max-width: 375px) {
+
+      .score-card-content {
+        grid-template-columns:
+          minmax(0,1fr)
+          60px
+          minmax(0,1fr);
+      }
+
+
+      .score-logo {
+        width: 47px;
+        height: 32px;
+
+        flex-basis: 47px;
+      }
+
+
+      .score-team-name {
+        font-size: 9px;
+      }
+
+
+      .score-team-record {
+        font-size: 8px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+
+<body>
+
+
+<main class="app scores-page">
+
+
+  <!-- =========================================
+       PAGE TITLE
+  ========================================== -->
+
+  <h1 class="scores-title">
+    Scores
+  </h1>
+
+  <p class="scores-subtitle">
+    HSFL Season 2 games and results
+  </p>
+
+
+
+  <!-- =========================================
+       WEEK DROPDOWN
+  ========================================== -->
+
+  <div class="scores-week-area">
+
+    <button
+      class="scores-week-button"
+      id="scoresWeekButton"
+      type="button"
+    >
+
+      <span id="scoresSelectedWeek">
+        Week 1
+      </span>
+
+
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+
+        <path
+          d="M6 9l6 6 6-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+      </svg>
+
+    </button>
+
+
+    <div
+      class="scores-week-menu"
+      id="scoresWeekMenu"
+    ></div>
+
+  </div>
+
+
+
+  <!-- =========================================
+       WEEK TITLE
+  ========================================== -->
+
+  <div class="scores-week-header">
+
+    <h2 id="scoresWeekTitle">
+      Week 1
+    </h2>
+
+    <span
+      class="scores-week-pill"
+      id="scoresWeekPill"
+    >
+      WEEK 1
+    </span>
+
+  </div>
+
+
+
+  <!-- =========================================
+       GAMES
+  ========================================== -->
+
+  <section
+    class="scores-games"
+    id="scoresGames"
+  ></section>
+
+
+</main>
+
+
+
+<!-- =========================================
+     GAME COMPARISON MODAL
+========================================= -->
+
+<div
+  class="score-modal-overlay"
+  id="scoreModalOverlay"
+>
+
+  <div class="score-modal">
+
+    <button
+      class="score-modal-close"
+      id="scoreModalClose"
+      type="button"
+      aria-label="Close"
+    >
+
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+
+        <path
+          d="M6 6l12 12M18 6L6 18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+
+      </svg>
+
+    </button>
+
+
+    <div
+      id="scoreModalContent"
+    ></div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =========================================
+     BOTTOM NAV
+========================================= -->
+
+<nav class="bottom-nav">
+
+
+  <!-- HOME -->
+
+  <a
+    href="index.html"
+    class="nav-item"
+    aria-label="Home"
+  >
+
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <path
+        d="M3 10.5L12 3l9 7.5"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+      <path
+        d="M5.5 9.5V21h13V9.5M9.5 21v-7h5v7"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linejoin="round"
+      />
+
+    </svg>
+
+    <span class="nav-label">
+      Home
+    </span>
+
+  </a>
+
+
+
+  <!-- STANDINGS -->
+
+  <a
+    href="standings.html"
+    class="nav-item"
+    aria-label="Standings"
+  >
+
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <path
+        d="M8 4h8v4.5c0 3-1.7 5.2-4 5.2s-4-2.2-4-5.2V4z"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+      <path
+        d="M8 6H5.5v2.2c0 2 1.2 3.4 3.2 3.8"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+      />
+
+      <path
+        d="M16 6h2.5v2.2c0 2-1.2 3.4-3.2 3.8"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+      />
+
+      <path
+        d="M12 14v4M8.5 20h7M10 18h4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+      />
+
+    </svg>
+
+    <span class="nav-label">
+      Standings
+    </span>
+
+  </a>
+
+
+
+  <!-- SCORES -->
+
+  <a
+    href="scores.html"
+    class="nav-item active"
+    aria-label="Scores"
+  >
+
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <rect
+        x="3.5"
+        y="5"
+        width="17"
+        height="14"
+        rx="2.5"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      />
+
+      <path
+        d="M8 9h3M8 13h3M15 9h1M15 13h1"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+
+    </svg>
+
+    <span class="nav-label">
+      Scores
+    </span>
+
+  </a>
+
+
+
+  <!-- STATS -->
+
+  <a
+    href="stats.html"
+    class="nav-item"
+    aria-label="Stats"
+  >
+
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <path
+        d="M5 20V13M12 20V8M19 20V4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
+      />
+
+    </svg>
+
+    <span class="nav-label">
+      Stats
+    </span>
+
+  </a>
+
+
+
+  <!-- MORE -->
+
+  <button
+    class="nav-item"
+    type="button"
+    aria-label="More"
+  >
+
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <circle
+        cx="5"
+        cy="12"
+        r="1.5"
+        fill="currentColor"
+      />
+
+      <circle
+        cx="12"
+        cy="12"
+        r="1.5"
+        fill="currentColor"
+      />
+
+      <circle
+        cx="19"
+        cy="12"
+        r="1.5"
+        fill="currentColor"
+      />
+
+    </svg>
+
+    <span class="nav-label">
+      More
+    </span>
+
+  </button>
+
+
+</nav>
+
+
+
+<script>
+
+  /* =====================================================
+     TEAMS
+  ===================================================== */
+
+  const scoreTeams = {
+
+    saraland: {
+      name: "SARALAND SPARTANS",
+      short: "SAR",
+      logo: "saraland.png.PNG",
+      className: "saraland"
+    },
+
+    mckinney: {
+      name: "MCKINNEY LIONS",
+      short: "MCK",
+      logo: "mckinney.png.PNG",
+      className: "mckinney"
+    },
+
+    img: {
+      name: "IMG ACADEMY",
+      short: "IMG",
+      logo: "img.png.PNG",
+      className: "imgacademy"
+    },
+
+    buford: {
+      name: "BUFORD WOLVES",
+      short: "BUF",
+      logo: "buford.png.PNG",
+      className: "buford"
+    },
+
+    auburn: {
+      name: "AUBURN TIGERS",
+      short: "AUB",
+      logo: "auburn.png.PNG",
+      className: "auburn"
+    },
+
+    bosco: {
+      name: "ST. JOHN BOSCO",
+      short: "SJB",
+      logo: "bosco.png.PNG",
+      className: "bosco"
+    },
+
+    stjames: {
+      name: "ST. JAMES ACADEMY",
+      short: "STJ",
+      logo: "stjames.png.PNG",
+      className: "stjames"
+    },
+
+    norland: {
+      name: "NORLAND VIKINGS",
+      short: "NOR",
+      logo: "norland.png.PNG",
+      className: "norland"
+    },
+
+    parker: {
+      name: "PARKER THUNDERING HERD",
+      short: "PAR",
+      logo: "parker.png.PNG.PNG",
+      className: "parker"
+    },
+
+    stfrances: {
+      name: "ST. FRANCES ACADEMY",
+      short: "SFA",
+      logo: "stfrances.png.PNG",
+      className: "stfrances"
+    },
+
+    guyer: {
+      name: "DENTON GUYER WILDCATS",
+      short: "GUY",
+      logo: "guyer.png.PNG",
+      className: "guyer"
+    },
+
+    centennial: {
+      name: "CENTENNIAL HUSKIES",
+      short: "CEN",
+      logo: "centennial.png.PNG",
+      className: "centennial"
+    },
+
+    cornercanyon: {
+      name: "CORNER CANYON CHARGERS",
+      short: "CCY",
+      logo: "chargers.png.PNG",
+      className: "chargers"
+    },
+
+    dutchfork: {
+      name: "DUTCH FORK SILVER FOXES",
+      short: "DFK",
+      logo: "silverfoxes.png.PNG",
+      className: "silverfoxes"
+    }
+
+  };
+
+
+
+  /* =====================================================
+     TEAM RECORDS
+
+     THESE WILL LATER UPDATE FROM ADMIN
+  ===================================================== */
+
+  const scoreRecords = {
+
+    saraland: {
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    mckinney: {
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    img: {
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    buford: {
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    auburn: {
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    bosco: {
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    stjames: {
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    norland: {
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    parker: {
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    stfrances: {
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    guyer: {
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    centennial: {
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    cornercanyon: {
+      wins: 0,
+      losses: 0,
+      pd: 0
+    },
+
+    dutchfork: {
+      wins: 0,
+      losses: 0,
+      pd: 0
+    }
+
+  };
+
+
+
+  /* =====================================================
+     SCHEDULE
+
+     scoreAway / scoreHome:
+     leave as null until game is scored.
+
+     status:
+     "upcoming"
+     "final"
+  ===================================================== */
+
+  const scoreSchedule = {
+
+    1: [
+
+      {
+        away: "saraland",
+        home: "mckinney",
+        scoreAway: null,
+        scoreHome: null,
+        status: "upcoming"
+      },
+
+      {
+        away: "img",
+        home: "buford",
+        scoreAway: null,
+        scoreHome: null,
+        status: "upcoming"
+      },
+
+      {
+        away: "auburn",
+        home: "bosco",
+        scoreAway: null,
+        scoreHome: null,
+        status: "upcoming"
+      },
+
+      {
+        away: "stjames",
+        home: "norland",
+        scoreAway: null,
+        scoreHome: null,
+        status: "upcoming"
+      },
+
+      {
+        away: "parker",
+        home: "stfrances",
+        scoreAway: null,
+        scoreHome: null,
+        status: "upcoming"
+      },
+
+      {
+        away: "guyer",
+        home: "centennial",
+        scoreAway: null,
+        scoreHome: null,
+        status: "upcoming",
+        featured: true
+      },
+
+      {
+        away: "cornercanyon",
+        home: "dutchfork",
+        scoreAway: null,
+        scoreHome: null,
+        status: "upcoming"
+      }
+
+    ]
+
+  };
+
+
+
+  /* =====================================================
+     ELEMENTS
+  ===================================================== */
+
+  const scoresWeekButton =
+    document.getElementById(
+      "scoresWeekButton"
+    );
+
+
+  const scoresWeekMenu =
+    document.getElementById(
+      "scoresWeekMenu"
+    );
+
+
+  const scoresSelectedWeek =
+    document.getElementById(
+      "scoresSelectedWeek"
+    );
+
+
+  const scoresWeekTitle =
+    document.getElementById(
+      "scoresWeekTitle"
+    );
+
+
+  const scoresWeekPill =
+    document.getElementById(
+      "scoresWeekPill"
+    );
+
+
+  const scoresGames =
+    document.getElementById(
+      "scoresGames"
+    );
+
+
+  const scoreModalOverlay =
+    document.getElementById(
+      "scoreModalOverlay"
+    );
+
+
+  const scoreModalClose =
+    document.getElementById(
+      "scoreModalClose"
+    );
+
+
+  const scoreModalContent =
+    document.getElementById(
+      "scoreModalContent"
+    );
+
+
+
+  /* =====================================================
+     FORMAT PD
+  ===================================================== */
+
+  function formatPD(number) {
+
+    if (number > 0) {
+      return "+" + number;
+    }
+
+    return number;
+
+  }
+
+
+
+  /* =====================================================
+     BUILD WEEK MENU
+
+     ANY NEW WEEK ADDED TO scoreSchedule
+     AUTOMATICALLY APPEARS
+  ===================================================== */
+
+  function buildScoresWeekMenu() {
+
+    scoresWeekMenu.innerHTML = "";
+
+
+    Object.keys(scoreSchedule).forEach(
+      weekNumber => {
+
+        const button =
+          document.createElement(
+            "button"
+          );
+
+
+        button.type = "button";
+
+
+        button.className =
+          "scores-week-option";
+
+
+        button.dataset.week =
+          weekNumber;
+
+
+        button.textContent =
+          `Week ${weekNumber}`;
+
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            loadScoresWeek(
+              Number(weekNumber)
+            );
+
+
+            scoresWeekMenu.classList.remove(
+              "show"
+            );
+
+          }
+        );
+
+
+        scoresWeekMenu.appendChild(
+          button
+        );
+
+      }
+    );
+
+  }
+
+
+
+  /* =====================================================
+     LOAD WEEK
+  ===================================================== */
+
+  function loadScoresWeek(week) {
+
+    const games =
+      scoreSchedule[week];
+
+
+    scoresSelectedWeek.textContent =
+      `Week ${week}`;
+
+
+    scoresWeekTitle.textContent =
+      `Week ${week}`;
+
+
+    scoresWeekPill.textContent =
+      `WEEK ${week}`;
+
+
+    document
+      .querySelectorAll(
+        ".scores-week-option"
+      )
+      .forEach(button => {
+
+        button.classList.toggle(
+          "active",
+          Number(button.dataset.week) === week
+        );
+
+      });
+
+
+    scoresGames.innerHTML = "";
+
+
+    if (!games || games.length === 0) {
+
+      scoresGames.innerHTML = `
+
+        <div class="scores-empty">
+
+          <strong>
+            NO GAMES YET
+          </strong>
+
+          <span>
+            Games for Week ${week}
+            haven't been added yet.
+          </span>
+
+        </div>
+
+      `;
+
+
+      return;
+
+    }
+
+
+    games.forEach(game => {
+
+      const away =
+        scoreTeams[game.away];
+
+
+      const home =
+        scoreTeams[game.home];
+
+
+      const awayRecord =
+        scoreRecords[game.away];
+
+
+      const homeRecord =
+        scoreRecords[game.home];
+
+
+      const card =
+        document.createElement(
+          "button"
+        );
+
+
+      card.type = "button";
+
+
+      card.className =
+        "score-card";
+
+
+      if (game.featured) {
+
+        card.classList.add(
+          "score-card-gotw"
+        );
+
+      }
+
+
+      const isFinal =
+        game.status === "final" &&
+        game.scoreAway !== null &&
+        game.scoreHome !== null;
+
+
+      let middleScore;
+
+
+      if (isFinal) {
+
+        middleScore = `
+
+          <div class="score-status">
+            FINAL
+          </div>
+
+          <div class="score-display">
+            ${game.scoreAway}
+            -
+            ${game.scoreHome}
+          </div>
+
+          <div class="score-compare">
+            COMPARE ⇄
+          </div>
+
+        `;
+
+      }
+
+      else {
+
+        middleScore = `
+
+          <div class="score-status">
+            UPCOMING
+          </div>
+
+          <div
+            class="score-display upcoming"
+          >
+            VS
+          </div>
+
+          <div class="score-compare">
+            COMPARE ⇄
+          </div>
+
+        `;
+
+      }
+
+
+      card.innerHTML = `
+
+        ${
+          game.featured
+            ? `
+              <div class="score-gotw-label">
+                GAME OF THE WEEK
+              </div>
+            `
+            : ""
+        }
+
+
+        <div class="score-card-content">
+
+
+          <div
+            class="
+              score-team
+              score-team-away
+            "
+          >
+
+            <div
+              class="
+                score-logo
+                ${away.className}
+              "
+            >
+
+              <img
+                src="${away.logo}"
+                alt="${away.name}"
+              >
+
+            </div>
+
+
+            <div class="score-team-info">
+
+              <span class="score-team-name">
+                ${away.short}
+              </span>
+
+              <span class="score-team-record">
+                ${awayRecord.wins}-${awayRecord.losses}
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="score-middle">
+
+            ${middleScore}
+
+          </div>
+
+
+          <div
+            class="
+              score-team
+              score-team-home
+            "
+          >
+
+            <div class="score-team-info">
+
+              <span class="score-team-name">
+                ${home.short}
+              </span>
+
+              <span class="score-team-record">
+                ${homeRecord.wins}-${homeRecord.losses}
+              </span>
+
+            </div>
+
+
+            <div
+              class="
+                score-logo
+                ${home.className}
+              "
+            >
+
+              <img
+                src="${home.logo}"
+                alt="${home.name}"
+              >
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      `;
+
+
+      card.addEventListener(
+        "click",
+        () => {
+
+          openScoreComparison(
+            game.away,
+            game.home
+          );
+
+        }
+      );
+
+
+      scoresGames.appendChild(
+        card
+      );
+
+    });
+
+  }
+
+
+
+  /* =====================================================
+     PREDICTION
+  ===================================================== */
+
+  function calculatePrediction(
+    awayID,
+    homeID
+  ) {
+
+    const away =
+      scoreRecords[awayID];
+
+
+    const home =
+      scoreRecords[homeID];
+
+
+    const noData =
+      away.wins === 0 &&
+      away.losses === 0 &&
+      away.pd === 0 &&
+      home.wins === 0 &&
+      home.losses === 0 &&
+      home.pd === 0;
+
+
+    if (noData) {
+
+      return {
+        hasData: false
+      };
+
+    }
+
+
+    const awayScore =
+      (away.wins * 10) -
+      (away.losses * 3) +
+      away.pd;
+
+
+    const homeScore =
+      (home.wins * 10) -
+      (home.losses * 3) +
+      home.pd;
+
+
+    const adjustedAway =
+      Math.max(
+        1,
+        awayScore + 20
+      );
+
+
+    const adjustedHome =
+      Math.max(
+        1,
+        homeScore + 20
+      );
+
+
+    const total =
+      adjustedAway +
+      adjustedHome;
+
+
+    const awayPercent =
+      Math.round(
+        adjustedAway /
+        total *
+        100
+      );
+
+
+    const homePercent =
+      100 -
+      awayPercent;
+
+
+    return {
+
+      hasData: true,
+
+      awayPercent:
+        awayPercent,
+
+      homePercent:
+        homePercent
+
+    };
+
+  }
+
+
+
+  /* =====================================================
+     OPEN COMPARISON
+  ===================================================== */
+
+  function openScoreComparison(
+    awayID,
+    homeID
+  ) {
+
+    const away =
+      scoreTeams[awayID];
+
+
+    const home =
+      scoreTeams[homeID];
+
+
+    const awayRecord =
+      scoreRecords[awayID];
+
+
+    const homeRecord =
+      scoreRecords[homeID];
+
+
+    const prediction =
+      calculatePrediction(
+        awayID,
+        homeID
+      );
+
+
+    let predictionHTML;
+
+
+    if (!prediction.hasData) {
+
+      predictionHTML = `
+
+        <div class="score-prediction">
+
+          <span
+            class="score-prediction-label"
+          >
+            HSFL PREDICTION
+          </span>
+
+          <strong>
+            NOT ENOUGH DATA YET
+          </strong>
+
+          <p>
+            A prediction will appear
+            once games and team stats
+            are recorded.
+          </p>
+
+        </div>
+
+      `;
+
+    }
+
+    else {
+
+      predictionHTML = `
+
+        <div class="score-prediction">
+
+          <span
+            class="score-prediction-label"
+          >
+            HSFL PREDICTION
+          </span>
+
+          <strong>
+            ${away.short}
+            ${prediction.awayPercent}%
+            —
+            ${home.short}
+            ${prediction.homePercent}%
+          </strong>
+
+          <p>
+            Prediction is based on
+            record and point differential.
+          </p>
+
+        </div>
+
+      `;
+
+    }
+
+
+    scoreModalContent.innerHTML = `
+
+      <div class="score-modal-title">
+        MATCHUP COMPARISON
+      </div>
+
+
+      <div class="score-modal-teams">
+
+
+        <div class="score-modal-team">
+
+          <div
+            class="
+              score-modal-logo
+              ${away.className}
+            "
+          >
+
+            <img
+              src="${away.logo}"
+              alt="${away.name}"
+            >
+
+          </div>
+
+          <strong>
+            ${away.name}
+          </strong>
+
+          <span>
+            ${awayRecord.wins}-${awayRecord.losses}
+          </span>
+
+        </div>
+
+
+        <div class="score-modal-vs">
+          VS
+        </div>
+
+
+        <div class="score-modal-team">
+
+          <div
+            class="
+              score-modal-logo
+              ${home.className}
+            "
+          >
+
+            <img
+              src="${home.logo}"
+              alt="${home.name}"
+            >
+
+          </div>
+
+          <strong>
+            ${home.name}
+          </strong>
+
+          <span>
+            ${homeRecord.wins}-${homeRecord.losses}
+          </span>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="score-modal-table">
+
+
+        <div class="score-modal-stat">
+
+          <span>
+            ${awayRecord.wins}-${awayRecord.losses}
+          </span>
+
+          <strong>
+            RECORD
+          </strong>
+
+          <span>
+            ${homeRecord.wins}-${homeRecord.losses}
+          </span>
+
+        </div>
+
+
+        <div class="score-modal-stat">
+
+          <span>
+            ${formatPD(awayRecord.pd)}
+          </span>
+
+          <strong>
+            POINT DIFF
+          </strong>
+
+          <span>
+            ${formatPD(homeRecord.pd)}
+          </span>
+
+        </div>
+
+
+      </div>
+
+
+      ${predictionHTML}
+
+    `;
+
+
+    scoreModalOverlay.classList.add(
+      "show"
+    );
+
+
+    document.body.classList.add(
+      "modal-open"
+    );
+
+  }
+
+
+
+  /* =====================================================
+     CLOSE MODAL
+  ===================================================== */
+
+  function closeScoreModal() {
+
+    scoreModalOverlay.classList.remove(
+      "show"
+    );
+
+
+    document.body.classList.remove(
+      "modal-open"
+    );
+
+  }
+
+
+  scoreModalClose.addEventListener(
+    "click",
+    closeScoreModal
+  );
+
+
+  scoreModalOverlay.addEventListener(
+    "click",
+    event => {
+
+      if (
+        event.target ===
+        scoreModalOverlay
+      ) {
+
+        closeScoreModal();
+
+      }
+
+    }
+  );
+
+
+
+  /* =====================================================
+     WEEK DROPDOWN
+  ===================================================== */
+
+  scoresWeekButton.addEventListener(
+    "click",
+    event => {
+
+      event.stopPropagation();
+
+
+      scoresWeekMenu.classList.toggle(
+        "show"
+      );
+
+    }
+  );
+
+
+  document.addEventListener(
+    "click",
+    event => {
+
+      if (
+        !scoresWeekMenu.contains(
+          event.target
+        ) &&
+        !scoresWeekButton.contains(
+          event.target
+        )
+      ) {
+
+        scoresWeekMenu.classList.remove(
+          "show"
+        );
+
+      }
+
+    }
+  );
+
+
+
+  /* =====================================================
+     INITIAL LOAD
+  ===================================================== */
+
+  buildScoresWeekMenu();
+
+  loadScoresWeek(1);
+
+</script>
+
+
+</body>
+</html>
