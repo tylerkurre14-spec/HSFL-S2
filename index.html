@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,222 +11,222 @@
 
 <main class="app">
 
-  <!-- HOMEPAGE PLAYER IMAGE -->
+  <!-- HERO -->
   <section class="hero">
     <img src="IMG_8099.jpeg" alt="HSFL Football">
   </section>
 
 
-  <!-- WEEK 1 MATCHUPS -->
-  <section class="card matchups-card">
+  <!-- MATCHUPS -->
+  <section class="card">
 
-    <div class="matchup-header">
-      <div>
-        <h2>MATCHUPS</h2>
-        <span class="season-label">SEASON 2</span>
+    <div class="matchups-title">
+      <h1>MATCHUPS</h1>
+
+      <div class="title-pills">
+        <span>WEEK 1</span>
+        <span>UPCOMING</span>
       </div>
+    </div>
 
-      <span class="week-pill">WEEK 1</span>
+    <div class="filters">
+      <button>
+        Week 1
+        <span>⌄</span>
+      </button>
+
+      <button>
+        all scores →
+        <span>⌄</span>
+      </button>
     </div>
 
     <div class="red-line"></div>
 
-    <div class="week-controls">
-      <button class="week-arrow">‹</button>
-
-      <div class="week-center">
-        <strong>WEEK 1</strong>
-        <span>REGULAR SEASON</span>
-      </div>
-
-      <button class="week-arrow">›</button>
-    </div>
-
 
     <div class="games">
 
-      <!-- SARALAND VS MCKINNEY -->
-      <article class="game">
-        <div class="team team-left saraland-bg">
-          <img src="saraland.png.PNG" alt="Saraland Spartans">
-          <div>
-            <small>SARALAND</small>
-            <strong>SPARTANS</strong>
+      <!-- SARALAND / MCKINNEY -->
+      <div class="game-row">
+
+        <div class="team-side left-side">
+          <div class="logo-box saraland">
+            <img src="saraland.png.PNG" alt="Saraland">
+          </div>
+          <span class="team-name">SAR</span>
+        </div>
+
+        <div class="game-center">
+          <div class="vs">VS</div>
+          <div class="compare">COMPARE ⇄</div>
+        </div>
+
+        <div class="team-side right-side">
+          <span class="team-name">MCK</span>
+          <div class="logo-box mckinney">
+            <img src="mckinney.png.PNG" alt="McKinney">
           </div>
         </div>
 
-        <div class="game-middle">
-          <span class="vs">VS</span>
-          <small>UPCOMING</small>
-        </div>
+      </div>
 
-        <div class="team team-right mckinney-bg">
-          <div>
-            <small>MCKINNEY</small>
-            <strong>LIONS</strong>
+
+      <!-- IMG / BUFORD -->
+      <div class="game-row">
+
+        <div class="team-side left-side">
+          <div class="logo-box imgacademy">
+            <img src="img.png.PNG" alt="IMG Academy">
           </div>
-          <img src="mckinney.png.PNG" alt="McKinney Lions">
-        </div>
-      </article>
-
-
-      <!-- IMG VS BUFORD -->
-      <article class="game">
-        <div class="team team-left img-bg">
-          <img src="img.png.PNG" alt="IMG Academy">
-          <div>
-            <small>IMG</small>
-            <strong>ACADEMY</strong>
-          </div>
+          <span class="team-name">IMG</span>
         </div>
 
-        <div class="game-middle">
-          <span class="vs">VS</span>
-          <small>UPCOMING</small>
+        <div class="game-center">
+          <div class="vs">VS</div>
+          <div class="compare">COMPARE ⇄</div>
         </div>
 
-        <div class="team team-right buford-bg">
-          <div>
-            <small>BUFORD</small>
-            <strong>WOLVES</strong>
-          </div>
-          <img src="buford.png.PNG" alt="Buford Wolves">
-        </div>
-      </article>
-
-
-      <!-- AUBURN VS BOSCO -->
-      <article class="game">
-        <div class="team team-left auburn-bg">
-          <img src="auburn.png.PNG" alt="Auburn Tigers">
-          <div>
-            <small>AUBURN</small>
-            <strong>TIGERS</strong>
+        <div class="team-side right-side">
+          <span class="team-name">BUF</span>
+          <div class="logo-box buford">
+            <img src="buford.png.PNG" alt="Buford">
           </div>
         </div>
 
-        <div class="game-middle">
-          <span class="vs">VS</span>
-          <small>UPCOMING</small>
-        </div>
+      </div>
 
-        <div class="team team-right bosco-bg">
-          <div>
-            <small>ST. JOHN BOSCO</small>
-            <strong>BRAVES</strong>
+
+      <!-- AUBURN / BOSCO -->
+      <div class="game-row">
+
+        <div class="team-side left-side">
+          <div class="logo-box auburn">
+            <img src="auburn.png.PNG" alt="Auburn">
           </div>
-          <img src="bosco.png.PNG" alt="St. John Bosco Braves">
-        </div>
-      </article>
-
-
-      <!-- ST JAMES VS NORLAND -->
-      <article class="game">
-        <div class="team team-left stjames-bg">
-          <img src="stjames.png.PNG" alt="St. James Academy Strivers">
-          <div>
-            <small>ST. JAMES</small>
-            <strong>STRIVERS</strong>
-          </div>
+          <span class="team-name">AUB</span>
         </div>
 
-        <div class="game-middle">
-          <span class="vs">VS</span>
-          <small>UPCOMING</small>
+        <div class="game-center">
+          <div class="vs">VS</div>
+          <div class="compare">COMPARE ⇄</div>
         </div>
 
-        <div class="team team-right norland-bg">
-          <div>
-            <small>NORLAND</small>
-            <strong>VIKINGS</strong>
-          </div>
-          <img src="norland.png.PNG" alt="Norland Vikings">
-        </div>
-      </article>
-
-
-      <!-- PARKER VS ST FRANCES -->
-      <article class="game">
-        <div class="team team-left parker-bg">
-          <img src="parker.png.PNG" alt="Parker Thundering Herd">
-          <div>
-            <small>PARKER</small>
-            <strong>THUNDERING HERD</strong>
+        <div class="team-side right-side">
+          <span class="team-name">SJB</span>
+          <div class="logo-box bosco">
+            <img src="bosco.png.PNG" alt="St. John Bosco">
           </div>
         </div>
 
-        <div class="game-middle">
-          <span class="vs">VS</span>
-          <small>UPCOMING</small>
+      </div>
+
+
+      <!-- ST JAMES / NORLAND -->
+      <div class="game-row">
+
+        <div class="team-side left-side">
+          <div class="logo-box stjames">
+            <img src="stjames.png.PNG" alt="St. James">
+          </div>
+          <span class="team-name">STJ</span>
         </div>
 
-        <div class="team team-right stfrances-bg">
-          <div>
-            <small>ST. FRANCES</small>
-            <strong>ACADEMY</strong>
-          </div>
-          <img src="stfrances.png.PNG" alt="St. Frances Academy">
+        <div class="game-center">
+          <div class="vs">VS</div>
+          <div class="compare">COMPARE ⇄</div>
         </div>
-      </article>
+
+        <div class="team-side right-side">
+          <span class="team-name">NOR</span>
+          <div class="logo-box norland">
+            <img src="norland.png.PNG" alt="Norland">
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- PARKER / ST FRANCES -->
+      <div class="game-row">
+
+        <div class="team-side left-side">
+          <div class="logo-box parker">
+            <img src="parker.png.PNG" alt="Parker">
+          </div>
+          <span class="team-name">PAR</span>
+        </div>
+
+        <div class="game-center">
+          <div class="vs">VS</div>
+          <div class="compare">COMPARE ⇄</div>
+        </div>
+
+        <div class="team-side right-side">
+          <span class="team-name">SFA</span>
+          <div class="logo-box stfrances">
+            <img src="stfrances.png.PNG" alt="St. Frances">
+          </div>
+        </div>
+
+      </div>
 
 
       <!-- GAME OF THE WEEK -->
-      <div class="gotw-label">
-        ★ GAME OF THE WEEK
+      <div class="featured-label">★ GAME OF THE WEEK</div>
+
+      <div class="game-row featured-game">
+
+        <div class="team-side left-side">
+          <div class="logo-box guyer">
+            <img src="guyer.png.PNG" alt="Denton Guyer">
+          </div>
+          <span class="team-name">GUY</span>
+        </div>
+
+        <div class="game-center">
+          <div class="vs">VS</div>
+          <div class="compare">COMPARE ⇄</div>
+        </div>
+
+        <div class="team-side right-side">
+          <span class="team-name">CEN</span>
+          <div class="logo-box centennial">
+            <img src="centennial.png.PNG" alt="Centennial">
+          </div>
+        </div>
+
       </div>
 
-      <article class="game game-of-week">
-        <div class="team team-left guyer-bg">
-          <img src="guyer.png.PNG" alt="Denton Guyer Wildcats">
-          <div>
-            <small>DENTON GUYER</small>
-            <strong>WILDCATS</strong>
+
+      <!-- CORNER CANYON / DUTCH FORK -->
+      <div class="game-row">
+
+        <div class="team-side left-side">
+          <div class="logo-box chargers">
+            <img src="chargers.png.PNG" alt="Corner Canyon">
+          </div>
+          <span class="team-name">CC</span>
+        </div>
+
+        <div class="game-center">
+          <div class="vs">VS</div>
+          <div class="compare">COMPARE ⇄</div>
+        </div>
+
+        <div class="team-side right-side">
+          <span class="team-name">DF</span>
+          <div class="logo-box silverfoxes">
+            <img src="silverfoxes.png.PNG" alt="Dutch Fork">
           </div>
         </div>
 
-        <div class="game-middle">
-          <span class="vs">VS</span>
-          <small>FEATURED</small>
-        </div>
-
-        <div class="team team-right centennial-bg">
-          <div>
-            <small>CENTENNIAL</small>
-            <strong>HUSKIES</strong>
-          </div>
-          <img src="centennial.png.PNG" alt="Centennial Huskies">
-        </div>
-      </article>
-
-
-      <!-- CORNER CANYON VS DUTCH FORK -->
-      <article class="game">
-        <div class="team team-left chargers-bg">
-          <img src="chargers.png.PNG" alt="Corner Canyon Chargers">
-          <div>
-            <small>CORNER CANYON</small>
-            <strong>CHARGERS</strong>
-          </div>
-        </div>
-
-        <div class="game-middle">
-          <span class="vs">VS</span>
-          <small>UPCOMING</small>
-        </div>
-
-        <div class="team team-right silverfoxes-bg">
-          <div>
-            <small>DUTCH FORK</small>
-            <strong>SILVER FOXES</strong>
-          </div>
-          <img src="silverfoxes.png.PNG" alt="Dutch Fork Silver Foxes">
-        </div>
-      </article>
+      </div>
 
     </div>
 
-    <a class="red-button" href="scores.html">
-      VIEW ALL SCORES <span>›</span>
+    <a class="main-button" href="scores.html">
+      <span>VIEW ALL SCORES</span>
+      <strong>›</strong>
     </a>
 
   </section>
@@ -236,24 +235,23 @@
   <!-- STAT LEADERS -->
   <section class="card">
 
-    <div class="card-title">
-      <h2>STAT LEADERS</h2>
-    </div>
+    <h1 class="section-title">STAT LEADERS</h1>
 
     <div class="red-line"></div>
 
-    <button class="dropdown">
+    <button class="full-dropdown">
       <span>PASSING YARDS</span>
       <span>⌄</span>
     </button>
 
-    <div class="empty-section">
+    <div class="empty-content">
       <strong>SEASON 2</strong>
-      <span>Stat leaders will appear after games are recorded.</span>
+      <span>Stats will appear after games are recorded.</span>
     </div>
 
-    <a class="red-button" href="stats.html">
-      VIEW ALL STATS <span>›</span>
+    <a class="main-button" href="stats.html">
+      <span>VIEW ALL STATS</span>
+      <strong>›</strong>
     </a>
 
   </section>
@@ -262,24 +260,89 @@
   <!-- STANDINGS -->
   <section class="card">
 
-    <div class="card-title">
-      <h2>STANDINGS</h2>
-    </div>
+    <h1 class="section-title">STANDINGS</h1>
 
     <div class="red-line"></div>
 
-    <button class="dropdown">
+    <button class="full-dropdown">
       <span>AMERICAN</span>
       <span>⌄</span>
     </button>
 
-    <div class="empty-section">
-      <strong>SEASON 2</strong>
-      <span>Standings will update as games are completed.</span>
+    <div class="standings-preview">
+
+      <div class="standing-header">
+        <span>TEAM</span>
+        <span>W</span>
+        <span>L</span>
+        <span>PD</span>
+      </div>
+
+      <div class="standing-row">
+        <div class="standing-team">
+          <div class="standing-logo auburn">
+            <img src="auburn.png.PNG" alt="">
+          </div>
+          <strong>AUBURN TIGERS</strong>
+        </div>
+        <b>0</b><b>0</b><b>0</b>
+      </div>
+
+      <div class="standing-row">
+        <div class="standing-team">
+          <div class="standing-logo parker">
+            <img src="parker.png.PNG" alt="">
+          </div>
+          <strong>PARKER THUNDERING HERD</strong>
+        </div>
+        <b>0</b><b>0</b><b>0</b>
+      </div>
+
+      <div class="standing-row">
+        <div class="standing-team">
+          <div class="standing-logo chargers">
+            <img src="chargers.png.PNG" alt="">
+          </div>
+          <strong>CORNER CANYON</strong>
+        </div>
+        <b>0</b><b>0</b><b>0</b>
+      </div>
+
+      <div class="standing-row">
+        <div class="standing-team">
+          <div class="standing-logo stfrances">
+            <img src="stfrances.png.PNG" alt="">
+          </div>
+          <strong>ST. FRANCES</strong>
+        </div>
+        <b>0</b><b>0</b><b>0</b>
+      </div>
+
+      <div class="standing-row">
+        <div class="standing-team">
+          <div class="standing-logo buford">
+            <img src="buford.png.PNG" alt="">
+          </div>
+          <strong>BUFORD WOLVES</strong>
+        </div>
+        <b>0</b><b>0</b><b>0</b>
+      </div>
+
+      <div class="standing-row">
+        <div class="standing-team">
+          <div class="standing-logo bosco">
+            <img src="bosco.png.PNG" alt="">
+          </div>
+          <strong>ST. JOHN BOSCO</strong>
+        </div>
+        <b>0</b><b>0</b><b>0</b>
+      </div>
+
     </div>
 
-    <a class="red-button" href="standings.html">
-      VIEW FULL STANDINGS <span>›</span>
+    <a class="main-button" href="standings.html">
+      <span>VIEW FULL STANDINGS</span>
+      <strong>›</strong>
     </a>
 
   </section>
@@ -287,32 +350,32 @@
 </main>
 
 
-<!-- AFL-STYLE BOTTOM NAV -->
+<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
 
-  <a class="nav-item active" href="index.html">
+  <a href="index.html" class="nav-link active">
     <span class="nav-icon">⌂</span>
-    <span>HOME</span>
+    <small>Home</small>
   </a>
 
-  <a class="nav-item" href="standings.html">
-    <span class="nav-icon">▥</span>
-    <span>STANDINGS</span>
+  <a href="standings.html" class="nav-link">
+    <span class="nav-icon">♜</span>
+    <small>Standings</small>
   </a>
 
-  <a class="nav-item" href="scores.html">
+  <a href="scores.html" class="nav-link">
     <span class="nav-icon">▣</span>
-    <span>SCORES</span>
+    <small>Scores</small>
   </a>
 
-  <a class="nav-item" href="stats.html">
-    <span class="nav-icon">▥</span>
-    <span>STATS</span>
+  <a href="stats.html" class="nav-link">
+    <span class="nav-icon">⌁</span>
+    <small>Stats</small>
   </a>
 
-  <button class="nav-item">
+  <button class="nav-link">
     <span class="nav-icon">•••</span>
-    <span>MORE</span>
+    <small>More</small>
   </button>
 
 </nav>
