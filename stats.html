@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Stats | HSFL S2</title>
+
+  <link rel="stylesheet" href="style.css">
+
+
+  <style>
+
+    /* =====================================================
+       STATS PAGE
+    ===================================================== */
+
+    .stats-page {
+      padding-top: 18px;
+    }
+
+
+    .stats-title {
+      margin: 0 4px 7px;
+
+      font-size: 32px;
+      line-height: 1;
+
+      font-weight: 900;
+
+      letter-spacing: -1.5px;
+    }
+
+
+    .stats-subtitle {
+      margin: 0 4px 22px;
+
+      color: #888;
+
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+
+    /* =====================================================
+       CATEGORY TABS
+    ===================================================== */
+
+    .stats-tabs-wrap {
+      width: 100%;
+
+      overflow-x: auto;
+
+      padding-bottom: 5px;
+      margin-bottom: 22px;
+
+      scrollbar-width: none;
+    }
+
+
+    .stats-tabs-wrap::-webkit-scrollbar {
+      display: none;
+    }
+
+
+    .stats-tabs {
+      min-width: max-content;
+
+      display: flex;
+
+      gap: 9px;
+    }
+
+
+    .stats-tab {
+      height: 50px;
+
+      padding: 0 20px;
+
+      border: 1.5px solid #d7d7d7;
+      border-radius: 999px;
+
+      background: #fff;
+
+      color: #26262c;
+
+      font-size: 12px;
+      font-weight: 900;
+
+      cursor: pointer;
+    }
+
+
+    .stats-tab.active {
+      background: #202127;
+      border-color: #202127;
+      color: #fff;
+    }
+
+
+    /* =====================================================
+       STATS CARD
+    ===================================================== */
+
+    .stats-card {
+      width: 100%;
+
+      overflow: hidden;
+
+      background: #fff;
+
+      border: 1px solid #d6d6d6;
+      border-radius: 22px;
+
+      margin-bottom: 24px;
+    }
+
+
+    /* =====================================================
+       GRADIENT HEADER
+    ===================================================== */
+
+    .stats-card-header {
+      min-height: 78px;
+
+      padding: 0 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 12px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #9b141f 0%,
+          #b91e2b 35%,
+          #cf2a38 70%,
+          #df3948 100%
+        );
+
+      color: #fff;
+    }
+
+
+    .stats-card-header-left {
+      min-width: 0;
+    }
+
+
+    .stats-card-header strong {
+      display: block;
+
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+
+    .stats-card-header span {
+      display: block;
+
+      margin-top: 4px;
+
+      color: rgba(255,255,255,.88);
+
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+
+    .stats-leader-pill {
+      flex: 0 0 auto;
+
+      padding: 7px 10px;
+
+      border-radius: 999px;
+
+      background: rgba(255,255,255,.16);
+
+      color: #fff !important;
+
+      font-size: 9px !important;
+      font-weight: 900 !important;
+
+      margin-top: 0 !important;
+    }
+
+
+    /* =====================================================
+       TABLE
+    ===================================================== */
+
+    .stats-table {
+      width: 100%;
+    }
+
+
+    .stats-table-header,
+    .stats-row {
+      display: grid;
+      align-items: center;
+    }
+
+
+    .stats-table-header {
+      min-height: 56px;
+
+      padding: 0 10px;
+
+      background: #fff;
+
+      border-bottom: 1px solid #dedede;
+
+      color: #b9b9bd;
+
+      font-size: 9px;
+      font-weight: 900;
+
+      text-transform: uppercase;
+    }
+
+
+    .stats-row {
+      min-height: 68px;
+
+      padding: 7px 10px;
+
+      background: #fff;
+
+      border-bottom: 1px solid #e1e1e1;
+    }
+
+
+    .stats-row:last-child {
+      border-bottom: 0;
+    }
+
+
+    /* PASSING */
+
+    .passing-grid {
+      grid-template-columns:
+        38px
+        minmax(120px,1fr)
+        38px
+        38px
+        47px
+        36px
+        36px;
+    }
+
+
+    /* RUSHING */
+
+    .rushing-grid {
+      grid-template-columns:
+        38px
+        minmax(120px,1fr)
+        43px
+        48px
+        36px
+        45px;
+    }
+
+
+    /* RECEIVING */
+
+    .receiving-grid {
+      grid-template-columns:
+        38px
+        minmax(120px,1fr)
+        43px
+        48px
+        36px
+        45px;
+    }
+
+
+    /* DEFENSE */
+
+    .defense-grid {
+      grid-template-columns:
+        38px
+        minmax(110px,1fr)
+        39px
+        39px
+        43px
+        39px
+        39px;
+    }
+
+
+    .stats-table-header span:not(:nth-child(2)),
+    .stats-row > span:not(:nth-child(2)) {
+      text-align: center;
+    }
+
+
+    /* =====================================================
+       RANK
+    ===================================================== */
+
+    .stats-rank {
+      width: 30px;
+      height: 30px;
+
+      margin: 0 auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          #9b141f,
+          #df3948
+        );
+
+      color: #fff;
+
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+
+    /* =====================================================
+       PLAYER INFO
+    ===================================================== */
+
+    .stats-player {
+      min-width: 0;
+
+      display: flex;
+      align-items: center;
+
+      gap: 8px;
+    }
+
+
+    .stats-player-info {
+      min-width: 0;
+    }
+
+
+    .stats-player-name {
+      display: block;
+
+      color: #202127;
+
+      font-size: 11px;
+      font-weight: 900;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    .stats-player-team {
+      display: block;
+
+      margin-top: 3px;
+
+      color: #999;
+
+      font-size: 8px;
+      font-weight: 800;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    .stats-number {
+      color: #202127;
+
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+
+    /* =====================================================
+       EMPTY STATE
+    ===================================================== */
+
+    .stats-empty {
+      min-height: 220px;
+
+      padding: 30px 20px;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      background: #fff;
+    }
+
+
+    .stats-empty-icon {
+      width: 52px;
+      height: 52px;
+
+      margin-bottom: 13px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: #fff0f2;
+
+      color: #e62c47;
+    }
+
+
+    .stats-empty-icon svg {
+      width: 27px;
+      height: 27px;
+    }
+
+
+    .stats-empty strong {
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+
+    .stats-empty span {
+      max-width: 260px;
+
+      margin-top: 7px;
+
+      color: #999;
+
+      font-size: 10px;
+      font-weight: 700;
+
+      line-height: 1.5;
+    }
+
+
+    /* =====================================================
+       PHONE
+    ===================================================== */
+
+    @media (max-width: 430px) {
+
+      .stats-page {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+
+      .stats-title {
+        font-size: 30px;
+      }
+
+
+      .stats-card-header {
+        min-height: 70px;
+        padding: 0 15px;
+      }
+
+
+      .stats-card-header strong {
+        font-size: 16px;
+      }
+
+
+      .passing-grid {
+        grid-template-columns:
+          34px
+          minmax(100px,1fr)
+          33px
+          33px
+          41px
+          31px
+          31px;
+      }
+
+
+      .rushing-grid,
+      .receiving-grid {
+        grid-template-columns:
+          34px
+          minmax(105px,1fr)
+          38px
+          43px
+          32px
+          40px;
+      }
+
+
+      .defense-grid {
+        grid-template-columns:
+          34px
+          minmax(92px,1fr)
+          34px
+          34px
+          37px
+          34px
+          34px;
+      }
+
+
+      .stats-table-header {
+        font-size: 8px;
+      }
+
+
+      .stats-player-name {
+        font-size: 10px;
+      }
+
+
+      .stats-number {
+        font-size: 10px;
+      }
+
+    }
+
+
+    @media (max-width: 375px) {
+
+      .stats-table-header,
+      .stats-row {
+        padding-left: 6px;
+        padding-right: 6px;
+      }
+
+
+      .passing-grid {
+        grid-template-columns:
+          31px
+          minmax(90px,1fr)
+          29px
+          29px
+          37px
+          28px
+          28px;
+      }
+
+
+      .rushing-grid,
+      .receiving-grid {
+        grid-template-columns:
+          31px
+          minmax(94px,1fr)
+          34px
+          39px
+          29px
+          36px;
+      }
+
+
+      .defense-grid {
+        grid-template-columns:
+          31px
+          minmax(83px,1fr)
+          31px
+          31px
+          34px
+          31px
+          31px;
+      }
+
+
+      .stats-rank {
+        width: 27px;
+        height: 27px;
+
+        font-size: 10px;
+      }
+
+
+      .stats-player-name {
+        font-size: 9px;
+      }
+
+
+      .stats-number {
+        font-size: 9px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<main class="app stats-page">
+
+
+  <!-- PAGE TITLE -->
+
+  <h1 class="stats-title">
+    Stats
+  </h1>
+
+  <p class="stats-subtitle">
+    HSFL Season 2 player leaders
+  </p>
+
+
+
+  <!-- CATEGORY TABS -->
+
+  <div class="stats-tabs-wrap">
+
+    <div class="stats-tabs">
+
+      <button
+        class="stats-tab active"
+        type="button"
+        data-category="passing"
+      >
+        Passing
+      </button>
+
+
+      <button
+        class="stats-tab"
+        type="button"
+        data-category="rushing"
+      >
+        Rushing
+      </button>
+
+
+      <button
+        class="stats-tab"
+        type="button"
+        data-category="receiving"
+      >
+        Receiving
+      </button>
+
+
+      <button
+        class="stats-tab"
+        type="button"
+        data-category="defense"
+      >
+        Defense
+      </button>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- STATS CARD -->
+
+  <section class="stats-card">
+
+    <div class="stats-card-header">
+
+      <div class="stats-card-header-left">
+
+        <strong id="statsCategoryTitle">
+          PASSING
+        </strong>
+
+        <span>
+          HSFL SEASON 2
+        </span>
+
+      </div>
+
+
+      <span class="stats-leader-pill">
+        LEADERS
+      </span>
+
+    </div>
+
+
+    <div
+      class="stats-table"
+      id="statsTable"
+    ></div>
+
+  </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     BOTTOM NAV
+===================================================== -->
+
+<nav class="bottom-nav">
+
+
+  <!-- HOME -->
+
+  <a
+    href="index.html"
+    class="nav-item"
+    aria-label="Home"
+  >
+
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+    >
+
+      <path
+        d="M3 10.5L12 3l9 7.5"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+      <path
+        d="M5.5 9.5V21h13V9.5M9.5 21v-7h5v7"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linejoin="round"
+      />
+
+    </svg>
+
+    <span class="nav-label">
+      Home
+    </span>
+
+  </a>
+
+
+
+  <!-- STANDINGS -->
+
+  <a
+    href="standings.html"
+    class="nav-item"
+    aria-label="Standings"
+  >
+
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+    >
+
+      <path
+        d="M8 4h8v4.5c0 3-1.7 5.2-4 5.2s-4-2.2-4-5.2V4z"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+      />
+
+      <path
+        d="M8 6H5.5v2.2c0 2 1.2 3.4 3.2 3.8M16 6h2.5v2.2c0 2-1.2 3.4-3.2 3.8"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+      />
+
+      <path
+        d="M12 14v4M8.5 20h7M10 18h4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+      />
+
+    </svg>
+
+    <span class="nav-label">
+      Standings
+    </span>
+
+  </a>
+
+
+
+  <!-- SCORES -->
+
+  <a
+    href="scores.html"
+    class="nav-item"
+    aria-label="Scores"
+  >
+
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+    >
+
+      <rect
+        x="3.5"
+        y="5"
+        width="17"
+        height="14"
+        rx="2.5"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      />
+
+      <path
+        d="M8 9h3M8 13h3M15 9h1M15 13h1"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+
+    </svg>
+
+    <span class="nav-label">
+      Scores
+    </span>
+
+  </a>
+
+
+
+  <!-- STATS -->
+
+  <a
+    href="stats.html"
+    class="nav-item active"
+    aria-label="Stats"
+  >
+
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+    >
+
+      <path
+        d="M5 20V13M12 20V8M19 20V4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
+      />
+
+    </svg>
+
+    <span class="nav-label">
+      Stats
+    </span>
+
+  </a>
+
+
+
+  <!-- MORE -->
+
+  <button
+    class="nav-item"
+    type="button"
+    aria-label="More"
+  >
+
+    <svg
+      class="nav-svg"
+      viewBox="0 0 24 24"
+    >
+
+      <circle cx="5" cy="12" r="1.5" fill="currentColor"/>
+      <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+      <circle cx="19" cy="12" r="1.5" fill="currentColor"/>
+
+    </svg>
+
+    <span class="nav-label">
+      More
+    </span>
+
+  </button>
+
+
+</nav>
+
+
+
+<script>
+
+  /* =====================================================
+     PLAYER STATS
+     
+     LEAVE EMPTY UNTIL REAL STATS ARE ENTERED
+  ===================================================== */
+
+  const playerStats = {
+
+    passing: [],
+
+    rushing: [],
+
+    receiving: [],
+
+    defense: []
+
+  };
+
+
+
+  /* =====================================================
+     CATEGORY SETTINGS
+  ===================================================== */
+
+  const statCategories = {
+
+    passing: {
+
+      title: "PASSING",
+
+      grid: "passing-grid",
+
+      headers: [
+        "#",
+        "PLAYER",
+        "CMP",
+        "ATT",
+        "YDS",
+        "TD",
+        "INT"
+      ],
+
+      sortBy: "yards"
+
+    },
+
+
+    rushing: {
+
+      title: "RUSHING",
+
+      grid: "rushing-grid",
+
+      headers: [
+        "#",
+        "PLAYER",
+        "ATT",
+        "YDS",
+        "TD",
+        "AVG"
+      ],
+
+      sortBy: "yards"
+
+    },
+
+
+    receiving: {
+
+      title: "RECEIVING",
+
+      grid: "receiving-grid",
+
+      headers: [
+        "#",
+        "PLAYER",
+        "REC",
+        "YDS",
+        "TD",
+        "AVG"
+      ],
+
+      sortBy: "yards"
+
+    },
+
+
+    defense: {
+
+      title: "DEFENSE",
+
+      grid: "defense-grid",
+
+      headers: [
+        "#",
+        "PLAYER",
+        "TKL",
+        "TFL",
+        "SACK",
+        "INT",
+        "PBU"
+      ],
+
+      sortBy: "tackles"
+
+    }
+
+  };
+
+
+
+  const statsTable =
+    document.getElementById(
+      "statsTable"
+    );
+
+
+  const statsCategoryTitle =
+    document.getElementById(
+      "statsCategoryTitle"
+    );
+
+
+  const statsTabs =
+    document.querySelectorAll(
+      ".stats-tab"
+    );
+
+
+
+  /* =====================================================
+     BUILD EMPTY STATE
+  ===================================================== */
+
+  function buildEmptyState(category) {
+
+    statsTable.innerHTML = `
+
+      <div class="stats-empty">
+
+        <div class="stats-empty-icon">
+
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <path
+              d="M5 20V13M12 20V8M19 20V4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+            />
+
+          </svg>
+
+        </div>
+
+
+        <strong>
+          NO ${category.title} STATS YET
+        </strong>
+
+
+        <span>
+          Player stats will appear here once
+          Season 2 games are played and stats
+          are entered.
+        </span>
+
+      </div>
+
+    `;
+
+  }
+
+
+
+  /* =====================================================
+     CREATE HEADER
+  ===================================================== */
+
+  function createStatsHeader(category) {
+
+    const header =
+      document.createElement("div");
+
+
+    header.className =
+      `stats-table-header ${category.grid}`;
+
+
+    category.headers.forEach(
+      label => {
+
+        const span =
+          document.createElement("span");
+
+
+        span.textContent =
+          label;
+
+
+        header.appendChild(
+          span
+        );
+
+      }
+    );
+
+
+    return header;
+
+  }
+
+
+
+  /* =====================================================
+     PLAYER ROW
+  ===================================================== */
+
+  function createPlayerRow(
+    player,
+    rank,
+    categoryName
+  ) {
+
+    const category =
+      statCategories[
+        categoryName
+      ];
+
+
+    const row =
+      document.createElement("div");
+
+
+    row.className =
+      `stats-row ${category.grid}`;
+
+
+    let numbers = [];
+
+
+    if (
+      categoryName ===
+      "passing"
+    ) {
+
+      numbers = [
+
+        player.completions,
+        player.attempts,
+        player.yards,
+        player.touchdowns,
+        player.interceptions
+
+      ];
+
+    }
+
+
+    if (
+      categoryName ===
+      "rushing"
+    ) {
+
+      numbers = [
+
+        player.attempts,
+        player.yards,
+        player.touchdowns,
+        player.average
+
+      ];
+
+    }
+
+
+    if (
+      categoryName ===
+      "receiving"
+    ) {
+
+      numbers = [
+
+        player.receptions,
+        player.yards,
+        player.touchdowns,
+        player.average
+
+      ];
+
+    }
+
+
+    if (
+      categoryName ===
+      "defense"
+    ) {
+
+      numbers = [
+
+        player.tackles,
+        player.tfl,
+        player.sacks,
+        player.interceptions,
+        player.pbu
+
+      ];
+
+    }
+
+
+    row.innerHTML = `
+
+      <div class="stats-rank">
+        ${rank}
+      </div>
+
+
+      <div class="stats-player">
+
+        <div class="stats-player-info">
+
+          <span class="stats-player-name">
+            ${player.name}
+          </span>
+
+          <span class="stats-player-team">
+            ${player.team}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      ${numbers.map(
+        number => `
+
+          <span class="stats-number">
+            ${number}
+          </span>
+
+        `
+      ).join("")}
+
+    `;
+
+
+    return row;
+
+  }
+
+
+
+  /* =====================================================
+     LOAD CATEGORY
+  ===================================================== */
+
+  function loadCategory(
+    categoryName
+  ) {
+
+    const category =
+      statCategories[
+        categoryName
+      ];
+
+
+    const players =
+      [...playerStats[
+        categoryName
+      ]];
+
+
+    statsCategoryTitle.textContent =
+      category.title;
+
+
+    statsTabs.forEach(
+      tab => {
+
+        tab.classList.toggle(
+          "active",
+          tab.dataset.category ===
+          categoryName
+        );
+
+      }
+    );
+
+
+    if (
+      players.length === 0
+    ) {
+
+      buildEmptyState(
+        category
+      );
+
+      return;
+
+    }
+
+
+    players.sort(
+      (a, b) =>
+        b[
+          category.sortBy
+        ] -
+        a[
+          category.sortBy
+        ]
+    );
+
+
+    statsTable.innerHTML = "";
+
+
+    statsTable.appendChild(
+      createStatsHeader(
+        category
+      )
+    );
+
+
+    players.forEach(
+      (player, index) => {
+
+        statsTable.appendChild(
+          createPlayerRow(
+            player,
+            index + 1,
+            categoryName
+          )
+        );
+
+      }
+    );
+
+  }
+
+
+
+  /* =====================================================
+     TAB CLICKS
+  ===================================================== */
+
+  statsTabs.forEach(
+    tab => {
+
+      tab.addEventListener(
+        "click",
+        () => {
+
+          loadCategory(
+            tab.dataset.category
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+
+  /* =====================================================
+     START PAGE
+  ===================================================== */
+
+  loadCategory(
+    "passing"
+  );
+
+</script>
+
+
+</body>
+</html>
