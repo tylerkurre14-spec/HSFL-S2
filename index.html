@@ -55,7 +55,6 @@
 
     <div class="games">
 
-
       <!-- SARALAND VS MCKINNEY -->
       <div class="game-row">
 
@@ -94,7 +93,6 @@
         </div>
 
       </div>
-
 
 
       <!-- IMG VS BUFORD -->
@@ -137,7 +135,6 @@
       </div>
 
 
-
       <!-- AUBURN VS ST JOHN BOSCO -->
       <div class="game-row">
 
@@ -176,7 +173,6 @@
         </div>
 
       </div>
-
 
 
       <!-- ST JAMES VS NORLAND -->
@@ -219,7 +215,6 @@
       </div>
 
 
-
       <!-- PARKER VS ST FRANCES -->
       <div class="game-row">
 
@@ -260,14 +255,13 @@
       </div>
 
 
-
       <!-- GAME OF THE WEEK -->
       <div class="gotw">
         ★ GAME OF THE WEEK
       </div>
 
 
-      <!-- DENTON GUYER VS CENTENNIAL -->
+      <!-- GUYER VS CENTENNIAL -->
       <div class="game-row featured">
 
         <div class="team left-team">
@@ -305,7 +299,6 @@
         </div>
 
       </div>
-
 
 
       <!-- CORNER CANYON VS DUTCH FORK -->
@@ -370,11 +363,8 @@
 
 
     <button class="big-dropdown">
-
       <span>PASSING YARDS</span>
-
       <b>⌄</b>
-
     </button>
 
 
@@ -390,11 +380,8 @@
 
 
     <a href="stats.html" class="red-button">
-
       <span>VIEW ALL STATS</span>
-
       <b>›</b>
-
     </a>
 
   </section>
@@ -412,16 +399,45 @@
     <div class="red-divider"></div>
 
 
-    <button class="big-dropdown">
+    <!-- CONFERENCE SWITCH -->
+    <div class="conference-picker">
 
-      <span>AMERICAN</span>
+      <button
+        class="big-dropdown"
+        id="conferenceButton">
 
-      <b>⌄</b>
+        <span id="conferenceName">
+          AMERICAN
+        </span>
 
-    </button>
+        <b>⌄</b>
+
+      </button>
+
+
+      <div
+        class="conference-menu"
+        id="conferenceMenu">
+
+        <button
+          class="conference-option"
+          data-conference="american">
+          AMERICAN
+        </button>
+
+        <button
+          class="conference-option"
+          data-conference="national">
+          NATIONAL
+        </button>
+
+      </div>
+
+    </div>
 
 
 
+    <!-- STANDINGS TABLE -->
     <div class="standings-table">
 
 
@@ -439,136 +455,171 @@
 
 
 
-      <!-- AUBURN -->
-      <div class="standings-row">
+      <!-- JS CHANGES THESE TEAMS -->
+      <div id="standingsBody">
 
-        <div class="standing-team">
 
-          <div class="standing-logo auburn">
-            <img src="auburn.png.PNG" alt="Auburn">
+        <!-- AUBURN -->
+        <div class="standings-row">
+
+          <div class="standing-team">
+
+            <div class="standing-logo auburn">
+              <img
+                src="auburn.png.PNG"
+                alt="Auburn">
+            </div>
+
+            <strong>
+              AUBURN TIGERS
+            </strong>
+
           </div>
 
-          <strong>AUBURN TIGERS</strong>
+          <b>0</b>
+          <b>0</b>
+          <b>0</b>
 
         </div>
 
-        <b>0</b>
-        <b>0</b>
-        <b>0</b>
-
-      </div>
 
 
+        <!-- PARKER -->
+        <div class="standings-row">
 
-      <!-- PARKER -->
-      <div class="standings-row">
+          <div class="standing-team">
 
-        <div class="standing-team">
+            <div class="standing-logo parker">
+              <img
+                src="parker.png.PNG.PNG"
+                alt="Parker">
+            </div>
 
-          <div class="standing-logo parker">
-            <img src="parker.png.PNG.PNG" alt="Parker">
+            <strong>
+              PARKER THUNDERING HERD
+            </strong>
+
           </div>
 
-          <strong>PARKER THUNDERING HERD</strong>
+          <b>0</b>
+          <b>0</b>
+          <b>0</b>
 
         </div>
 
-        <b>0</b>
-        <b>0</b>
-        <b>0</b>
-
-      </div>
 
 
+        <!-- CORNER CANYON -->
+        <div class="standings-row">
 
-      <!-- CORNER CANYON -->
-      <div class="standings-row">
+          <div class="standing-team">
 
-        <div class="standing-team">
+            <div class="standing-logo chargers">
+              <img
+                src="chargers.png.PNG"
+                alt="Corner Canyon">
+            </div>
 
-          <div class="standing-logo chargers">
-            <img src="chargers.png.PNG" alt="Corner Canyon">
+            <strong>
+              CORNER CANYON
+            </strong>
+
           </div>
 
-          <strong>CORNER CANYON</strong>
+          <b>0</b>
+          <b>0</b>
+          <b>0</b>
 
         </div>
 
-        <b>0</b>
-        <b>0</b>
-        <b>0</b>
-
-      </div>
 
 
+        <!-- ST FRANCES -->
+        <div class="standings-row">
 
-      <!-- ST FRANCES -->
-      <div class="standings-row">
+          <div class="standing-team">
 
-        <div class="standing-team">
+            <div class="standing-logo stfrances">
+              <img
+                src="stfrances.png.PNG"
+                alt="St Frances">
+            </div>
 
-          <div class="standing-logo stfrances">
-            <img src="stfrances.png.PNG" alt="St Frances">
+            <strong>
+              ST. FRANCES ACADEMY
+            </strong>
+
           </div>
 
-          <strong>ST. FRANCES ACADEMY</strong>
+          <b>0</b>
+          <b>0</b>
+          <b>0</b>
 
         </div>
 
-        <b>0</b>
-        <b>0</b>
-        <b>0</b>
-
-      </div>
 
 
+        <!-- BUFORD -->
+        <div class="standings-row">
 
-      <!-- BUFORD -->
-      <div class="standings-row">
+          <div class="standing-team">
 
-        <div class="standing-team">
+            <div class="standing-logo buford">
+              <img
+                src="buford.png.PNG"
+                alt="Buford">
+            </div>
 
-          <div class="standing-logo buford">
-            <img src="buford.png.PNG" alt="Buford">
+            <strong>
+              BUFORD WOLVES
+            </strong>
+
           </div>
 
-          <strong>BUFORD WOLVES</strong>
+          <b>0</b>
+          <b>0</b>
+          <b>0</b>
 
         </div>
 
-        <b>0</b>
-        <b>0</b>
-        <b>0</b>
-
-      </div>
 
 
+        <!-- ST JOHN BOSCO -->
+        <div class="standings-row">
 
-      <!-- ST JOHN BOSCO -->
-      <div class="standings-row">
+          <div class="standing-team">
 
-        <div class="standing-team">
+            <div class="standing-logo bosco">
+              <img
+                src="bosco.png.PNG"
+                alt="St John Bosco">
+            </div>
 
-          <div class="standing-logo bosco">
-            <img src="bosco.png.PNG" alt="St John Bosco">
+            <strong>
+              ST. JOHN BOSCO
+            </strong>
+
           </div>
 
-          <strong>ST. JOHN BOSCO</strong>
+          <b>0</b>
+          <b>0</b>
+          <b>0</b>
 
         </div>
 
-        <b>0</b>
-        <b>0</b>
-        <b>0</b>
 
       </div>
 
     </div>
 
 
-    <a href="standings.html" class="red-button">
+    <a
+      href="standings.html"
+      class="red-button">
 
-      <span>VIEW FULL STANDINGS</span>
+      <span>
+        VIEW FULL STANDINGS
+      </span>
 
       <b>›</b>
 
@@ -584,53 +635,84 @@
 <nav class="bottom-nav">
 
 
-  <a href="index.html" class="nav-item active">
+  <a
+    href="index.html"
+    class="nav-item active">
 
-    <span class="nav-icon">⌂</span>
+    <span class="nav-icon">
+      ⌂
+    </span>
 
-    <span class="nav-label">Home</span>
-
-  </a>
-
-
-  <a href="standings.html" class="nav-item">
-
-    <span class="nav-icon">♜</span>
-
-    <span class="nav-label">Standings</span>
+    <span class="nav-label">
+      Home
+    </span>
 
   </a>
 
 
-  <a href="scores.html" class="nav-item">
+  <a
+    href="standings.html"
+    class="nav-item">
 
-    <span class="nav-icon">▣</span>
+    <span class="nav-icon">
+      ♜
+    </span>
 
-    <span class="nav-label">Scores</span>
+    <span class="nav-label">
+      Standings
+    </span>
 
   </a>
 
 
-  <a href="stats.html" class="nav-item">
+  <a
+    href="scores.html"
+    class="nav-item">
 
-    <span class="nav-icon">⌁</span>
+    <span class="nav-icon">
+      ▣
+    </span>
 
-    <span class="nav-label">Stats</span>
+    <span class="nav-label">
+      Scores
+    </span>
+
+  </a>
+
+
+  <a
+    href="stats.html"
+    class="nav-item">
+
+    <span class="nav-icon">
+      ⌁
+    </span>
+
+    <span class="nav-label">
+      Stats
+    </span>
 
   </a>
 
 
   <button class="nav-item">
 
-    <span class="nav-icon">•••</span>
+    <span class="nav-icon">
+      •••
+    </span>
 
-    <span class="nav-label">More</span>
+    <span class="nav-label">
+      More
+    </span>
 
   </button>
 
 
 </nav>
 
+
+<!-- JS -->
+<script src="script.js"></script>
 
 </body>
 
