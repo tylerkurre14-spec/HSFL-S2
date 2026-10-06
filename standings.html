@@ -2,946 +2,523 @@
 <html lang="en">
 
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta charset="UTF-8">
+<title>HSFL Standings</title>
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <title>Standings | HSFL S2</title>
+<style>
 
-  <link rel="stylesheet" href="style.css">
+* {
+  box-sizing: border-box;
+}
 
+:root {
+  --red: #e62c47;
+  --green: #34a867;
+  --gold: #dca82d;
+  --page: #f4f5f7;
+  --border: #dfdfe1;
+  --text: #202127;
+  --muted: #909197;
+}
 
-  <style>
+body {
+  margin: 0;
+  padding-bottom: 100px;
 
-    /* =====================================================
-       STANDINGS PAGE ONLY
-       THIS OVERRIDES THE BIG ROWS IN style.css
-    ===================================================== */
+  background: var(--page);
+  color: var(--text);
 
-    .standings-page {
-      padding-top: 18px;
-    }
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+}
 
+.page {
+  width: 100%;
+  max-width: 760px;
 
-    .standings-page-title {
-      margin: 0 4px 16px;
+  margin: 0 auto;
 
-      font-size: 30px;
-      font-weight: 900;
+  padding: 18px 10px 30px;
+}
 
-      letter-spacing: -1px;
-    }
+h1 {
+  margin: 3px 3px 15px;
 
+  font-size: 31px;
+  font-weight: 950;
 
-    /* =====================================================
-       TOP STANDINGS / PLAYOFF TABS
-    ===================================================== */
+  letter-spacing: -1.4px;
+}
 
-    .standings-top-tabs {
-      width: 100%;
+.top-tabs {
+  margin-bottom: 14px;
 
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+  display: flex;
 
-      gap: 5px;
+  gap: 7px;
 
-      padding: 5px;
+  overflow-x: auto;
+}
 
-      margin-bottom: 22px;
+.top-tab {
+  flex: 0 0 auto;
 
-      background: #fff;
+  height: 38px;
 
-      border: 1px solid #d8d8d8;
-      border-radius: 999px;
-    }
+  padding: 0 13px;
 
+  display: flex;
+  align-items: center;
 
-    .standings-top-tab {
-      height: 47px;
+  border-radius: 999px;
 
-      padding: 0 12px;
+  background: white;
 
-      border: 0;
-      border-radius: 999px;
+  border: 1px solid var(--border);
 
-      background: transparent;
+  color: #66676d;
 
-      color: #555;
+  font-size: 8px;
+  font-weight: 950;
+}
 
-      font-size: 12px;
-      font-weight: 900;
+.top-tab.active {
+  background: var(--red);
+  border-color: var(--red);
 
-      cursor: pointer;
-    }
+  color: white;
+}
 
+.filters {
+  margin-bottom: 12px;
 
-    .standings-top-tab.active {
-      background: #e62c47;
-      color: #fff;
-    }
+  display: flex;
 
+  gap: 7px;
+}
 
-    /* =====================================================
-       BOTH / AMERICAN / NATIONAL
-    ===================================================== */
+.filter {
+  height: 34px;
 
-    .conference-tabs {
-      display: flex;
+  padding: 0 14px;
 
-      gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
 
-      margin-bottom: 20px;
-    }
+  background: white;
+  color: #77787e;
 
+  font-size: 8px;
+  font-weight: 950;
+}
 
-    .conference-tab {
-      flex: 1;
+.filter.active {
+  background: #222329;
+  border-color: #222329;
 
-      height: 47px;
+  color: white;
+}
 
-      padding: 0 8px;
+.conference-card {
+  overflow: hidden;
 
-      border: 1.5px solid #d7d7d7;
-      border-radius: 999px;
+  margin-bottom: 14px;
 
-      background: #fff;
+  background: white;
 
-      color: #24242a;
+  border: 1px solid var(--border);
+  border-radius: 19px;
+}
 
-      font-size: 11px;
-      font-weight: 900;
+.conference-header {
+  min-height: 61px;
 
-      cursor: pointer;
-    }
+  padding: 0 15px;
 
+  display: flex;
+  align-items: center;
 
-    .conference-tab.active {
-      background: #1f2026;
-      border-color: #1f2026;
-      color: #fff;
-    }
+  color: white;
 
+  background:
+    linear-gradient(
+      90deg,
+      #96141e,
+      #c12032,
+      #e84050
+    );
+}
 
-    /* =====================================================
-       CONFERENCE CARD
-    ===================================================== */
+.conference-header strong {
+  font-size: 16px;
+  font-weight: 950;
+}
 
-    .full-conference-card {
-      width: 100%;
+.column-header {
+  height: 43px;
 
-      margin-bottom: 20px;
+  display: grid;
 
-      overflow: hidden;
+  grid-template-columns:
+    32px
+    minmax(0,1fr)
+    34px
+    34px
+    44px;
 
-      background: #fff;
+  align-items: center;
 
-      border: 1px solid #d7d7d7;
-      border-radius: 19px;
-    }
+  padding: 0 9px;
 
+  background: #f6f6f7;
 
-    .full-conference-card[hidden] {
-      display: none;
-    }
+  color: #97989d;
 
+  font-size: 7px;
+  font-weight: 950;
+}
 
-    /* =====================================================
-       RED CONFERENCE HEADER
-       DARK LEFT -> LIGHT RIGHT
-    ===================================================== */
+.column-header span:not(:nth-child(2)) {
+  text-align: center;
+}
 
-    .conference-card-title {
-      min-height: 65px;
+.zone {
+  min-height: 32px;
 
-      padding: 0 17px;
+  padding: 0 11px;
 
-      display: flex;
-      align-items: center;
+  display: flex;
+  align-items: center;
 
-      gap: 10px;
+  font-size: 7px;
+  font-weight: 950;
 
-      background:
-        linear-gradient(
-          90deg,
-          #9b141f 0%,
-          #b61d29 35%,
-          #cf2938 70%,
-          #df3948 100%
-        );
+  letter-spacing: .5px;
+}
 
-      color: #fff;
-    }
+.zone.top {
+  background: #eaf7ef;
+  color: #298c54;
+}
 
+.zone.wild {
+  background: #fff7df;
+  color: #a97c12;
+}
 
-    .conference-card-title strong {
-      font-size: 16px;
-      font-weight: 900;
-    }
+.zone.hunt {
+  background: #eeeeef;
+  color: #77787d;
+}
 
+.row {
+  min-height: 49px;
 
-    .conference-card-title span {
-      color: rgba(255,255,255,.92);
+  display: grid;
 
-      font-size: 12px;
-      font-weight: 500;
-    }
+  grid-template-columns:
+    32px
+    minmax(0,1fr)
+    34px
+    34px
+    44px;
 
+  align-items: center;
 
-    /* =====================================================
-       COLUMN HEADER
-       ALSO THINNER
-    ===================================================== */
+  padding: 0 9px;
 
-    .full-standing-header {
-      min-height: 46px;
+  border-bottom: 1px solid #e8e8e9;
+}
 
-      display: grid;
+.row:last-child {
+  border-bottom: 0;
+}
 
-      grid-template-columns:
-        38px
-        minmax(0,1fr)
-        31px
-        31px
-        39px;
+.rank {
+  width: 25px;
+  height: 25px;
 
-      align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-      padding: 0 7px;
+  border-radius: 50%;
 
-      background: #fff;
+  background: #e3e3e5;
 
-      border-bottom: 1px solid #d8d8d8;
+  color: #55565c;
 
-      color: #b9b9bc;
+  font-size: 8px;
+  font-weight: 950;
+}
 
-      font-size: 9px;
-      font-weight: 900;
-    }
+.rank.top {
+  background: #35a868;
+  color: white;
+}
 
+.rank.wild {
+  background: #d6a52c;
+  color: white;
+}
 
-    .full-standing-header span:first-child {
-      text-align: center;
-    }
+.team-cell {
+  min-width: 0;
 
+  display: flex;
+  align-items: center;
 
-    .full-standing-header span:nth-child(n+3) {
-      text-align: center;
-    }
+  gap: 7px;
+}
 
+.logo-box {
+  width: 43px;
+  height: 27px;
 
-    /* =====================================================
-       PLAYOFF SECTION BARS
-    ===================================================== */
+  flex: 0 0 auto;
 
-    .standings-zone {
-      width: 100%;
+  overflow: hidden;
 
-      height: 38px;
-      min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-      display: flex;
-      align-items: center;
+  border-radius: 6px;
 
-      padding: 0 15px;
+  background: #222;
+}
 
-      color: #fff;
+.logo-box img {
+  width: 100%;
+  height: 100%;
 
-      font-family:
-        "Arial Black",
-        Arial,
-        Helvetica,
-        sans-serif;
+  object-fit: cover;
+}
 
-      font-size: 13px;
-      font-weight: 900;
+.team-name {
+  min-width: 0;
 
-      letter-spacing: .2px;
+  font-size: 8px;
+  font-weight: 950;
 
-      text-transform: uppercase;
-    }
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
+.number {
+  text-align: center;
 
-    .standings-zone.top-zone {
-      background:
-        linear-gradient(
-          90deg,
-          #3d9958 0%,
-          #4ca562 50%,
-          #63b673 100%
-        );
-    }
+  font-size: 9px;
+  font-weight: 950;
+}
 
+.empty {
+  padding: 35px 15px;
 
-    .standings-zone.wildcard-zone {
-      background:
-        linear-gradient(
-          90deg,
-          #ad791c 0%,
-          #c18a27 50%,
-          #d39c34 100%
-        );
-    }
+  text-align: center;
 
+  color: var(--muted);
 
-    .standings-zone.hunt-zone {
-      background:
-        linear-gradient(
-          90deg,
-          #999999 0%,
-          #aaaaaa 50%,
-          #bdbdbd 100%
-        );
-    }
+  font-size: 9px;
+  font-weight: 850;
+}
 
 
-    /* =====================================================
-       THE IMPORTANT FIX
-       THIN TEAM ROWS LIKE AFL
-    ===================================================== */
+/* TEAM COLORS */
 
-    .full-standing-row {
-      height: 52px;
-      min-height: 52px;
+.auburn { background:#123f76; }
+.parker { background:#151515; }
+.cornercanyon { background:#27323e; }
+.stfrances { background:#542772; }
+.buford { background:#147747; }
+.bosco { background:#142d54; }
+.centennial { background:#262626; }
+.imgacademy,
+.img { background:#087bc1; }
+.norland { background:#7c1026; }
+.saraland { background:#b41529; }
+.mckinney { background:#173f78; }
+.guyer { background:#552a72; }
+.stjames { background:#17365f; }
+.dutchfork,
+.silverfoxes { background:#000; }
 
-      display: grid;
 
-      grid-template-columns:
-        38px
-        minmax(0,1fr)
-        31px
-        31px
-        39px;
+.bottom-nav {
+  position: fixed;
 
-      align-items: center;
+  left: 50%;
 
-      padding: 0 7px;
+  bottom:
+    calc(
+      12px +
+      env(safe-area-inset-bottom)
+    );
 
-      background: #fff;
+  transform: translateX(-50%);
 
-      border-bottom: 1px solid #dddddd;
-    }
+  width: calc(100% - 24px);
+  max-width: 520px;
 
+  height: 67px;
 
-    .full-standing-row:last-child {
-      border-bottom: 0;
-    }
+  z-index: 1000;
 
+  padding: 6px;
 
-    .full-standing-row > b {
-      text-align: center;
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
 
-      color: #202127;
+  background: rgba(255,255,255,.97);
 
-      font-size: 11px;
-      font-weight: 900;
-    }
+  border: 1px solid #ddd;
+  border-radius: 999px;
 
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,.15);
+}
 
-    /* =====================================================
-       SMALL AFL-STYLE RANK CIRCLE
-    ===================================================== */
+.nav-item {
+  text-decoration: none;
 
-    .standing-rank {
-      width: 29px;
-      height: 29px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-      margin: 0 auto;
+  gap: 3px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  border-radius: 999px;
 
-      border-radius: 50%;
+  color: #929399;
 
-      color: #fff;
+  font-size: 7px;
+  font-weight: 900;
+}
 
-      font-size: 10px;
-      font-weight: 900;
-    }
+.nav-icon {
+  font-size: 17px;
+  line-height: 1;
+}
 
+.nav-item.active {
+  background: var(--red);
+  color: white;
+}
 
-    .standing-rank.rank-top {
-      background: #48a463;
-    }
-
-
-    .standing-rank.rank-wildcard {
-      background: #c88e27;
-    }
-
-
-    .standing-rank.rank-hunt {
-      background: #adadad;
-    }
-
-
-    /* =====================================================
-       TEAM INFO
-    ===================================================== */
-
-    .full-standing-team {
-      min-width: 0;
-
-      display: flex;
-      align-items: center;
-
-      gap: 7px;
-    }
-
-
-    .full-standing-team strong {
-      min-width: 0;
-
-      color: #202127;
-
-      font-size: 10px;
-      font-weight: 900;
-
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-
-    /* =====================================================
-       SMALLER RECTANGLE TEAM LOGOS
-    ===================================================== */
-
-    .full-standing-logo {
-      width: 46px;
-      height: 29px;
-
-      flex: 0 0 46px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      overflow: hidden;
-
-      border-radius: 1px;
-    }
-
-
-    .full-standing-logo img {
-      display: block;
-
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-      object-position: center;
-
-      transform: scale(1.08);
-    }
-
-
-    /* =====================================================
-       PLAYOFF PAGE
-    ===================================================== */
-
-    .playoff-section[hidden] {
-      display: none;
-    }
-
-
-    .playoff-heading {
-      margin-bottom: 17px;
-    }
-
-
-    .playoff-small-title {
-      color: #e62c47;
-
-      font-size: 9px;
-      font-weight: 900;
-    }
-
-
-    .playoff-heading h1 {
-      margin: 5px 0;
-
-      font-size: 26px;
-      font-weight: 900;
-    }
-
-
-    .playoff-heading p {
-      margin: 7px 0 0;
-
-      color: #777;
-
-      font-size: 10px;
-      line-height: 1.4;
-    }
-
-
-    /* =====================================================
-       VERY SMALL PHONE
-    ===================================================== */
-
-    @media (max-width: 390px) {
-
-      .full-standing-header,
-      .full-standing-row {
-
-        grid-template-columns:
-          34px
-          minmax(0,1fr)
-          28px
-          28px
-          35px;
-
-        padding-left: 5px;
-        padding-right: 5px;
-      }
-
-
-      .full-standing-row {
-        height: 49px;
-        min-height: 49px;
-      }
-
-
-      .standing-rank {
-        width: 27px;
-        height: 27px;
-
-        font-size: 9px;
-      }
-
-
-      .full-standing-logo {
-        width: 42px;
-        height: 27px;
-
-        flex-basis: 42px;
-      }
-
-
-      .full-standing-team {
-        gap: 5px;
-      }
-
-
-      .full-standing-team strong {
-        font-size: 9px;
-      }
-
-
-      .full-standing-row > b {
-        font-size: 10px;
-      }
-
-    }
-
-  </style>
-
+</style>
 </head>
-
 
 
 <body>
 
+<main class="page">
 
-<main class="app standings-page">
-
-
-  <div class="standings-page-title">
+  <h1>
     Standings
-  </div>
+  </h1>
 
 
+  <div class="top-tabs">
 
-  <!-- TOP TABS -->
-
-  <div class="standings-top-tabs">
-
-    <button
-      class="standings-top-tab active"
-      type="button"
-      data-section="standings"
-    >
+    <div class="top-tab active">
       Standings
-    </button>
+    </div>
 
+    <div class="top-tab">
+      Series Tiers
+    </div>
+
+    <div class="top-tab">
+      Playoff Bracket
+    </div>
+
+  </div>
+
+
+  <div class="filters">
 
     <button
-      class="standings-top-tab"
-      type="button"
-      data-section="playoffs"
+      class="filter active"
+      data-filter="both"
     >
-      Playoff Picture
+      BOTH
+    </button>
+
+    <button
+      class="filter"
+      data-filter="american"
+    >
+      AFC
+    </button>
+
+    <button
+      class="filter"
+      data-filter="national"
+    >
+      NFC
     </button>
 
   </div>
 
 
-
-  <!-- =====================================================
-       STANDINGS
-  ===================================================== -->
-
-  <section id="fullStandingsSection">
-
-
-    <div class="conference-tabs">
-
-      <button
-        class="conference-tab active"
-        type="button"
-        data-view="both"
-      >
-        BOTH
-      </button>
-
-
-      <button
-        class="conference-tab"
-        type="button"
-        data-view="american"
-      >
-        AMERICAN
-      </button>
-
-
-      <button
-        class="conference-tab"
-        type="button"
-        data-view="national"
-      >
-        NATIONAL
-      </button>
-
-    </div>
-
-
-
-    <!-- AMERICAN -->
-
-    <div
-      class="full-conference-card"
-      id="americanStandings"
-    >
-
-      <div class="conference-card-title">
-
-        <strong>
-          AMERICAN
-        </strong>
-
-        <span>
-          OVERALL STANDINGS
-        </span>
-
-      </div>
-
-
-      <div class="full-standing-header">
-
-        <span>#</span>
-        <span>TEAM</span>
-        <span>W</span>
-        <span>L</span>
-        <span>PD</span>
-
-      </div>
-
-
-      <div id="americanStandingsBody"></div>
-
-    </div>
-
-
-
-    <!-- NATIONAL -->
-
-    <div
-      class="full-conference-card"
-      id="nationalStandings"
-    >
-
-      <div class="conference-card-title">
-
-        <strong>
-          NATIONAL
-        </strong>
-
-        <span>
-          OVERALL STANDINGS
-        </span>
-
-      </div>
-
-
-      <div class="full-standing-header">
-
-        <span>#</span>
-        <span>TEAM</span>
-        <span>W</span>
-        <span>L</span>
-        <span>PD</span>
-
-      </div>
-
-
-      <div id="nationalStandingsBody"></div>
-
-    </div>
-
-
-  </section>
-
-
-
-  <!-- =====================================================
-       PLAYOFF PICTURE
-  ===================================================== -->
-
-  <section
-    class="playoff-section"
-    id="playoffSection"
-    hidden
-  >
-
-    <div class="playoff-heading">
-
-      <span class="playoff-small-title">
-        HSFL SEASON 2
-      </span>
-
-      <h1>
-        PLAYOFF PICTURE
-      </h1>
-
-      <p>
-        Top four teams from each conference
-        currently hold a playoff spot.
-      </p>
-
-    </div>
-
-
-
-    <div class="full-conference-card">
-
-      <div class="conference-card-title">
-
-        <strong>
-          AMERICAN
-        </strong>
-
-        <span>
-          PLAYOFF PICTURE
-        </span>
-
-      </div>
-
-
-      <div class="full-standing-header">
-
-        <span>#</span>
-        <span>TEAM</span>
-        <span>W</span>
-        <span>L</span>
-        <span>PD</span>
-
-      </div>
-
-
-      <div id="americanPlayoffBody"></div>
-
-    </div>
-
-
-
-    <div class="full-conference-card">
-
-      <div class="conference-card-title">
-
-        <strong>
-          NATIONAL
-        </strong>
-
-        <span>
-          PLAYOFF PICTURE
-        </span>
-
-      </div>
-
-
-      <div class="full-standing-header">
-
-        <span>#</span>
-        <span>TEAM</span>
-        <span>W</span>
-        <span>L</span>
-        <span>PD</span>
-
-      </div>
-
-
-      <div id="nationalPlayoffBody"></div>
-
-    </div>
-
-
-  </section>
-
+  <div id="standings"></div>
 
 </main>
 
 
 
-<!-- =====================================================
-     BOTTOM NAV
-===================================================== -->
-
 <nav class="bottom-nav">
 
-
-  <a href="index.html" class="nav-item">
-
-    <svg class="nav-svg" viewBox="0 0 24 24">
-
-      <path
-        d="M3 10.5L12 3l9 7.5"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-
-      <path
-        d="M5.5 9.5V21h13V9.5M9.5 21v-7h5v7"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-      />
-
-    </svg>
-
-    <span class="nav-label">
-      Home
-    </span>
-
+  <a
+    class="nav-item"
+    href="index.html"
+  >
+    <div class="nav-icon">⌂</div>
+    Home
   </a>
-
-
 
   <a
-    href="standings.html"
     class="nav-item active"
+    href="standings.html"
   >
-
-    <svg class="nav-svg" viewBox="0 0 24 24">
-
-      <path
-        d="M8 4h8v4.5c0 3-1.7 5.2-4 5.2s-4-2.2-4-5.2V4z"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.9"
-      />
-
-      <path
-        d="M8 6H5.5v2.2c0 2 1.2 3.4 3.2 3.8M16 6h2.5v2.2c0 2-1.2 3.4-3.2 3.8"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.9"
-      />
-
-      <path
-        d="M12 14v4M8.5 20h7M10 18h4"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.9"
-      />
-
-    </svg>
-
-    <span class="nav-label">
-      Standings
-    </span>
-
+    <div class="nav-icon">≡</div>
+    Standings
   </a>
 
-
-
-  <a href="scores.html" class="nav-item">
-
-    <svg class="nav-svg" viewBox="0 0 24 24">
-
-      <rect
-        x="3.5"
-        y="5"
-        width="17"
-        height="14"
-        rx="2.5"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-      />
-
-      <path
-        d="M8 9h3M8 13h3M15 9h1M15 13h1"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-      />
-
-    </svg>
-
-    <span class="nav-label">
-      Scores
-    </span>
-
+  <a
+    class="nav-item"
+    href="scores.html"
+  >
+    <div class="nav-icon">▣</div>
+    Scores
   </a>
 
-
-
-  <a href="stats.html" class="nav-item">
-
-    <svg class="nav-svg" viewBox="0 0 24 24">
-
-      <path
-        d="M5 20V13M12 20V8M19 20V4"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.2"
-        stroke-linecap="round"
-      />
-
-    </svg>
-
-    <span class="nav-label">
-      Stats
-    </span>
-
+  <a
+    class="nav-item"
+    href="stats.html"
+  >
+    <div class="nav-icon">▥</div>
+    Stats
   </a>
 
-
-
-  <button class="nav-item" type="button">
-
-    <svg class="nav-svg" viewBox="0 0 24 24">
-
-      <circle cx="5" cy="12" r="1.5" fill="currentColor"/>
-      <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
-      <circle cx="19" cy="12" r="1.5" fill="currentColor"/>
-
-    </svg>
-
-    <span class="nav-label">
-      More
-    </span>
-
-  </button>
-
+  <a
+    class="nav-item"
+    href="more.html"
+  >
+    <div class="nav-icon">•••</div>
+    More
+  </a>
 
 </nav>
 
@@ -949,656 +526,620 @@
 
 <script>
 
-  /* =====================================================
-     TEAM DATA
-  ===================================================== */
+const SUPABASE_URL =
+  "https://btjpzkgblmuetsomnvpw.supabase.co";
 
-  const standingsTeams = {
+const SUPABASE_KEY =
+  "sb_publishable_9FmVKyCrGSsBbu3LIni6eQ_U95Fl0Vj";
 
-    auburn: {
-      name: "AUBURN TIGERS",
-      logo: "auburn.png.PNG",
-      className: "auburn",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
+const sb =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
 
-    parker: {
-      name: "PARKER THUNDERING HERD",
-      logo: "parker.png.PNG.PNG",
-      className: "parker",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
+let teams = [];
+let games = [];
+let overrides = {};
+let selectedFilter = "both";
 
 
-    cornercanyon: {
-      name: "CORNER CANYON",
-      logo: "chargers.png.PNG",
-      className: "chargers",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
+
+function calculateRecords() {
+
+  const records = {};
 
 
-    stfrances: {
-      name: "ST. FRANCES ACADEMY",
-      logo: "stfrances.png.PNG",
-      className: "stfrances",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
+  teams.forEach(
+    team => {
 
+      records[
+        team.slug
+      ] = {
 
-    buford: {
-      name: "BUFORD WOLVES",
-      logo: "buford.png.PNG",
-      className: "buford",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
+        wins: 0,
+        losses: 0,
+        pd: 0
 
+      };
 
-    bosco: {
-      name: "ST. JOHN BOSCO",
-      logo: "bosco.png.PNG",
-      className: "bosco",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
-
-
-    centennial: {
-      name: "CENTENNIAL HUSKIES",
-      logo: "centennial.png.PNG",
-      className: "centennial",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
-
-
-    img: {
-      name: "IMG ACADEMY",
-      logo: "img.png.PNG",
-      className: "imgacademy",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
-
-
-    norland: {
-      name: "NORLAND VIKINGS",
-      logo: "norland.png.PNG",
-      className: "norland",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
-
-
-    saraland: {
-      name: "SARALAND SPARTANS",
-      logo: "saraland.png.PNG",
-      className: "saraland",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
-
-
-    mckinney: {
-      name: "MCKINNEY LIONS",
-      logo: "mckinney.png.PNG",
-      className: "mckinney",
-      wins: 0,
-      losses: 0,
-      pd: 0
-    },
-
-
-    guyer: {
-      name: "DENTON GUYER WILDCATS",
-      logo: "guyer.png.PNG",
-      className: "guyer",
-      wins: 0,
-      losses: 0,
-      pd: 0
     }
-
-  };
-
+  );
 
 
-  const americanTeams = [
+  games.forEach(
+    game => {
 
-    "auburn",
-    "parker",
-    "cornercanyon",
-    "stfrances",
-    "buford",
-    "bosco"
+      if (
+        game.status !== "final"
+        &&
+        game.status !== "forfeit"
+      ) {
 
-  ];
+        return;
 
-
-  const nationalTeams = [
-
-    "centennial",
-    "img",
-    "norland",
-    "saraland",
-    "mckinney",
-    "guyer"
-
-  ];
+      }
 
 
+      if (
+        game.away_score === null
+        ||
+        game.home_score === null
+      ) {
 
-  function formatPD(number) {
+        return;
 
-    if (number > 0) {
-      return "+" + number;
+      }
+
+
+      const away =
+        records[
+          game.away_team
+        ];
+
+
+      const home =
+        records[
+          game.home_team
+        ];
+
+
+      if (
+        !away
+        ||
+        !home
+      ) {
+
+        return;
+
+      }
+
+
+      away.pd +=
+        game.away_score -
+        game.home_score;
+
+
+      home.pd +=
+        game.home_score -
+        game.away_score;
+
+
+      if (
+        game.away_score >
+        game.home_score
+      ) {
+
+        away.wins++;
+        home.losses++;
+
+      }
+
+      else if (
+        game.home_score >
+        game.away_score
+      ) {
+
+        home.wins++;
+        away.losses++;
+
+      }
+
     }
-
-    return number;
-
-  }
+  );
 
 
+  Object.entries(
+    overrides
+  )
+  .forEach(
+    ([slug,row]) => {
 
-  function rankTeams(teamIDs) {
+      if (
+        !records[slug]
+      ) {
 
-    return [...teamIDs].sort(
-      (a, b) => {
+        return;
 
-        const teamA =
-          standingsTeams[a];
+      }
 
 
-        const teamB =
-          standingsTeams[b];
+      if (
+        row.wins !== null
+      ) {
 
+        records[slug].wins =
+          row.wins;
+
+      }
+
+
+      if (
+        row.losses !== null
+      ) {
+
+        records[slug].losses =
+          row.losses;
+
+      }
+
+
+      if (
+        row.pd !== null
+      ) {
+
+        records[slug].pd =
+          row.pd;
+
+      }
+
+    }
+  );
+
+
+  return records;
+
+}
+
+
+
+function rankedTeams(
+  conference
+) {
+
+  const records =
+    calculateRecords();
+
+
+  return teams
+    .filter(
+      team =>
+        team.conference ===
+        conference
+    )
+    .map(
+      team => ({
+
+        ...team,
+
+        ...records[
+          team.slug
+        ]
+
+      })
+    )
+    .sort(
+      (a,b) => {
 
         if (
-          teamB.wins !==
-          teamA.wins
+          b.wins !==
+          a.wins
         ) {
 
           return (
-            teamB.wins -
-            teamA.wins
+            b.wins -
+            a.wins
           );
 
         }
 
 
         if (
-          teamA.losses !==
-          teamB.losses
+          a.losses !==
+          b.losses
         ) {
 
           return (
-            teamA.losses -
-            teamB.losses
+            a.losses -
+            b.losses
           );
 
         }
 
 
         if (
-          teamB.pd !==
-          teamA.pd
+          b.pd !==
+          a.pd
         ) {
 
           return (
-            teamB.pd -
-            teamA.pd
+            b.pd -
+            a.pd
           );
 
         }
 
 
         return (
-          teamIDs.indexOf(a) -
-          teamIDs.indexOf(b)
+          a.display_order -
+          b.display_order
         );
 
       }
     );
 
-  }
+}
 
 
 
-  function createSectionLabel(
-    type,
-    text
+function rankClass(
+  rank
+) {
+
+  if (
+    rank <= 2
   ) {
 
-    const label =
-      document.createElement(
-        "div"
-      );
-
-
-    label.className =
-      `standings-zone ${type}`;
-
-
-    label.textContent =
-      text;
-
-
-    return label;
+    return "top";
 
   }
 
 
-
-  function createTeamRow(
-    teamID,
-    rank,
-    zone
+  if (
+    rank <= 4
   ) {
 
-    const team =
-      standingsTeams[teamID];
+    return "wild";
+
+  }
 
 
-    const row =
-      document.createElement(
-        "div"
-      );
+  return "";
+
+}
 
 
-    row.className =
-      "full-standing-row";
+
+function rowsHtml(
+  list,
+  start,
+  end
+) {
+
+  return list
+    .slice(
+      start,
+      end
+    )
+    .map(
+      (team,index) => {
+
+        const rank =
+          start +
+          index +
+          1;
 
 
-    row.innerHTML = `
+        return `
 
-      <div
-        class="standing-rank ${zone}"
-      >
-        ${rank}
-      </div>
+          <div class="row">
+
+            <div
+              class="rank ${rankClass(rank)}"
+            >
+              ${rank}
+            </div>
 
 
-      <div class="full-standing-team">
+            <div class="team-cell">
 
-        <div
-          class="
-            full-standing-logo
-            ${team.className}
-          "
-        >
+              <div
+                class="logo-box ${team.class_name || team.slug}"
+              >
 
-          <img
-            src="${team.logo}"
-            alt="${team.name}"
-          >
+                <img
+                  src="${team.logo_path}"
+                  alt="${team.name}"
+                >
 
-        </div>
+              </div>
 
+              <div class="team-name">
+                ${team.name}
+              </div>
+
+            </div>
+
+
+            <div class="number">
+              ${team.wins}
+            </div>
+
+
+            <div class="number">
+              ${team.losses}
+            </div>
+
+
+            <div class="number">
+              ${team.pd > 0 ? "+" : ""}${team.pd}
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    )
+    .join("");
+
+}
+
+
+
+function conferenceHtml(
+  conference,
+  title
+) {
+
+  const list =
+    rankedTeams(
+      conference
+    );
+
+
+  if (
+    !list.length
+  ) {
+
+    return "";
+
+  }
+
+
+  return `
+
+    <section class="conference-card">
+
+      <div class="conference-header">
 
         <strong>
-          ${team.name}
+          ${title}
         </strong>
 
       </div>
 
 
-      <b>
-        ${team.wins}
-      </b>
+      <div class="column-header">
+
+        <span>#</span>
+        <span>TEAM</span>
+        <span>W</span>
+        <span>L</span>
+        <span>PD</span>
+
+      </div>
 
 
-      <b>
-        ${team.losses}
-      </b>
+      <div class="zone top">
+        TOP 2
+      </div>
+
+      ${rowsHtml(list,0,2)}
 
 
-      <b>
-        ${formatPD(team.pd)}
-      </b>
+      <div class="zone wild">
+        WILD CARD
+      </div>
 
-    `;
+      ${rowsHtml(list,2,4)}
 
 
-    return row;
+      <div class="zone hunt">
+        IN THE HUNT
+      </div>
+
+      ${rowsHtml(list,4,6)}
+
+    </section>
+
+  `;
+
+}
+
+
+
+function renderStandings() {
+
+  const container =
+    document.getElementById(
+      "standings"
+    );
+
+
+  let html =
+    "";
+
+
+  if (
+    selectedFilter ===
+    "both"
+    ||
+    selectedFilter ===
+    "american"
+  ) {
+
+    html +=
+      conferenceHtml(
+        "american",
+        "AMERICAN CONFERENCE"
+      );
 
   }
 
 
-
-  function buildStandings(
-    teamIDs,
-    containerID
+  if (
+    selectedFilter ===
+    "both"
+    ||
+    selectedFilter ===
+    "national"
   ) {
 
-    const container =
-      document.getElementById(
-        containerID
+    html +=
+      conferenceHtml(
+        "national",
+        "NATIONAL CONFERENCE"
       );
 
-
-    container.innerHTML = "";
-
-
-    const rankedTeams =
-      rankTeams(teamIDs);
+  }
 
 
-    rankedTeams.forEach(
-      (teamID, index) => {
+  container.innerHTML =
+    html
+    ||
+    '<div class="empty">No standings data yet.</div>';
 
-        const rank =
-          index + 1;
-
-
-        if (rank === 1) {
-
-          container.appendChild(
-            createSectionLabel(
-              "top-zone",
-              "TOP 2"
-            )
-          );
-
-        }
+}
 
 
-        if (rank === 3) {
 
-          container.appendChild(
-            createSectionLabel(
-              "wildcard-zone",
-              "WILD CARD"
-            )
-          );
+document
+.querySelectorAll(
+  "[data-filter]"
+)
+.forEach(
+  button => {
 
-        }
+    button.addEventListener(
+      "click",
+      () => {
 
-
-        if (rank === 5) {
-
-          container.appendChild(
-            createSectionLabel(
-              "hunt-zone",
-              "IN THE HUNT"
-            )
-          );
-
-        }
+        selectedFilter =
+          button.dataset.filter;
 
 
-        let zone;
+        document
+        .querySelectorAll(
+          "[data-filter]"
+        )
+        .forEach(
+          item => {
 
+            item.classList.toggle(
+              "active",
+              item === button
+            );
 
-        if (rank <= 2) {
-
-          zone =
-            "rank-top";
-
-        }
-
-        else if (rank <= 4) {
-
-          zone =
-            "rank-wildcard";
-
-        }
-
-        else {
-
-          zone =
-            "rank-hunt";
-
-        }
-
-
-        container.appendChild(
-          createTeamRow(
-            teamID,
-            rank,
-            zone
-          )
+          }
         );
+
+
+        renderStandings();
 
       }
     );
 
   }
+);
 
 
 
-  function buildPlayoffs(
-    teamIDs,
-    containerID
+async function loadStandings() {
+
+  const [
+    teamResult,
+    gameResult,
+    overrideResult
+  ] =
+    await Promise.all([
+
+      sb
+        .from("hsfl_teams")
+        .select("*")
+        .eq("active",true)
+        .order("display_order"),
+
+      sb
+        .from("hsfl_games")
+        .select("*")
+        .eq("season",2),
+
+      sb
+        .from("hsfl_team_record_overrides")
+        .select("*")
+
+    ]);
+
+
+  if (
+    teamResult.error
+    ||
+    gameResult.error
   ) {
 
-    const container =
-      document.getElementById(
-        containerID
-      );
+    document.getElementById(
+      "standings"
+    ).innerHTML =
+      '<div class="empty">Could not load standings.</div>';
 
-
-    container.innerHTML = "";
-
-
-    const ranked =
-      rankTeams(teamIDs)
-        .slice(0,4);
-
-
-    ranked.forEach(
-      (teamID, index) => {
-
-        const rank =
-          index + 1;
-
-
-        if (rank === 1) {
-
-          container.appendChild(
-            createSectionLabel(
-              "top-zone",
-              "TOP 2"
-            )
-          );
-
-        }
-
-
-        if (rank === 3) {
-
-          container.appendChild(
-            createSectionLabel(
-              "wildcard-zone",
-              "WILD CARD"
-            )
-          );
-
-        }
-
-
-        container.appendChild(
-          createTeamRow(
-            teamID,
-            rank,
-            rank <= 2
-              ? "rank-top"
-              : "rank-wildcard"
-          )
-        );
-
-      }
-    );
+    return;
 
   }
 
 
-
-  buildStandings(
-    americanTeams,
-    "americanStandingsBody"
-  );
-
-
-  buildStandings(
-    nationalTeams,
-    "nationalStandingsBody"
-  );
+  teams =
+    teamResult.data
+    ||
+    [];
 
 
-  buildPlayoffs(
-    americanTeams,
-    "americanPlayoffBody"
-  );
+  games =
+    gameResult.data
+    ||
+    [];
 
 
-  buildPlayoffs(
-    nationalTeams,
-    "nationalPlayoffBody"
-  );
+  overrides =
+    {};
 
 
+  (
+    overrideResult.data
+    ||
+    []
+  )
+  .forEach(
+    row => {
 
-  /* CONFERENCE SWITCH */
-
-  const conferenceTabs =
-    document.querySelectorAll(
-      ".conference-tab"
-    );
-
-
-  const americanStandings =
-    document.getElementById(
-      "americanStandings"
-    );
-
-
-  const nationalStandings =
-    document.getElementById(
-      "nationalStandings"
-    );
-
-
-  conferenceTabs.forEach(
-    tab => {
-
-      tab.addEventListener(
-        "click",
-        () => {
-
-          conferenceTabs.forEach(
-            button => {
-
-              button.classList.remove(
-                "active"
-              );
-
-            }
-          );
-
-
-          tab.classList.add(
-            "active"
-          );
-
-
-          const view =
-            tab.dataset.view;
-
-
-          americanStandings.hidden =
-            view === "national";
-
-
-          nationalStandings.hidden =
-            view === "american";
-
-        }
-      );
+      overrides[
+        row.team_slug
+      ] =
+        row;
 
     }
   );
 
 
+  renderStandings();
 
-  /* STANDINGS / PLAYOFF SWITCH */
-
-  const topTabs =
-    document.querySelectorAll(
-      ".standings-top-tab"
-    );
+}
 
 
-  const standingsSection =
-    document.getElementById(
-      "fullStandingsSection"
-    );
-
-
-  const playoffSection =
-    document.getElementById(
-      "playoffSection"
-    );
-
-
-  topTabs.forEach(
-    tab => {
-
-      tab.addEventListener(
-        "click",
-        () => {
-
-          topTabs.forEach(
-            button => {
-
-              button.classList.remove(
-                "active"
-              );
-
-            }
-          );
-
-
-          tab.classList.add(
-            "active"
-          );
-
-
-          const playoffs =
-            tab.dataset.section ===
-            "playoffs";
-
-
-          standingsSection.hidden =
-            playoffs;
-
-
-          playoffSection.hidden =
-            !playoffs;
-
-        }
-      );
-
-    }
-  );
+loadStandings();
 
 </script>
 
-
 </body>
-
 </html>
