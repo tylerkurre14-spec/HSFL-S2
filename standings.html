@@ -17,17 +17,24 @@
 
 :root {
   --red: #e62c47;
-  --green: #34a867;
-  --gold: #dca82d;
-  --page: #f4f5f7;
-  --border: #dfdfe1;
-  --text: #202127;
-  --muted: #909197;
+  --red-dark: #9e1522;
+  --red-mid: #c32134;
+  --green: #36a766;
+  --gold: #d5a431;
+  --page: #f5f5f6;
+  --card: #ffffff;
+  --border: #e2e2e4;
+  --text: #18191e;
+  --muted: #85868c;
+}
+
+html {
+  background: var(--page);
 }
 
 body {
   margin: 0;
-  padding-bottom: 100px;
+  padding: 0 0 105px;
 
   background: var(--page);
   color: var(--text);
@@ -38,7 +45,23 @@ body {
     "Segoe UI",
     Arial,
     sans-serif;
+
+  -webkit-font-smoothing: antialiased;
 }
+
+button,
+a {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+/* ==========================================
+   PAGE
+========================================== */
 
 .page {
   width: 100%;
@@ -46,59 +69,83 @@ body {
 
   margin: 0 auto;
 
-  padding: 18px 10px 30px;
+  padding: 20px 11px 30px;
 }
 
-h1 {
-  margin: 3px 3px 15px;
+.page-title {
+  margin: 2px 3px 17px;
 
-  font-size: 31px;
+  font-size: 34px;
   font-weight: 950;
 
-  letter-spacing: -1.4px;
+  letter-spacing: -1.5px;
+  line-height: 1;
+}
+
+
+/* ==========================================
+   MAIN TABS
+========================================== */
+
+.top-tabs-wrap {
+  width: 100%;
+
+  margin-bottom: 13px;
+
+  overflow-x: auto;
+
+  scrollbar-width: none;
+}
+
+.top-tabs-wrap::-webkit-scrollbar {
+  display: none;
 }
 
 .top-tabs {
-  margin-bottom: 14px;
+  min-width: max-content;
 
   display: flex;
 
   gap: 7px;
-
-  overflow-x: auto;
 }
 
 .top-tab {
-  flex: 0 0 auto;
+  height: 40px;
 
-  height: 38px;
-
-  padding: 0 13px;
+  padding: 0 15px;
 
   display: flex;
   align-items: center;
+  justify-content: center;
 
+  border: 1px solid #dedee0;
   border-radius: 999px;
 
-  background: white;
+  background: #fff;
+  color: #65666c;
 
-  border: 1px solid var(--border);
+  font-size: 10px;
+  font-weight: 900;
 
-  color: #66676d;
+  text-decoration: none;
 
-  font-size: 8px;
-  font-weight: 950;
+  white-space: nowrap;
 }
 
 .top-tab.active {
   background: var(--red);
   border-color: var(--red);
 
-  color: white;
+  color: #fff;
 }
 
+
+/* ==========================================
+   CONFERENCE FILTERS
+========================================== */
+
 .filters {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 
   display: flex;
 
@@ -106,40 +153,51 @@ h1 {
 }
 
 .filter {
-  height: 34px;
+  height: 36px;
 
-  padding: 0 14px;
+  padding: 0 16px;
 
-  border: 1px solid var(--border);
+  border: 1px solid #dedee0;
   border-radius: 999px;
 
-  background: white;
-  color: #77787e;
+  background: #fff;
+  color: #68696f;
 
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 950;
+
+  letter-spacing: .2px;
 }
 
 .filter.active {
-  background: #222329;
-  border-color: #222329;
+  background: #1f2025;
+  border-color: #1f2025;
 
-  color: white;
+  color: #fff;
 }
+
+
+/* ==========================================
+   CONFERENCE CARD
+========================================== */
 
 .conference-card {
   overflow: hidden;
 
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 
-  background: white;
+  background: var(--card);
 
   border: 1px solid var(--border);
-  border-radius: 19px;
+  border-radius: 20px;
+
+  box-shadow:
+    0 2px 8px
+    rgba(0,0,0,.025);
 }
 
 .conference-header {
-  min-height: 61px;
+  min-height: 65px;
 
   padding: 0 15px;
 
@@ -151,100 +209,128 @@ h1 {
   background:
     linear-gradient(
       90deg,
-      #96141e,
-      #c12032,
-      #e84050
+      #94141f 0%,
+      #bd2132 53%,
+      #e33b4d 100%
     );
 }
 
 .conference-header strong {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 950;
+
+  letter-spacing: -.3px;
 }
 
+
+/* ==========================================
+   COLUMN HEADER
+========================================== */
+
 .column-header {
-  height: 43px;
+  height: 46px;
 
   display: grid;
 
   grid-template-columns:
-    32px
+    35px
     minmax(0,1fr)
-    34px
-    34px
-    44px;
+    38px
+    38px
+    49px;
 
   align-items: center;
 
-  padding: 0 9px;
+  padding: 0 10px;
 
-  background: #f6f6f7;
+  background: #f7f7f8;
+  color: #77787e;
 
-  color: #97989d;
+  border-bottom: 1px solid #e6e6e7;
 
-  font-size: 7px;
+  font-size: 9px;
   font-weight: 950;
+
+  letter-spacing: .2px;
 }
 
 .column-header span:not(:nth-child(2)) {
   text-align: center;
 }
 
-.zone {
-  min-height: 32px;
 
-  padding: 0 11px;
+/* ==========================================
+   ZONES
+========================================== */
+
+.zone {
+  height: 38px;
+
+  padding: 0 12px;
 
   display: flex;
   align-items: center;
 
-  font-size: 7px;
+  font-size: 9px;
   font-weight: 950;
 
-  letter-spacing: .5px;
+  letter-spacing: .65px;
 }
 
 .zone.top {
   background: #eaf7ef;
-  color: #298c54;
+  color: #268a50;
 }
 
 .zone.wild {
-  background: #fff7df;
-  color: #a97c12;
+  background: #fff6dc;
+  color: #9d7415;
 }
 
 .zone.hunt {
   background: #eeeeef;
-  color: #77787d;
+  color: #66676c;
 }
 
-.row {
-  min-height: 49px;
+
+/* ==========================================
+   STANDING ROWS
+========================================== */
+
+.standing-row {
+  height: 54px;
+  min-height: 54px;
 
   display: grid;
 
   grid-template-columns:
-    32px
+    35px
     minmax(0,1fr)
-    34px
-    34px
-    44px;
+    38px
+    38px
+    49px;
 
   align-items: center;
 
-  padding: 0 9px;
+  padding: 0 10px;
 
-  border-bottom: 1px solid #e8e8e9;
+  border-bottom: 1px solid #ededee;
+
+  background: white;
 }
 
-.row:last-child {
+.standing-row:last-child {
   border-bottom: 0;
 }
 
+
+/* ==========================================
+   RANK
+========================================== */
+
 .rank {
-  width: 25px;
-  height: 25px;
+  width: 29px;
+  height: 29px;
 
   display: flex;
   align-items: center;
@@ -252,23 +338,27 @@ h1 {
 
   border-radius: 50%;
 
-  background: #e3e3e5;
+  background: #e7e7e8;
+  color: #4d4e53;
 
-  color: #55565c;
-
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 950;
 }
 
 .rank.top {
-  background: #35a868;
+  background: var(--green);
   color: white;
 }
 
 .rank.wild {
-  background: #d6a52c;
+  background: var(--gold);
   color: white;
 }
+
+
+/* ==========================================
+   TEAM
+========================================== */
 
 .team-cell {
   min-width: 0;
@@ -276,12 +366,12 @@ h1 {
   display: flex;
   align-items: center;
 
-  gap: 7px;
+  gap: 8px;
 }
 
 .logo-box {
-  width: 43px;
-  height: 27px;
+  width: 47px;
+  height: 30px;
 
   flex: 0 0 auto;
 
@@ -306,52 +396,111 @@ h1 {
 .team-name {
   min-width: 0;
 
-  font-size: 8px;
+  overflow: hidden;
+
+  color: #202126;
+
+  font-size: 10.5px;
   font-weight: 950;
 
+  letter-spacing: -.12px;
+
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .number {
   text-align: center;
 
-  font-size: 9px;
+  color: #202126;
+
+  font-size: 12px;
   font-weight: 950;
 }
 
+
+/* ==========================================
+   EMPTY / ERROR
+========================================== */
+
 .empty {
-  padding: 35px 15px;
+  padding: 40px 15px;
 
   text-align: center;
 
   color: var(--muted);
 
-  font-size: 9px;
-  font-weight: 850;
+  font-size: 11px;
+  font-weight: 900;
 }
 
 
-/* TEAM COLORS */
+/* ==========================================
+   TEAM COLORS
+========================================== */
 
-.auburn { background:#123f76; }
-.parker { background:#151515; }
-.cornercanyon { background:#27323e; }
-.stfrances { background:#542772; }
-.buford { background:#147747; }
-.bosco { background:#142d54; }
-.centennial { background:#262626; }
+.auburn {
+  background: #123f76;
+}
+
+.parker {
+  background: #151515;
+}
+
+.cornercanyon {
+  background: #27323e;
+}
+
+.stfrances {
+  background: #542772;
+}
+
+.buford {
+  background: #147747;
+}
+
+.bosco {
+  background: #142d54;
+}
+
+.centennial {
+  background: #262626;
+}
+
 .imgacademy,
-.img { background:#087bc1; }
-.norland { background:#7c1026; }
-.saraland { background:#b41529; }
-.mckinney { background:#173f78; }
-.guyer { background:#552a72; }
-.stjames { background:#17365f; }
-.dutchfork,
-.silverfoxes { background:#000; }
+.img {
+  background: #087bc1;
+}
 
+.norland {
+  background: #7c1026;
+}
+
+.saraland {
+  background: #b41529;
+}
+
+.mckinney {
+  background: #173f78;
+}
+
+.guyer {
+  background: #552a72;
+}
+
+.stjames {
+  background: #17365f;
+}
+
+.dutchfork,
+.silverfoxes {
+  background: #000;
+}
+
+
+/* ==========================================
+   BOTTOM NAV - UFL STYLE
+========================================== */
 
 .bottom-nav {
   position: fixed;
@@ -366,29 +515,35 @@ h1 {
 
   transform: translateX(-50%);
 
-  width: calc(100% - 24px);
+  width: calc(100% - 22px);
   max-width: 520px;
 
-  height: 67px;
+  height: 68px;
 
-  z-index: 1000;
+  z-index: 2000;
 
   padding: 6px;
 
   display: grid;
   grid-template-columns: repeat(5,1fr);
 
-  background: rgba(255,255,255,.97);
+  background:
+    rgba(255,255,255,.97);
 
-  border: 1px solid #ddd;
+  border: 1px solid #dddddf;
   border-radius: 999px;
 
   box-shadow:
-    0 8px 30px
-    rgba(0,0,0,.15);
+    0 9px 28px
+    rgba(0,0,0,.14);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .nav-item {
+  min-width: 0;
+
   text-decoration: none;
 
   display: flex;
@@ -400,20 +555,100 @@ h1 {
 
   border-radius: 999px;
 
-  color: #929399;
+  color: #888990;
 
-  font-size: 7px;
+  font-size: 7.5px;
   font-weight: 900;
+
+  transition:
+    background .15s ease,
+    color .15s ease;
 }
 
-.nav-icon {
-  font-size: 17px;
-  line-height: 1;
+.nav-item svg {
+  width: 19px;
+  height: 19px;
+
+  display: block;
+
+  fill: none;
+  stroke: currentColor;
+
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .nav-item.active {
   background: var(--red);
   color: white;
+}
+
+
+/* ==========================================
+   SMALL PHONES
+========================================== */
+
+@media (max-width: 390px) {
+
+  .page {
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+
+  .page-title {
+    font-size: 32px;
+  }
+
+  .conference-header strong {
+    font-size: 17px;
+  }
+
+  .standing-row {
+    height: 52px;
+    min-height: 52px;
+
+    grid-template-columns:
+      33px
+      minmax(0,1fr)
+      35px
+      35px
+      45px;
+
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .column-header {
+    grid-template-columns:
+      33px
+      minmax(0,1fr)
+      35px
+      35px
+      45px;
+
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .rank {
+    width: 27px;
+    height: 27px;
+  }
+
+  .logo-box {
+    width: 44px;
+    height: 28px;
+  }
+
+  .team-name {
+    font-size: 10px;
+  }
+
+  .number {
+    font-size: 11.5px;
+  }
+
 }
 
 </style>
@@ -422,103 +657,268 @@ h1 {
 
 <body>
 
+
 <main class="page">
 
-  <h1>
-    Standings
-  </h1>
 
+<h1 class="page-title">
+  Standings
+</h1>
+
+
+
+<!-- ==========================================
+     TOP TABS
+========================================== -->
+
+<div class="top-tabs-wrap">
 
   <div class="top-tabs">
 
-    <div class="top-tab active">
+    <button
+      class="top-tab active"
+      type="button"
+    >
       Standings
-    </div>
+    </button>
 
-    <div class="top-tab">
+    <button
+      class="top-tab"
+      type="button"
+    >
       Series Tiers
-    </div>
+    </button>
 
-    <div class="top-tab">
+    <button
+      class="top-tab"
+      type="button"
+    >
       Playoff Bracket
-    </div>
-
-  </div>
-
-
-  <div class="filters">
-
-    <button
-      class="filter active"
-      data-filter="both"
-    >
-      BOTH
-    </button>
-
-    <button
-      class="filter"
-      data-filter="american"
-    >
-      AFC
-    </button>
-
-    <button
-      class="filter"
-      data-filter="national"
-    >
-      NFC
     </button>
 
   </div>
 
+</div>
 
-  <div id="standings"></div>
+
+
+<!-- ==========================================
+     CONFERENCE FILTERS
+========================================== -->
+
+<div class="filters">
+
+  <button
+    class="filter active"
+    data-filter="both"
+    type="button"
+  >
+    BOTH
+  </button>
+
+  <button
+    class="filter"
+    data-filter="american"
+    type="button"
+  >
+    AFC
+  </button>
+
+  <button
+    class="filter"
+    data-filter="national"
+    type="button"
+  >
+    NFC
+  </button>
+
+</div>
+
+
+
+<div id="standings">
+
+  <div class="empty">
+    Loading standings...
+  </div>
+
+</div>
+
 
 </main>
 
 
 
+<!-- ==========================================
+     BOTTOM NAV
+========================================== -->
+
 <nav class="bottom-nav">
 
-  <a
-    class="nav-item"
-    href="index.html"
-  >
-    <div class="nav-icon">⌂</div>
+
+<a
+  class="nav-item"
+  href="index.html"
+>
+
+  <svg viewBox="0 0 24 24">
+
+    <path
+      d="M3 11.5 12 4l9 7.5"
+    ></path>
+
+    <path
+      d="M5.5 10.5V20h13v-9.5"
+    ></path>
+
+    <path
+      d="M9.5 20v-6h5v6"
+    ></path>
+
+  </svg>
+
+  <span>
     Home
-  </a>
+  </span>
 
-  <a
-    class="nav-item active"
-    href="standings.html"
-  >
-    <div class="nav-icon">≡</div>
+</a>
+
+
+
+<a
+  class="nav-item active"
+  href="standings.html"
+>
+
+  <svg viewBox="0 0 24 24">
+
+    <path d="M6 6h15"></path>
+    <path d="M6 12h15"></path>
+    <path d="M6 18h15"></path>
+
+    <circle
+      cx="3"
+      cy="6"
+      r=".8"
+      fill="currentColor"
+      stroke="none"
+    ></circle>
+
+    <circle
+      cx="3"
+      cy="12"
+      r=".8"
+      fill="currentColor"
+      stroke="none"
+    ></circle>
+
+    <circle
+      cx="3"
+      cy="18"
+      r=".8"
+      fill="currentColor"
+      stroke="none"
+    ></circle>
+
+  </svg>
+
+  <span>
     Standings
-  </a>
+  </span>
 
-  <a
-    class="nav-item"
-    href="scores.html"
-  >
-    <div class="nav-icon">▣</div>
+</a>
+
+
+
+<a
+  class="nav-item"
+  href="scores.html"
+>
+
+  <svg viewBox="0 0 24 24">
+
+    <rect
+      x="3"
+      y="4"
+      width="18"
+      height="16"
+      rx="3"
+    ></rect>
+
+    <path d="M8 9h8"></path>
+    <path d="M8 14h3"></path>
+    <path d="M14 14h2"></path>
+
+  </svg>
+
+  <span>
     Scores
-  </a>
+  </span>
 
-  <a
-    class="nav-item"
-    href="stats.html"
-  >
-    <div class="nav-icon">▥</div>
+</a>
+
+
+
+<a
+  class="nav-item"
+  href="stats.html"
+>
+
+  <svg viewBox="0 0 24 24">
+
+    <path d="M5 19V11"></path>
+    <path d="M12 19V5"></path>
+    <path d="M19 19V8"></path>
+
+  </svg>
+
+  <span>
     Stats
-  </a>
+  </span>
 
-  <a
-    class="nav-item"
-    href="more.html"
-  >
-    <div class="nav-icon">•••</div>
+</a>
+
+
+
+<a
+  class="nav-item"
+  href="more.html"
+>
+
+  <svg viewBox="0 0 24 24">
+
+    <circle
+      cx="5"
+      cy="12"
+      r="1.3"
+      fill="currentColor"
+      stroke="none"
+    ></circle>
+
+    <circle
+      cx="12"
+      cy="12"
+      r="1.3"
+      fill="currentColor"
+      stroke="none"
+    ></circle>
+
+    <circle
+      cx="19"
+      cy="12"
+      r="1.3"
+      fill="currentColor"
+      stroke="none"
+    ></circle>
+
+  </svg>
+
+  <span>
     More
-  </a>
+  </span>
+
+</a>
+
 
 </nav>
 
@@ -526,11 +926,17 @@ h1 {
 
 <script>
 
+/* ==========================================
+   SUPABASE
+========================================== */
+
 const SUPABASE_URL =
   "https://btjpzkgblmuetsomnvpw.supabase.co";
 
+
 const SUPABASE_KEY =
   "sb_publishable_9FmVKyCrGSsBbu3LIni6eQ_U95Fl0Vj";
+
 
 const sb =
   window.supabase.createClient(
@@ -539,16 +945,36 @@ const sb =
   );
 
 
-let teams = [];
-let games = [];
-let overrides = {};
-let selectedFilter = "both";
+
+/* ==========================================
+   DATA
+========================================== */
+
+let teams =
+  [];
 
 
+let games =
+  [];
+
+
+let overrides =
+  {};
+
+
+let selectedFilter =
+  "both";
+
+
+
+/* ==========================================
+   RECORD CALCULATION
+========================================== */
 
 function calculateRecords() {
 
-  const records = {};
+  const records =
+    {};
 
 
   teams.forEach(
@@ -559,7 +985,9 @@ function calculateRecords() {
       ] = {
 
         wins: 0,
+
         losses: 0,
+
         pd: 0
 
       };
@@ -572,9 +1000,11 @@ function calculateRecords() {
     game => {
 
       if (
-        game.status !== "final"
+        game.status !==
+        "final"
         &&
-        game.status !== "forfeit"
+        game.status !==
+        "forfeit"
       ) {
 
         return;
@@ -583,9 +1013,11 @@ function calculateRecords() {
 
 
       if (
-        game.away_score === null
+        game.away_score ===
+        null
         ||
-        game.home_score === null
+        game.home_score ===
+        null
       ) {
 
         return;
@@ -616,38 +1048,60 @@ function calculateRecords() {
       }
 
 
+      const awayScore =
+        Number(
+          game.away_score
+        );
+
+
+      const homeScore =
+        Number(
+          game.home_score
+        );
+
+
       away.pd +=
-        game.away_score -
-        game.home_score;
+        awayScore -
+        homeScore;
 
 
       home.pd +=
-        game.home_score -
-        game.away_score;
+        homeScore -
+        awayScore;
 
 
       if (
-        game.away_score >
-        game.home_score
+        awayScore >
+        homeScore
       ) {
 
-        away.wins++;
-        home.losses++;
+        away.wins +=
+          1;
+
+
+        home.losses +=
+          1;
 
       }
 
+
       else if (
-        game.home_score >
-        game.away_score
+        homeScore >
+        awayScore
       ) {
 
-        home.wins++;
-        away.losses++;
+        home.wins +=
+          1;
+
+
+        away.losses +=
+          1;
 
       }
 
     }
   );
+
 
 
   Object.entries(
@@ -657,7 +1111,9 @@ function calculateRecords() {
     ([slug,row]) => {
 
       if (
-        !records[slug]
+        !records[
+          slug
+        ]
       ) {
 
         return;
@@ -666,31 +1122,46 @@ function calculateRecords() {
 
 
       if (
-        row.wins !== null
+        row.wins !==
+        null
       ) {
 
-        records[slug].wins =
-          row.wins;
+        records[
+          slug
+        ].wins =
+          Number(
+            row.wins
+          );
 
       }
 
 
       if (
-        row.losses !== null
+        row.losses !==
+        null
       ) {
 
-        records[slug].losses =
-          row.losses;
+        records[
+          slug
+        ].losses =
+          Number(
+            row.losses
+          );
 
       }
 
 
       if (
-        row.pd !== null
+        row.pd !==
+        null
       ) {
 
-        records[slug].pd =
-          row.pd;
+        records[
+          slug
+        ].pd =
+          Number(
+            row.pd
+          );
 
       }
 
@@ -704,6 +1175,10 @@ function calculateRecords() {
 
 
 
+/* ==========================================
+   RANKING
+========================================== */
+
 function rankedTeams(
   conference
 ) {
@@ -713,11 +1188,13 @@ function rankedTeams(
 
 
   return teams
+
     .filter(
       team =>
         team.conference ===
         conference
     )
+
     .map(
       team => ({
 
@@ -729,6 +1206,7 @@ function rankedTeams(
 
       })
     )
+
     .sort(
       (a,b) => {
 
@@ -772,8 +1250,13 @@ function rankedTeams(
 
 
         return (
-          a.display_order -
-          b.display_order
+          Number(
+            a.display_order
+          )
+          -
+          Number(
+            b.display_order
+          )
         );
 
       }
@@ -783,12 +1266,17 @@ function rankedTeams(
 
 
 
+/* ==========================================
+   RANK COLORS
+========================================== */
+
 function rankClass(
   rank
 ) {
 
   if (
-    rank <= 2
+    rank <=
+    2
   ) {
 
     return "top";
@@ -797,7 +1285,8 @@ function rankClass(
 
 
   if (
-    rank <= 4
+    rank <=
+    4
   ) {
 
     return "wild";
@@ -811,6 +1300,10 @@ function rankClass(
 
 
 
+/* ==========================================
+   ROWS
+========================================== */
+
 function rowsHtml(
   list,
   start,
@@ -818,12 +1311,17 @@ function rowsHtml(
 ) {
 
   return list
+
     .slice(
       start,
       end
     )
+
     .map(
-      (team,index) => {
+      (
+        team,
+        index
+      ) => {
 
         const rank =
           start +
@@ -833,7 +1331,7 @@ function rowsHtml(
 
         return `
 
-          <div class="row">
+          <div class="standing-row">
 
             <div
               class="rank ${rankClass(rank)}"
@@ -855,6 +1353,7 @@ function rowsHtml(
 
               </div>
 
+
               <div class="team-name">
                 ${team.name}
               </div>
@@ -873,7 +1372,16 @@ function rowsHtml(
 
 
             <div class="number">
-              ${team.pd > 0 ? "+" : ""}${team.pd}
+
+              ${
+                team.pd >
+                0
+                  ? "+"
+                  : ""
+              }
+
+              ${team.pd}
+
             </div>
 
           </div>
@@ -882,11 +1390,16 @@ function rowsHtml(
 
       }
     )
+
     .join("");
 
 }
 
 
+
+/* ==========================================
+   CONFERENCE
+========================================== */
 
 function conferenceHtml(
   conference,
@@ -923,34 +1436,63 @@ function conferenceHtml(
 
       <div class="column-header">
 
-        <span>#</span>
-        <span>TEAM</span>
-        <span>W</span>
-        <span>L</span>
-        <span>PD</span>
+        <span>
+          #
+        </span>
+
+        <span>
+          TEAM
+        </span>
+
+        <span>
+          W
+        </span>
+
+        <span>
+          L
+        </span>
+
+        <span>
+          PD
+        </span>
 
       </div>
+
 
 
       <div class="zone top">
         TOP 2
       </div>
 
-      ${rowsHtml(list,0,2)}
+      ${rowsHtml(
+        list,
+        0,
+        2
+      )}
+
 
 
       <div class="zone wild">
         WILD CARD
       </div>
 
-      ${rowsHtml(list,2,4)}
+      ${rowsHtml(
+        list,
+        2,
+        4
+      )}
+
 
 
       <div class="zone hunt">
         IN THE HUNT
       </div>
 
-      ${rowsHtml(list,4,6)}
+      ${rowsHtml(
+        list,
+        4,
+        6
+      )}
 
     </section>
 
@@ -959,6 +1501,10 @@ function conferenceHtml(
 }
 
 
+
+/* ==========================================
+   RENDER
+========================================== */
 
 function renderStandings() {
 
@@ -1009,11 +1555,21 @@ function renderStandings() {
   container.innerHTML =
     html
     ||
-    '<div class="empty">No standings data yet.</div>';
+    `
+
+      <div class="empty">
+        No standings data yet.
+      </div>
+
+    `;
 
 }
 
 
+
+/* ==========================================
+   FILTER BUTTONS
+========================================== */
 
 document
 .querySelectorAll(
@@ -1039,7 +1595,8 @@ document
 
             item.classList.toggle(
               "active",
-              item === button
+              item ===
+              button
             );
 
           }
@@ -1056,29 +1613,58 @@ document
 
 
 
+/* ==========================================
+   LOAD LIVE DATABASE
+========================================== */
+
 async function loadStandings() {
 
   const [
+
     teamResult,
+
     gameResult,
+
     overrideResult
+
   ] =
     await Promise.all([
 
-      sb
-        .from("hsfl_teams")
-        .select("*")
-        .eq("active",true)
-        .order("display_order"),
 
       sb
-        .from("hsfl_games")
+        .from(
+          "hsfl_teams"
+        )
         .select("*")
-        .eq("season",2),
+        .eq(
+          "active",
+          true
+        )
+        .order(
+          "display_order",
+          {
+            ascending: true
+          }
+        ),
+
 
       sb
-        .from("hsfl_team_record_overrides")
+        .from(
+          "hsfl_games"
+        )
         .select("*")
+        .eq(
+          "season",
+          2
+        ),
+
+
+      sb
+        .from(
+          "hsfl_team_record_overrides"
+        )
+        .select("*")
+
 
     ]);
 
@@ -1087,16 +1673,25 @@ async function loadStandings() {
     teamResult.error
     ||
     gameResult.error
+    ||
+    overrideResult.error
   ) {
 
     document.getElementById(
       "standings"
-    ).innerHTML =
-      '<div class="empty">Could not load standings.</div>';
+    ).innerHTML = `
+
+      <div class="empty">
+        Could not load standings.
+      </div>
+
+    `;
+
 
     return;
 
   }
+
 
 
   teams =
@@ -1140,6 +1735,7 @@ async function loadStandings() {
 loadStandings();
 
 </script>
+
 
 </body>
 </html>
