@@ -2,679 +2,380 @@
 <html lang="en">
 
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta charset="UTF-8">
+<title>HSFL More</title>
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <title>More | HSFL S2</title>
+<style>
 
-  <link rel="stylesheet" href="style.css">
+* {
+  box-sizing: border-box;
+}
 
+:root {
+  --red: #e62c47;
+  --page: #f4f5f7;
+  --border: #dfdfe1;
+  --text: #202127;
+  --muted: #8d8e94;
+}
 
-  <style>
+body {
+  margin: 0;
+  padding-bottom: 100px;
 
-    /* =====================================================
-       MORE PAGE
-    ===================================================== */
+  background: var(--page);
+  color: var(--text);
 
-    .more-page {
-      padding-top: 20px;
-      padding-bottom: 105px;
-    }
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+}
 
+.page {
+  width: 100%;
+  max-width: 760px;
 
-    .more-title {
-      margin: 0 3px 6px;
+  margin: 0 auto;
 
-      font-size: 31px;
-      font-weight: 900;
+  padding: 18px 11px 30px;
+}
 
-      letter-spacing: -1.2px;
-    }
+h1 {
+  margin: 3px 2px 15px;
 
+  font-size: 31px;
+  font-weight: 950;
 
-    .more-subtitle {
-      margin: 0 3px 22px;
+  letter-spacing: -1.4px;
+}
 
-      color: #909095;
+.tabs {
+  margin-bottom: 14px;
 
-      font-size: 10px;
-      font-weight: 700;
-    }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
+  gap: 7px;
+}
 
+.tab {
+  height: 42px;
 
-    /* =====================================================
-       TOP TABS
-    ===================================================== */
+  border: 1px solid var(--border);
+  border-radius: 999px;
 
-    .more-tabs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+  background: white;
+  color: #77787e;
 
-      gap: 6px;
+  font-size: 8px;
+  font-weight: 950;
+}
 
-      padding: 5px;
+.tab.active {
+  background: var(--red);
+  border-color: var(--red);
 
-      margin-bottom: 22px;
+  color: white;
+}
 
-      background: #fff;
+.panel {
+  display: none;
+}
 
-      border: 1px solid #dbdbdd;
-      border-radius: 999px;
-    }
+.panel.active {
+  display: block;
+}
 
+.card {
+  overflow: hidden;
 
-    .more-tab {
-      height: 47px;
+  background: white;
 
-      border: 0;
-      border-radius: 999px;
+  border: 1px solid var(--border);
+  border-radius: 19px;
+}
 
-      background: transparent;
+.card-header {
+  min-height: 59px;
 
-      color: #5f6065;
+  padding: 0 14px;
 
-      font-size: 11px;
-      font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-      cursor: pointer;
-    }
+  color: white;
 
+  background:
+    linear-gradient(
+      90deg,
+      #96131e,
+      #c32033,
+      #e94152
+    );
+}
 
-    .more-tab.active {
-      background: #e62c47;
-      color: #fff;
-    }
+.card-header strong {
+  font-size: 14px;
+  font-weight: 950;
+}
 
+.card-header span {
+  font-size: 8px;
+  font-weight: 850;
 
+  opacity: .8;
+}
 
-    /* =====================================================
-       SECTIONS
-    ===================================================== */
+.filters {
+  padding: 11px;
 
-    .more-section {
-      display: none;
-    }
+  display: flex;
 
+  gap: 6px;
 
-    .more-section.active {
-      display: block;
-    }
+  overflow-x: auto;
 
+  border-bottom: 1px solid #e8e8e9;
+}
 
+.filter {
+  height: 32px;
 
-    /* =====================================================
-       CHAMPIONS HEADER
-    ===================================================== */
+  flex: 0 0 auto;
 
-    .section-heading {
-      margin-bottom: 15px;
-    }
+  padding: 0 12px;
 
+  border: 1px solid #dddddf;
+  border-radius: 999px;
 
-    .section-heading span {
-      display: block;
+  background: #f6f6f7;
+  color: #77787e;
 
-      margin-bottom: 5px;
+  font-size: 7px;
+  font-weight: 950;
+}
 
-      color: #e62c47;
+.filter.active {
+  background: #222329;
+  border-color: #222329;
 
-      font-size: 9px;
-      font-weight: 900;
+  color: white;
+}
 
-      letter-spacing: .6px;
-    }
+.team-row,
+.champion-row {
+  min-height: 61px;
 
+  padding: 8px 11px;
 
-    .section-heading h2 {
-      margin: 0;
+  display: flex;
+  align-items: center;
 
-      font-size: 25px;
-      font-weight: 900;
+  gap: 10px;
 
-      letter-spacing: -.8px;
-    }
+  border-bottom: 1px solid #e8e8e9;
+}
 
+.team-row:last-child,
+.champion-row:last-child {
+  border-bottom: 0;
+}
 
-    .section-heading p {
-      margin: 7px 0 0;
+.logo-box {
+  width: 65px;
+  height: 39px;
 
-      color: #949499;
+  flex: 0 0 auto;
 
-      font-size: 10px;
-      font-weight: 700;
+  overflow: hidden;
 
-      line-height: 1.45;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  border-radius: 8px;
 
+  background: #222;
+}
 
-    /* =====================================================
-       CHAMPIONS
-    ===================================================== */
+.logo-box img {
+  width: 100%;
+  height: 100%;
 
-    .champions-list {
-      display: flex;
-      flex-direction: column;
+  object-fit: cover;
+}
 
-      gap: 10px;
-    }
+.team-info {
+  min-width: 0;
+}
 
+.team-info strong {
+  display: block;
 
-    .champion-card {
-      overflow: hidden;
+  font-size: 10px;
+  font-weight: 950;
+}
 
-      background: #fff;
+.team-info span {
+  display: block;
 
-      border: 1px solid #d8d8da;
-      border-radius: 18px;
-    }
+  margin-top: 3px;
 
+  color: #929399;
 
-    .champion-season {
-      min-height: 48px;
+  font-size: 7px;
+  font-weight: 850;
 
-      padding: 0 15px;
+  text-transform: uppercase;
+}
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+.champion-season {
+  width: 52px;
+  height: 38px;
 
-      background:
-        linear-gradient(
-          90deg,
-          #9b141f 0%,
-          #b91e2b 35%,
-          #cf2a38 70%,
-          #df3948 100%
-        );
+  flex: 0 0 auto;
 
-      color: #fff;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  border-radius: 9px;
 
-    .champion-season strong {
-      font-size: 12px;
-      font-weight: 900;
-    }
+  background: var(--red);
+  color: white;
 
+  font-size: 8px;
+  font-weight: 950;
+}
 
-    .champion-season span {
-      font-size: 8px;
-      font-weight: 900;
+.empty {
+  padding: 38px 15px;
 
-      opacity: .85;
-    }
+  text-align: center;
 
+  color: var(--muted);
 
-    .champion-team {
-      min-height: 74px;
+  font-size: 9px;
+  font-weight: 850;
+}
 
-      padding: 11px 13px;
 
-      display: flex;
-      align-items: center;
+/* TEAM COLORS */
 
-      gap: 11px;
-    }
+.auburn { background:#123f76; }
+.parker { background:#151515; }
+.cornercanyon { background:#27323e; }
+.stfrances { background:#542772; }
+.buford { background:#147747; }
+.bosco { background:#142d54; }
+.centennial { background:#262626; }
+.imgacademy,
+.img { background:#087bc1; }
+.norland { background:#7c1026; }
+.saraland { background:#b41529; }
+.mckinney { background:#173f78; }
+.guyer { background:#552a72; }
+.stjames { background:#17365f; }
+.dutchfork,
+.silverfoxes { background:#000; }
 
 
-    .champion-logo {
-      width: 70px;
-      height: 44px;
+.bottom-nav {
+  position: fixed;
 
-      flex: 0 0 70px;
+  left: 50%;
 
-      overflow: hidden;
+  bottom:
+    calc(
+      12px +
+      env(safe-area-inset-bottom)
+    );
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  transform: translateX(-50%);
 
-      border-radius: 5px;
+  width: calc(100% - 24px);
+  max-width: 520px;
 
-      background: #222;
-    }
+  height: 67px;
 
+  z-index: 1000;
 
-    .champion-logo img {
-      width: 100%;
-      height: 100%;
+  padding: 6px;
 
-      object-fit: cover;
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
 
-      transform: scale(1.08);
-    }
+  background: rgba(255,255,255,.97);
 
+  border: 1px solid #ddd;
+  border-radius: 999px;
 
-    .champion-info {
-      min-width: 0;
-    }
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,.15);
+}
 
+.nav-item {
+  text-decoration: none;
 
-    .champion-info strong {
-      display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-      color: #202127;
+  gap: 3px;
 
-      font-size: 12px;
-      font-weight: 900;
-    }
+  border-radius: 999px;
 
+  color: #929399;
 
-    .champion-info span {
-      display: block;
+  font-size: 7px;
+  font-weight: 900;
+}
 
-      margin-top: 3px;
+.nav-icon {
+  font-size: 17px;
+  line-height: 1;
+}
 
-      color: #999;
+.nav-item.active {
+  background: var(--red);
+  color: white;
+}
 
-      font-size: 8px;
-      font-weight: 800;
-    }
-
-
-
-    /* =====================================================
-       EMPTY CHAMPIONS
-    ===================================================== */
-
-    .champion-empty {
-      min-height: 175px;
-
-      padding: 25px;
-
-      display: flex;
-      flex-direction: column;
-
-      align-items: center;
-      justify-content: center;
-
-      text-align: center;
-
-      background: #fff;
-
-      border: 1px solid #dadadc;
-      border-radius: 18px;
-    }
-
-
-    .champion-trophy {
-      width: 48px;
-      height: 48px;
-
-      margin-bottom: 11px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 50%;
-
-      background: #fff0f2;
-
-      color: #e62c47;
-    }
-
-
-    .champion-trophy svg {
-      width: 25px;
-      height: 25px;
-    }
-
-
-    .champion-empty strong {
-      font-size: 13px;
-      font-weight: 900;
-    }
-
-
-    .champion-empty span {
-      max-width: 250px;
-
-      margin-top: 6px;
-
-      color: #999;
-
-      font-size: 9px;
-      font-weight: 700;
-
-      line-height: 1.45;
-    }
-
-
-
-    /* =====================================================
-       TEAMS FILTER
-    ===================================================== */
-
-    .team-filters {
-      display: flex;
-
-      gap: 7px;
-
-      margin-bottom: 15px;
-    }
-
-
-    .team-filter {
-      flex: 1;
-
-      height: 42px;
-
-      padding: 0 7px;
-
-      border: 1.5px solid #dadadd;
-      border-radius: 999px;
-
-      background: #fff;
-
-      color: #292a30;
-
-      font-size: 9px;
-      font-weight: 900;
-
-      cursor: pointer;
-    }
-
-
-    .team-filter.active {
-      background: #202127;
-      border-color: #202127;
-
-      color: #fff;
-    }
-
-
-
-    /* =====================================================
-       TEAM LIST
-    ===================================================== */
-
-    .teams-card {
-      overflow: hidden;
-
-      background: #fff;
-
-      border: 1px solid #d8d8da;
-      border-radius: 18px;
-    }
-
-
-    .teams-header {
-      min-height: 55px;
-
-      padding: 0 15px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      background:
-        linear-gradient(
-          90deg,
-          #9b141f 0%,
-          #b91e2b 35%,
-          #cf2a38 70%,
-          #df3948 100%
-        );
-
-      color: #fff;
-    }
-
-
-    .teams-header strong {
-      font-size: 13px;
-      font-weight: 900;
-    }
-
-
-    .teams-header span {
-      font-size: 8px;
-      font-weight: 900;
-
-      opacity: .85;
-    }
-
-
-    .team-row {
-      min-height: 55px;
-
-      padding: 6px 10px;
-
-      display: grid;
-
-      grid-template-columns:
-        52px
-        minmax(0,1fr)
-        50px;
-
-      align-items: center;
-
-      gap: 9px;
-
-      border-bottom: 1px solid #dedee0;
-    }
-
-
-    .team-row:last-child {
-      border-bottom: 0;
-    }
-
-
-    .team-logo-box {
-      width: 52px;
-      height: 32px;
-
-      overflow: hidden;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 3px;
-    }
-
-
-    .team-logo-box img {
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-
-      transform: scale(1.08);
-    }
-
-
-    .team-info {
-      min-width: 0;
-    }
-
-
-    .team-info strong {
-      display: block;
-
-      color: #202127;
-
-      font-size: 10px;
-      font-weight: 900;
-
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-
-    .team-info span {
-      display: block;
-
-      margin-top: 2px;
-
-      color: #999;
-
-      font-size: 7px;
-      font-weight: 800;
-    }
-
-
-    .team-abbr {
-      text-align: center;
-
-      color: #25262b;
-
-      font-size: 10px;
-      font-weight: 900;
-    }
-
-
-
-    /* =====================================================
-       TEAM COLORS
-    ===================================================== */
-
-    .saraland {
-      background: #b41529;
-    }
-
-    .mckinney {
-      background: #173f78;
-    }
-
-    .imgacademy {
-      background: #087bc1;
-    }
-
-    .buford {
-      background: #147747;
-    }
-
-    .auburn {
-      background: #123f76;
-    }
-
-    .bosco {
-      background: #142d54;
-    }
-
-    .stjames {
-      background: #17365f;
-    }
-
-    .norland {
-      background: #7c1026;
-    }
-
-    .parker {
-      background: #151515;
-    }
-
-    .stfrances {
-      background: #542772;
-    }
-
-    .guyer {
-      background: #552a72;
-    }
-
-    .centennial {
-      background: #262626;
-    }
-
-    .chargers {
-      background: #27323e;
-    }
-
-    .silverfoxes {
-      background: #000;
-    }
-
-
-
-    /* =====================================================
-       PHONE
-    ===================================================== */
-
-    @media (max-width: 390px) {
-
-      .more-page {
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-
-
-      .more-title {
-        font-size: 29px;
-      }
-
-
-      .team-row {
-        min-height: 52px;
-
-        grid-template-columns:
-          48px
-          minmax(0,1fr)
-          42px;
-      }
-
-
-      .team-logo-box {
-        width: 48px;
-        height: 30px;
-      }
-
-
-      .team-info strong {
-        font-size: 9px;
-      }
-
-    }
-
-  </style>
-
+</style>
 </head>
 
 
 <body>
 
+<main class="page">
 
-<main class="app more-page">
-
-
-  <h1 class="more-title">
+  <h1>
     More
   </h1>
 
 
-  <p class="more-subtitle">
-    HSFL Season 2 league information
-  </p>
-
-
-
-  <!-- =====================================================
-       MORE TABS
-  ===================================================== -->
-
-  <div class="more-tabs">
+  <div class="tabs">
 
     <button
-      class="more-tab active"
-      type="button"
-      data-more-tab="champions"
+      class="tab active"
+      data-tab="champions"
     >
       Super Bowl Champions
     </button>
 
-
     <button
-      class="more-tab"
-      type="button"
-      data-more-tab="teams"
+      class="tab"
+      data-tab="teams"
     >
       Teams
     </button>
@@ -683,104 +384,45 @@
 
 
 
-  <!-- =====================================================
-       CHAMPIONS
-  ===================================================== -->
-
   <section
-    class="more-section active"
-    id="more-champions"
+    class="panel active"
+    id="panel-champions"
   >
 
-    <div class="section-heading">
+    <div class="card">
 
-      <span>
-        HSFL HISTORY
-      </span>
+      <div class="card-header">
 
-      <h2>
-        Super Bowl Champions
-      </h2>
+        <strong>
+          Super Bowl Champions
+        </strong>
 
-      <p>
-        Every HSFL Super Bowl champion will be
-        kept here by season.
-      </p>
+        <span>
+          HSFL HISTORY
+        </span>
+
+      </div>
+
+
+      <div id="champions"></div>
 
     </div>
-
-
-    <div
-      class="champions-list"
-      id="championsList"
-    ></div>
 
   </section>
 
 
 
-  <!-- =====================================================
-       TEAMS
-  ===================================================== -->
-
   <section
-    class="more-section"
-    id="more-teams"
+    class="panel"
+    id="panel-teams"
   >
 
-    <div class="section-heading">
+    <div class="card">
 
-      <span>
-        HSFL S2
-      </span>
-
-      <h2>
-        Teams
-      </h2>
-
-      <p>
-        Browse every team in the league.
-      </p>
-
-    </div>
-
-
-
-    <div class="team-filters">
-
-      <button
-        class="team-filter active"
-        data-team-filter="all"
-      >
-        ALL
-      </button>
-
-
-      <button
-        class="team-filter"
-        data-team-filter="american"
-      >
-        AMERICAN
-      </button>
-
-
-      <button
-        class="team-filter"
-        data-team-filter="national"
-      >
-        NATIONAL
-      </button>
-
-    </div>
-
-
-
-    <div class="teams-card">
-
-      <div class="teams-header">
+      <div class="card-header">
 
         <strong>
-          HSFL TEAMS
+          Teams
         </strong>
 
         <span id="teamCount">
@@ -790,216 +432,83 @@
       </div>
 
 
-      <div id="teamsList"></div>
+      <div class="filters">
+
+        <button
+          class="filter active"
+          data-conference="all"
+        >
+          ALL
+        </button>
+
+        <button
+          class="filter"
+          data-conference="american"
+        >
+          AMERICAN
+        </button>
+
+        <button
+          class="filter"
+          data-conference="national"
+        >
+          NATIONAL
+        </button>
+
+      </div>
+
+
+      <div id="teams"></div>
 
     </div>
 
   </section>
 
-
 </main>
 
 
 
-<!-- =====================================================
-     BOTTOM NAV
-===================================================== -->
-
 <nav class="bottom-nav">
 
-
-  <!-- HOME -->
-
   <a
+    class="nav-item"
     href="index.html"
-    class="nav-item"
   >
-
-    <svg
-      class="nav-svg"
-      viewBox="0 0 24 24"
-    >
-
-      <path
-        d="M3 10.5L12 3l9 7.5"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-
-      <path
-        d="M5.5 9.5V21h13V9.5M9.5 21v-7h5v7"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-      />
-
-    </svg>
-
-    <span class="nav-label">
-      Home
-    </span>
-
+    <div class="nav-icon">⌂</div>
+    Home
   </a>
 
-
-
-  <!-- STANDINGS -->
-
   <a
+    class="nav-item"
     href="standings.html"
-    class="nav-item"
   >
-
-    <svg
-      class="nav-svg"
-      viewBox="0 0 24 24"
-    >
-
-      <path
-        d="M8 4h8v4.5c0 3-1.7 5.2-4 5.2s-4-2.2-4-5.2V4z"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.9"
-      />
-
-      <path
-        d="M8 6H5.5v2.2c0 2 1.2 3.4 3.2 3.8M16 6h2.5v2.2c0 2-1.2 3.4-3.2 3.8"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.9"
-      />
-
-      <path
-        d="M12 14v4M8.5 20h7M10 18h4"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.9"
-      />
-
-    </svg>
-
-    <span class="nav-label">
-      Standings
-    </span>
-
+    <div class="nav-icon">≡</div>
+    Standings
   </a>
 
-
-
-  <!-- SCORES -->
-
   <a
+    class="nav-item"
     href="scores.html"
-    class="nav-item"
   >
-
-    <svg
-      class="nav-svg"
-      viewBox="0 0 24 24"
-    >
-
-      <rect
-        x="3.5"
-        y="5"
-        width="17"
-        height="14"
-        rx="2.5"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-      />
-
-      <path
-        d="M8 9h3M8 13h3M15 9h1M15 13h1"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-      />
-
-    </svg>
-
-    <span class="nav-label">
-      Scores
-    </span>
-
+    <div class="nav-icon">▣</div>
+    Scores
   </a>
 
-
-
-  <!-- STATS -->
-
   <a
+    class="nav-item"
     href="stats.html"
-    class="nav-item"
   >
-
-    <svg
-      class="nav-svg"
-      viewBox="0 0 24 24"
-    >
-
-      <path
-        d="M5 20V13M12 20V8M19 20V4"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.2"
-        stroke-linecap="round"
-      />
-
-    </svg>
-
-    <span class="nav-label">
-      Stats
-    </span>
-
+    <div class="nav-icon">▥</div>
+    Stats
   </a>
-
-
-
-  <!-- MORE -->
 
   <a
-    href="more.html"
     class="nav-item active"
+    href="more.html"
   >
-
-    <svg
-      class="nav-svg"
-      viewBox="0 0 24 24"
-    >
-
-      <circle
-        cx="5"
-        cy="12"
-        r="1.5"
-        fill="currentColor"
-      />
-
-      <circle
-        cx="12"
-        cy="12"
-        r="1.5"
-        fill="currentColor"
-      />
-
-      <circle
-        cx="19"
-        cy="12"
-        r="1.5"
-        fill="currentColor"
-      />
-
-    </svg>
-
-    <span class="nav-label">
-      More
-    </span>
-
+    <div class="nav-icon">•••</div>
+    More
   </a>
-
 
 </nav>
 
@@ -1007,181 +516,221 @@
 
 <script>
 
+const SUPABASE_URL =
+  "https://btjpzkgblmuetsomnvpw.supabase.co";
 
-/* =====================================================
-   TEAMS
-===================================================== */
+const SUPABASE_KEY =
+  "sb_publishable_9FmVKyCrGSsBbu3LIni6eQ_U95Fl0Vj";
 
-const teams = [
-
-  {
-    id: "auburn",
-    name: "Auburn Tigers",
-    abbreviation: "AUB",
-    conference: "american",
-    logo: "auburn.png.PNG",
-    className: "auburn"
-  },
-
-  {
-    id: "parker",
-    name: "Parker Thundering Herd",
-    abbreviation: "PAR",
-    conference: "american",
-    logo: "parker.png.PNG.PNG",
-    className: "parker"
-  },
-
-  {
-    id: "cornercanyon",
-    name: "Corner Canyon Chargers",
-    abbreviation: "CCY",
-    conference: "american",
-    logo: "chargers.png.PNG",
-    className: "chargers"
-  },
-
-  {
-    id: "stfrances",
-    name: "St. Frances Academy",
-    abbreviation: "SFA",
-    conference: "american",
-    logo: "stfrances.png.PNG",
-    className: "stfrances"
-  },
-
-  {
-    id: "buford",
-    name: "Buford Wolves",
-    abbreviation: "BUF",
-    conference: "american",
-    logo: "buford.png.PNG",
-    className: "buford"
-  },
-
-  {
-    id: "bosco",
-    name: "St. John Bosco Braves",
-    abbreviation: "SJB",
-    conference: "american",
-    logo: "bosco.png.PNG",
-    className: "bosco"
-  },
-
-  {
-    id: "centennial",
-    name: "Centennial Huskies",
-    abbreviation: "CEN",
-    conference: "national",
-    logo: "centennial.png.PNG",
-    className: "centennial"
-  },
-
-  {
-    id: "img",
-    name: "IMG Academy",
-    abbreviation: "IMG",
-    conference: "national",
-    logo: "img.png.PNG",
-    className: "imgacademy"
-  },
-
-  {
-    id: "norland",
-    name: "Norland Vikings",
-    abbreviation: "NOR",
-    conference: "national",
-    logo: "norland.png.PNG",
-    className: "norland"
-  },
-
-  {
-    id: "saraland",
-    name: "Saraland Spartans",
-    abbreviation: "SAR",
-    conference: "national",
-    logo: "saraland.png.PNG",
-    className: "saraland"
-  },
-
-  {
-    id: "mckinney",
-    name: "McKinney Lions",
-    abbreviation: "MCK",
-    conference: "national",
-    logo: "mckinney.png.PNG",
-    className: "mckinney"
-  },
-
-  {
-    id: "guyer",
-    name: "Denton Guyer Wildcats",
-    abbreviation: "GUY",
-    conference: "national",
-    logo: "guyer.png.PNG",
-    className: "guyer"
-  },
-
-  {
-    id: "stjames",
-    name: "St. James Academy Strivers",
-    abbreviation: "STJ",
-    conference: "other",
-    logo: "stjames.png.PNG",
-    className: "stjames"
-  },
-
-  {
-    id: "dutchfork",
-    name: "Dutch Fork Silver Foxes",
-    abbreviation: "DFK",
-    conference: "other",
-    logo: "silverfoxes.png.PNG",
-    className: "silverfoxes"
-  }
-
-];
-
-
-
-/* =====================================================
-   CHAMPIONS
-   WE ADD REAL CHAMPIONS HERE LATER
-===================================================== */
-
-const champions = [
-
-  /*
-  EXAMPLE FORMAT:
-
-  {
-    season: 1,
-    teamId: "auburn"
-  }
-
-  */
-
-];
-
-
-
-/* =====================================================
-   MORE TABS
-===================================================== */
-
-const moreTabs =
-  document.querySelectorAll(
-    ".more-tab"
+const sb =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
   );
 
 
-const moreSections =
-  document.querySelectorAll(
-    ".more-section"
-  );
+let teams = [];
+let champions = [];
+let selectedConference = "all";
 
 
-moreTabs.forEach(
+
+function renderTeams() {
+
+  let filtered =
+    teams;
+
+
+  if (
+    selectedConference !==
+    "all"
+  ) {
+
+    filtered =
+      teams.filter(
+        team =>
+          team.conference ===
+          selectedConference
+      );
+
+  }
+
+
+  document.getElementById(
+    "teamCount"
+  ).textContent =
+    `${filtered.length} TEAMS`;
+
+
+  const container =
+    document.getElementById(
+      "teams"
+    );
+
+
+  if (
+    !filtered.length
+  ) {
+
+    container.innerHTML =
+      '<div class="empty">No teams found.</div>';
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    filtered
+    .map(
+      team => `
+
+        <div class="team-row">
+
+          <div
+            class="logo-box ${team.class_name || team.slug}"
+          >
+
+            <img
+              src="${team.logo_path}"
+              alt="${team.name}"
+            >
+
+          </div>
+
+
+          <div class="team-info">
+
+            <strong>
+              ${team.name}
+            </strong>
+
+            <span>
+
+              ${team.short}
+
+              ·
+
+              ${
+                team.conference === "american"
+                ? "American Conference"
+                :
+                team.conference === "national"
+                ? "National Conference"
+                : "Other"
+              }
+
+            </span>
+
+          </div>
+
+        </div>
+
+      `
+    )
+    .join("");
+
+}
+
+
+
+function renderChampions() {
+
+  const container =
+    document.getElementById(
+      "champions"
+    );
+
+
+  if (
+    !champions.length
+  ) {
+
+    container.innerHTML = `
+
+      <div class="empty">
+        No Super Bowl champions have been entered yet.
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    champions
+    .map(
+      champion => {
+
+        const team =
+          teams.find(
+            item =>
+              item.slug ===
+              champion.team_slug
+          );
+
+
+        if (
+          !team
+        ) {
+
+          return "";
+
+        }
+
+
+        return `
+
+          <div class="champion-row">
+
+            <div class="champion-season">
+              S${champion.season}
+            </div>
+
+
+            <div
+              class="logo-box ${team.class_name || team.slug}"
+            >
+
+              <img
+                src="${team.logo_path}"
+                alt="${team.name}"
+              >
+
+            </div>
+
+
+            <div class="team-info">
+
+              <strong>
+                ${team.name}
+              </strong>
+
+              <span>
+                Season ${champion.season} Champion
+              </span>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    )
+    .join("");
+
+}
+
+
+
+document
+.querySelectorAll(
+  "[data-tab]"
+)
+.forEach(
   button => {
 
     button.addEventListener(
@@ -1189,10 +738,14 @@ moreTabs.forEach(
       () => {
 
         const tab =
-          button.dataset.moreTab;
+          button.dataset.tab;
 
 
-        moreTabs.forEach(
+        document
+        .querySelectorAll(
+          "[data-tab]"
+        )
+        .forEach(
           item => {
 
             item.classList.toggle(
@@ -1204,13 +757,17 @@ moreTabs.forEach(
         );
 
 
-        moreSections.forEach(
-          section => {
+        document
+        .querySelectorAll(
+          ".panel"
+        )
+        .forEach(
+          panel => {
 
-            section.classList.toggle(
+            panel.classList.toggle(
               "active",
-              section.id ===
-              `more-${tab}`
+              panel.id ===
+              `panel-${tab}`
             );
 
           }
@@ -1224,299 +781,9 @@ moreTabs.forEach(
 
 
 
-/* =====================================================
-   CHAMPIONS
-===================================================== */
-
-function renderChampions() {
-
-  const container =
-    document.getElementById(
-      "championsList"
-    );
-
-
-  container.innerHTML =
-    "";
-
-
-  if (
-    champions.length === 0
-  ) {
-
-    container.innerHTML = `
-
-      <div class="champion-empty">
-
-        <div class="champion-trophy">
-
-          <svg
-            viewBox="0 0 24 24"
-          >
-
-            <path
-              d="M8 4h8v4.5c0 3-1.7 5.2-4 5.2s-4-2.2-4-5.2V4z"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.9"
-            />
-
-            <path
-              d="M8 6H5.5v2.2c0 2 1.2 3.4 3.2 3.8M16 6h2.5v2.2c0 2-1.2 3.4-3.2 3.8"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.9"
-            />
-
-            <path
-              d="M12 14v4M8.5 20h7M10 18h4"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.9"
-            />
-
-          </svg>
-
-        </div>
-
-
-        <strong>
-          CHAMPIONS COMING SOON
-        </strong>
-
-
-        <span>
-          HSFL Super Bowl champions will appear
-          here once official championship results
-          are added.
-        </span>
-
-      </div>
-
-    `;
-
-
-    return;
-
-  }
-
-
-  const sorted =
-    [...champions]
-    .sort(
-      (a,b) =>
-        b.season -
-        a.season
-    );
-
-
-  sorted.forEach(
-    champion => {
-
-      const team =
-        teams.find(
-          item =>
-            item.id ===
-            champion.teamId
-        );
-
-
-      if (!team) {
-        return;
-      }
-
-
-      const card =
-        document.createElement(
-          "div"
-        );
-
-
-      card.className =
-        "champion-card";
-
-
-      card.innerHTML = `
-
-        <div class="champion-season">
-
-          <strong>
-            SEASON ${champion.season}
-          </strong>
-
-          <span>
-            SUPER BOWL CHAMPION
-          </span>
-
-        </div>
-
-
-        <div class="champion-team">
-
-          <div
-            class="
-              champion-logo
-              ${team.className}
-            "
-          >
-
-            <img
-              src="${team.logo}"
-              alt="${team.name}"
-            >
-
-          </div>
-
-
-          <div class="champion-info">
-
-            <strong>
-              ${team.name}
-            </strong>
-
-            <span>
-              ${team.abbreviation}
-              ·
-              HSFL CHAMPION
-            </span>
-
-          </div>
-
-        </div>
-
-      `;
-
-
-      container.appendChild(
-        card
-      );
-
-    }
-  );
-
-}
-
-
-
-/* =====================================================
-   TEAM LIST
-===================================================== */
-
-let currentTeamFilter =
-  "all";
-
-
-function renderTeams() {
-
-  const container =
-    document.getElementById(
-      "teamsList"
-    );
-
-
-  const filtered =
-    currentTeamFilter ===
-    "all"
-
-    ? teams
-
-    : teams.filter(
-        team =>
-          team.conference ===
-          currentTeamFilter
-      );
-
-
-  document.getElementById(
-    "teamCount"
-  ).textContent =
-    `${filtered.length} TEAMS`;
-
-
-  container.innerHTML =
-    "";
-
-
-  filtered.forEach(
-    team => {
-
-      const row =
-        document.createElement(
-          "div"
-        );
-
-
-      row.className =
-        "team-row";
-
-
-      row.innerHTML = `
-
-        <div
-          class="
-            team-logo-box
-            ${team.className}
-          "
-        >
-
-          <img
-            src="${team.logo}"
-            alt="${team.name}"
-          >
-
-        </div>
-
-
-        <div class="team-info">
-
-          <strong>
-            ${team.name}
-          </strong>
-
-          <span>
-            ${
-              team.conference ===
-              "american"
-
-              ? "AMERICAN CONFERENCE"
-
-              : team.conference ===
-                "national"
-
-              ? "NATIONAL CONFERENCE"
-
-              : "HSFL"
-            }
-          </span>
-
-        </div>
-
-
-        <div class="team-abbr">
-          ${team.abbreviation}
-        </div>
-
-      `;
-
-
-      container.appendChild(
-        row
-      );
-
-    }
-  );
-
-}
-
-
-
-/* =====================================================
-   FILTERS
-===================================================== */
-
 document
 .querySelectorAll(
-  ".team-filter"
+  "[data-conference]"
 )
 .forEach(
   button => {
@@ -1525,13 +792,13 @@ document
       "click",
       () => {
 
-        currentTeamFilter =
-          button.dataset.teamFilter;
+        selectedConference =
+          button.dataset.conference;
 
 
         document
         .querySelectorAll(
-          ".team-filter"
+          "[data-conference]"
         )
         .forEach(
           item => {
@@ -1555,16 +822,69 @@ document
 
 
 
-/* =====================================================
-   START
-===================================================== */
+async function loadMore() {
 
-renderChampions();
+  const [
+    teamResult,
+    championResult
+  ] =
+    await Promise.all([
 
-renderTeams();
+      sb
+        .from("hsfl_teams")
+        .select("*")
+        .eq("active",true)
+        .order("display_order"),
+
+      sb
+        .from("hsfl_champions")
+        .select("*")
+        .order(
+          "season",
+          {
+            ascending:false
+          }
+        )
+
+    ]);
+
+
+  if (
+    teamResult.error
+  ) {
+
+    document.getElementById(
+      "teams"
+    ).innerHTML =
+      '<div class="empty">Could not load teams.</div>';
+
+    return;
+
+  }
+
+
+  teams =
+    teamResult.data
+    ||
+    [];
+
+
+  champions =
+    championResult.data
+    ||
+    [];
+
+
+  renderTeams();
+
+  renderChampions();
+
+}
+
+
+loadMore();
 
 </script>
-
 
 </body>
 </html>
